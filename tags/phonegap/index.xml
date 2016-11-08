@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>From An Egg</title>
+    <link>http://fromanegg.com/tags/phonegap/index.xml</link>
+    <description>Recent content on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://fromanegg.com/tags/phonegap/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</title>
+      <link>http://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</link>
+      <pubDate>Sun, 01 Jul 2012 13:34:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</guid>
+      <description>&lt;p&gt;Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post &lt;a href=&#34;http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova&#34;&gt;Guide to using YUI with PhoneGap (Cordova)&lt;/a&gt;. The good news is that it’s very easy to setup but does come with a few drawbacks.&lt;/p&gt;
+
+&lt;p&gt;Using the code from the previous post we only need to make minor changes to load from the CDN.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;cordova-1.8.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;!-- Add in the YUI seed file --&amp;gt;
+&amp;lt;script src=&amp;quot;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;!-- Remove the included local scripts and YUI_CONFIG object
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;YUI_CONFIG = { bootstrap: false };&amp;lt;/script&amp;gt;--&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+&amp;lt;h1&amp;gt;YUI PhoneGap (Cordova) Example&amp;lt;/h1&amp;gt;
+&amp;lt;p&amp;gt;Click this button for a surprise&amp;lt;/p&amp;gt;
+&amp;lt;button&amp;gt;Click Me&amp;lt;/button&amp;gt;
+
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+// Remove the &#39;load all&#39; flag from the use statement
+// YUI().use(&#39;*&#39;, function(Y) {
+// Request the Node and Event modules
+YUI().use(&#39;node&#39;, &#39;event&#39;, function(Y) {
+
+	var button = Y.one(&#39;button&#39;),
+		header = Y.one(&#39;h1&#39;);
+
+	button.on(&#39;touchstart&#39;, function(e) {
+		header.setStyle(&#39;color&#39;, &#39;#00B2EE&#39;);
+	});
+
+});
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that’s it! That will load the YUI seed and loader from Yahoo!’s CDN then load in the Node, Event, and all dependent modules automatically for you. Isn’t loader great?&lt;/p&gt;
+
+&lt;p&gt;But all isn’t perfect, at the beginning I mentioned some drawbacks. In the previous version we were packaging up all of the required assets into the package which will be stored on the device. This will guarantee that those files are always available regardless of the users network connection. Using the remote loading method, once the application loads up it needs to make the request of the remote files before it will become functional. This can cause unnecessary delays in the bootup of the application or cause the application to be entirely useless if there is no network connection. Because of that I don’t recommend using remote loading for core application components. This technique can be very useful during development where your required modules may be changing frequently.&lt;/p&gt;
+
+&lt;p&gt;I’m going to try to keep making these tutorials so if you have anything specific you would find helpful for yourself or others please comment below, mention me on &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;twitter&lt;/a&gt; or join #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Guide to using YUI with PhoneGap (Cordova)</title>
+      <link>http://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</link>
+      <pubDate>Tue, 12 Jun 2012 07:58:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</guid>
+      <description>&lt;p&gt;If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).&lt;/p&gt;
+
+&lt;p&gt;This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t. I am also not going to cover the installation and setup as it is covered in detail in the &lt;a href=&#34;http://docs.phonegap.com/en/1.8.0/guide_getting-started_index.md.html&#34;&gt;Getting Started Guide&lt;/a&gt;. If you have never built a PhoneGap app I highly recommend completing their &lt;code&gt;Hello World&lt;/code&gt; application first. I will be progressing through using an HTC Incredible S with Android 2.3.3 but I will be sure to point out what is device or OS specific. The application that we are going to make is going to build upon the aforementioned &lt;code&gt;Hello World&lt;/code&gt; application adding in a button to change the text color.&lt;/p&gt;
+
+&lt;p&gt;Most of the confusion with using YUI and PhoneGap (Cordova) is the combo loading - How do you use the Loader in a mobile app? The simple answer is that to get started we aren’t going to be. To accomplish our task we require a certain set of YUI modules. To simplify this tutorial we are going to use the &lt;a href=&#34;http://yuilibrary.com/yui/configurator/&#34;&gt;YUI Configurator&lt;/a&gt;. In the All Module list, click on the Node and Event Rollups. These rollups include more code than necessary but it makes the setup easier.&lt;/p&gt;
+
+&lt;p&gt;The configurator will generate two script tags, be sure to select both urls individually Then copy the URL portions of the link generated by the configurator and paste it into the address bar of your browser. If you are having trouble with the configurator I have included the link to the two required files: &lt;a href=&#34;http://yui.yahooapis.com/combo?3.5.1/build/yui-base/yui-base-min.js&amp;amp;3.5.1/build/oop/oop-min.js&amp;amp;3.5.1/build/event-custom-base/event-custom-base-min.js&amp;amp;3.5.1/build/features/features-min.js&amp;amp;3.5.1/build/dom-core/dom-core-min.js&amp;amp;3.5.1/build/dom-base/dom-base-min.js&amp;amp;3.5.1/build/selector-native/selector-native-min.js&amp;amp;3.5.1/build/selector/selector-min.js&amp;amp;3.5.1/build/node-core/node-core-min.js&amp;amp;3.5.1/build/node-base/node-base-min.js&amp;amp;3.5.1/build/event-base/event-base-min.js&amp;amp;3.5.1/build/event-delegate/event-delegate-min.js&amp;amp;3.5.1/build/node-event-delegate/node-event-delegate-min.js&amp;amp;3.5.1/build/pluginhost-base/pluginhost-base-min.js&amp;amp;3.5.1/build/pluginhost-config/pluginhost-config-min.js&amp;amp;3.5.1/build/node-pluginhost/node-pluginhost-min.js&amp;amp;3.5.1/build/dom-style/dom-style-min.js&amp;amp;3.5.1/build/dom-screen/dom-screen-min.js&amp;amp;3.5.1/build/node-screen/node-screen-min.js&amp;amp;3.5.1/build/node-style/node-style-min.js&amp;amp;3.5.1/build/event-custom-complex/event-custom-complex-min.js&amp;amp;3.5.1/build/event-synthetic/event-synthetic-min.js&#34;&gt;File 1&lt;/a&gt; and &lt;a href=&#34;http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;amp;3.5.1/build/event-key/event-key-min.js&amp;amp;3.5.1/build/event-focus/event-focus-min.js&amp;amp;3.5.1/build/event-resize/event-resize-min.js&amp;amp;3.5.1/build/event-hover/event-hover-min.js&amp;amp;3.5.1/build/event-outside/event-outside-min.js&amp;amp;3.5.1/build/event-touch/event-touch-min.js&amp;amp;3.5.1/build/event-move/event-move-min.js&amp;amp;3.5.1/build/event-flick/event-flick-min.js&amp;amp;3.5.1/build/event-valuechange/event-valuechange-min.js&#34;&gt;File 2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Copy the code which is in your browser window and save the code into your assets/www directory in yui-file-1.js and yui-file-2.js respectively, &lt;strong&gt;the order these files are loaded is important&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we are going to get YUI loaded and set up in our index.html file with three additional script tags.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;cordova-1.8.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;YUI_CONFIG = { bootstrap: false };&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;First we load in the Cordova script followed by the two files generated by the YUI configurator plus one more to configure the YUI instance to follow. By setting bootstrap to false we are preventing YUI from trying to load the Loader. Additional details can be found in the &lt;a href=&#34;http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;amp;3.5.1/build/event-key/event-key-min.js&amp;amp;3.5.1/build/event-focus/event-focus-min.js&amp;amp;3.5.1/build/event-resize/event-resize-min.js&amp;amp;3.5.1/build/event-hover/event-hover-min.js&amp;amp;3.5.1/build/event-outside/event-outside-min.js&amp;amp;3.5.1/build/event-touch/event-touch-min.js&amp;amp;3.5.1/build/event-move/event-move-min.js&amp;amp;3.5.1/build/event-flick/event-flick-min.js&amp;amp;3.5.1/build/event-valuechange/event-valuechange-min.js&#34;&gt;bootstrap api&lt;/a&gt; documentation.&lt;/p&gt;
+
+&lt;p&gt;We are ready for our typical YUI().use statement. Add another script tag just above the closing body tag and instead of loading in specific modules like you normally would, we are going to load in all modules that have been loaded into the page using the * symbol.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+YUI().use(&#39;*&#39;, function(Y) {
+
+	var button = Y.one(&#39;button&#39;),
+		header = Y.one(&#39;h1&#39;);
+
+	button.on(&#39;touchstart&#39;, function(e) {
+		header.setStyle(&#39;color&#39;, &#39;#00B2EE&#39;);
+	});
+
+});
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We use the &lt;a href=&#34;http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_one&#34;&gt;Y.one()&lt;/a&gt; method to select our dom elements as usual and then attach an event listener to the &lt;code&gt;button&lt;/code&gt; using the &lt;a href=&#34;http://yuilibrary.com/yui/docs/api/classes/Node.html#method_on&#34;&gt;Node.on()&lt;/a&gt; method. But instead of using the typical &lt;code&gt;click&lt;/code&gt; event, we substitute it for the &lt;code&gt;touchstart&lt;/code&gt; event. Just for fun you can change the &lt;code&gt;touchstart&lt;/code&gt; back to &lt;code&gt;click&lt;/code&gt; and you will see that it works but there is a noticeable delay in the action - this will happen with any click event handler with PhoneGap (Cordova). we then take the element we assigned to the &lt;code&gt;header&lt;/code&gt; property and set it’s color with the &lt;a href=&#34;http://yuilibrary.com/yui/docs/api/classes/Node.html#method_setStyle&#34;&gt;Node.setStyle()&lt;/a&gt; method.&lt;/p&gt;
+
+&lt;p&gt;And that’s it! You can now load this onto your device using the same method described in the PhoneGap (Cordova) example and you have made your very first YUI PhoneGap (Cordova) application. I hope you enjoyed this brief tutorial and if you have any questions feel free to comment below, mention me on &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;twitter&lt;/a&gt; or join #yui on irc.freenode.net&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE HTML&amp;gt;
+&amp;lt;html&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;cordova-1.8.0.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-1.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;yui-file-2.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;YUI_CONFIG = { bootstrap: false };&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+
+&amp;lt;h1&amp;gt;YUI PhoneGap (Cordova) Example&amp;lt;/h1&amp;gt;
+&amp;lt;p&amp;gt;Click this button for a surprise&amp;lt;/p&amp;gt;
+&amp;lt;button&amp;gt;Click Me&amp;lt;/button&amp;gt;
+
+&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+YUI().use(&#39;*&#39;, function(Y) {
+
+	var button = Y.one(&#39;button&#39;),
+		header = Y.one(&#39;h1&#39;);
+
+	button.on(&#39;touchstart&#39;, function(e) {
+		header.setStyle(&#39;color&#39;, &#39;#00B2EE&#39;);
+	});
+
+});
+&amp;lt;/script&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

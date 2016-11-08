@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>From An Egg</title>
+    <link>http://fromanegg.com/tags/ubuntu/index.xml</link>
+    <description>Recent content on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://fromanegg.com/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to install Ubuntu on a Mac or Macbook</title>
+      <link>http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</link>
+      <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</guid>
+      <description>
+
+&lt;p&gt;The official release date of &lt;a href=&#34;http://www.ubuntu.com/download/desktop&#34;&gt;Ubuntu 14.04 LTS Trusty Tahr&lt;/a&gt; is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!&lt;/p&gt;
+
+&lt;p&gt;You’re going to need a few things before we get started:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download Ubuntu 14.04 LTS Trusty Tahr. (If you’re here before it’s released you can download the &lt;a href=&#34;http://cdimage.ubuntu.com/daily-live/current/&#34;&gt;daily image here&lt;/a&gt;. Be sure you download the iso which does NOT have ’+mac’ in the filename. This is for older Apple computers.&lt;/li&gt;
+&lt;li&gt;Download the &lt;a href=&#34;http://www.rodsbooks.com/refind/&#34;&gt;rEFInd Boot Manager&lt;/a&gt;. You want the &lt;a href=&#34;http://www.rodsbooks.com/refind/getting.html&#34;&gt;Binary source file zip&lt;/a&gt; which you need to extract.&lt;/li&gt;
+&lt;li&gt;A 2GB or bigger USB stick which has nothing on it that you don’t care to lose. This will be our boot stick…(remember when they were boot disks?)&lt;/li&gt;
+&lt;li&gt;A thunderbolt to ethernet adapter or if your machine has an ethernet port, plug it in. After installing Ubuntu it is unlikely you will have wifi until the final step.&lt;/li&gt;
+&lt;li&gt;Your computers hard drive should have a big chunk of free space…you’re going to use this as your primary operating system afterall!&lt;/li&gt;
+&lt;li&gt;An hour or so of free time. This took me about 30 minutes from start to finish but I had done it a number of times by the time I created this post.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;obligatory-warning&#34;&gt;Obligatory Warning&lt;/h4&gt;
+
+&lt;p&gt;All of this information is provided without warranty of any kind. Always make and keep proper backups of your data.&lt;/p&gt;
+
+&lt;h4 id=&#34;step-1&#34;&gt;Step 1&lt;/h4&gt;
+
+&lt;h4 id=&#34;backup-your-computer&#34;&gt;BACKUP YOUR COMPUTER&lt;/h4&gt;
+
+&lt;p&gt;While it’s unlikely that an issue will occur which wipes the data on your disk it’s always highly advisable to have a couple quality backups just in case.&lt;/p&gt;
+
+&lt;p&gt;Go make another backup…I’ll wait.&lt;/p&gt;
+
+&lt;h4 id=&#34;did-you-back-up-your-data-yet&#34;&gt;DID YOU BACK UP YOUR DATA YET?&lt;/h4&gt;
+
+&lt;h4 id=&#34;step-2&#34;&gt;Step 2&lt;/h4&gt;
+
+&lt;p&gt;Now that you have a quality backup safely tucked away you will need to install rEFInd. Open the terminal and navigate to the location that you extracted the zip file and then follow the &lt;a href=&#34;http://www.rodsbooks.com/refind/installing.html#installsh&#34;&gt;installation instructions for OSX&lt;/a&gt;. Once completed, restart your computer to confirm that rEFInd was installed correctly. On rebooting, the rEFInd boot loader should load up and you should select the Apple logo to get back into OSX. (sorry for the sub par photos)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
+
+&lt;p&gt;Now that you’re back in OSX we need to take that iso of Ubuntu 14.04 that you downloaded and make a bootable USB stick. Follow the &lt;a href=&#34;http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx&#34;&gt;10 steps outlined here&lt;/a&gt; to create the bootable stick. You’ll know when it’s ready because OSX will pop open a dialogue saying that it cannot read the device.&lt;/p&gt;
+
+&lt;h4 id=&#34;step-4&#34;&gt;Step 4&lt;/h4&gt;
+
+&lt;p&gt;You need a place to put Ubuntu on your computer, so you’ll need to create a partition on your hard drive. The size of this partition will depend on the size of your disk and what you plan to do in Ubuntu, but it should be at least 10GB to give you some wiggle room (mine is 100GB). To do so you will use the OSX tool ‘Disk Utility’. There are some dated, but still accurate instructions on &lt;a href=&#34;https://help.ubuntu.com/community/MactelSupportTeam/AppleIntelInstallation#Manual_partitioning_using_Disk_Utility_GUI&#34;&gt;creating this partition here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
+
+&lt;p&gt;With the partition made it’s now time to stick the USB stick into your computer and reboot. After rebooting you should land on the rEFInd boot loader again with a few more options than before. If you do not see these options then reboot again holding the “option” key.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Your options may look a little different but you want to pick one of the options which are provided from the USB stick (There are three provided in this image). For the Haswell equipped machines you want to pick the option which reads something along the lines of “Boot EFI\boot\grubx64.efi …” and hit enter. This will start another boot loader with the first option “Install Ubuntu”, hit enter to select this option. After a little while you should be in the Ubuntu installer, follow through the steps until the installer asks you where you would like to install Ubuntu.&lt;/p&gt;
+
+&lt;p&gt;Note: If after progressing through the install process and you find that it boots into a black screen start again from Step 5 but choose an installer without “EFI” in the path name.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;step-6&#34;&gt;Step 6&lt;/h4&gt;
+
+&lt;p&gt;Note: partitioning will be a little different for everyone so if you get confused hop onto IRC in #ubuntu on freenode.net or create a question on &lt;a href=&#34;http://askubuntu.com&#34;&gt;http://askubuntu.com&lt;/a&gt; for some help.&lt;/p&gt;
+
+&lt;p&gt;When you step through the installer you will get to a pane which asks you where you want to install Ubuntu to. The options should be pretty self explanatory. But if there isn’t an option to install Ubuntu into your new partition you will need to take the manual route. Select the manual partition option and you should be shown a screen which looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see form this list, I created a 100GB partition originally and then created a 3GB swap partition. To take the partition you created in OSX and create a swap from it you will need to select it then hit the “Change” button and downsize it 3GB. This will leave you with “free space” of 3GB. Click the “+” button and create a new partition of the type “swap”. You’ll want to make sure your primary partition is of type “ext4” and that the mount point is “/”.&lt;/p&gt;
+
+&lt;p&gt;Continue on from here installing Ubuntu to your new partition.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;step-7&#34;&gt;Step 7&lt;/h4&gt;
+
+&lt;p&gt;After the installation has completed remove the USB stick from your computer and reboot. Now when rEFInd shows up you should have an extra option with the Ubuntu logo. Click it and boot into Ubuntu.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;step-8&#34;&gt;Step 8&lt;/h4&gt;
+
+&lt;p&gt;Once you have logged into Ubuntu, click the &amp;lsquo;System Settings’ icon in the launcher bar on the left. Select &amp;lsquo;Software and Updates’ and then select the &amp;lsquo;Additional Drivers’ tab. After this tab loads you should see a proprietary driver for the Broadcom wireless, select it and click &amp;lsquo;Apply’. Reboot the computer and you should now be able to click the network icon in the top right of the desktop to connect to a wireless connection.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations you now have Ubuntu installed along side OSX!&lt;/p&gt;
+
+&lt;p&gt;If you run into any problems along the way or have any questions your first stop should be your search engine of choice there are thousands of great resources for Ubuntu scattered around on many topics. You will also find a ton of great people in Ubuntu community hanging out in the #ubuntu room on IRC on freenode.net or if you prefer to ask direct detailed questions check out &lt;a href=&#34;http://askubuntu.com&#34;&gt;http://askubuntu.com&lt;/a&gt;. I hope that this guide has helped you get up and running with Ubuntu, please comment below with any questions or comments or I can be found on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;, thanks for reading!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>NFS between Ubuntu vm and OSX host</title>
+      <link>http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</link>
+      <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</guid>
+      <description>
+
+&lt;p&gt;If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.&lt;/p&gt;
+
+&lt;p&gt;At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues. To verify this, open up a terminal window in the host and VM and enter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.&lt;/p&gt;
+
+&lt;h4 id=&#34;ubuntu-vm-setup&#34;&gt;Ubuntu VM Setup&lt;/h4&gt;
+
+&lt;p&gt;Install the NFS server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-get install nfs-kernel-server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we are going to create a pseudo filesystem where we will share our users home directory from.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p /export/your-user-name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/export    192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+
+/export/your-user-name    192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo chmod -R 777 /export
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now lets link our home directory to the export directory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mount --bind /home/your-user-name /export/your-user-name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/home/your-user-name    /export/your-user-name    none    bind  0  0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And finally, you’ll need to export the shares and restart your nfs server&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo exportfs -a
+sudo service nfs-kernel-server restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;osx-setup&#34;&gt;OSX Setup&lt;/h4&gt;
+
+&lt;p&gt;On the OSX side things are very simple. First lets create the directory we are going to mount our remote home directory into.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mkdir ~/linux-vm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you get an error that reads ‘Operation not permitted’ then you can try the following.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.&lt;/p&gt;
+
+&lt;h4 id=&#34;problems-solutions&#34;&gt;Problems - Solutions&lt;/h4&gt;
+
+&lt;p&gt;Stale File Handle - Try un-mounting and re-mounting the NFS.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo umount -f /Users/your-user-name/linux-vm
+sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exec ssh-agent bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you are having any issues feel free to comment below or mention me on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; Thanks for reading!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

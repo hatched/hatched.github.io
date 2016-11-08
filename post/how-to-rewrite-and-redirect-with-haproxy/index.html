@@ -1,0 +1,723 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>How to rewrite and redirect with HAProxy</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.17" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="How to rewrite and redirect with HAProxy"/>
+<meta name="twitter:description" content="It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy."/>
+<meta name="twitter:site" content="@fromanegg"/>
+
+
+        <meta property="og:title" content="How to rewrite and redirect with HAProxy" />
+<meta property="og:description" content="It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hugo.spf13.com/post/how-to-rewrite-and-redirect-with-haproxy/" />
+
+
+<meta property="og:updated_time" content="2012-12-05T12:52:00-06:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="How to rewrite and redirect with HAProxy">
+<meta itemprop="description" content="It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.">
+
+
+<meta itemprop="dateModified" content="2012-12-05T12:52:00-06:00" />
+<meta itemprop="wordCount" content="619">
+
+
+
+<meta itemprop="keywords" content="android,book-review,cordova,css,development,go,hatched-links,javascript,juju,juju-gui,linux,node.js,ops,osx,phonegap,testing,ubuntu,video,yui," />
+
+        
+
+        
+
+        
+        
+            
+        
+
+        
+        
+
+        
+            
+                
+                    <link rel="stylesheet" href="/css/main.min.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Future Imperfect</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/posts">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Posts
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:http://hugo.spf13.com/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://hugo.spf13.com/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/posts">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Posts
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://hugo.spf13.com/post/the-importance-of-minification-and-compression/"><p>The importance of minification and compression</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hugo.spf13.com/post/automatically-build-files-when-they-change-with-make/"><p>Automatically build files when they change with Make</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&text=How%20to%20rewrite%20and%20redirect%20with%20HAProxy&via=fromanegg" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://hugo.spf13.com/post/how-to-rewrite-and-redirect-with-haproxy/">How to rewrite and redirect with HAProxy</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2012-12-05'>
+            December 5, 2012</time>
+        <span class="author"></span>
+        
+            <p>3 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&text=How%20to%20rewrite%20and%20redirect%20with%20HAProxy&via=fromanegg" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f&title=How%20to%20rewrite%20and%20redirect%20with%20HAProxy" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fhugo.spf13.com%2fpost%2fhow-to-rewrite-and-redirect-with-haproxy%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    
+
+    <div id="content">
+        <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
+
+<p>I have a rather common use case. I plan on moving this blog from Tumblr to <a href="https://ghost.org/">Ghost</a> using the <a href="https://jujucharms.com/ghost/">Ghost Juju charm</a> and the <a href="https://jujucharms.com/haproxy/">HAProxy charm</a> to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.</p>
+
+<p>Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:</p>
+
+<pre><code>RewriteEngine On  
+RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
+</code></pre>
+
+<p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
+
+<p>Assume the following front and backend configurations:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+
+backend haproxy_service
+    balance leastconn
+    cookie SRVNAME insert
+    server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
+</code></pre>
+
+<p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+</code></pre>
+
+<p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301
+</code></pre>
+
+<p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
+
+<p>We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7">access control list</a> to only redirect the old urls:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    acl old_url path_beg /post
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301 if old_url
+</code></pre>
+
+<p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
+
+<p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+    </div>
+
+    <footer>
+        <ul class="stats">
+    
+
+    
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="http://hugo.spf13.com/post/using-after-event-listeners-to-react-to-attribute-value-changes/"
+                class="button big previous">Using after() event listeners to react to attribute value changes</a></li>
+    
+
+    
+        <li><a href="http://hugo.spf13.com/post/form-validation-with-keydown-keypress-and-keyup/"
+                class="button big next">Form validation with keydown, keypress, and keyup</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_identifier = 'http:\/\/hugo.spf13.com\/post\/how-to-rewrite-and-redirect-with-haproxy\/';
+    var disqus_title = 'How to rewrite and redirect with HAProxy';
+    var disqus_url = 'http:\/\/hugo.spf13.com\/post\/how-to-rewrite-and-redirect-with-haproxy\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/img/main/logo.jpg" alt="Hugo Future Imperfect" /></a>
+                
+            
+            
+                <header>
+                    <h2>Hugo Future Imperfect</h2>
+                    <p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a>. Ported by Julio Pescador with some extra goodies <i class='fa fa-hand-peace-o'></i></p>
+                </header>
+            
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/hatched" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/fromanegg" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://hugo.spf13.com/post/the-importance-of-minification-and-compression/">The importance of minification and compression</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2016-01-02'>
+                                    January 2, 2016</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://hugo.spf13.com/post/automatically-build-files-when-they-change-with-make/">Automatically build files when they change with Make</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2015-08-26'>
+                                    August 26, 2015</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /posts/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris.</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/hatched" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/fromanegg" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; Hugo Future Imperfect. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+
+        
+            
+                
+                    <script src="/js/main.min.js"></script>
+                
+            
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

@@ -1,0 +1,747 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        
+            
+                <title>Self documenting code is not enough</title>
+            
+        
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="generator" content="Hugo 0.17" />
+        
+
+
+        
+        
+            
+                <meta name="description" content="HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo">
+            
+        
+
+        
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Self documenting code is not enough"/>
+<meta name="twitter:description" content="Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.
+As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as self-documenting code with comments which detail, to anyone reading it, the why the code is doing what it’s doing."/>
+<meta name="twitter:site" content="@fromanegg"/>
+
+
+        <meta property="og:title" content="Self documenting code is not enough" />
+<meta property="og:description" content="Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.
+As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as self-documenting code with comments which detail, to anyone reading it, the why the code is doing what it’s doing." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://hugo.spf13.com/post/self-documenting-code-is-not-enough/" />
+
+
+<meta property="og:updated_time" content="2014-03-13T09:22:00-06:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Self documenting code is not enough">
+<meta itemprop="description" content="Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.
+As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as self-documenting code with comments which detail, to anyone reading it, the why the code is doing what it’s doing.">
+
+
+<meta itemprop="dateModified" content="2014-03-13T09:22:00-06:00" />
+<meta itemprop="wordCount" content="690">
+
+
+
+<meta itemprop="keywords" content="android,book-review,cordova,css,development,go,hatched-links,javascript,juju,juju-gui,linux,node.js,ops,osx,phonegap,testing,ubuntu,video,yui," />
+
+        
+
+        
+
+        
+        
+            
+        
+
+        
+        
+
+        
+            
+                
+                    <link rel="stylesheet" href="/css/main.min.css" />
+                
+            
+        
+
+        
+        
+        
+            
+        
+    </head>
+    <body>
+
+        
+        <div id="wrapper">
+
+    
+    
+<header id="header">
+    
+        <h2><a href="/">Future Imperfect</i></a></h2>
+    
+
+    <nav class="links">
+        <ul>
+            
+                <li>
+                    <a href="/posts">
+                        
+                            <i class="fa fa-newspaper-o">&nbsp;</i>Posts
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/categories">
+                        Categories
+                    </a>
+                </li>
+            
+                <li>
+                    <a href="/about">
+                        About
+                    </a>
+                </li>
+            
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
+            
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="//google.com/search">
+                    <input type="text" name="q" placeholder="Search" />
+                    <input type="hidden" name="q" value="site:http://hugo.spf13.com/">
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<section id="menu">
+
+    
+        <section>
+            <form class="search" method="get" action="//google.com/search">
+                <input type="text" name="q" placeholder="Search" />
+                <input type="hidden" name="q" value="site:http://hugo.spf13.com/">
+            </form>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                
+                    <li>
+                        <a href="/posts">
+                            <h3>
+                                
+                                    <i class="fa fa-newspaper-o">&nbsp;</i>
+                                
+                                Posts
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            <h3>
+                                
+                                Categories
+                            </h3>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/about">
+                            <h3>
+                                
+                                About
+                            </h3>
+                        </a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        <section>
+            <ul class="links">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    <li>
+                        <a href="http://hugo.spf13.com/post/the-importance-of-minification-and-compression/"><p>The importance of minification and compression</p></a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hugo.spf13.com/post/automatically-build-files-when-they-change-with-make/"><p>Automatically build files when they change with Make</p></a>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+        
+</section>
+
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&text=Self%20documenting%20code%20is%20not%20enough&via=fromanegg" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
+    
+    <div id="main">
+        
+        
+        <article class="post">
+    <header>
+    <div class="title">
+        
+            <h1><a href="http://hugo.spf13.com/post/self-documenting-code-is-not-enough/">Self documenting code is not enough</a></h1>
+            
+        
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2014-03-13'>
+            March 13, 2014</time>
+        <span class="author"></span>
+        
+            <p>4 minute read</p>
+        
+        
+    </div>
+</header>
+
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&text=Self%20documenting%20code%20is%20not%20enough&via=fromanegg" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f&title=Self%20documenting%20code%20is%20not%20enough" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fhugo.spf13.com%2fpost%2fself-documenting-code-is-not-enough%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+    
+
+    <div id="content">
+        <p>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.</p>
+
+<p>As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as <a href="https://en.wikipedia.org/wiki/Self-documenting_code">self-documenting code</a> with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</p>
+
+<p>Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:</p>
+
+<pre><code class="language-javascript">function gd(p1, p2) {
+  return [p1.x - p2.x, p1.y - p2.y];
+}
+</code></pre>
+
+<p>Into:</p>
+
+<pre><code class="language-javascript">function getDifference(point1, point2) {
+  var x = point1.x - point2.x;
+  var y = point2.y - point2.y;
+  return [x, y];
+}
+</code></pre>
+
+<p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
+
+<p>This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.</p>
+
+<p>Lets assume for a moment that this function was copy &amp; pasted into a larger projects utility class. Wouldn’t it be nice if it would automatically be added to the API docs?</p>
+
+<pre><code class="language-javascript">/**
+  Calculate the difference between the x and y coords of two points.
+
+  @method getDifference
+  @param {Object} point1 The first point to compare.
+  @param {Object} point2 The second point to compare.
+  @return {Array} The difference between the two points in the format [x, y]
+*/
+function getDifference(point1, point2) {
+  var x = point1.x - point2.x;
+  var y = point2.y - point2.y;
+  return [x, y];
+}
+</code></pre>
+
+<p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
+
+<p>To illustrate the importance of inline comments even with self documenting code. Take the following method from the <a href="https://github.com/juju/juju-gui">Juju GUI source</a>.</p>
+
+<p>The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.</p>
+
+<pre><code class="language-javascript">exportYAML: function() {
+  var result = this.db.exportDeployer();
+  var exportData = jsyaml.dump(result);
+  var exportBlob = new Blob([exportData],
+             {type: 'text/plain;charset=utf-8'});
+  saveAs(exportBlob, 'export.yaml');
+},
+</code></pre>
+
+<p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
+
+<pre><code class="language-javascript">/**
+  Export the YAML for this environment.
+
+  @method exportYAML
+*/
+exportYAML: function() {
+  var result = this.db.exportDeployer();
+  var exportData = jsyaml.dump(result);
+  // In order to support Safari 7 the type of this blob needs
+  // to be text/plain instead of it's actual type of application/yaml.
+  var exportBlob = new Blob([exportData],
+      {type: 'text/plain;charset=utf-8'});
+  saveAs(exportBlob, 'export.yaml');
+},
+</code></pre>
+
+<p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
+
+<p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+    </div>
+
+    <footer>
+        <ul class="stats">
+    
+
+    
+    
+</ul>
+
+    </footer>
+</article>
+<ul class="actions pagination">
+    
+        <li><a href="http://hugo.spf13.com/post/new-release-juju-gui-0-1-0/"
+                class="button big previous">New release - Juju GUI 0.15.0</a></li>
+    
+
+    
+        <li><a href="http://hugo.spf13.com/post/how-to-install-ubuntu-on-a-mac-or-macbook/"
+                class="button big next">How to install Ubuntu on a Mac or Macbook</a></li>
+    
+</ul>
+
+
+
+    
+        <article class="post">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'shortname';
+    var disqus_identifier = 'http:\/\/hugo.spf13.com\/post\/self-documenting-code-is-not-enough\/';
+    var disqus_title = 'Self documenting code is not enough';
+    var disqus_url = 'http:\/\/hugo.spf13.com\/post\/self-documenting-code-is-not-enough\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+    
+
+
+    </div>
+    
+<section id="sidebar">
+
+    
+        <section id="intro">
+            
+            
+                
+                    <a href="/" class="logo"><img src="/img/main/logo.jpg" alt="Hugo Future Imperfect" /></a>
+                
+            
+            
+                <header>
+                    <h2>Hugo Future Imperfect</h2>
+                    <p>Another fine responsive site template by <a href="http://html5up.net">HTML5 UP</a>. Ported by Julio Pescador with some extra goodies <i class='fa fa-hand-peace-o'></i></p>
+                </header>
+            
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/hatched" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/fromanegg" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+        </section>
+
+    
+        <section id="recent-posts">
+            <ul class="posts">
+                <header>
+                    <h3>Recent Posts</h3>
+                </header>
+                
+                    
+                
+
+                
+                    
+                
+
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://hugo.spf13.com/post/the-importance-of-minification-and-compression/">The importance of minification and compression</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2016-01-02'>
+                                    January 2, 2016</time>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <h3><a href="http://hugo.spf13.com/post/automatically-build-files-when-they-change-with-make/">Automatically build files when they change with Make</a></h3>
+                                
+                                    
+                                
+                                <time class="published" datetime=
+                                    '2015-08-26'>
+                                    August 26, 2015</time>
+                            </header>
+                        </article>
+                    </li>
+                
+
+                
+                    <li>
+                        <ul class="actions">
+                            <li><a href=
+                            
+                                /posts/
+                            
+                            class="button">View more posts</a></li>
+                        </ul>
+                    </li>
+                
+            </ul>
+        </section>
+
+    
+    
+    
+    
+        <section id="categories">
+            <ul class="posts">
+                <header>
+                    <h3><a href="/categories/">Categories</a></h3>
+                </header>
+
+                
+                    
+                
+
+                
+            </ul>
+        </section>
+    
+
+    
+        
+        <section class="blurb">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris.</p>
+
+            <ul class="actions">
+                <li><a href="/about/" class="button">Learn More</a></li>
+            </ul>
+        </section>
+        
+
+    
+        <section id="footer">
+            <ul class="icons">
+                
+                
+                    
+<li><a href="//github.com/hatched" target="_blank" title="GitHub" class="fa fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/fromanegg" target="_blank" title="Twitter" class="fa fa-twitter"></a></li>
+
+
+
+
+                
+            </ul>
+
+            <p class="copyright">&copy; Hugo Future Imperfect. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>. Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>. Powered by <a href="//gohugo.io" target="_blank">Hugo</a></p>
+        </section>
+
+</section>
+
+            </div>
+        <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+        
+
+        
+        
+            
+        
+
+        
+        
+
+        
+            
+                
+                    <script src="/js/main.min.js"></script>
+                
+            
+        
+
+            
+            <script>hljs.initHighlightingOnLoad();</script>
+            
+    </body>
+</html>
+

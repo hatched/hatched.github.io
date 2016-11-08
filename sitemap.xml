@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://fromanegg.com/</loc>
+    <lastmod>2016-01-02T13:15:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</loc>
+    <lastmod>2016-01-02T13:15:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</loc>
+    <lastmod>2015-08-26T12:07:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2015/06/13/using-juju-for-development</loc>
+    <lastmod>2015-06-13T16:11:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</loc>
+    <lastmod>2015-06-06T21:44:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</loc>
+    <lastmod>2015-04-22T19:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</loc>
+    <lastmod>2014-09-08T23:10:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/06/17/new-release---juju-gui-1.1.0</loc>
+    <lastmod>2014-06-17T13:23:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</loc>
+    <lastmod>2014-05-15T23:18:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</loc>
+    <lastmod>2014-04-25T10:49:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</loc>
+    <lastmod>2014-04-09T20:09:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</loc>
+    <lastmod>2014-03-13T09:22:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/01/26/new-release---juju-gui-0.15.0</loc>
+    <lastmod>2014-01-26T12:49:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2014/01/26/new-release---juju-gui-0.15.0</loc>
+    <lastmod>2014-01-26T12:49:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</loc>
+    <lastmod>2013-12-30T12:09:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</loc>
+    <lastmod>2013-12-05T22:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/12/05/new-releases---juju-gui-0.14.0--juju-quickstart-0.5.0</loc>
+    <lastmod>2013-12-05T12:05:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides</loc>
+    <lastmod>2013-11-16T12:22:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/11/15/juju-gui-0.13.0-release-and-updates</loc>
+    <lastmod>2013-11-15T11:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail</loc>
+    <lastmod>2013-11-09T14:06:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/10/01/juju-gui-0.10.1-released---bug-fixes-and-updates</loc>
+    <lastmod>2013-10-01T17:10:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/09/18/juju-gui-0.10.0-released---brand-new-service-inspector</loc>
+    <lastmod>2013-09-18T15:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object</loc>
+    <lastmod>2013-09-15T10:08:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/09/11/juju-gui-0.9.0-released---now-with-ie10-support</loc>
+    <lastmod>2013-09-11T18:21:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew</loc>
+    <lastmod>2013-08-19T13:36:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/08/05/css-selectors---the-next-level</loc>
+    <lastmod>2013-08-05T16:53:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file</loc>
+    <lastmod>2013-07-31T20:27:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/07/22/juju-gui-v0.8-and-jujucharms.com-released</loc>
+    <lastmod>2013-07-22T18:51:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/20/juju-gui-0.6.0-released</loc>
+    <lastmod>2013-06-20T18:59:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/13/juju-for-osx-is-now-available</loc>
+    <lastmod>2013-06-13T17:11:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way</loc>
+    <lastmod>2013-06-07T22:45:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript</loc>
+    <lastmod>2013-06-06T10:02:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/03/juju-gui-v0.7.1-released</loc>
+    <lastmod>2013-06-03T13:51:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/06/01/xor-in-javascript</loc>
+    <lastmod>2013-06-01T12:08:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer</loc>
+    <lastmod>2013-04-07T17:59:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</loc>
+    <lastmod>2013-03-18T20:03:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript</loc>
+    <lastmod>2013-02-22T12:00:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays</loc>
+    <lastmod>2013-02-06T14:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors</loc>
+    <lastmod>2013-01-28T10:01:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar</loc>
+    <lastmod>2013-01-23T15:25:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript</loc>
+    <lastmod>2013-01-21T10:00:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</loc>
+    <lastmod>2013-01-17T11:07:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects</loc>
+    <lastmod>2013-01-09T10:54:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript</loc>
+    <lastmod>2013-01-03T20:56:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup</loc>
+    <lastmod>2012-12-29T12:58:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/12/05/how-to-rewrite-and-redirect-with-haproxy</loc>
+    <lastmod>2012-12-05T12:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes</loc>
+    <lastmod>2012-12-01T18:30:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/10/18/hatched-links</loc>
+    <lastmod>2012-10-18T09:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/10/18/hatched-links</loc>
+    <lastmod>2012-10-18T09:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/10/11/hatched-links</loc>
+    <lastmod>2012-10-11T13:56:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/10/04/hatched-links</loc>
+    <lastmod>2012-10-04T09:04:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements</loc>
+    <lastmod>2012-10-01T09:07:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/09/27/hatched-links</loc>
+    <lastmod>2012-09-27T22:39:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources</loc>
+    <lastmod>2012-09-19T18:05:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yuis-y.attribute</loc>
+    <lastmod>2012-08-24T13:41:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google</loc>
+    <lastmod>2012-08-10T10:36:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y.popupcalendar</loc>
+    <lastmod>2012-07-31T15:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</loc>
+    <lastmod>2012-07-01T13:34:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</loc>
+    <lastmod>2012-06-12T07:58:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/04/12/yui-popup-calendar</loc>
+    <lastmod>2012-04-12T19:22:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/02/26/how-to-make-a-node.js-static-file-server---part-1</loc>
+    <lastmod>2012-02-26T19:19:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader</loc>
+    <lastmod>2012-02-06T15:50:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://fromanegg.com/post/2012/02/03/introduction</loc>
+    <lastmod>2012-02-03T20:43:00-06:00</lastmod>
+  </url>
+  
+</urlset>
