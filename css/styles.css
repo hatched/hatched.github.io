@@ -191,7 +191,10 @@ section .post-tag-list {
 
 section .post-tag-list li {
   list-style: none;
-  height: 2em;
+  min-height: 2em;
+  text-indent: -1.5em;
+  padding-left: 1.5em;
+  margin-top: 0.5em;
 }
 
 section .post-tag-list li a {
@@ -202,6 +205,7 @@ section .post-tag-list li a {
 
 section .post-tag-list li a:hover {
   text-decoration: underline;
+  color: #cc181e;
 }
 
 section h3 {
@@ -284,4 +288,11 @@ section.article-list.tags-list article {
   section.article-list article {
     margin: 25px;
   }
+
+  section.article-list ul {
+    margin-top: 2em;
+    padding-left: 0;
+  }
+
+
 }
