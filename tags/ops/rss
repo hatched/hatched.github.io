@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>From An Egg</title>
+    <link>http://fromanegg.com/tags/ops/rss/</link>
+    <description>Recent content on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://fromanegg.com/tags/ops/rss/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Automatically build files when they change with Make</title>
+      <link>http://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</link>
+      <pubDate>Wed, 26 Aug 2015 12:07:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</guid>
+      <description>&lt;p&gt;When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?&lt;/p&gt;
+
+&lt;p&gt;Introducing &lt;a href=&#34;http://linux.die.net/man/1/inotifywait&#34;&gt;inotifywait&lt;/a&gt;, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And &lt;a href=&#34;http://emcrisostomo.github.io/fswatch/&#34;&gt;fswatch&lt;/a&gt; for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.&lt;/p&gt;
+
+&lt;p&gt;If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;watch -n 2 make build
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or they will build the loop into the makefile.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.PHONY&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;watch&lt;/span&gt;
+&lt;span class=&#34;nf&#34;&gt;watch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; true&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+    make build --silent&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+    sleep 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.PHONY&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;watch&lt;/span&gt;
+&lt;span class=&#34;nf&#34;&gt;watch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; true&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+    inotifywait -qr -e modify -e create -e delete -e move app/src&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+    make build&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.&lt;/p&gt;
+
+&lt;p&gt;Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;. Thanks for reading!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to rewrite and redirect with HAProxy</title>
+      <link>http://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</link>
+      <pubDate>Fri, 05 Dec 2014 12:52:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</guid>
+      <description>&lt;p&gt;It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.&lt;/p&gt;
+
+&lt;p&gt;I have a rather common use case. I plan on moving this blog from Tumblr to &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt; using the &lt;a href=&#34;https://jujucharms.com/ghost/&#34;&gt;Ghost Juju charm&lt;/a&gt; and the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;HAProxy charm&lt;/a&gt; to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.&lt;/p&gt;
+
+&lt;p&gt;Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;RewriteEngine On  
+RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep&#34;&gt;reqrep&lt;/a&gt;, to rewrite the url, and &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect&#34;&gt;redirect&lt;/a&gt;, to handle the actual redirection.&lt;/p&gt;
+
+&lt;p&gt;Assume the following front and backend configurations:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+
+backend haproxy_service
+    balance leastconn
+    cookie SRVNAME insert
+    server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In order to rewrite the url we first need to add the rewrite into the frontend:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &amp;lsquo;prefix’, and &amp;lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.&lt;/p&gt;
+
+&lt;p&gt;We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7&#34;&gt;access control list&lt;/a&gt; to only redirect the old urls:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    acl old_url path_beg /post
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301 if old_url
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &amp;lsquo;if old_url&amp;rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.&lt;/p&gt;
+
+&lt;p&gt;In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a &lt;a href=&#34;http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy&#34;&gt;serverfault question&lt;/a&gt; which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

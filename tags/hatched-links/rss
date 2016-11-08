@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>From An Egg</title>
+    <link>http://fromanegg.com/tags/hatched-links/rss/</link>
+    <description>Recent content on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://fromanegg.com/tags/hatched-links/rss/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>http://fromanegg.com/post/2012/10/18/hatched-links</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/10/18/hatched-links</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS&#34;&gt;HTTP access control (CORS) (mozilla.org)&lt;/a&gt;: Learn how Cross-Origin Resource Sharing works.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ianstormtaylor.com/design-tip-never-use-black&#34;&gt;Never use black (ianstormtaylor.com)&lt;/a&gt;: Design tip on why you should never use black.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.designyourway.net/blog/resources/31-css-code-snippets-to-make-you-a-better-coder/&#34;&gt;31 CSS code snippets (designyourway.net)&lt;/a&gt;: Great list of some cool css hacks.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.designyourway.net/blog/inspiration/css3-html5-experiments-that-will-blow-your-mind-47-examples/&#34;&gt;CSS3 &amp;amp; HTML5 Experiments (designyourway.net)&lt;/a&gt;: a list of 47 great CSS3 and HTML5 experiments.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://css-tricks.com/rundown-of-handling-flexible-media/&#34;&gt;Rundown of handling flexible media (css-tricks.com)&lt;/a&gt;: Great resource for information on how to handle flexible media.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have something you would like to see on the next Hatched Links? Mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or find me in #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>http://fromanegg.com/post/2012/10/18/hatched-links</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/10/18/hatched-links</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://simurai.com/blog/2012/09/13/flick-scrolling&#34;&gt;Flick Scroll (simurai.com)&lt;/a&gt;: Very cool new swipe technique.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://andmag.se/2011/11/responsive-embeds/&#34;&gt;Responsive Embeds (andmag.se)&lt;/a&gt;: Great technique for using responsive sized embeds.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://zurb.com/playground/responsive-sketchsheets&#34;&gt;Responsive Sketchsheets (zurb.com)&lt;/a&gt;: Unique collection of sketchsheets for responsive layouts.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.impressivewebs.com/javascript-array-methods-reference/&#34;&gt;Javascript Array Methods Reference (impressivewebs.com)&lt;/a&gt;: Reference for the various array manipulation methods in javascript.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bricss.net/post/33158273857/box-shadow-vs-filter-drop-shadow&#34;&gt;Box-Shadow vs Filter-Drop-Shadow (bricss.net)&lt;/a&gt;: A comparison of these two shadow css rules.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have something you would like to see on the next Hatched Links? Mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or find me in #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>http://fromanegg.com/post/2012/10/11/hatched-links</link>
+      <pubDate>Thu, 11 Oct 2012 13:56:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/10/11/hatched-links</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://gitx.laullon.com/&#34;&gt;GUI Git Client For OSX (laullon.com)&lt;/a&gt;: Open source and runs on OSX 10.6+ and Git 1.6.0+.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.adobe.com/devnet/edge-inspect/articles/browser-testing-across-devices-with-adobe-edge-inspect.html&#34;&gt;Test Across Devices With Adobe Shadow (adobe.com)&lt;/a&gt;: Setup browsing and debugging with Adobe Shadow.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webplatform.org/&#34;&gt;Web Platform Docs (webplatform.org)&lt;/a&gt;: Community driven wiki looking to become the be-all end-all of web development docs.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://tympanus.net/codrops/2012/10/09/windy-a-plugin-for-swift-content-navigation/&#34;&gt;Windy: A Plugin For Swift Content Navigation (tympanus.net)&lt;/a&gt;: Make items fly away like a deck of cards.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://dropshado.ws/post/32280391206/animating-max-height-to-overcome-heightauto&#34;&gt;Transition to height: auto trick (dropshado.ws)&lt;/a&gt;: Animating max-height to overcome height:auto limitation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have something you would like to see on the next Hatched Links? Mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or find me in #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>http://fromanegg.com/post/2012/10/04/hatched-links</link>
+      <pubDate>Thu, 04 Oct 2012 09:04:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/10/04/hatched-links</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://slides.com/&#34;&gt;An Online Editor For reveal.js (rvl.io)&lt;/a&gt;: Edit the popular reveal.js HTML presentation framework online.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://reidburke.com/&#34;&gt;YUI Test Tool (yeti.cx)&lt;/a&gt;: Run YUI Test in multiple browsers.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://fontawesome.io/&#34;&gt;220 Icon Font (Font Awesome)&lt;/a&gt;: Has icon parity with Bootstrap plus a lot more.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/webmat/git_remote_branch&#34;&gt;Git Remote Branch (webmat)&lt;/a&gt;: Easily manipulate git branches in shared repos.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://worrydream.com/LearnableProgramming/&#34;&gt;Learnable Programming (worrydream)&lt;/a&gt;: Designing a programming system for understanding programs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have something you would like to see on the next Hatched Links? Mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or find me in #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>http://fromanegg.com/post/2012/09/27/hatched-links</link>
+      <pubDate>Thu, 27 Sep 2012 22:39:00 -0600</pubDate>
+      
+      <guid>http://fromanegg.com/post/2012/09/27/hatched-links</guid>
+      <description>&lt;p&gt;Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://yuiblog.com/blog/2012/09/24/yui-3-7-2-patch-release/&#34;&gt;YUI3 3.7.2 Patch Release (YUI Blog)&lt;/a&gt;: Fixing a couple loader &amp;amp; module issues.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.smashingmagazine.com/2012/07/android-design-tips/&#34;&gt;Designing for Android (Smashing Magazine)&lt;/a&gt;: Tips and techniques for designing applications for Android.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://developers.google.com/web/updates/2012/09/Interactive-Globe-with-CSS-shaders-Google-Maps&#34;&gt;Interactive Globe with CSS Shaders (HTML5 Rocks)&lt;/a&gt;: Applying the new CSS Shaders to Google Maps.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://v5.hakim.se/experiments/fokus&#34;&gt;Fokus&lt;/a&gt;: Emphasize anything by covering the rest of the page with semi-transparent black (Hakim).&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.speedawarenessmonth.com/15-things-for-making-your-site-faster-for-mobile-users/&#34;&gt;15 Ways To Speed Up Your Mobile Site (Speed Awareness Month)&lt;/a&gt;: 15 tips and tricks on how to make your site faster for mobile users.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Have something you would like to see on the next Hatched Links? Mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or find me in #yui on irc.freenode.net&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>A Juju Charm designed to fail &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail">A Juju Charm designed to fail</a></h1>
+      
+        <time datetime="2013-11-09 14:06:00 -0600 CST">9 November 2013</time>
+      
+    </header>
+    
+
+<p>While writing code for the next features in the Juju GUI I needed to test instances when charms would fail in various stages of their setup or execution. After a lot of messing around it became apparent that most charms are just too stable for this kind of testing so, I wrote a <a href="https://jujucharms.com/u/hatch/failtester/precise/7">Juju Charm</a> which is designed to fail in a large number of hooks depending on the configuration set on deploy (or later), and can relate to itself to test relation failures.</p>
+
+<p><img src="/images/a-juju-charm-designed-to-fail-1.jpg" alt="" /></p>
+
+<p>The charm, innovatively named ‘failtester’, can be found on <a href="https://jujucharms.com">jujucharms.com</a>. In depth details on proper use can be found in its README but it’s really simple to use:</p>
+
+<h4 id="note-this-charm-should-only-be-used-for-juju-or-juju-gui-development-it-has-no-other-functionality-than-to-fail-predictably">NOTE: THIS CHARM SHOULD ONLY BE USED FOR JUJU OR JUJU GUI DEVELOPMENT. IT HAS NO OTHER FUNCTIONALITY THAN TO FAIL PREDICTABLY.</h4>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>// bootstrap your juju environment
+juju bootstrap
+
+// deploy the failtester charm
+juju deploy cs:~hatch/precise/failtester
+
+// <span class="nb">set</span> the failure <span class="nb">type</span> you want to occur
+// the failtester charm will now fail in its install hook
+juju <span class="nb">set</span> failtester <span class="nv">install</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+
+<h4 id="known-issue">KNOWN ISSUE</h4>
+
+<p>The charm settings are at the service level which means that any failures happen to every unit of the failtester service. The fix for this should be fairly simple to do but I don’t have any use for it at this time. If you need it feel free to ask or issue a pull request.</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/juju">juju</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/67488243238/a-juju-charm-designed-to-fail";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

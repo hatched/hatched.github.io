@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="http://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=" active "><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0">New releases - Juju GUI 0.14.0 &amp; Juju Quickstart 0.5.0</a></h1>
+      
+        <time datetime="2013-12-05 12:05:00 -0600 CST">5 December 2013</time>
+      
+    </header>
+    
+
+<p>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…</p>
+
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg" alt="" /></p>
+
+<h4 id="juju-gui">Juju GUI</h4>
+
+<p>Our latest work focuses on making the Juju GUI a more effective day-to-day tool:</p>
+
+<ul>
+<li>The service inspectors now categorize errors and pending units by their types instead of grouped as ‘error’ and &lsquo;pending’ so that it’s easier to see your services status at a glance.</li>
+<li>Services that are in the process of being destroyed no longer disappear immediately from the canvas so you can follow along and make sure that there aren’t any problems in the teardown.</li>
+<li>Service level relation status is now shown on the inspector relation tab.</li>
+<li>You can now drag and drop from a bundle file or the Charm browser.</li>
+<li>Bundle deployments now give you better feedback during deployment so you have some insight into what’s going on.</li>
+<li>The remaining notes can be found in the changelog
+More exciting work in this direction is coming, including long-requested features like per-unit debug logs and local charm deployments!</li>
+</ul>
+
+<h4 id="juju-quickstart">Juju Quickstart</h4>
+
+<p>The quickstart plugin is nearing feature completion and has a lot of great improvements.</p>
+
+<ul>
+<li>For new users, if you don’t have Juju installed, after it adds the stable PPA to your system and installs Juju, it will create an environments.yaml file that you need to edit.</li>
+<li>For everyone, when you run quickstart, it will automatically log into the GUI for you as long as you accept the security certificate in your browser within two minutes of it appearing.</li>
+<li>We also fixed a bug triggered when your default series was not precise.</li>
+<li>The next release will guide new users through creating environments.yaml interactively.</li>
+</ul>
+
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg" alt="" /></p>
+
+<p>To try out our new releases, existing users can upgrade their GUI charm to cs:precise/juju-gui-81; or run:</p>
+
+<pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
+</code></pre>
+
+<p>…or update the juju-quickstart plugin via apt and run:</p>
+
+<pre><code>juju quickstart
+</code></pre>
+
+<p>New users on Ubuntu can do the following to get everything installed and start an environment with the GUI running and ready:</p>
+
+<pre><code>sudo add-apt-repository ppa:juju/stable
+sudo apt-get update &amp;&amp; sudo apt-get install juju-quickstart
+juju-quickstart
+## ...edit ~/.juju/environments.yaml file...
+juju-quickstart
+</code></pre>
+
+<p>Next quickstart release will hopefully remove those last two steps.</p>
+
+<p>New users on other operating systems can’t use Quickstart right now, but the <a href="https://jujucharms.com/docs/stable/getting-started">Juju installation instructions</a> can get you started, and..</p>
+
+<pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
+</code></pre>
+
+<p>..can add the GUI to your bootstrapped environment.</p>
+
+<p><a href="https://jujucharms.com/docs/stable/getting-started">Juju GUI Installation documentation can be found here.</a></p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides">Intro to Go from a JavaScript developer - Barcamp YXE Sides</a></h1>
+      
+        <time datetime="2013-11-16 12:22:00 -0600 CST">16 November 2013</time>
+      
+    </header>
+    <p>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.</p>
+
+<iframe src="https://docs.google.com/presentation/d/1aU7AxXi5SvUBjAhsHNlkDi5HBGEmpK8aNOdN9YG8A34/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates">Juju GUI 0.13.0 release and updates</a></h1>
+      
+        <time datetime="2013-11-15 11:52:00 -0600 CST">15 November 2013</time>
+      
+    </header>
+    <p>Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.</p>
+
+<p><img src="/images/juju-gui-0-13-0-release-and-updates.jpg" alt="" /></p>
+
+<p>Bundles!</p>
+
+<p>This is probably the biggest release of the Juju GUI since it was officially unveiled. The GUI now supports importing, exporting, browsing and deploying bundles. A Bundle is a collection of charms, settings and their relations allowing you to deploy entire environments with one click. There is an excellent overview of this feature on the <a href="https://blog.jujugui.org/2013/11/07/juju-gui-0-12-0-bundles-beta/">Juju GUI Blog</a>.</p>
+
+<p>Jorge Castro also wrote a great blog post on <a href="http://www.jorgecastro.org/2013/11/14/from-0-to-hero-in-a-few-minutes/">bundles and juju quickstart</a> where he deploys a bundle with 17 charms, their settings and relations all with a single command.</p>
+
+<p>Juju Quickstart plugin (Alpha)</p>
+
+<p>The alpha release of the <a href="https://blog.jujugui.org/2013/11/07/juju-quickstart-plugin-alpha-but-useful/">Juju Quickstart plugin</a> was also released in the past month. The Juju Quickstart plugin is an opinionated plugin for Juju which makes for quick and easy deployment of the Juju bootstrap node and the Juju GUI. Follow the link for detailed information on it’s functionality.</p>
+
+<p>As always, if you would like more information about <a href="https://jujucharms.com">Juju</a> or full details about each release they can be found in our changelog.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail">A Juju Charm designed to fail</a></h1>
+      
+        <time datetime="2013-11-09 14:06:00 -0600 CST">9 November 2013</time>
+      
+    </header>
+    
+
+<p>While writing code for the next features in the Juju GUI I needed to test instances when charms would fail in various stages of their setup or execution. After a lot of messing around it became apparent that most charms are just too stable for this kind of testing so, I wrote a <a href="https://jujucharms.com/u/hatch/failtester/precise/7">Juju Charm</a> which is designed to fail in a large number of hooks depending on the configuration set on deploy (or later), and can relate to itself to test relation failures.</p>
+
+<p><img src="/images/a-juju-charm-designed-to-fail-1.jpg" alt="" /></p>
+
+<p>The charm, innovatively named ‘failtester’, can be found on <a href="https://jujucharms.com">jujucharms.com</a>. In depth details on proper use can be found in its README but it’s really simple to use:</p>
+
+<h4 id="note-this-charm-should-only-be-used-for-juju-or-juju-gui-development-it-has-no-other-functionality-than-to-fail-predictably">NOTE: THIS CHARM SHOULD ONLY BE USED FOR JUJU OR JUJU GUI DEVELOPMENT. IT HAS NO OTHER FUNCTIONALITY THAN TO FAIL PREDICTABLY.</h4>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span></span>// bootstrap your juju environment
+juju bootstrap
+
+// deploy the failtester charm
+juju deploy cs:~hatch/precise/failtester
+
+// <span class="nb">set</span> the failure <span class="nb">type</span> you want to occur
+// the failtester charm will now fail in its install hook
+juju <span class="nb">set</span> failtester <span class="nv">install</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+
+<h4 id="known-issue">KNOWN ISSUE</h4>
+
+<p>The charm settings are at the service level which means that any failures happen to every unit of the failtester service. The fix for this should be fairly simple to do but I don’t have any use for it at this time. If you need it feel free to ask or issue a pull request.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates">Juju GUI 0.10.1 Released - Bug fixes and updates</a></h1>
+      
+        <time datetime="2013-10-01 17:10:00 -0600 CST">1 October 2013</time>
+      
+    </header>
+    <p>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.</p>
+
+<p>The largest of those fixes are:
+- Changing settings did not work in Juju Core. (Fixed)
+- The GUI was unable to deploy charms without config options. (Fixed)
+- Remove unit button did not work in Juju Core. (Fixed)
+- Plus a number of additional fixes. You can read the full <a href="https://github.com/juju/juju-gui">changelog here</a>.
+Additional information on Juju can be found on <a href="https://jujucharms.com">https://jujucharms.com</a> or join us in #juju on irc.freenode.net.</p>
+
+  </article>
+</section>
+
+  
+  
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/3/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        class="active"><a href="/page/4/">4</a></li>
+        
+        <li
+        ><a href="/page/5/">5</a></li>
+        
+        <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
+        ><a href="/page/7/">7</a></li>
+        
+        <li
+        ><a href="/page/8/">8</a></li>
+        
+        <li
+        ><a href="/page/9/">9</a></li>
+        
+        <li
+        ><a href="/page/10/">10</a></li>
+        
+        <li
+        ><a href="/page/11/">11</a></li>
+        
+        <li
+        ><a href="/page/12/">12</a></li>
+        
+        <li
+        ><a href="/page/13/">13</a></li>
+        
+        <li
+        >
+        <a href="/page/5/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

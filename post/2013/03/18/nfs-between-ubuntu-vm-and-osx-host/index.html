@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>NFS between Ubuntu vm and OSX host &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host">NFS between Ubuntu vm and OSX host</a></h1>
+      
+        <time datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
+      
+    </header>
+    
+
+<p>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.</p>
+
+<p>At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues. To verify this, open up a terminal window in the host and VM and enter:</p>
+
+<pre><code>ifconfig
+</code></pre>
+
+<p>One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.</p>
+
+<h4 id="ubuntu-vm-setup">Ubuntu VM Setup</h4>
+
+<p>Install the NFS server.</p>
+
+<pre><code>apt-get install nfs-kernel-server
+</code></pre>
+
+<p>Then we are going to create a pseudo filesystem where we will share our users home directory from.</p>
+
+<pre><code>mkdir -p /export/your-user-name
+</code></pre>
+
+<p>We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:</p>
+
+<pre><code>/export    192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+
+/export/your-user-name    192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+</code></pre>
+
+<p>To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.</p>
+
+<pre><code>sudo chmod -R 777 /export
+</code></pre>
+
+<p>Now lets link our home directory to the export directory.</p>
+
+<pre><code>mount --bind /home/your-user-name /export/your-user-name
+</code></pre>
+
+<p>To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:</p>
+
+<pre><code>/home/your-user-name    /export/your-user-name    none    bind  0  0
+</code></pre>
+
+<p>And finally, you’ll need to export the shares and restart your nfs server</p>
+
+<pre><code>sudo exportfs -a
+sudo service nfs-kernel-server restart
+</code></pre>
+
+<h4 id="osx-setup">OSX Setup</h4>
+
+<p>On the OSX side things are very simple. First lets create the directory we are going to mount our remote home directory into.</p>
+
+<pre><code>sudo mkdir ~/linux-vm
+</code></pre>
+
+<p>And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.</p>
+
+<pre><code>sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>If you get an error that reads ‘Operation not permitted’ then you can try the following.</p>
+
+<pre><code>sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.</p>
+
+<h4 id="problems-solutions">Problems - Solutions</h4>
+
+<p>Stale File Handle - Try un-mounting and re-mounting the NFS.</p>
+
+<pre><code>sudo umount -f /Users/your-user-name/linux-vm
+sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.</p>
+
+<pre><code>exec ssh-agent bash
+</code></pre>
+
+<p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/ubuntu">ubuntu</a></li>
+      
+        <li><a href="/tags/linux">linux</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/45733384142/nfs-between-ubuntu-vm-and-osx-host";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

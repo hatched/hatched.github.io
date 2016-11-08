@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>Using css function image-set for high-DPI displays &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays">Using css function image-set for high-DPI displays</a></h1>
+      
+        <time datetime="2013-02-06 14:57:00 -0600 CST">6 February 2013</time>
+      
+    </header>
+    <p>Anyone who has put together a website with high-DPI displays in mind has likely used the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio">{prefix}-device-pixel-ratio</a> CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media">SASS CSS preprocessor</a> and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called <a href="https://drafts.csswg.org/css-images-4/#image-set-notation">image-set()</a> available under the -webkit- prefix.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">);</span>
+</code></pre></div>
+
+<p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">);</span>
+<span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">);</span>
+</code></pre></div>
+
+<p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
+
+<p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/css">css</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/42448701420/using-css-function-image-set-for-high-dpi-displays";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

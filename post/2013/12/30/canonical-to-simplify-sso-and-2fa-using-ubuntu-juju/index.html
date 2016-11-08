@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>Canonical to simplify SSO and 2FA using Ubuntu Juju &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju">Canonical to simplify SSO and 2FA using Ubuntu Juju</a></h1>
+      
+        <time datetime="2013-12-30 12:09:00 -0600 CST">30 December 2013</time>
+      
+    </header>
+    <p>One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.</p>
+
+<p>Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.</p>
+
+<p>As an additional layer of security many administrators are implementing another layer of security called two factor authentication. 2FA simply means that there are multiple techniques used to identify you when you attempt to gain access to a system. This can be in the form of a text message being sent to your phone, or a random key generated by a third party key generator which is required to be entered along side your typical username and password.</p>
+
+<p>This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp; 2FA to Juju users everywhere.</p>
+
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png" alt="" /></p>
+
+<p>How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp; 2FA Juju Charm.</p>
+
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png" alt="" /></p>
+
+<p>As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.</p>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication" title="Instant Single Sign-On and Two-Factor Authentication" target="_blank">Instant Single Sign-On and Two-Factor Authentication</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/mectors">Maarten Ectors</a></strong> </div></p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/juju">juju</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/71607706279/canonical-to-simplify-sso-and-2fa-using-ubuntu";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

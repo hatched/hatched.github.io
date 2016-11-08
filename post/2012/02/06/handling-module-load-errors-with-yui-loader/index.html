@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>Handling module load errors with YUI Loader &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader">Handling module load errors with YUI Loader</a></h1>
+      
+        <time datetime="2012-02-06 15:50:00 -0600 CST">6 February 2012</time>
+      
+    </header>
+    <p>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.</p>
+
+<p>From time to time you may find yourself loading modules that aren’t available. Whether it be from a user supplied modules list or an unreliable source, the YUI instance confg gives you an easy way to check if there are any errors while loading your modules.</p>
+
+<p>A common YUI config and use statement would look like the following.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;custom-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/module.js&#39;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Your code here</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>If for some reason the loader was unable to fetch a required module and you wanted to act on that event, the loader provides you with an onFailure method that is called with an object that has details about the modules it failed to fetch.</p>
+
+<p>To use this method you would amend the above code to include that method.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;custom-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/module.js&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="c1">// Error handling code</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Your code here</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>The error object is structured.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">[],</span> <span class="c1">// Contains a list of the requested modules</span>
+  <span class="nx">msg</span><span class="o">:</span> <span class="s2">&quot;Failed to load path/to/module&quot;</span><span class="p">,</span> <span class="c1">// A string error message</span>
+  <span class="nx">success</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// A bool representation of the success of the requests</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It’s that simple, by setting up your onFailure callback you can easily handle any errors that may arise by an improperly structured config or use statement.</p>
+
+<p>Warning</p>
+
+<p>If there is a failure in your initial module request the onFailure callback will be called before the Y instance is set-up. This means that no YUI methods will be available and calls to them will cause your application to fail. In this case the this property will point to YUI.</p>
+
+<p>More Reading</p>
+
+<p>In the following example the onFailure callback will be called if at any time there is a failure while trying to load modules. You will need to keep this in mind if your doing any lazy loading of modules so that you can appropriately handle the errors.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;good-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;correct/path/to/good-module.js&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;bad-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/bad-module&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="c1">// I&#39;m going to be called when the request for bad-module is made</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;good-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;bad-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  	<span class="c1">// More code here</span>
+  <span class="p">});</span>
+
+<span class="p">});</span>
+</code></pre></div>
+
+<p>The error.msg property string will contain comma delimited messages about which values failed.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;bad-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/bad-module&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="s1">&#39;bad-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Code here</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span>
+  <span class="nx">msg</span><span class="o">:</span> <span class="s2">&quot;Failed to load path/to/wrong-module,Failed to load path/to/bad-module&quot;</span><span class="p">,</span>
+  <span class="nx">success</span><span class="o">:</span> <span class="kc">false</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This method only works if the module has been defined. You will not receive an error for the crazy-module.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Code here</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>You will however get a string error logged to the console in addition to the onFailure if the undefined module comes before the defined custom modules.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
+  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
+    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
+      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy-module&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Code here</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="s2">&quot;yui: NOT loaded: crazy-module&quot;</span>
+</code></pre></div>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/javascript">javascript</a></li>
+      
+        <li><a href="/tags/yui">yui</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/17170945041/handling-module-load-errors-with-yui-loader";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

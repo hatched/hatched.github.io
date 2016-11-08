@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="http://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=" active "><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript">Insert an array of values into an array in JavaScript</a></h1>
+      
+        <time datetime="2013-02-22 12:00:00 -0600 CST">22 February 2013</time>
+      
+    </header>
+    <p>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Array #1</span>
+<span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+
+<span class="c1">// Array #2</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="c1">// Desired outcome</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div>
+
+<p>But none of the native array methods allowed me to insert an array of values into an array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice</a> comes close but it takes a comma delimited list of values, not an array of values. Conveniently however you can still use the native splice function using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to achieve the desired result.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
+    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="nx">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+<span class="c1">// We want to push the starting index and the number of values we want</span>
+<span class="c1">// to delete (in this case 0) onto the beginning of the first array.</span>
+<span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Next we want to apply the native splice method to arrayOne under</span>
+<span class="c1">// the context of arrayTwo</span>
+<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">);</span>
+
+<span class="c1">// [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">);</span>
+</code></pre></div>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays">Using css function image-set for high-DPI displays</a></h1>
+      
+        <time datetime="2013-02-06 14:57:00 -0600 CST">6 February 2013</time>
+      
+    </header>
+    <p>Anyone who has put together a website with high-DPI displays in mind has likely used the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio">{prefix}-device-pixel-ratio</a> CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media">SASS CSS preprocessor</a> and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called <a href="https://drafts.csswg.org/css-images-4/#image-set-notation">image-set()</a> available under the -webkit- prefix.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">);</span>
+</code></pre></div>
+
+<p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">);</span>
+<span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">);</span>
+</code></pre></div>
+
+<p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
+
+<p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors">Understanding CSS2 and CSS3 attribute selectors</a></h1>
+      
+        <time datetime="2013-01-28 10:01:00 -0600 CST">28 January 2013</time>
+      
+    </header>
+    
+
+<p>I received a large number of questions after my last blog post, <a href="http://fromanegg.com/post/41302147556/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a>, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.</p>
+
+<h4 id="attribute-selector-syntax">Attribute Selector Syntax</h4>
+
+<pre><code>[attributeName{selector}value]
+</code></pre>
+
+<h4 id="attribute-selectors">Attribute Selectors</h4>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute regardless of value.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user=foo]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with the exact value <code>foo</code>.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user~=bar]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with the exact value <code>bar</code> or the value <code>bar</code> in a whitespace-separated list.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user|=baz]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;baz&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;baz-bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with the exact value <code>baz</code> or a value starting with <code>baz</code> followed by a “-”.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user^=foo]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;fooBar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with a value that starts with <code>foo</code>.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user$=bar]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foobar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with a value that ends with <code>bar</code>.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user*=baz]
+/* matches */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foobazbar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Any element which has a <code>user</code> attribute with a value that has <code>baz</code> anywhere in it.</p>
+
+<p>If you don’t have to support IE 6 you’re in luck because you should have full support for all of these all the way back to IE 7. As usual feel free to let me know your thoughts below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> - Happy selecting!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a></h1>
+      
+        <time datetime="2013-01-23 15:25:00 -0600 CST">23 January 2013</time>
+      
+    </header>
+    <p>Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.</p>
+
+<p><a href="http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html">Click here to view an example of the pure css radial progress bar.</a></p>
+
+<p>This will only work on modern browsers which support css3 animations and transforms. If you would like to support older browsers there are plenty of javascript heavy options available. I’m also only including the -webkit prefixed rules for brevity but, using the appropriate prefixes (or lack thereof), this will also work in Internet Explorer 10+, FireFox 5+, Opera 12+.</p>
+
+<p>Beyond the typical css properties that you should be familiar with I’ll also be using:</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clip">clip</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">transform</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">keyframes</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration">animation-duration</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay">animation-delay</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name">animation-name</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count">animation-iteration-count</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode">animation-fill-mode</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function">animation-timing-function</a></li>
+</ul>
+
+<p>The markup is very light with only a wrapper and two divs which represent the progress. You’ll notice that I’m using data-attributes instead of using classes for the animation selectors. I do this because I feel that animations are more representative of a process than styling.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&quot;base wrapper&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle&quot;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&quot;base left&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;circle&quot;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&quot;base right&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>First our basic styles.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nc">.wrapper</span> <span class="p">{</span>
+  <span class="nb">width</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span> <span class="c">/* Set the size of the progress bar */</span>
+  <span class="nb">height</span><span class="o">:</span> <span class="m">100px</span><span class="p">;</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span> <span class="c">/* Enable clipping */</span>
+  <span class="nb">clip</span><span class="o">:</span> <span class="n">rect</span><span class="p">(</span><span class="m">0px</span><span class="o">,</span> <span class="m">100px</span><span class="o">,</span> <span class="m">100px</span><span class="o">,</span> <span class="m">50px</span><span class="p">);</span> <span class="c">/* Hide half of the progress bar */</span>
+<span class="p">}</span>
+<span class="c">/* Set the sizes of the elements that make up the progress bar */</span>
+<span class="nc">.circle</span> <span class="p">{</span>
+  <span class="nb">width</span><span class="o">:</span> <span class="m">80px</span><span class="p">;</span>
+  <span class="nb">height</span><span class="o">:</span> <span class="m">80px</span><span class="p">;</span>
+  <span class="nb">border</span><span class="o">:</span> <span class="m">10px</span> <span class="nb">solid</span> <span class="nb">green</span><span class="p">;</span>
+  <span class="nb">border</span><span class="o">-</span><span class="n">radius</span><span class="o">:</span> <span class="m">50px</span><span class="p">;</span>
+  <span class="nb">position</span><span class="o">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nb">clip</span><span class="o">:</span> <span class="n">rect</span><span class="p">(</span><span class="m">0px</span><span class="o">,</span> <span class="m">50px</span><span class="o">,</span> <span class="m">100px</span><span class="o">,</span> <span class="m">0px</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Then onto the animation rules.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="c">/* Using the data attributes for the animation selectors. */</span>
+<span class="c">/* Base settings for all animated elements */</span>
+<span class="nt">div</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">base</span><span class="o">]</span> <span class="p">{</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">iteration</span><span class="o">-</span><span class="n">count</span><span class="o">:</span> <span class="m">1</span><span class="p">;</span>  <span class="c">/* Only run once */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">fill</span><span class="o">-</span><span class="n">mode</span><span class="o">:</span> <span class="n">forwards</span><span class="p">;</span> <span class="c">/* Hold the last keyframe */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">timing</span><span class="o">-</span><span class="n">function</span><span class="o">:</span><span class="n">linear</span><span class="p">;</span> <span class="c">/* Linear animation */</span>
+<span class="p">}</span>
+
+<span class="nc">.wrapper</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">wrapper</span><span class="o">]</span> <span class="p">{</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">0.01s</span><span class="p">;</span> <span class="c">/* Complete keyframes asap */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">delay</span><span class="o">:</span> <span class="m">3s</span><span class="p">;</span> <span class="c">/* Wait half of the animation */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="n">close</span><span class="o">-</span><span class="n">wrapper</span><span class="p">;</span> <span class="c">/* Keyframes name */</span>
+<span class="p">}</span>
+
+<span class="nc">.circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">left</span><span class="o">]</span> <span class="p">{</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">6s</span><span class="p">;</span> <span class="c">/* Full animation time */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="nb">left</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">right</span><span class="o">]</span> <span class="p">{</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">duration</span><span class="o">:</span> <span class="m">3s</span><span class="p">;</span> <span class="c">/* Half animation time */</span>
+  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">animation</span><span class="o">-</span><span class="n">name</span><span class="o">:</span> <span class="nb">right</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>And finally, the keyframes.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="c">/* Rotate the right side of the progress bar from 0 to 180 degrees */</span>
+<span class="k">@-webkit-keyframes</span> <span class="nt">right-spin</span> <span class="p">{</span>
+  <span class="nt">from</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nt">to</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">180</span><span class="n">deg</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c">/* Rotate the left side of the progress bar from 0 to 360 degrees */</span>
+<span class="k">@-webkit-keyframes</span> <span class="nt">left-spin</span> <span class="p">{</span>
+  <span class="nt">from</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">0</span><span class="n">deg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nt">to</span> <span class="p">{</span>
+    <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">transform</span><span class="o">:</span> <span class="n">rotate</span><span class="p">(</span><span class="m">360</span><span class="n">deg</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c">/* Set the wrapper clip to auto, effectively removing the clip */</span>
+<span class="k">@-webkit-keyframes</span> <span class="nt">close-wrapper</span> <span class="p">{</span>
+  <span class="nt">to</span> <span class="p">{</span>
+    <span class="nb">clip</span><span class="o">:</span> <span class="n">rect</span><span class="p">(</span><span class="nb">auto</span><span class="o">,</span> <span class="nb">auto</span><span class="o">,</span> <span class="nb">auto</span><span class="o">,</span> <span class="nb">auto</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This works by creating two elements with circular borders and then hiding half of each element and storing those underneath the clip of the wrapper div. I animate a css transform to rotate both elements at the same rate until the 50% mark, at which point the first element stops, the wrapper clip is removed, and the second element keeps going to display the remaining 50%. Without javascript and some outside event influencing the display values this is probably more of a pure css loading indicator so in a follow-up post I’ll show you how to use javascript to influence the value of progress bar.</p>
+
+<p>Click here to view an example of the <a href="http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html">pure css circular progress bar</a></p>
+
+<p>I haven’t seen this approach used elsewhere yet so if you come across any other pure css radial progress bars or if you end up using this technique I’d very much appreciate if you would let me know so I can check them out. Any questions please comment below or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript">Prototypes and class-like objects in Javascript</a></h1>
+      
+        <time datetime="2013-01-21 10:00:00 -0600 CST">21 January 2013</time>
+      
+    </header>
+    <p>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post <a href="http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a>. I recommend that you read that post first as I’ll be referencing some of the same code.</p>
+
+<p>The prototype is defined as an “object that provides shared properties for other objects” - <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5">Ecma International</a>. What this means is that, by default, any object that inherits from another object automatically has reference to the parents prototypes all the way through the inheritance tree. When you call a method on an object (remember everything in Javascript is an object) it first looks through the local prototype, if it’s not found, it then continues checking prototypes up until it hits Object.prototype to find that method before throwing an error. To illustrate that lets slightly modify our mustang instance and take a look at the instance in the inspector.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getColor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">getColor</span><span class="p">());</span> <span class="c1">// Prints `red` to the console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints [object Object] to the console</span>
+</code></pre></div>
+
+<p>Stepping through this code you’ll see that we create a new constructor function as we did previously but this time we are creating a new getColor method on Car’s prototype that returns the color of the instance of Car. We then create a new instance of Car and log the output of the getColor method to the console. The following line is a perfect example of walking the prototype chain to try and find a toString method. We clearly didn’t create this method so where is it coming from? This is best illustrated using a screenshot of the browser console log of our mustang instance.</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-1.png" alt="" /></p>
+
+<p>First thing to notice is that we don’t actually have a <code>prototype</code> property here but <code>__proto__</code> which is a non-standard label for accessing the prototype of an object. In the prototype of our Car instance we have the getColor method that we created which matches with the above code block. Next, because Car is a function which extends Object, we have the Object prototype which includes, among other things, the toString method that we used.</p>
+
+<p>It is considered bad practice to overwrite the native method prototypes because other code on the page might be relying on those native prototypes to function properly. So what do you do if you want to use your own toString method? By creating a toString method in the prototype of your instance, Javascript will run into that one first and use it instead of the native method.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints `red` to the console</span>
+</code></pre></div>
+
+<p>So here we create a toString method on the Car prototype to return the color of Car. This time when we call the toString method, Javascript runs into our own toString method first and executes it instead of the native method printing red instead of [object Object]</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-2.png" alt="" /></p>
+
+<p>Taking a look at the console log of our mustang object, you can now see the two toString methods and where they are in the prototype chain. Note: Although the console shows <code>__proto__</code> make sure you don’t access it directly because it’s not available on all platforms, always use <code>prototype</code>.</p>
+
+<p>To do constructor chaining while maintaining the prototype chain requires you to take one more step. If you simply take the lessons from the previous post and this post so far you would assume you could write something like.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span> <span class="c1">// Throws TypeError</span>
+</code></pre></div>
+
+<p>By running the above script you will see that you get an error in the console “Uncaught TypeError: Object # has no method ‘levelUp’ ”. And that is because when you chain constructors in this method you aren’t maintaining reference to the parents prototype. To make this work as you would like you need to add one more line.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span> <span class="c1">// Add this line</span>
+
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console</span>
+</code></pre></div>
+
+<p>By assigning the prototype of your new object to a new instance of your parent you maintain the prototype chain giving you access to its methods.</p>
+
+<p>Combining the above lessons allows you to infinitely chain constructors as we did previously but this time, also maintain the prototypes.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span>
+
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">boost</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">SuperSpider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Spider</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">SuperSpider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperSpider</span><span class="p">();</span>
+
+<span class="nx">superSpider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console</span>
+<span class="nx">superSpider</span><span class="p">.</span><span class="nx">boost</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `12` to the console</span>
+</code></pre></div>
+
+<p>And for reference here is the console output of our superSpider class pointing out the levelUp and boost functions</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-3.png" alt="" /></p>
+
+<p>I’m sure you’re thinking that this is pretty convoluted and you would be right. Next time I’ll be showing you an ES5 convenience method to clean this up, as well as some YUI OOP methods which greatly simplify this task as well as handle all of the edge cases. Thanks for reading and if you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
+
+  </article>
+</section>
+
+  
+  
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/7/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        ><a href="/page/4/">4</a></li>
+        
+        <li
+        ><a href="/page/5/">5</a></li>
+        
+        <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
+        ><a href="/page/7/">7</a></li>
+        
+        <li
+        class="active"><a href="/page/8/">8</a></li>
+        
+        <li
+        ><a href="/page/9/">9</a></li>
+        
+        <li
+        ><a href="/page/10/">10</a></li>
+        
+        <li
+        ><a href="/page/11/">11</a></li>
+        
+        <li
+        ><a href="/page/12/">12</a></li>
+        
+        <li
+        ><a href="/page/13/">13</a></li>
+        
+        <li
+        >
+        <a href="/page/9/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

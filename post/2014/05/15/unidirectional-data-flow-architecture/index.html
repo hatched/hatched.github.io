@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>Unidirectional data flow architecture &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture">Unidirectional data flow architecture</a></h1>
+      
+        <time datetime="2014-05-15 23:18:00 -0600 CST">15 May 2014</time>
+      
+    </header>
+    <p>Since Facebook released <a href="https://facebook.github.io/react/docs/flux-overview.html">Flux</a> there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the <a href="https://github.com/juju/juju-gui">Juju GUI</a> nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users <a href="https://jujucharms.com">Juju</a> environment.</p>
+
+<p>In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:</p>
+
+<p><img src="/images/unidirectional-data-flow-architecture-1.jpg" alt="" /></p>
+
+<ol>
+<li>When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.</li>
+<li>That state is then saved into the state system.</li>
+<li>When the state system changes it diffs from it’s previous state and passes the diff off to the dispatcher.</li>
+<li>The dispatcher scans through the diff and passes off the various state components to their registered handlers.</li>
+<li>Those handlers then pass the updated data into the UI components.</li>
+<li>The UI components are then responsible for updating their DOM representation.</li>
+<li>If the user makes a change to the UI, that UI component requests a change from the state system and the cycle repeats.
+You’ll notice that this is strikingly similar to the Flux architecture:</li>
+</ol>
+
+<p><img src="/images/unidirectional-data-flow-architecture-2.png" alt="" /></p>
+
+<p>It’s great to see cases of the <a href="https://en.wikipedia.org/wiki/Multiple_discovery">multiple discovery hypothesis</a> in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.</p>
+
+<p>Do you work on a large application? Do you think this architecture could help simplify your app? Let me know in the comments below, <a href="https://twitter.com/fromanegg">@fromanegg</a>, or <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/development">development</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/85890866087/unidirectional-data-flow-architecture";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

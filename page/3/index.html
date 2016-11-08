@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="http://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=" active "><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook">How to install Ubuntu on a Mac or Macbook</a></h1>
+      
+        <time datetime="2014-04-09 20:09:00 -0600 CST">9 April 2014</time>
+      
+    </header>
+    
+
+<p>The official release date of <a href="http://www.ubuntu.com/download/desktop">Ubuntu 14.04 LTS Trusty Tahr</a> is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!</p>
+
+<p>You’re going to need a few things before we get started:</p>
+
+<ul>
+<li>Download Ubuntu 14.04 LTS Trusty Tahr. (If you’re here before it’s released you can download the <a href="http://cdimage.ubuntu.com/daily-live/current/">daily image here</a>. Be sure you download the iso which does NOT have ’+mac’ in the filename. This is for older Apple computers.</li>
+<li>Download the <a href="http://www.rodsbooks.com/refind/">rEFInd Boot Manager</a>. You want the <a href="http://www.rodsbooks.com/refind/getting.html">Binary source file zip</a> which you need to extract.</li>
+<li>A 2GB or bigger USB stick which has nothing on it that you don’t care to lose. This will be our boot stick…(remember when they were boot disks?)</li>
+<li>A thunderbolt to ethernet adapter or if your machine has an ethernet port, plug it in. After installing Ubuntu it is unlikely you will have wifi until the final step.</li>
+<li>Your computers hard drive should have a big chunk of free space…you’re going to use this as your primary operating system afterall!</li>
+<li>An hour or so of free time. This took me about 30 minutes from start to finish but I had done it a number of times by the time I created this post.</li>
+</ul>
+
+<h4 id="obligatory-warning">Obligatory Warning</h4>
+
+<p>All of this information is provided without warranty of any kind. Always make and keep proper backups of your data.</p>
+
+<h4 id="step-1">Step 1</h4>
+
+<h4 id="backup-your-computer">BACKUP YOUR COMPUTER</h4>
+
+<p>While it’s unlikely that an issue will occur which wipes the data on your disk it’s always highly advisable to have a couple quality backups just in case.</p>
+
+<p>Go make another backup…I’ll wait.</p>
+
+<h4 id="did-you-back-up-your-data-yet">DID YOU BACK UP YOUR DATA YET?</h4>
+
+<h4 id="step-2">Step 2</h4>
+
+<p>Now that you have a quality backup safely tucked away you will need to install rEFInd. Open the terminal and navigate to the location that you extracted the zip file and then follow the <a href="http://www.rodsbooks.com/refind/installing.html#installsh">installation instructions for OSX</a>. Once completed, restart your computer to confirm that rEFInd was installed correctly. On rebooting, the rEFInd boot loader should load up and you should select the Apple logo to get back into OSX. (sorry for the sub par photos)</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg" alt="" /></p>
+
+<h4 id="step-3">Step 3</h4>
+
+<p>Now that you’re back in OSX we need to take that iso of Ubuntu 14.04 that you downloaded and make a bootable USB stick. Follow the <a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx">10 steps outlined here</a> to create the bootable stick. You’ll know when it’s ready because OSX will pop open a dialogue saying that it cannot read the device.</p>
+
+<h4 id="step-4">Step 4</h4>
+
+<p>You need a place to put Ubuntu on your computer, so you’ll need to create a partition on your hard drive. The size of this partition will depend on the size of your disk and what you plan to do in Ubuntu, but it should be at least 10GB to give you some wiggle room (mine is 100GB). To do so you will use the OSX tool ‘Disk Utility’. There are some dated, but still accurate instructions on <a href="https://help.ubuntu.com/community/MactelSupportTeam/AppleIntelInstallation#Manual_partitioning_using_Disk_Utility_GUI">creating this partition here</a>.</p>
+
+<h4 id="step-5">Step 5</h4>
+
+<p>With the partition made it’s now time to stick the USB stick into your computer and reboot. After rebooting you should land on the rEFInd boot loader again with a few more options than before. If you do not see these options then reboot again holding the “option” key.</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg" alt="" /></p>
+
+<p>Your options may look a little different but you want to pick one of the options which are provided from the USB stick (There are three provided in this image). For the Haswell equipped machines you want to pick the option which reads something along the lines of “Boot EFI\boot\grubx64.efi …” and hit enter. This will start another boot loader with the first option “Install Ubuntu”, hit enter to select this option. After a little while you should be in the Ubuntu installer, follow through the steps until the installer asks you where you would like to install Ubuntu.</p>
+
+<p>Note: If after progressing through the install process and you find that it boots into a black screen start again from Step 5 but choose an installer without “EFI” in the path name.</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg" alt="" /></p>
+
+<h4 id="step-6">Step 6</h4>
+
+<p>Note: partitioning will be a little different for everyone so if you get confused hop onto IRC in #ubuntu on freenode.net or create a question on <a href="http://askubuntu.com">http://askubuntu.com</a> for some help.</p>
+
+<p>When you step through the installer you will get to a pane which asks you where you want to install Ubuntu to. The options should be pretty self explanatory. But if there isn’t an option to install Ubuntu into your new partition you will need to take the manual route. Select the manual partition option and you should be shown a screen which looks like:</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg" alt="" /></p>
+
+<p>As you can see form this list, I created a 100GB partition originally and then created a 3GB swap partition. To take the partition you created in OSX and create a swap from it you will need to select it then hit the “Change” button and downsize it 3GB. This will leave you with “free space” of 3GB. Click the “+” button and create a new partition of the type “swap”. You’ll want to make sure your primary partition is of type “ext4” and that the mount point is “/”.</p>
+
+<p>Continue on from here installing Ubuntu to your new partition.</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg" alt="" /></p>
+
+<h4 id="step-7">Step 7</h4>
+
+<p>After the installation has completed remove the USB stick from your computer and reboot. Now when rEFInd shows up you should have an extra option with the Ubuntu logo. Click it and boot into Ubuntu.</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg" alt="" /></p>
+
+<h4 id="step-8">Step 8</h4>
+
+<p>Once you have logged into Ubuntu, click the &lsquo;System Settings’ icon in the launcher bar on the left. Select &lsquo;Software and Updates’ and then select the &lsquo;Additional Drivers’ tab. After this tab loads you should see a proprietary driver for the Broadcom wireless, select it and click &lsquo;Apply’. Reboot the computer and you should now be able to click the network icon in the top right of the desktop to connect to a wireless connection.</p>
+
+<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg" alt="" /></p>
+
+<p>Congratulations you now have Ubuntu installed along side OSX!</p>
+
+<p>If you run into any problems along the way or have any questions your first stop should be your search engine of choice there are thousands of great resources for Ubuntu scattered around on many topics. You will also find a ton of great people in Ubuntu community hanging out in the #ubuntu room on IRC on freenode.net or if you prefer to ask direct detailed questions check out <a href="http://askubuntu.com">http://askubuntu.com</a>. I hope that this guide has helped you get up and running with Ubuntu, please comment below with any questions or comments or I can be found on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>, thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough">Self documenting code is not enough</a></h1>
+      
+        <time datetime="2014-03-13 09:22:00 -0600 CST">13 March 2014</time>
+      
+    </header>
+    <p>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.</p>
+
+<p>As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as <a href="https://en.wikipedia.org/wiki/Self-documenting_code">self-documenting code</a> with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</p>
+
+<p>Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">gd</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Into:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
+
+<p>This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.</p>
+
+<p>Lets assume for a moment that this function was copy &amp; pasted into a larger projects utility class. Wouldn’t it be nice if it would automatically be added to the API docs?</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
+<span class="cm">  Calculate the difference between the x and y coords of two points.</span>
+
+<span class="cm">  @method getDifference</span>
+<span class="cm">  @param {Object} point1 The first point to compare.</span>
+<span class="cm">  @param {Object} point2 The second point to compare.</span>
+<span class="cm">  @return {Array} The difference between the two points in the format [x, y]</span>
+<span class="cm">*/</span>
+<span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
+
+<p>To illustrate the importance of inline comments even with self documenting code. Take the following method from the <a href="https://github.com/juju/juju-gui">Juju GUI source</a>.</p>
+
+<p>The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
+             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div>
+
+<p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
+<span class="cm">  Export the YAML for this environment.</span>
+
+<span class="cm">  @method exportYAML</span>
+<span class="cm">*/</span>
+<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+  <span class="c1">// In order to support Safari 7 the type of this blob needs</span>
+  <span class="c1">// to be text/plain instead of it&#39;s actual type of application/yaml.</span>
+  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
+      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div>
+
+<p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
+
+<p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0">New release - Juju GUI 0.15.0</a></h1>
+      
+        <time datetime="2014-01-26 12:49:00 -0600 CST">26 January 2014</time>
+      
+    </header>
+    <p>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to <a href="https://github.com/juju/juju-gui">Git</a> and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.</p>
+
+<p><img src="/images/new-release-juju-gui-0-1-0-1.png" alt="" /></p>
+
+<ul>
+<li>We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</li>
+<li>90% speed improvement in the inspector for environments with thousands of units.</li>
+<li>Inspector relations tab now shows the relation statuses and any units that are in error</li>
+<li>The biggest change that we made in this release was entirely removing the full screen browser. This allowed us to remove over 4000 lines of code from our code base speeding up the application start up time and lowering the size of the application sent over the wire.
+If you have any questions about Juju or the Juju GUI, you can read the official documentation for <a href="https://jujucharms.com">Juju</a> and join us on freenode.net in #juju and #juju-gui .</li>
+</ul>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju">Canonical to simplify SSO and 2FA using Ubuntu Juju</a></h1>
+      
+        <time datetime="2013-12-30 12:09:00 -0600 CST">30 December 2013</time>
+      
+    </header>
+    <p>One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.</p>
+
+<p>Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.</p>
+
+<p>As an additional layer of security many administrators are implementing another layer of security called two factor authentication. 2FA simply means that there are multiple techniques used to identify you when you attempt to gain access to a system. This can be in the form of a text message being sent to your phone, or a random key generated by a third party key generator which is required to be entered along side your typical username and password.</p>
+
+<p>This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp; 2FA to Juju users everywhere.</p>
+
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png" alt="" /></p>
+
+<p>How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp; 2FA Juju Charm.</p>
+
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png" alt="" /></p>
+
+<p>As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.</p>
+
+<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication" title="Instant Single Sign-On and Two-Factor Authentication" target="_blank">Instant Single Sign-On and Two-Factor Authentication</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/mectors">Maarten Ectors</a></strong> </div></p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/12/05/yui-in-the-wild">YUI in the Wild</a></h1>
+      
+        <time datetime="2013-12-05 22:57:00 -0600 CST">5 December 2013</time>
+      
+    </header>
+    <p>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&rsquo;﻿.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lJPdH8xmOWg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<p>The links I mentioned in the video:</p>
+
+<ul>
+<li><a href="https://jujucharms.com">Juju GUI Demo Site</a></li>
+<li>Juju GUI Bazaar repository</li>
+<li><a href="https://github.com/juju/juju-gui">Juju GUI Git repository</a></li>
+</ul>
+
+  </article>
+</section>
+
+  
+  
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/2/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        class="active"><a href="/page/3/">3</a></li>
+        
+        <li
+        ><a href="/page/4/">4</a></li>
+        
+        <li
+        ><a href="/page/5/">5</a></li>
+        
+        <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
+        ><a href="/page/7/">7</a></li>
+        
+        <li
+        ><a href="/page/8/">8</a></li>
+        
+        <li
+        ><a href="/page/9/">9</a></li>
+        
+        <li
+        ><a href="/page/10/">10</a></li>
+        
+        <li
+        ><a href="/page/11/">11</a></li>
+        
+        <li
+        ><a href="/page/12/">12</a></li>
+        
+        <li
+        ><a href="/page/13/">13</a></li>
+        
+        <li
+        >
+        <a href="/page/4/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="http://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=" active "><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript">Calculating timezones in JavaScript</a></h1>
+      
+        <time datetime="2013-06-06 10:02:00 -0600 CST">6 June 2013</time>
+      
+    </header>
+    
+
+<p>I&rsquo;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.</p>
+
+<h4 id="converting-a-timestamp-to-utc-time">Converting a timestamp to UTC time.</h4>
+
+<p>To display a timestamp in UTC around the world instead of in the users local timezone you use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset">getTimezoneOffset</a>, multiply it by 60,000 and then subtract that from your timestamp.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">rd</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">()</span><span class="o">*</span><span class="mi">60000</span><span class="p">,</span>
+    <span class="nx">time</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">((</span><span class="mf">1349797266.032</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-</span> <span class="nx">rd</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;UTC timestamp is &#39;</span> <span class="o">+</span> <span class="nx">time</span><span class="p">);</span>
+</code></pre></div>
+
+<h4 id="calculating-the-users-timezone">Calculating the users timezone</h4>
+
+<p>To calculate the users timezone we need to determine the offset between the current time and the UTC time. To do that we use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCHours">getUTCHours</a> method and the compare the two dates.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">dateATmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">dateA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateATmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Your timezone is GMT &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">dateATmp</span> <span class="o">-</span> <span class="nx">dateA</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">);</span>
+</code></pre></div>
+
+<h4 id="determining-if-the-user-observes-daylight-savings-time">Determining if the user observes daylight savings time</h4>
+
+<p>Calculating if the user observes daylight savings time (DST) is a little long winded but is certainly possible. We need to calculate the timezone difference between January and July. To do that we create the two dates, one in their current timezone and the other in UTC. We then divide the difference by 3600000 to get the hour offset and if they are the same DST is not observed.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">dateATmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">dateA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateATmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">dateBTmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">dateB</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateBTmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="nx">diffStdTime</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dateATmp</span> <span class="o">-</span> <span class="nx">dateA</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">,</span>
+    <span class="nx">diffDaylightTime</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dateBTmp</span> <span class="o">-</span> <span class="nx">dateB</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">,</span>
+    <span class="nx">dst</span> <span class="o">=</span> <span class="p">(</span><span class="nx">diffStdTime</span> <span class="o">==</span> <span class="nx">diffDaylightTime</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;not&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;DST is %s observed here.&#39;</span><span class="p">,</span> <span class="nx">dst</span><span class="p">);</span>
+</code></pre></div>
+
+<p>I hope that some or all of these solutions help make your life with dates in JavaScript a little easier. If you have any problems, or if you know of a better way to accomplish these tasks please let me know below or by mentioning me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released">Juju GUI v0.7.1 released</a></h1>
+      
+        <time datetime="2013-06-03 13:51:00 -0600 CST">3 June 2013</time>
+      
+    </header>
+    <p>As of a few minutes ago the 0.7.1 version of the Juju GUI was released. It brings with it over 1000 unit tests, performance, memory and stability improvements, along with:</p>
+
+<ul>
+<li>Added drag and drop deployment from charm browser.</li>
+<li>Export environment to Juju deployer YAML format from keyboard shortcut (shift-d).</li>
+<li>Databinding and conflict resolution finalized (feature-flagged).</li>
+<li>Start of new service inspector development (feature-flagged).</li>
+<li>Added relations to Go sandbox (Go sandbox still in progress).</li>
+</ul>
+
+<p>You can download it from <a href="https://launchpad.net/juju-gui/stable">Juju GUI on Launchpad</a>. If you would like to learn more about <a href="https://jujucharms.com">Juju, you can find more information here</a>.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/06/01/xor-in-javascript">XOR in JavaScript</a></h1>
+      
+        <time datetime="2013-06-01 12:08:00 -0600 CST">1 June 2013</time>
+      
+    </header>
+    <p>Typically when writing a XOR check in JavaScript you would do something like…</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">((</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">))</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</p>
+
+<p>In order to start working towards a better solution we first need to define our desired outcome. Wikipedia explains an <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> to be a logical operation that outputs true whenever both inputs differ (one is true, the other is false).</p>
+
+<table>
+<thead>
+<tr>
+<th>Input A</th>
+<th>Input B</th>
+<th>Output</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+<p>So with the truth table above we can now check out alternative approaches. As it turns out the quirkyness of JavaScript can actually help us clean this up. Because using the NOT (!) operator on a string will typecast it to false we can actually reduce the above if check to…</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span> <span class="o">!=</span> <span class="o">!</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div>
+
+<p>So lets create an output table for this new technique to see if it works as expected.</p>
+
+<table>
+<thead>
+<tr>
+<th>Input A</th>
+<th>Input B</th>
+<th>Output</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>false</td>
+</tr>
+
+<tr>
+<td>0</td>
+<td>1</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>0</td>
+<td>true</td>
+</tr>
+
+<tr>
+<td>1</td>
+<td>1</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+<p>Works great and with a lot less keystrokes!</p>
+
+<p>Thanks for reading! If you have any questions or comments please feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer">Transparent links not clickable in Internet Explorer</a></h1>
+      
+        <time datetime="2013-04-07 17:59:00 -0600 CST">7 April 2013</time>
+      
+    </header>
+    <p>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.</p>
+
+<p>This is going to work as intended until you try it in IE. This is because transparent links aren’t clickable in Internet Explorer &lt; 10 requiring us to resort to yet another IE workaround.</p>
+
+<p>Note - this will work properly in all versions of IE if you’re changing the browser mode in the IE10 developer tools. I strongly suggest not testing for older versions of IE using the ‘Browser Mode’ setting in the IE 10 dev tools as there are more than a few things which will fail in the real browsers that don’t in the simulator.</p>
+
+<p>Visit <a href="http://output.jsbin.com/uhukaq/1">here for a demo</a> in &lt; IE 10 and again in any other browser to see it working.</p>
+
+<p>There are a few techniques that we can use to make IE recognize the clicks on our anchor tags. The first is to add a transparent 1px background to the anchors. This is going to add another http request, albeit a small one, possibly delaying the loading of the page.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;1px.gif&quot;</span><span class="o">)</span> <span class="nt">0</span> <span class="nt">0</span> <span class="nt">repeat</span><span class="o">;</span>
+</code></pre></div>
+
+<p>Second is to add one of the following fake url to a background image on the trigger elements. While these will get it working in IE it will cause chrome to throw a console warning that it &lsquo;Failed to load resource’ or &lsquo;Resource interpreted as Image but transferred with MIME type text/html: “about:blank”.’ neither of which are ideal.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;iehack:///&quot;</span><span class="o">);</span>
+<span class="nt">-or-</span>
+<span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;about:blank&quot;</span><span class="o">);</span>
+</code></pre></div>
+
+<p>And finally, by setting the background color on the anchor tags and then setting the opacity to 0 we are able to get the desired functionality without any of the side effects previously mentioned.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-color</span><span class="o">:</span> <span class="nn">#ffffff</span><span class="o">;</span>
+<span class="nt">filter</span><span class="nd">:alpha</span><span class="o">(</span><span class="nt">opacity</span><span class="o">=</span><span class="nt">0</span><span class="o">);</span>
+<span class="nt">opacity</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+</code></pre></div>
+
+<p>Update: Thanks to an idea from Geo Fili in the comment section you can also embed a 1x1px transparent image into the css.</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">data</span><span class="nd">:image</span><span class="o">/</span><span class="nt">gif</span><span class="o">;</span><span class="nt">base64</span><span class="o">,</span><span class="nt">R0lGODlhAQABAIAAAAAAAP</span><span class="o">///</span><span class="nt">yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</span><span class="o">);</span>
+</code></pre></div>
+
+<p>This technique works in all of the modern browsers and I was able to test it successfully back to IE7. If you have the ability to test in IE6 feel free to comment below and let us know if it works there too. And as always If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host">NFS between Ubuntu vm and OSX host</a></h1>
+      
+        <time datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
+      
+    </header>
+    
+
+<p>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.</p>
+
+<p>At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues. To verify this, open up a terminal window in the host and VM and enter:</p>
+
+<pre><code>ifconfig
+</code></pre>
+
+<p>One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.</p>
+
+<h4 id="ubuntu-vm-setup">Ubuntu VM Setup</h4>
+
+<p>Install the NFS server.</p>
+
+<pre><code>apt-get install nfs-kernel-server
+</code></pre>
+
+<p>Then we are going to create a pseudo filesystem where we will share our users home directory from.</p>
+
+<pre><code>mkdir -p /export/your-user-name
+</code></pre>
+
+<p>We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:</p>
+
+<pre><code>/export    192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+
+/export/your-user-name    192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+</code></pre>
+
+<p>To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.</p>
+
+<pre><code>sudo chmod -R 777 /export
+</code></pre>
+
+<p>Now lets link our home directory to the export directory.</p>
+
+<pre><code>mount --bind /home/your-user-name /export/your-user-name
+</code></pre>
+
+<p>To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:</p>
+
+<pre><code>/home/your-user-name    /export/your-user-name    none    bind  0  0
+</code></pre>
+
+<p>And finally, you’ll need to export the shares and restart your nfs server</p>
+
+<pre><code>sudo exportfs -a
+sudo service nfs-kernel-server restart
+</code></pre>
+
+<h4 id="osx-setup">OSX Setup</h4>
+
+<p>On the OSX side things are very simple. First lets create the directory we are going to mount our remote home directory into.</p>
+
+<pre><code>sudo mkdir ~/linux-vm
+</code></pre>
+
+<p>And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.</p>
+
+<pre><code>sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>If you get an error that reads ‘Operation not permitted’ then you can try the following.</p>
+
+<pre><code>sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.</p>
+
+<h4 id="problems-solutions">Problems - Solutions</h4>
+
+<p>Stale File Handle - Try un-mounting and re-mounting the NFS.</p>
+
+<pre><code>sudo umount -f /Users/your-user-name/linux-vm
+sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre>
+
+<p>Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.</p>
+
+<pre><code>exec ssh-agent bash
+</code></pre>
+
+<p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+  
+    
+    <ul class="pagination">
+        
+        <li>
+            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+        </li>
+        
+        <li
+        >
+        <a href="/page/6/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        
+        <li
+        ><a href="/">1</a></li>
+        
+        <li
+        ><a href="/page/2/">2</a></li>
+        
+        <li
+        ><a href="/page/3/">3</a></li>
+        
+        <li
+        ><a href="/page/4/">4</a></li>
+        
+        <li
+        ><a href="/page/5/">5</a></li>
+        
+        <li
+        ><a href="/page/6/">6</a></li>
+        
+        <li
+        class="active"><a href="/page/7/">7</a></li>
+        
+        <li
+        ><a href="/page/8/">8</a></li>
+        
+        <li
+        ><a href="/page/9/">9</a></li>
+        
+        <li
+        ><a href="/page/10/">10</a></li>
+        
+        <li
+        ><a href="/page/11/">11</a></li>
+        
+        <li
+        ><a href="/page/12/">12</a></li>
+        
+        <li
+        ><a href="/page/13/">13</a></li>
+        
+        <li
+        >
+        <a href="/page/8/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+        </li>
+        
+        <li>
+            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        </li>
+        
+    </ul>
+    
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

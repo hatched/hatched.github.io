@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>How to rewrite and redirect with HAProxy &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy">How to rewrite and redirect with HAProxy</a></h1>
+      
+        <time datetime="2014-12-05 12:52:00 -0600 CST">5 December 2014</time>
+      
+    </header>
+    <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
+
+<p>I have a rather common use case. I plan on moving this blog from Tumblr to <a href="https://ghost.org/">Ghost</a> using the <a href="https://jujucharms.com/ghost/">Ghost Juju charm</a> and the <a href="https://jujucharms.com/haproxy/">HAProxy charm</a> to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.</p>
+
+<p>Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:</p>
+
+<pre><code>RewriteEngine On  
+RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
+</code></pre>
+
+<p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
+
+<p>Assume the following front and backend configurations:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+
+backend haproxy_service
+    balance leastconn
+    cookie SRVNAME insert
+    server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
+</code></pre>
+
+<p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+</code></pre>
+
+<p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301
+</code></pre>
+
+<p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
+
+<p>We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7">access control list</a> to only redirect the old urls:</p>
+
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    acl old_url path_beg /post
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301 if old_url
+</code></pre>
+
+<p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
+
+<p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/ops">ops</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/105250564587/how-to-rewrite-and-redirect-with-haproxy";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>

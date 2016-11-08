@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <title>Adding a validation fail event to YUI’s Y.Attribute &middot; From An Egg</title>
+  
+  <link rel="icon" type="image/png" href="http://fromanegg.com/img/me.png">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Hugo 0.17" />
+  <link rel="stylesheet" href="http://fromanegg.com/css/normalize-min.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/styles.css">
+  <link rel="stylesheet" href="http://fromanegg.com/css/manni.css">
+  <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+</head>
+<div class="top-bar"></div>
+
+<body>
+  <nav>
+  <img src="http://fromanegg.com/img/me.png"></img>
+  <h1>Jeff Pihach</h1>
+  <ul>
+    <li class=""><a href="/" class="icon-home">Home</a></li>
+    <li class=""><a href="/about" class="icon-help">About</a></li>
+    <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+    <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+    <li class="">
+      <label for="tags-toggle">
+        <span class="icon-tag">Tags</span>
+        <span class="icon-down-dir arrow"></span>
+      </label>
+      <input type="checkbox" id="tags-toggle"/>
+      <ul class="tag-list">
+        
+        
+          <li><a href="/tags/android">android (1)</a></li>
+        
+          <li><a href="/tags/book-review">book-review (1)</a></li>
+        
+          <li><a href="/tags/cordova">cordova (2)</a></li>
+        
+          <li><a href="/tags/css">css (6)</a></li>
+        
+          <li><a href="/tags/development">development (7)</a></li>
+        
+          <li><a href="/tags/go">go (1)</a></li>
+        
+          <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+        
+          <li><a href="/tags/javascript">javascript (16)</a></li>
+        
+          <li><a href="/tags/juju">juju (17)</a></li>
+        
+          <li><a href="/tags/juju-gui">juju-gui (11)</a></li>
+        
+          <li><a href="/tags/linux">linux (1)</a></li>
+        
+          <li><a href="/tags/node.js">node.js (1)</a></li>
+        
+          <li><a href="/tags/ops">ops (2)</a></li>
+        
+          <li><a href="/tags/osx">osx (1)</a></li>
+        
+          <li><a href="/tags/phonegap">phonegap (2)</a></li>
+        
+          <li><a href="/tags/testing">testing (1)</a></li>
+        
+          <li><a href="/tags/ubuntu">ubuntu (2)</a></li>
+        
+          <li><a href="/tags/video">video (2)</a></li>
+        
+          <li><a href="/tags/yui">yui (11)</a></li>
+        
+      </ul>
+    </li>
+    <li><a href="/rss" class="icon-rss">RSS</a></li>
+  </ul>
+  <hr></hr>
+  <h3>Social</h3>
+  <ul>
+    <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+    <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+    <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+    <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+    <li><a href="http://stackexchange.com/users/3378894/hatch?tab=top" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+  </ul>
+</nav>
+
+  <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="http://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute">Adding a validation fail event to YUI’s Y.Attribute</a></h1>
+      
+        <time datetime="2012-08-24 13:41:00 -0600 CST">24 August 2012</time>
+      
+    </header>
+    <p>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of <a href="http://yuilibrary.com/yui/docs/attribute/">Y.Attribute</a> is the validator.</p>
+
+<p>The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute. Returning true from the validator sends the value to the setter, returning false causes the value to not be set. But unlike a successful change event no event is fired to notify you that the value failed validation and was not set. So lets augment our modules to fire a validation failed event.</p>
+
+<p>Unfortunately to <a href="https://en.wikipedia.org/wiki/Monkey_patch">monkey patch</a> this feature into Y.Attribute properly would require a large amount of code duplication so we’ll leave that to the coming pull request. Instead we are going to pick a small simple method which will allow us to inject our enhancement but not force us to duplicate a bunch of the library code. This is only intended to be a short term solution until the patch makes its way into the library as monkey patching introduces a number of potential negative side effects.</p>
+
+<p>Because we may not want to apply this patch to all of the modules which extend Y.Attribute we will only modify this method in the objects that we need it for. To make this really easy we will create a small object and mix it into the instances.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">_defAttrChangeFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_setAttrVal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="o">+</span><span class="s1">&#39;ValidationFail&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span> <span class="c1">// The only new line</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>We then mix that patch into our new module</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">CustomModule</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">],</span> <span class="p">{</span>
+
+    <span class="c1">//Custom  module code here</span>
+
+<span class="p">},</span> <span class="p">{</span>
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>And now we are able to listen for that attributes validation fail event just like we would for the change event</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomModule</span><span class="p">();</span>
+
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;numberValidationFail&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Validation failed setting &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">MyModule</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// As usual you need to listen using &#39;after&#39; to be sure attributes were set</span>
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;numberChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;New value is: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span> <span class="p">});</span>
+
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// Valid value</span>
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;to string&#39;</span><span class="p">);</span> <span class="c1">//Invalid value</span>
+</code></pre></div>
+
+<p>Wrap all of the above code up in a use() and watch your console to see it in action. As usual If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/yui">yui</a></li>
+      
+        <li><a href="/tags/javascript">javascript</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          var identifier = "/post/30091877117/adding-a-validation-fail-event-to-yuis";
+          this.page.url = this.page.identifier = 'http://fromanegg.com/post/' + identifier.split('/')[2];
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>
