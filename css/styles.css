@@ -52,6 +52,15 @@ a {
   color: #cc181e;
 }
 
+::selection {
+  background-color: #cc181e;
+  color: white;
+}
+::-moz-selection {
+  background-color: #cc181e;
+  color: white;
+}
+
 .top-bar {
   border-top: 8px solid #cc181e;
   position: fixed;
@@ -276,6 +285,7 @@ section.article-list.tags-list article {
 .highlight {
   font-size: 0.75em;
   margin-left: 2em;
+  overflow-x: auto;
 }
 
 @media screen and (max-width:700px) {
