@@ -6,7 +6,7 @@
   
     <title>From An Egg</title>
   
-  <link rel="icon" type="image/png" href="/img/me.png">
+  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#cc181e">
@@ -93,6 +93,40 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar">Add toggle button support to Y.PopupCalendar</a></h1>
+      
+        <time datetime="2012-07-31 15:57:00 -0600 CST">31 July 2012</time>
+      
+    </header>
+    <p>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.</p>
+
+<p>Until I am able to add support into the module, simply copy and paste the following code before the first instance of <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar.html?">Y.PopupCalendar</a> or <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar-group.html?">Y.PopupCalendarGroup</a>.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div>
+
+<p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -375,145 +409,6 @@
 </code></pre></div>
 
 <p>I hope you enjoyed the first part of this series and were able to get your own file server up and running. I have included a <a href="https://gist.github.com/hatched/1920353">working example</a> of the above code if you want to see it in its entirety. If you need further help feel free to comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a>, or join #Node.js on irc.freenode.net.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader">Handling module load errors with YUI Loader</a></h1>
-      
-        <time datetime="2012-02-06 15:50:00 -0600 CST">6 February 2012</time>
-      
-    </header>
-    <p>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.</p>
-
-<p>From time to time you may find yourself loading modules that aren’t available. Whether it be from a user supplied modules list or an unreliable source, the YUI instance confg gives you an easy way to check if there are any errors while loading your modules.</p>
-
-<p>A common YUI config and use statement would look like the following.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;custom-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/module.js&#39;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Your code here</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>If for some reason the loader was unable to fetch a required module and you wanted to act on that event, the loader provides you with an onFailure method that is called with an object that has details about the modules it failed to fetch.</p>
-
-<p>To use this method you would amend the above code to include that method.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;custom-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/module.js&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="c1">// Error handling code</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Your code here</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>The error object is structured.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
-  <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">[],</span> <span class="c1">// Contains a list of the requested modules</span>
-  <span class="nx">msg</span><span class="o">:</span> <span class="s2">&quot;Failed to load path/to/module&quot;</span><span class="p">,</span> <span class="c1">// A string error message</span>
-  <span class="nx">success</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// A bool representation of the success of the requests</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>It’s that simple, by setting up your onFailure callback you can easily handle any errors that may arise by an improperly structured config or use statement.</p>
-
-<p>Warning</p>
-
-<p>If there is a failure in your initial module request the onFailure callback will be called before the Y instance is set-up. This means that no YUI methods will be available and calls to them will cause your application to fail. In this case the this property will point to YUI.</p>
-
-<p>More Reading</p>
-
-<p>In the following example the onFailure callback will be called if at any time there is a failure while trying to load modules. You will need to keep this in mind if your doing any lazy loading of modules so that you can appropriately handle the errors.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;good-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;correct/path/to/good-module.js&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;bad-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/bad-module&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="c1">// I&#39;m going to be called when the request for bad-module is made</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;good-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-
-  <span class="nx">Y</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;bad-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  	<span class="c1">// More code here</span>
-  <span class="p">});</span>
-
-<span class="p">});</span>
-</code></pre></div>
-
-<p>The error.msg property string will contain comma delimited messages about which values failed.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
-    <span class="p">},</span>
-    <span class="s1">&#39;bad-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/bad-module&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="s1">&#39;bad-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Code here</span>
-<span class="p">});</span>
-</code></pre></div>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span>
-  <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">[</span><span class="mi">22</span><span class="p">],</span>
-  <span class="nx">msg</span><span class="o">:</span> <span class="s2">&quot;Failed to load path/to/wrong-module,Failed to load path/to/bad-module&quot;</span><span class="p">,</span>
-  <span class="nx">success</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>This method only works if the module has been defined. You will not receive an error for the crazy-module.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Code here</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>You will however get a string error logged to the console in addition to the onFailure if the undefined module comes before the defined custom modules.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">({</span>
-  <span class="nx">modules</span><span class="o">:</span> <span class="p">{</span> <span class="c1">// Define your custom module meta data</span>
-    <span class="s1">&#39;wrong-module&#39;</span> <span class="o">:</span> <span class="p">{</span>
-      <span class="nx">fullpath</span><span class="o">:</span> <span class="s1">&#39;path/to/wrong-module&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}).</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;crazy-module&#39;</span><span class="p">,</span> <span class="s1">&#39;wrong-module&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// Code here</span>
-<span class="p">});</span>
-</code></pre></div>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="s2">&quot;yui: NOT loaded: crazy-module&quot;</span>
-</code></pre></div>
 
   </article>
 </section>

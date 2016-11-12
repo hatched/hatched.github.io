@@ -6,7 +6,7 @@
   
     <title>From An Egg</title>
   
-  <link rel="icon" type="image/png" href="/img/me.png">
+  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#cc181e">
@@ -98,6 +98,66 @@
     <section class="article-list">
   <article>
     <header>
+      <h1><a href="https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes">Using after() event listeners to react to attribute value changes</a></h1>
+      
+        <time datetime="2012-12-01 18:30:00 -0600 CST">1 December 2012</time>
+      
+    </header>
+    <p>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_on">on()</a> and <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_after">after()</a> methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</p>
+
+<p>If you use on() to listen for the attribute change event you will be notified every time something attempts to set the value of that attribute. If you use after() your callback will only be executed if the value set was successful. What this means is that if something else was listening using on() decided to prevent the change event your after() callback would never fire.</p>
+
+<p>A useful side effect of this is that the after() callback will not fire if the value being set is identical to the one currently in the attribute. This means that if you have a situation where an attribute may be set multiple times but you only care when it changes - by simply switching to listening via the after() method your callback will only execute when the values differ. Saving you the code in the callback to check the values and the function call which now is only called when required.</p>
+
+<p>Click here to view this simple example on <a href="http://jsbin.com/ihikih/1/embed?output">jsbin: Using after() event listeners to react to attribute value changes</a></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">Foo</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[],</span> <span class="p">{</span>
+
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;barChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;change attempted&#39;</span><span class="p">);</span>                                  
+      <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;barChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;change successful&#39;</span><span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;cupcake&#39;&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;cupcake&#39;</span><span class="p">);</span>
+
+      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;cupcake&#39; again&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;cupcake&#39;</span><span class="p">);</span>
+
+      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;pie&#39;&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;pie&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="p">},</span> <span class="p">{</span>
+
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+
+      <span class="nx">bar</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;baz&#39;</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+
+  <span class="p">});</span>
+  <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>Thanks for reading, and if you have any questions feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
       <h1><a href="https://fromanegg.com/post/2012/10/18/hatched-links">Hatched Links</a></h1>
       
         <time datetime="2012-10-18 09:52:00 -0600 CST">18 October 2012</time>
@@ -178,42 +238,6 @@
 </ul>
 
 <p>Have something you would like to see on the next Hatched Links? Mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or find me in #yui on irc.freenode.net</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements">Clicking through a div to underlying elements</a></h1>
-      
-        <time datetime="2012-10-01 09:07:00 -0600 CST">1 October 2012</time>
-      
-    </header>
-    <p>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.</p>
-
-<p>Let me introduce you to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a> CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events. As an experimental feature in CSS3 it has also added basic support for non-SVG elements in modern browsers (Chrome 2, FireFox 3.6, Safari, 4).</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-    <span class="nb">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-        <span class="n">filter</span><span class="o">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="n">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="o">,</span> <span class="n">sizingMethod</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span><span class="p">);</span>
-        <span class="nb">background</span><span class="o">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Or in IE8 and up outside of a conditional.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">filter</span><span class="o">:</span> <span class="s1">&#39;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=overlay.png,  sizingMethod=scale)&#39;</span><span class="p">;</span>
-    <span class="nb">background</span><span class="o">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Having issues implementing this? Mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or leave a comment below. Until next time!</p>
 
   </article>
 </section>

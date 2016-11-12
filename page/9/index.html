@@ -6,7 +6,7 @@
   
     <title>From An Egg</title>
   
-  <link rel="icon" type="image/png" href="/img/me.png">
+  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#cc181e">
@@ -93,6 +93,136 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript">Prototypes and class-like objects in Javascript</a></h1>
+      
+        <time datetime="2013-01-21 10:00:00 -0600 CST">21 January 2013</time>
+      
+    </header>
+    <p>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post <a href="http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a>. I recommend that you read that post first as I’ll be referencing some of the same code.</p>
+
+<p>The prototype is defined as an “object that provides shared properties for other objects” - <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5">Ecma International</a>. What this means is that, by default, any object that inherits from another object automatically has reference to the parents prototypes all the way through the inheritance tree. When you call a method on an object (remember everything in Javascript is an object) it first looks through the local prototype, if it’s not found, it then continues checking prototypes up until it hits Object.prototype to find that method before throwing an error. To illustrate that lets slightly modify our mustang instance and take a look at the instance in the inspector.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getColor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">getColor</span><span class="p">());</span> <span class="c1">// Prints `red` to the console</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints [object Object] to the console</span>
+</code></pre></div>
+
+<p>Stepping through this code you’ll see that we create a new constructor function as we did previously but this time we are creating a new getColor method on Car’s prototype that returns the color of the instance of Car. We then create a new instance of Car and log the output of the getColor method to the console. The following line is a perfect example of walking the prototype chain to try and find a toString method. We clearly didn’t create this method so where is it coming from? This is best illustrated using a screenshot of the browser console log of our mustang instance.</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-1.png" alt="" /></p>
+
+<p>First thing to notice is that we don’t actually have a <code>prototype</code> property here but <code>__proto__</code> which is a non-standard label for accessing the prototype of an object. In the prototype of our Car instance we have the getColor method that we created which matches with the above code block. Next, because Car is a function which extends Object, we have the Object prototype which includes, among other things, the toString method that we used.</p>
+
+<p>It is considered bad practice to overwrite the native method prototypes because other code on the page might be relying on those native prototypes to function properly. So what do you do if you want to use your own toString method? By creating a toString method in the prototype of your instance, Javascript will run into that one first and use it instead of the native method.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&quot;red&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints `red` to the console</span>
+</code></pre></div>
+
+<p>So here we create a toString method on the Car prototype to return the color of Car. This time when we call the toString method, Javascript runs into our own toString method first and executes it instead of the native method printing red instead of [object Object]</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-2.png" alt="" /></p>
+
+<p>Taking a look at the console log of our mustang object, you can now see the two toString methods and where they are in the prototype chain. Note: Although the console shows <code>__proto__</code> make sure you don’t access it directly because it’s not available on all platforms, always use <code>prototype</code>.</p>
+
+<p>To do constructor chaining while maintaining the prototype chain requires you to take one more step. If you simply take the lessons from the previous post and this post so far you would assume you could write something like.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span> <span class="c1">// Throws TypeError</span>
+</code></pre></div>
+
+<p>By running the above script you will see that you get an error in the console “Uncaught TypeError: Object # has no method ‘levelUp’ ”. And that is because when you chain constructors in this method you aren’t maintaining reference to the parents prototype. To make this work as you would like you need to add one more line.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span> <span class="c1">// Add this line</span>
+
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console</span>
+</code></pre></div>
+
+<p>By assigning the prototype of your new object to a new instance of your parent you maintain the prototype chain giving you access to its methods.</p>
+
+<p>Combining the above lessons allows you to infinitely chain constructors as we did previously but this time, also maintain the prototypes.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span>
+
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">boost</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">SuperSpider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Spider</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">SuperSpider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperSpider</span><span class="p">();</span>
+
+<span class="nx">superSpider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console</span>
+<span class="nx">superSpider</span><span class="p">.</span><span class="nx">boost</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `12` to the console</span>
+</code></pre></div>
+
+<p>And for reference here is the console output of our superSpider class pointing out the levelUp and boost functions</p>
+
+<p><img src="/images/prototypes-and-class-like-objects-in-javascript-3.png" alt="" /></p>
+
+<p>I’m sure you’re thinking that this is pretty convoluted and you would be right. Next time I’ll be showing you an ES5 convenience method to clean this up, as well as some YUI OOP methods which greatly simplify this task as well as handle all of the edge cases. Thanks for reading and if you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -395,66 +525,6 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 <p>As with anything front end related there are going to be cross browser differences so I highly recommend using one of the quality javascript libraries and frameworks available to normalize these differences for you. If you have read any of my other posts you have probably guessed that I’m partial to the <a href="http://yuilibrary.com/">YUI framework</a>.</p>
 
 <p>I hope that these examples not only show you how keyup, keydown, and keypress function; but also give you some ideas on the best situations to use them. If you have any questions feel free to comment below or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a></p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes">Using after() event listeners to react to attribute value changes</a></h1>
-      
-        <time datetime="2012-12-01 18:30:00 -0600 CST">1 December 2012</time>
-      
-    </header>
-    <p>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_on">on()</a> and <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_after">after()</a> methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</p>
-
-<p>If you use on() to listen for the attribute change event you will be notified every time something attempts to set the value of that attribute. If you use after() your callback will only be executed if the value set was successful. What this means is that if something else was listening using on() decided to prevent the change event your after() callback would never fire.</p>
-
-<p>A useful side effect of this is that the after() callback will not fire if the value being set is identical to the one currently in the attribute. This means that if you have a situation where an attribute may be set multiple times but you only care when it changes - by simply switching to listening via the after() method your callback will only execute when the values differ. Saving you the code in the callback to check the values and the function call which now is only called when required.</p>
-
-<p>Click here to view this simple example on <a href="http://jsbin.com/ihikih/1/embed?output">jsbin: Using after() event listeners to react to attribute value changes</a></p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-
-  <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">Foo</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[],</span> <span class="p">{</span>
-
-    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;barChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;change attempted&#39;</span><span class="p">);</span>                                  
-      <span class="p">});</span>
-
-      <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;barChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;change successful&#39;</span><span class="p">);</span>
-      <span class="p">});</span>
-
-      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;cupcake&#39;&quot;</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;cupcake&#39;</span><span class="p">);</span>
-
-      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;cupcake&#39; again&quot;</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;cupcake&#39;</span><span class="p">);</span>
-
-      <span class="nx">body</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;---&gt; Setting bar to &#39;pie&#39;&quot;</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;pie&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-
-  <span class="p">},</span> <span class="p">{</span>
-
-    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-
-      <span class="nx">bar</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;baz&#39;</span>
-      <span class="p">}</span>
-
-    <span class="p">}</span>
-
-  <span class="p">});</span>
-  <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>Thanks for reading, and if you have any questions feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
 </section>

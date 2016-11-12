@@ -6,8 +6,20 @@
     <description>Recent content in Post-rsses on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jan 2016 13:15:00 -0600</lastBuildDate>
+    <lastBuildDate>Sat, 12 Nov 2016 16:49:53 -0600</lastBuildDate>
     <atom:link href="https://fromanegg.com/post/rss/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Welcome to From An Egg v2</title>
+      <link>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2</link>
+      <pubDate>Sat, 12 Nov 2016 16:49:53 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2</guid>
+      <description>&lt;p&gt;Welcome to v2 of the From An Egg blog!&lt;/p&gt;
+
+&lt;p&gt;Built with &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;, a static site generator built with &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&amp;rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The importance of minification and compression</title>
@@ -794,26 +806,6 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 &lt;p&gt;As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.&lt;/p&gt;
 
 &lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&#34;margin-bottom:5px&#34;&gt; &lt;strong&gt; &lt;a href=&#34;//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication&#34; title=&#34;Instant Single Sign-On and Two-Factor Authentication&#34; target=&#34;_blank&#34;&gt;Instant Single Sign-On and Two-Factor Authentication&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&#34;_blank&#34; href=&#34;//www.slideshare.net/mectors&#34;&gt;Maarten Ectors&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>YUI in the Wild</title>
-      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
-      <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
-      <description>&lt;p&gt;Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.&lt;/p&gt;
-
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/lJPdH8xmOWg?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-
-&lt;p&gt;The links I mentioned in the video:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju GUI Demo Site&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Juju GUI Bazaar repository&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Juju GUI Git repository&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

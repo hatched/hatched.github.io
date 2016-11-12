@@ -6,7 +6,7 @@
   
     <title>From An Egg</title>
   
-  <link rel="icon" type="image/png" href="/img/me.png">
+  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#cc181e">
@@ -98,6 +98,193 @@
     <section class="article-list">
   <article>
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level">CSS selectors - The next level</a></h1>
+      
+        <time datetime="2013-08-05 16:53:00 -0600 CST">5 August 2013</time>
+      
+    </header>
+    
+
+<p>As a continuation of my previous post <a href="http://fromanegg.com/post/41704399239/understanding-css2-and-css3-attribute-selectors">Understanding CSS2 and CSS3 attribute selectors</a> I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.</p>
+
+<h4 id="ie6-support">IE6+ SUPPORT</h4>
+
+<h4 id="s1-first-line-pseudo-element-selector">S1::first-line: Pseudo element selector</h4>
+
+<p>Selects the first line of text in an element which matches the S1 selector.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog::first-line
+</code></pre></div>
+
+<h4 id="s1-first-letter-pseudo-element-selector">S1::first-letter: Pseudo element selector</h4>
+
+<p>Selects the first letter in an element which matches the S1 selector.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog::first-letter
+</code></pre></div>
+
+<h4 id="ie7-support">IE7+ SUPPORT</h4>
+
+<h4 id="s1-s2-sibling-selector">S1 ~ S2 : Sibling selector</h4>
+
+<p>Selects any element which matches the S2 selector as long as it is a sibling of the S1 selector.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog ~ .leg
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* match */
+</code></pre></div>
+
+<h4 id="s1-s2-immediate-children-selector">S1 &gt; S2 : Immediate children selector</h4>
+
+<p>Only selects elements which match the S2 selector which are immediate children of the S1 selector.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog &gt; .leg
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;</span> /* match */
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-s2-adjacent-selector">S1 + S2 : Adjacent selector</h4>
+
+<p>Will select a single element which matches the S2 selector as long as it is immediately after the S1 selector element.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog + .leg
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
+</code></pre></div>
+
+<h4 id="s1-first-child-pseudo-element-selector">S1:first-child : Pseudo element selector</h4>
+
+<p>Only selects the element which matches the S1 selector that is the first child of it’s parent element.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.leg:first-child
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-last-child-pseudo-element-selector">S1:last-child : Pseudo element selector</h4>
+
+<p>Only selects the element which matches the S1 selector that is the last child of it’s parent element.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.leg:last-child
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="ie9-support">IE9+ SUPPORT</h4>
+
+<h4 id="s1-not-s2-negation-pseudo-class-selector">S1:not(S2) : Negation pseudo class selector</h4>
+
+<p>Selects all elements which match the S1 selector except those which also match S2</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog:not(.cat)
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cat leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+</code></pre></div>
+
+<h4 id="s1-only-child-pseudo-class-selector">S1:only-child : Pseudo class selector</h4>
+
+<p>Selects elements which match the S1 selector and are the only child of their parent container.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.leg:only-child
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-first-of-type-pseudo-class-selector">S1:first-of-type : Pseudo class selector</h4>
+
+<p>Selects the elements that match the S1 selector which are the first of a type in it’s parent container.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog p:first-of-type
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-only-of-type-pseudo-class-selector">S1:only-of-type : Pseudo class selector</h4>
+
+<p>Selects elements that match the S1 selector which do not have any siblings within their parent container.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog div:only-of-type
+/* markup */
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-nth-child-x-pseudo-class-selector">S1:nth-child(x) : Pseudo class selector</h4>
+
+<p>Only selects the element which matches the S1 selector which is the nth child of its parent container.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog p:nth-child(2)
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-nth-last-child-x-pseudo-class-selector">S1:nth-last-child(x) : Pseudo class selector</h4>
+
+<p>Only selects the element which matches the S1 selector which is the nth child of its parent container counted from the last child.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog p:nth-last-child(1)
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-nth-of-type-x-pseudo-class-selector">S1:nth-of-type(x) : Pseudo class selector</h4>
+
+<p>Only selects the element which matches the S1 selector which is the nth child type of its parent container.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog p:nth-of-type(2)
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h4 id="s1-nth-last-of-type-x-pseudo-class-selector">S1:nth-last-of-type(x) : Pseudo class selector</h4>
+
+<p>Only selects the element which matches the S1 selector which is the nth child type of its parent container counted from the last child.</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>.dog p:nth-of-type(1)
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;dog&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;leg&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>Using some of these more advanced/unknown selectors can make your styling a lot easier without having to rely on more classes or javascript tricks. I hope I got them all, if I missed one that you think should be included please comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> and I’ll be sure to add it. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file">Android file transfer - Could not replace file, could not copy file…</a></h1>
       
         <time datetime="2013-07-31 20:27:00 -0600 CST">31 July 2013</time>
@@ -184,152 +371,6 @@ For those who aren’t in the know - Juju allows you to build entire environment
 </ul>
 
 <p>At the time of writing there are 137 services ready to deploy. Plus you can deploy your app right from github using our node.js and Rack charms.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way">Test driven development - the easy way!</a></h1>
-      
-        <time datetime="2013-06-07 22:45:00 -0600 CST">7 June 2013</time>
-      
-    </header>
-    <p>A number of people, myself included, have a hard time getting started with <a href="https://en.wikipedia.org/wiki/Test-driven_development">test driven development (TDD)</a>. The issue lies in that it’s difficult to wrap your head around something that is rather non specific in its implementation and it is usually described as “writing your tests before you write your code”.</p>
-
-<p>When developers hear “Write your tests before you write your code”, then they look at their previous test suite they wonder… “How can I possibly write this without having written the code first?</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">new</span> <span class="nx">Test</span><span class="p">.</span><span class="nx">Case</span><span class="p">({</span>
-    <span class="nx">testSomething</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-       <span class="kd">var</span> <span class="kr">class</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MyClass</span><span class="p">();</span>
-	<span class="kr">class</span><span class="p">.</span><span class="nx">assert</span><span class="p">(...);</span>
-    <span class="p">},</span>
-
-    <span class="nx">testSomethingElse</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//...</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>Herein Lies the difficulty with doing test driven development, everyone says you write the tests first but in reality you write the structure of the class first. To illustrate this lets create a simple instantiable class using TDD. This class will need to receive data and then append a representation of that data to the DOM.</p>
-
-<p>Your first step is to outline each step the class needs to make in point form. This helps you visualize the whole completed class from start to finish before you type a single line of code. This will help you figure out any shortcomings in complex classes ahead of time so you don’t waste time writing code which will be thrown away.</p>
-
-<p>Our classes requirements:
-is instantiable.
-will accept a config object and create related instance properties.
-will generate a string template using the configuration properties.
-will generate a DOM element from the string template.
-will append that element to the body.</p>
-
-<p>Next is to take these steps and create tests which prove that they work. To do that we need to use a test suite which makes test driven development easy. For this tutorial I am going to use Mocha (<a href="http://visionmedia.github.io/mocha/">http://visionmedia.github.io/mocha/</a>) I won’t go into detail on this test framework as it’s out of the scope of this tutorial but it is pretty easy to pick up by following along.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">describe</span><span class="p">(</span><span class="err">‘</span><span class="nx">DOM</span> <span class="nx">Info</span> <span class="nx">Generator</span><span class="err">’</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">is</span> <span class="nx">instantiable</span><span class="err">’</span><span class="p">);</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">accept</span> <span class="nx">a</span> <span class="nx">config</span> <span class="nx">object</span> <span class="nx">and</span> <span class="nx">create</span> <span class="nx">related</span> <span class="nx">instance</span> <span class="nx">properties</span><span class="err">’</span><span class="p">);</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">generate</span> <span class="nx">a</span> <span class="nx">string</span> <span class="nx">template</span> <span class="nx">using</span> <span class="nx">the</span> <span class="nx">configuration</span> <span class="nx">properties</span><span class="err">’</span><span class="p">);</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">generate</span> <span class="nx">a</span> <span class="nx">DOM</span> <span class="nx">element</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">string</span> <span class="nx">template</span><span class="err">’</span><span class="p">);</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">append</span> <span class="nx">that</span> <span class="nx">element</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">body</span><span class="err">’</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>So now you can start to see what I mean when I said that we write the structure of the class first. In practice we aren’t writing the tests first at all, we are writing declarations of what our class will be doing.</p>
-
-<p>The third step is to start writing some code to satisfy these tests in order. Our first two tests say that our class needs to be instantiable and that it needs to accept a configuration object and create related instance properties.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">DomInfo</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">job</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Now that we have the code completed to what we believe matches our first two tests we can write the tests. On a real project you would need to import your class into your test suite but for this tutorial we will just have our test suite after our class declaration.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">assert</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="err">‘</span><span class="nx">assert</span><span class="err">’</span><span class="p">);</span>
-<span class="nx">describe</span><span class="p">(</span><span class="err">‘</span><span class="nx">DOM</span> <span class="nx">Info</span> <span class="nx">Generator</span><span class="err">’</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;Spock&#39;</span><span class="p">,</span>
-        <span class="nx">job</span> <span class="o">=</span> <span class="s1">&#39;Science Officer&#39;</span><span class="p">,</span>
-        <span class="nx">domInfo</span><span class="p">;</span>
-
-  <span class="c1">// Code to execute before every test.</span>
-  <span class="nx">beforeEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">domInfo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DomInfo</span><span class="p">({</span>
-      <span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
-      <span class="nx">job</span><span class="o">:</span> <span class="nx">job</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-
-  <span class="c1">// Code to execute after every test.</span>
-  <span class="nx">afterEach</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">domInfo</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="p">});</span>
-
-  <span class="c1">// Tests</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">is</span> <span class="nx">instantiable</span><span class="err">’</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">domInfo</span> <span class="k">instanceof</span> <span class="nx">DomInfo</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-  <span class="p">});</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">accept</span> <span class="nx">a</span> <span class="nx">config</span> <span class="nx">object</span> <span class="nx">and</span> <span class="nx">create</span> <span class="nx">related</span> <span class="nx">instance</span> <span class="nx">properties</span><span class="err">’</span><span class="p">,</span>
-    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">domInfo</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">domInfo</span><span class="p">.</span><span class="nx">job</span><span class="p">,</span> <span class="nx">job</span><span class="p">);</span>
-    <span class="p">});</span>
-
-  <span class="p">...</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>Stretching a little bit out of context of this tutorial I am setting up hooks (beforeEach, afterEach) to create a new instance of our class for every test, and then clean up that instance after every test.</p>
-
-<p>For our first test we take our new instance and test to make sure that it is an instance of our constructor. The second test we access the two instance properties of our class and check them against our known values.</p>
-
-<p>Moving on to our next two tests we need to take our configuration values generate a template and generate a DOM element from that template.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">DomInfo</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">job</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">generateAndAppendTemplate</span><span class="p">();</span>
-<span class="p">}</span>
-<span class="nx">DomInfo</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">generateAndAppendTemplate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">generateTemplate</span><span class="p">();</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">createDOMElement</span><span class="p">();</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">appendElement</span><span class="p">();</span>
-  <span class="p">},</span>
-  <span class="nx">generateTemplate</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">template</span> <span class="o">=</span> <span class="err">‘</span><span class="nx">Hi</span> <span class="err">’</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="err">‘</span><span class="o">!</span> <span class="nx">Great</span> <span class="nx">job</span> <span class="nx">being</span> <span class="nx">a</span> <span class="err">‘</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">job</span><span class="p">;</span>
-  <span class="p">},</span>
-  <span class="nx">createDOMElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">greeting</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
-    <span class="nx">greeting</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;greeting&#39;</span><span class="p">;</span>
-    <span class="nx">greeting</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">element</span> <span class="o">=</span> <span class="nx">greeting</span><span class="p">;</span>
-  <span class="p">},</span>
-  <span class="nx">appendElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">element</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>And now to the tests to make sure that our code satisfies our goals. I left out the previous code and tests for brevity.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">...</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">generate</span> <span class="nx">a</span> <span class="nx">string</span> <span class="nx">template</span> <span class="nx">using</span> <span class="nx">the</span> <span class="nx">config</span> <span class="nx">properties</span><span class="err">’</span><span class="p">,</span>
-    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">domInfo</span><span class="p">.</span><span class="nx">template</span> <span class="o">===</span> <span class="err">‘</span><span class="nx">string</span><span class="err">’</span><span class="p">);</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">notEqual</span><span class="p">(</span><span class="nx">domInfo</span><span class="p">.</span><span class="nx">template</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">name</span><span class="err">’</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-      <span class="nx">assert</span><span class="p">.</span><span class="nx">notEqual</span><span class="p">(</span><span class="nx">domInfo</span><span class="p">.</span><span class="nx">template</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">job</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">generate</span> <span class="nx">a</span> <span class="nx">DOM</span> <span class="nx">element</span> <span class="nx">from</span> <span class="nx">the</span> <span class="nx">string</span> <span class="nx">template</span><span class="err">’</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">domInfo</span><span class="p">.</span><span class="nx">element</span> <span class="o">===</span> <span class="err">‘</span><span class="nx">object</span><span class="err">’</span><span class="p">);</span>
-  <span class="p">});</span>
-  <span class="nx">it</span><span class="p">(</span><span class="err">‘</span><span class="nx">will</span> <span class="nx">append</span> <span class="nx">that</span> <span class="nx">element</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">body</span><span class="err">’</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">notEqual</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="err">‘</span><span class="p">.</span><span class="nx">greeting</span><span class="err">’</span><span class="p">),</span> <span class="kc">null</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-
-<p>By now you are probably getting the hang of this.</p>
-
-<p>To recap, the easiest way to understand test driven development, or TDD, is to <strong>outline our class into declarations of intent</strong>. Then, <strong>test by test, write the code to satisfy those declarations</strong> and the tests to ensure that they stay satisfied. Running the tests constantly to be sure that we are always moving forward. If you find that after satisfying one of your new tests, or after a refactor, you have broken some tests you must then stop and make those tests pass again. <strong>You cannot advance unless all previous tests pass</strong>.</p>
-
-<p>I hope that this approach will help those of you who haven’t been able to wrap your head around test driven development be productive. Properly developing large applications using test driven development helps to all but remove code rewrites from improperly spec’d code and hidden regressions because you outline the classes intent and knock off those points one by one.</p>
-
-<p>Thanks for reading, and as always, let me know what you think by commenting below or mentioning me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
 </section>

@@ -6,7 +6,7 @@
   
     <title>From An Egg</title>
   
-  <link rel="icon" type="image/png" href="/img/me.png">
+  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#cc181e">
@@ -93,6 +93,22 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2">Welcome to From An Egg v2</a></h1>
+      
+        <time datetime="2016-11-12 16:49:53 -0600 CST">12 November 2016</time>
+      
+    </header>
+    <p>Welcome to v2 of the From An Egg blog!</p>
+
+<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -353,84 +369,6 @@ juju upgrade-charm --repository<span class="o">=</span>.
 </code></pre></div>
 
 <p>Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript">Easy testing of code involving native methods in JavaScript</a></h1>
-      
-        <time datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
-      
-    </header>
-    <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Then we’ll move the onload callback to a named function.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">_readerOnloadHandler</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">_readerOnloadHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Set up the stubs.</span>
-    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">);</span>
-    <span class="c1">// The second parameter of the stubMethod is what generateFileReader</span>
-    <span class="c1">// will return when it&#39;s called.</span>
-    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;generateFileReader&#39;</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">onload</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">();</span>
-    <span class="p">});</span>
-    <span class="c1">// Call the public method.</span>
-    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
-    <span class="c1">// Make assertions</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
-    <span class="c1">// Call the callback.</span>
-    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">({</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}});</span>
-    <span class="c1">// Make assertions</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;file data&#39;</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-
-<p>Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!</p>
 
   </article>
 </section>
