@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/hatched-links/rss/</link>
+    <link>https://fromanegg.com/tags/hatched-links/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/hatched-links/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/hatched-links/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hatched Links</title>
-      <link>http://fromanegg.com/post/2012/10/18/hatched-links</link>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links</link>
       <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/10/18/hatched-links</guid>
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS&#34;&gt;HTTP access control (CORS) (mozilla.org)&lt;/a&gt;: Learn how Cross-Origin Resource Sharing works.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://ianstormtaylor.com/design-tip-never-use-black&#34;&gt;Never use black (ianstormtaylor.com)&lt;/a&gt;: Design tip on why you should never use black.&lt;/li&gt;
@@ -28,10 +28,10 @@
     
     <item>
       <title>Hatched Links</title>
-      <link>http://fromanegg.com/post/2012/10/18/hatched-links</link>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links</link>
       <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/10/18/hatched-links</guid>
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://simurai.com/blog/2012/09/13/flick-scrolling&#34;&gt;Flick Scroll (simurai.com)&lt;/a&gt;: Very cool new swipe technique.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://andmag.se/2011/11/responsive-embeds/&#34;&gt;Responsive Embeds (andmag.se)&lt;/a&gt;: Great technique for using responsive sized embeds.&lt;/li&gt;
@@ -46,10 +46,10 @@
     
     <item>
       <title>Hatched Links</title>
-      <link>http://fromanegg.com/post/2012/10/11/hatched-links</link>
+      <link>https://fromanegg.com/post/2012/10/11/hatched-links</link>
       <pubDate>Thu, 11 Oct 2012 13:56:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/10/11/hatched-links</guid>
+      <guid>https://fromanegg.com/post/2012/10/11/hatched-links</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://gitx.laullon.com/&#34;&gt;GUI Git Client For OSX (laullon.com)&lt;/a&gt;: Open source and runs on OSX 10.6+ and Git 1.6.0+.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.adobe.com/devnet/edge-inspect/articles/browser-testing-across-devices-with-adobe-edge-inspect.html&#34;&gt;Test Across Devices With Adobe Shadow (adobe.com)&lt;/a&gt;: Setup browsing and debugging with Adobe Shadow.&lt;/li&gt;
@@ -64,10 +64,10 @@
     
     <item>
       <title>Hatched Links</title>
-      <link>http://fromanegg.com/post/2012/10/04/hatched-links</link>
+      <link>https://fromanegg.com/post/2012/10/04/hatched-links</link>
       <pubDate>Thu, 04 Oct 2012 09:04:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/10/04/hatched-links</guid>
+      <guid>https://fromanegg.com/post/2012/10/04/hatched-links</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://slides.com/&#34;&gt;An Online Editor For reveal.js (rvl.io)&lt;/a&gt;: Edit the popular reveal.js HTML presentation framework online.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://reidburke.com/&#34;&gt;YUI Test Tool (yeti.cx)&lt;/a&gt;: Run YUI Test in multiple browsers.&lt;/li&gt;
@@ -82,10 +82,10 @@
     
     <item>
       <title>Hatched Links</title>
-      <link>http://fromanegg.com/post/2012/09/27/hatched-links</link>
+      <link>https://fromanegg.com/post/2012/09/27/hatched-links</link>
       <pubDate>Thu, 27 Sep 2012 22:39:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/09/27/hatched-links</guid>
+      <guid>https://fromanegg.com/post/2012/09/27/hatched-links</guid>
       <description>&lt;p&gt;Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!&lt;/p&gt;
 
 &lt;ul&gt;

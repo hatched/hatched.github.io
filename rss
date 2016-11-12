@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/rss/</link>
+    <link>https://fromanegg.com/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 02 Jan 2016 13:15:00 -0600</lastBuildDate>
-    <atom:link href="http://fromanegg.com/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The importance of minification and compression</title>
-      <link>http://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</link>
+      <link>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</link>
       <pubDate>Sat, 02 Jan 2016 13:15:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</guid>
+      <guid>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</guid>
       <description>&lt;p&gt;Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.&lt;/p&gt;
 
 &lt;p&gt;The site starts out by loading in the following raw code:&lt;/p&gt;
@@ -61,10 +61,10 @@
     
     <item>
       <title>Automatically build files when they change with Make</title>
-      <link>http://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</link>
+      <link>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</link>
       <pubDate>Wed, 26 Aug 2015 12:07:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</guid>
+      <guid>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</guid>
       <description>&lt;p&gt;When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?&lt;/p&gt;
 
 &lt;p&gt;Introducing &lt;a href=&#34;http://linux.die.net/man/1/inotifywait&#34;&gt;inotifywait&lt;/a&gt;, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And &lt;a href=&#34;http://emcrisostomo.github.io/fswatch/&#34;&gt;fswatch&lt;/a&gt; for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.&lt;/p&gt;
@@ -100,10 +100,10 @@
     
     <item>
       <title>Using Juju for development</title>
-      <link>http://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
+      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
       <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
+      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
       <description>
 
 &lt;p&gt;Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu &lt;a href=&#34;http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment&#34;&gt;“Is Juju a suitable tool for development as well as deployment?”&lt;/a&gt; made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.&lt;/p&gt;
@@ -173,10 +173,10 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
     
     <item>
       <title>Write JavaScript like it’s typed</title>
-      <link>http://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</link>
+      <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</link>
       <pubDate>Sat, 06 Jun 2015 21:44:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</guid>
+      <guid>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</guid>
       <description>&lt;p&gt;Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.&lt;/p&gt;
 
 &lt;p&gt;In many JavaScript projects you’ll see something like this:&lt;/p&gt;
@@ -258,10 +258,10 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
     
     <item>
       <title>Easy testing of code involving native methods in JavaScript</title>
-      <link>http://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</link>
+      <link>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</link>
       <pubDate>Wed, 22 Apr 2015 19:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</guid>
       <description>&lt;p&gt;When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
   &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
@@ -332,10 +332,10 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
     
     <item>
       <title>How to rewrite and redirect with HAProxy</title>
-      <link>http://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</link>
+      <link>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</link>
       <pubDate>Fri, 05 Dec 2014 12:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</guid>
+      <guid>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</guid>
       <description>&lt;p&gt;It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.&lt;/p&gt;
 
 &lt;p&gt;I have a rather common use case. I plan on moving this blog from Tumblr to &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt; using the &lt;a href=&#34;https://jujucharms.com/ghost/&#34;&gt;Ghost Juju charm&lt;/a&gt; and the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;HAProxy charm&lt;/a&gt; to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.&lt;/p&gt;
@@ -397,10 +397,10 @@ backend haproxy_service
     
     <item>
       <title>Juju - Explain it to me like I’m 5</title>
-      <link>http://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</link>
+      <link>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</link>
       <pubDate>Mon, 08 Sep 2014 23:10:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</guid>
+      <guid>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.&lt;/p&gt;
 
 &lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-conversation=&#34;none&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;und&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/FromAnEgg&#34;&gt;@FromAnEgg&lt;/a&gt; ELI5 Juju..&lt;/p&gt;&amp;mdash; Mark Poppen (@MarkPoppen) &lt;a href=&#34;https://twitter.com/MarkPoppen/status/509113565702127616&#34;&gt;September 8, 2014&lt;/a&gt;&lt;/blockquote&gt;
@@ -414,7 +414,7 @@ backend haproxy_service
 
 &lt;p&gt;Recently, I wrote a Juju Charm for the &lt;a href=&#34;https://github.com/hatched/ghost-charm&#34;&gt;Ghost blogging platform&lt;/a&gt; so that I can move this blog off of Tumblr and onto something a little more customize-able. The problem? I needed a front end server which was capable of load balancing the webservers when the load picks up and I don’t have the time to learn all about the various options and the best way to install and configure them. So I went to what’s known as the &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju Charm Browser&lt;/a&gt; and picked the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;haproxy Charm&lt;/a&gt; and added it into my environment. With multiple web servers I could no longer rely on Ghost’s built in SQLite implementation so I needed to hook up to an external MySQL database. Back to the Charm Browser I went and grabbed the &lt;a href=&#34;https://jujucharms.com/mysql/&#34;&gt;MySQL Charm&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-explain-it-to-me-like-Im-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-explain-it-to-me-like-Im-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So now I have a load-balanced horizontally scale-able Ghost blog (coming soon). You can have one too, it’s incredibly easy too. For you to get your very own horizontally scale-able load-balanced Ghost blog all you have to do is execute these commands:&lt;/p&gt;
 
@@ -476,13 +476,13 @@ juju add-relation mediawiki haproxy
     
     <item>
       <title>New Release - Juju GUI 1.1.0</title>
-      <link>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
+      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
       <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
+      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
       <description>&lt;p&gt;Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.&lt;/li&gt;
@@ -498,15 +498,15 @@ juju add-relation mediawiki haproxy
     
     <item>
       <title>Unidirectional data flow architecture</title>
-      <link>http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</link>
+      <link>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</link>
       <pubDate>Thu, 15 May 2014 23:18:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</guid>
+      <guid>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</guid>
       <description>&lt;p&gt;Since Facebook released &lt;a href=&#34;https://facebook.github.io/react/docs/flux-overview.html&#34;&gt;Flux&lt;/a&gt; there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Juju GUI&lt;/a&gt; nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; environment.&lt;/p&gt;
 
 &lt;p&gt;In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/unidirectional-data-flow-architecture-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.&lt;/li&gt;
@@ -519,7 +519,7 @@ juju add-relation mediawiki haproxy
 You’ll notice that this is strikingly similar to the Flux architecture:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/unidirectional-data-flow-architecture-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s great to see cases of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Multiple_discovery&#34;&gt;multiple discovery hypothesis&lt;/a&gt; in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.&lt;/p&gt;
 
@@ -529,10 +529,10 @@ You’ll notice that this is strikingly similar to the Flux architecture:&lt;/li
     
     <item>
       <title>When to update your semver version number</title>
-      <link>http://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</link>
+      <link>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</link>
       <pubDate>Fri, 25 Apr 2014 10:49:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</guid>
+      <guid>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</guid>
       <description>&lt;p&gt;Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the &lt;a href=&#34;http://semver.org/&#34;&gt;semver website&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The semver website outlines the rules for incrementing version numbers as:&lt;/p&gt;
@@ -579,10 +579,10 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>How to install Ubuntu on a Mac or Macbook</title>
-      <link>http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</link>
+      <link>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</link>
       <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</guid>
+      <guid>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</guid>
       <description>
 
 &lt;p&gt;The official release date of &lt;a href=&#34;http://www.ubuntu.com/download/desktop&#34;&gt;Ubuntu 14.04 LTS Trusty Tahr&lt;/a&gt; is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!&lt;/p&gt;
@@ -616,7 +616,7 @@ Because your tests should test exactly what you expect your public API to return
 
 &lt;p&gt;Now that you have a quality backup safely tucked away you will need to install rEFInd. Open the terminal and navigate to the location that you extracted the zip file and then follow the &lt;a href=&#34;http://www.rodsbooks.com/refind/installing.html#installsh&#34;&gt;installation instructions for OSX&lt;/a&gt;. Once completed, restart your computer to confirm that rEFInd was installed correctly. On rebooting, the rEFInd boot loader should load up and you should select the Apple logo to get back into OSX. (sorry for the sub par photos)&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
 
@@ -630,13 +630,13 @@ Because your tests should test exactly what you expect your public API to return
 
 &lt;p&gt;With the partition made it’s now time to stick the USB stick into your computer and reboot. After rebooting you should land on the rEFInd boot loader again with a few more options than before. If you do not see these options then reboot again holding the “option” key.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Your options may look a little different but you want to pick one of the options which are provided from the USB stick (There are three provided in this image). For the Haswell equipped machines you want to pick the option which reads something along the lines of “Boot EFI\boot\grubx64.efi …” and hit enter. This will start another boot loader with the first option “Install Ubuntu”, hit enter to select this option. After a little while you should be in the Ubuntu installer, follow through the steps until the installer asks you where you would like to install Ubuntu.&lt;/p&gt;
 
 &lt;p&gt;Note: If after progressing through the install process and you find that it boots into a black screen start again from Step 5 but choose an installer without “EFI” in the path name.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;step-6&#34;&gt;Step 6&lt;/h4&gt;
 
@@ -644,25 +644,25 @@ Because your tests should test exactly what you expect your public API to return
 
 &lt;p&gt;When you step through the installer you will get to a pane which asks you where you want to install Ubuntu to. The options should be pretty self explanatory. But if there isn’t an option to install Ubuntu into your new partition you will need to take the manual route. Select the manual partition option and you should be shown a screen which looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As you can see form this list, I created a 100GB partition originally and then created a 3GB swap partition. To take the partition you created in OSX and create a swap from it you will need to select it then hit the “Change” button and downsize it 3GB. This will leave you with “free space” of 3GB. Click the “+” button and create a new partition of the type “swap”. You’ll want to make sure your primary partition is of type “ext4” and that the mount point is “/”.&lt;/p&gt;
 
 &lt;p&gt;Continue on from here installing Ubuntu to your new partition.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;step-7&#34;&gt;Step 7&lt;/h4&gt;
 
 &lt;p&gt;After the installation has completed remove the USB stick from your computer and reboot. Now when rEFInd shows up you should have an extra option with the Ubuntu logo. Click it and boot into Ubuntu.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;step-8&#34;&gt;Step 8&lt;/h4&gt;
 
 &lt;p&gt;Once you have logged into Ubuntu, click the &amp;lsquo;System Settings’ icon in the launcher bar on the left. Select &amp;lsquo;Software and Updates’ and then select the &amp;lsquo;Additional Drivers’ tab. After this tab loads you should see a proprietary driver for the Broadcom wireless, select it and click &amp;lsquo;Apply’. Reboot the computer and you should now be able to click the network icon in the top right of the desktop to connect to a wireless connection.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Congratulations you now have Ubuntu installed along side OSX!&lt;/p&gt;
 
@@ -672,10 +672,10 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>Self documenting code is not enough</title>
-      <link>http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</link>
+      <link>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</link>
       <pubDate>Thu, 13 Mar 2014 09:22:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</guid>
+      <guid>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</guid>
       <description>&lt;p&gt;Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.&lt;/p&gt;
 
 &lt;p&gt;As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as &lt;a href=&#34;https://en.wikipedia.org/wiki/Self-documenting_code&#34;&gt;self-documenting code&lt;/a&gt; with comments which detail, to anyone reading it, the why the code is doing what it’s doing.&lt;/p&gt;
@@ -753,13 +753,13 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>New release - Juju GUI 0.15.0</title>
-      <link>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
+      <link>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
       <pubDate>Sun, 26 Jan 2014 12:49:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
+      <guid>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
       <description>&lt;p&gt;Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Git&lt;/a&gt; and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.&lt;/li&gt;
@@ -773,10 +773,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>Canonical to simplify SSO and 2FA using Ubuntu Juju</title>
-      <link>http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</link>
+      <link>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</link>
       <pubDate>Mon, 30 Dec 2013 12:09:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</guid>
+      <guid>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</guid>
       <description>&lt;p&gt;One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.&lt;/p&gt;
 
 &lt;p&gt;Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.&lt;/p&gt;
@@ -785,11 +785,11 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 
 &lt;p&gt;This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp;amp; 2FA to Juju users everywhere.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp;amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp;amp; 2FA Juju Charm.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.&lt;/p&gt;
 
@@ -799,10 +799,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>YUI in the Wild</title>
-      <link>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
       <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
       <description>&lt;p&gt;Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.&lt;/p&gt;
 
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/lJPdH8xmOWg?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;

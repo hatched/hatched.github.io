@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/cordova/rss/</link>
+    <link>https://fromanegg.com/tags/cordova/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/cordova/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/cordova/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</title>
-      <link>http://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</link>
+      <link>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</link>
       <pubDate>Sun, 01 Jul 2012 13:34:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</guid>
+      <guid>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova</guid>
       <description>&lt;p&gt;Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post &lt;a href=&#34;http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova&#34;&gt;Guide to using YUI with PhoneGap (Cordova)&lt;/a&gt;. The good news is that it’s very easy to setup but does come with a few drawbacks.&lt;/p&gt;
 
 &lt;p&gt;Using the code from the previous post we only need to make minor changes to load from the CDN.&lt;/p&gt;
@@ -64,10 +64,10 @@
     
     <item>
       <title>Guide to using YUI with PhoneGap (Cordova)</title>
-      <link>http://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</link>
+      <link>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</link>
       <pubDate>Tue, 12 Jun 2012 07:58:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</guid>
+      <guid>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova</guid>
       <description>&lt;p&gt;If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).&lt;/p&gt;
 
 &lt;p&gt;This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t. I am also not going to cover the installation and setup as it is covered in detail in the &lt;a href=&#34;http://docs.phonegap.com/en/1.8.0/guide_getting-started_index.md.html&#34;&gt;Getting Started Guide&lt;/a&gt;. If you have never built a PhoneGap app I highly recommend completing their &lt;code&gt;Hello World&lt;/code&gt; application first. I will be progressing through using an HTC Incredible S with Android 2.3.3 but I will be sure to point out what is device or OS specific. The application that we are going to make is going to build upon the aforementioned &lt;code&gt;Hello World&lt;/code&gt; application adding in a button to change the text color.&lt;/p&gt;

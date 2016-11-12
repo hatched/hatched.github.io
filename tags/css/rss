@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/css/rss/</link>
+    <link>https://fromanegg.com/tags/css/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/css/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/css/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>CSS selectors - The next level</title>
-      <link>http://fromanegg.com/post/2013/08/05/css-selectors---the-next-level</link>
+      <link>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level</link>
       <pubDate>Mon, 05 Aug 2013 16:53:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/08/05/css-selectors---the-next-level</guid>
+      <guid>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level</guid>
       <description>
 
 &lt;p&gt;As a continuation of my previous post &lt;a href=&#34;http://fromanegg.com/post/41704399239/understanding-css2-and-css3-attribute-selectors&#34;&gt;Understanding CSS2 and CSS3 attribute selectors&lt;/a&gt; I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.&lt;/p&gt;
@@ -193,10 +193,10 @@
     
     <item>
       <title>Transparent links not clickable in Internet Explorer</title>
-      <link>http://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer</link>
+      <link>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer</link>
       <pubDate>Sun, 07 Apr 2013 17:59:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer</guid>
+      <guid>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer</guid>
       <description>&lt;p&gt;When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.&lt;/p&gt;
 
 &lt;p&gt;This is going to work as intended until you try it in IE. This is because transparent links aren’t clickable in Internet Explorer &amp;lt; 10 requiring us to resort to yet another IE workaround.&lt;/p&gt;
@@ -231,10 +231,10 @@
     
     <item>
       <title>Using css function image-set for high-DPI displays</title>
-      <link>http://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays</link>
+      <link>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays</link>
       <pubDate>Wed, 06 Feb 2013 14:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays</guid>
+      <guid>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays</guid>
       <description>&lt;p&gt;Anyone who has put together a website with high-DPI displays in mind has likely used the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio&#34;&gt;{prefix}-device-pixel-ratio&lt;/a&gt; CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the &lt;a href=&#34;http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media&#34;&gt;SASS CSS preprocessor&lt;/a&gt; and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called &lt;a href=&#34;https://drafts.csswg.org/css-images-4/#image-set-notation&#34;&gt;image-set()&lt;/a&gt; available under the -webkit- prefix.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-css&#34; data-lang=&#34;css&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;background-image&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;-webkit-image-set&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;
   &lt;span class=&#34;nt&#34;&gt;url&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;image1x&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;.jpg&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nt&#34;&gt;1x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt;
@@ -258,10 +258,10 @@
     
     <item>
       <title>Understanding CSS2 and CSS3 attribute selectors</title>
-      <link>http://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors</link>
+      <link>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors</link>
       <pubDate>Mon, 28 Jan 2013 10:01:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors</guid>
+      <guid>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors</guid>
       <description>
 
 &lt;p&gt;I received a large number of questions after my last blog post, &lt;a href=&#34;http://fromanegg.com/post/41302147556/100-pure-css-radial-progress-bar&#34;&gt;100% pure css radial progress bar&lt;/a&gt;, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.&lt;/p&gt;
@@ -324,10 +324,10 @@
     
     <item>
       <title>100% pure css radial progress bar</title>
-      <link>http://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar</link>
+      <link>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar</link>
       <pubDate>Wed, 23 Jan 2013 15:25:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar</guid>
+      <guid>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar</guid>
       <description>&lt;p&gt;Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html&#34;&gt;Click here to view an example of the pure css radial progress bar.&lt;/a&gt;&lt;/p&gt;
@@ -436,10 +436,10 @@
     
     <item>
       <title>Clicking through a div to underlying elements</title>
-      <link>http://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements</link>
+      <link>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements</link>
       <pubDate>Mon, 01 Oct 2012 09:07:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements</guid>
+      <guid>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements</guid>
       <description>&lt;p&gt;Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.&lt;/p&gt;
 
 &lt;p&gt;Let me introduce you to the &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events&#34;&gt;pointer-events&lt;/a&gt; CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events. As an experimental feature in CSS3 it has also added basic support for non-SVG elements in modern browsers (Chrome 2, FireFox 3.6, Safari, 4).&lt;/p&gt;

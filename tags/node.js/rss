@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/node.js/rss/</link>
+    <link>https://fromanegg.com/tags/node.js/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/node.js/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/node.js/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to make a Node.js static file server - Part 1</title>
-      <link>http://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</link>
+      <link>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</link>
       <pubDate>Sun, 26 Feb 2012 19:19:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</guid>
+      <guid>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</guid>
       <description>
 
 &lt;p&gt;This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.&lt;/p&gt;

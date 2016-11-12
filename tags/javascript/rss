@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/javascript/rss/</link>
+    <link>https://fromanegg.com/tags/javascript/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/javascript/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/javascript/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Write JavaScript like it’s typed</title>
-      <link>http://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</link>
+      <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</link>
       <pubDate>Sat, 06 Jun 2015 21:44:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</guid>
+      <guid>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</guid>
       <description>&lt;p&gt;Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.&lt;/p&gt;
 
 &lt;p&gt;In many JavaScript projects you’ll see something like this:&lt;/p&gt;
@@ -95,10 +95,10 @@
     
     <item>
       <title>Easy testing of code involving native methods in JavaScript</title>
-      <link>http://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</link>
+      <link>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</link>
       <pubDate>Wed, 22 Apr 2015 19:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</guid>
       <description>&lt;p&gt;When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
   &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
@@ -169,10 +169,10 @@
     
     <item>
       <title>ParseInt only numbers in an object</title>
-      <link>http://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object</link>
+      <link>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object</link>
       <pubDate>Sun, 15 Sep 2013 10:08:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object</guid>
+      <guid>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object</guid>
       <description>&lt;p&gt;A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.&lt;/p&gt;
 
 &lt;p&gt;I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.&lt;/p&gt;
@@ -207,10 +207,10 @@
     
     <item>
       <title>Test driven development - the easy way!</title>
-      <link>http://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way</link>
+      <link>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way</link>
       <pubDate>Fri, 07 Jun 2013 22:45:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way</guid>
+      <guid>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way</guid>
       <description>&lt;p&gt;A number of people, myself included, have a hard time getting started with &lt;a href=&#34;https://en.wikipedia.org/wiki/Test-driven_development&#34;&gt;test driven development (TDD)&lt;/a&gt;. The issue lies in that it’s difficult to wrap your head around something that is rather non specific in its implementation and it is usually described as “writing your tests before you write your code”.&lt;/p&gt;
 
 &lt;p&gt;When developers hear “Write your tests before you write your code”, then they look at their previous test suite they wonder… “How can I possibly write this without having written the code first?&lt;/p&gt;
@@ -349,10 +349,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>Calculating timezones in JavaScript</title>
-      <link>http://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript</link>
+      <link>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript</link>
       <pubDate>Thu, 06 Jun 2013 10:02:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.&lt;/p&gt;
@@ -395,10 +395,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>XOR in JavaScript</title>
-      <link>http://fromanegg.com/post/2013/06/01/xor-in-javascript</link>
+      <link>https://fromanegg.com/post/2013/06/01/xor-in-javascript</link>
       <pubDate>Sat, 01 Jun 2013 12:08:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/01/xor-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2013/06/01/xor-in-javascript</guid>
       <description>&lt;p&gt;Typically when writing a XOR check in JavaScript you would do something like…&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;||&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;bar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -493,10 +493,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>Insert an array of values into an array in JavaScript</title>
-      <link>http://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript</link>
+      <link>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript</link>
       <pubDate>Fri, 22 Feb 2013 12:00:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript</guid>
       <description>&lt;p&gt;Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Array #1&lt;/span&gt;
 &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;c&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
@@ -529,10 +529,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>Prototypes and class-like objects in Javascript</title>
-      <link>http://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript</link>
+      <link>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript</link>
       <pubDate>Mon, 21 Jan 2013 10:00:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript</guid>
       <description>&lt;p&gt;Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post &lt;a href=&#34;http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript&#34;&gt;Constructor chaining &amp;amp; inheritance in javascript&lt;/a&gt;. I recommend that you read that post first as I’ll be referencing some of the same code.&lt;/p&gt;
 
 &lt;p&gt;The prototype is defined as an “object that provides shared properties for other objects” - &lt;a href=&#34;http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5&#34;&gt;Ecma International&lt;/a&gt;. What this means is that, by default, any object that inherits from another object automatically has reference to the parents prototypes all the way through the inheritance tree. When you call a method on an object (remember everything in Javascript is an object) it first looks through the local prototype, if it’s not found, it then continues checking prototypes up until it hits Object.prototype to find that method before throwing an error. To illustrate that lets slightly modify our mustang instance and take a look at the instance in the inspector.&lt;/p&gt;
@@ -551,7 +551,7 @@ will append that element to the body.&lt;/p&gt;
 
 &lt;p&gt;Stepping through this code you’ll see that we create a new constructor function as we did previously but this time we are creating a new getColor method on Car’s prototype that returns the color of the instance of Car. We then create a new instance of Car and log the output of the getColor method to the console. The following line is a perfect example of walking the prototype chain to try and find a toString method. We clearly didn’t create this method so where is it coming from? This is best illustrated using a screenshot of the browser console log of our mustang instance.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;First thing to notice is that we don’t actually have a &lt;code&gt;prototype&lt;/code&gt; property here but &lt;code&gt;__proto__&lt;/code&gt; which is a non-standard label for accessing the prototype of an object. In the prototype of our Car instance we have the getColor method that we created which matches with the above code block. Next, because Car is a function which extends Object, we have the Object prototype which includes, among other things, the toString method that we used.&lt;/p&gt;
 
@@ -570,7 +570,7 @@ will append that element to the body.&lt;/p&gt;
 
 &lt;p&gt;So here we create a toString method on the Car prototype to return the color of Car. This time when we call the toString method, Javascript runs into our own toString method first and executes it instead of the native method printing red instead of [object Object]&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Taking a look at the console log of our mustang object, you can now see the two toString methods and where they are in the prototype chain. Note: Although the console shows &lt;code&gt;__proto__&lt;/code&gt; make sure you don’t access it directly because it’s not available on all platforms, always use &lt;code&gt;prototype&lt;/code&gt;.&lt;/p&gt;
 
@@ -647,7 +647,7 @@ will append that element to the body.&lt;/p&gt;
 
 &lt;p&gt;And for reference here is the console output of our superSpider class pointing out the levelUp and boost functions&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/prototypes-and-class-like-objects-in-javascript-3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I’m sure you’re thinking that this is pretty convoluted and you would be right. Next time I’ll be showing you an ES5 convenience method to clean this up, as well as some YUI OOP methods which greatly simplify this task as well as handle all of the edge cases. Thanks for reading and if you have any questions or comments you can comment below, or mention me &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;. Till next time!&lt;/p&gt;
 </description>
@@ -655,10 +655,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>YUIConf talk 2012</title>
-      <link>http://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</link>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</link>
       <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</guid>
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</guid>
       <description>&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/3guDNBdxoE8?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
 &lt;p&gt;My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!&lt;/p&gt;
@@ -667,10 +667,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>Constructor chaining &amp; inheritance in javascript</title>
-      <link>http://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript</link>
+      <link>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript</link>
       <pubDate>Thu, 03 Jan 2013 20:56:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript</guid>
+      <guid>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript</guid>
       <description>&lt;p&gt;Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves. It gets even easier when you are able to use ES5 Javascript; or for cross browser support use a framework like YUI which adds in the OOP methods missing from Javascript which I’ll be covering in a follow up post.&lt;/p&gt;
 
 &lt;p&gt;The first step is to understand that a constructor in Javascript is simply a function that you call with the word &lt;code&gt;new&lt;/code&gt;. In the following example we are creating a function called Car, creating a color property on each instance of Car with the &lt;code&gt;this&lt;/code&gt; special property, then creating a new instance of that function which is being assigned to the &lt;code&gt;mustang&lt;/code&gt; variable.&lt;/p&gt;
@@ -787,10 +787,10 @@ will append that element to the body.&lt;/p&gt;
     
     <item>
       <title>Form validation with keydown, keypress, and keyup</title>
-      <link>http://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup</link>
+      <link>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup</link>
       <pubDate>Sat, 29 Dec 2012 12:58:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup</guid>
+      <guid>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup</guid>
       <description>&lt;p&gt;There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.&lt;/p&gt;
 
 &lt;p&gt;As with all DOM events there is a generally accepted order to which they fire and key events are no different. When the user hits a key, the events are fired in the following sequence; keydown, keypress, keyup.&lt;/p&gt;
@@ -918,10 +918,10 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
     
     <item>
       <title>Using after() event listeners to react to attribute value changes</title>
-      <link>http://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes</link>
+      <link>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes</link>
       <pubDate>Sat, 01 Dec 2012 18:30:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes</guid>
+      <guid>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes</guid>
       <description>&lt;p&gt;If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the &lt;a href=&#34;http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_on&#34;&gt;on()&lt;/a&gt; and &lt;a href=&#34;http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_after&#34;&gt;after()&lt;/a&gt; methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.&lt;/p&gt;
 
 &lt;p&gt;If you use on() to listen for the attribute change event you will be notified every time something attempts to set the value of that attribute. If you use after() your callback will only be executed if the value set was successful. What this means is that if something else was listening using on() decided to prevent the change event your after() callback would never fire.&lt;/p&gt;
@@ -974,10 +974,10 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
     
     <item>
       <title>Adding a validation fail event to YUI’s Y.Attribute</title>
-      <link>http://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute</link>
+      <link>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute</link>
       <pubDate>Fri, 24 Aug 2012 13:41:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute</guid>
+      <guid>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute</guid>
       <description>&lt;p&gt;One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of &lt;a href=&#34;http://yuilibrary.com/yui/docs/attribute/&#34;&gt;Y.Attribute&lt;/a&gt; is the validator.&lt;/p&gt;
 
 &lt;p&gt;The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute. Returning true from the validator sends the value to the setter, returning false causes the value to not be set. But unlike a successful change event no event is fired to notify you that the value failed validation and was not set. So lets augment our modules to fire a validation failed event.&lt;/p&gt;
@@ -1035,10 +1035,10 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
     
     <item>
       <title>Add toggle button support to Y.PopupCalendar</title>
-      <link>http://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar</link>
+      <link>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar</link>
       <pubDate>Tue, 31 Jul 2012 15:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar</guid>
+      <guid>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar</guid>
       <description>&lt;p&gt;A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.&lt;/p&gt;
 
 &lt;p&gt;Until I am able to add support into the module, simply copy and paste the following code before the first instance of &lt;a href=&#34;http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar.html?&#34;&gt;Y.PopupCalendar&lt;/a&gt; or &lt;a href=&#34;http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar-group.html?&#34;&gt;Y.PopupCalendarGroup&lt;/a&gt;.&lt;/p&gt;
@@ -1065,10 +1065,10 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
     
     <item>
       <title>How to make a Node.js static file server - Part 1</title>
-      <link>http://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</link>
+      <link>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</link>
       <pubDate>Sun, 26 Feb 2012 19:19:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</guid>
+      <guid>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1</guid>
       <description>
 
 &lt;p&gt;This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.&lt;/p&gt;

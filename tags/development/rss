@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/development/rss/</link>
+    <link>https://fromanegg.com/tags/development/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/development/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/development/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>The importance of minification and compression</title>
-      <link>http://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</link>
+      <link>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</link>
       <pubDate>Sat, 02 Jan 2016 13:15:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</guid>
+      <guid>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</guid>
       <description>&lt;p&gt;Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.&lt;/p&gt;
 
 &lt;p&gt;The site starts out by loading in the following raw code:&lt;/p&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>Using Juju for development</title>
-      <link>http://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
+      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
       <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
+      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
       <description>
 
 &lt;p&gt;Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu &lt;a href=&#34;http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment&#34;&gt;“Is Juju a suitable tool for development as well as deployment?”&lt;/a&gt; made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.&lt;/p&gt;
@@ -133,15 +133,15 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
     
     <item>
       <title>Unidirectional data flow architecture</title>
-      <link>http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</link>
+      <link>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</link>
       <pubDate>Thu, 15 May 2014 23:18:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</guid>
+      <guid>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</guid>
       <description>&lt;p&gt;Since Facebook released &lt;a href=&#34;https://facebook.github.io/react/docs/flux-overview.html&#34;&gt;Flux&lt;/a&gt; there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Juju GUI&lt;/a&gt; nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; environment.&lt;/p&gt;
 
 &lt;p&gt;In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/unidirectional-data-flow-architecture-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.&lt;/li&gt;
@@ -154,7 +154,7 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
 You’ll notice that this is strikingly similar to the Flux architecture:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/unidirectional-data-flow-architecture-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s great to see cases of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Multiple_discovery&#34;&gt;multiple discovery hypothesis&lt;/a&gt; in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.&lt;/p&gt;
 
@@ -164,10 +164,10 @@ You’ll notice that this is strikingly similar to the Flux architecture:&lt;/li
     
     <item>
       <title>When to update your semver version number</title>
-      <link>http://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</link>
+      <link>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</link>
       <pubDate>Fri, 25 Apr 2014 10:49:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</guid>
+      <guid>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</guid>
       <description>&lt;p&gt;Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the &lt;a href=&#34;http://semver.org/&#34;&gt;semver website&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The semver website outlines the rules for incrementing version numbers as:&lt;/p&gt;
@@ -214,10 +214,10 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>Self documenting code is not enough</title>
-      <link>http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</link>
+      <link>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</link>
       <pubDate>Thu, 13 Mar 2014 09:22:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</guid>
+      <guid>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</guid>
       <description>&lt;p&gt;Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.&lt;/p&gt;
 
 &lt;p&gt;As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as &lt;a href=&#34;https://en.wikipedia.org/wiki/Self-documenting_code&#34;&gt;self-documenting code&lt;/a&gt; with comments which detail, to anyone reading it, the why the code is doing what it’s doing.&lt;/p&gt;
@@ -295,10 +295,10 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>YUIConf talk 2012</title>
-      <link>http://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</link>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</link>
       <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</guid>
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012</guid>
       <description>&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/3guDNBdxoE8?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
 
 &lt;p&gt;My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!&lt;/p&gt;
@@ -307,10 +307,10 @@ Because your tests should test exactly what you expect your public API to return
     
     <item>
       <title>The importance of personal developer projects</title>
-      <link>http://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects</link>
+      <link>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects</link>
       <pubDate>Wed, 09 Jan 2013 10:54:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects</guid>
+      <guid>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects</guid>
       <description>&lt;p&gt;Fueled by the constant push for new ideas and better experiences by our clients and employers; web development has to be one of, if not the, fastest evolving industry today. It’s our job as developers to at least keep up with the curve; unfortunately because of this constant push we often end up over specializing, leaving us ill prepared come the time to move onto the next big thing. We try to remedy this complacency by reading what others are working on and dabbling here and there on side projects, but quite often we can’t dedicate enough of our personal time to keep ahead of that curve.&lt;/p&gt;
 
 &lt;p&gt;Some employers, seeing this issue time and time again, have implemented dedicated personal project time in which you take a section of your typical work week to work on a project of your choosing that’s outside of the scope of your daily project. This forces you to break out of your typical mindset and keep innovating.These employers do this because they understand that projects don’t last forever and when those projects end they want you to be prepared for the next thing without having to lose a couple weeks or more getting back up to speed.&lt;/p&gt;

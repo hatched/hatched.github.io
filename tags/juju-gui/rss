@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/juju-gui/rss/</link>
+    <link>https://fromanegg.com/tags/juju-gui/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/juju-gui/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/juju-gui/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>New Release - Juju GUI 1.1.0</title>
-      <link>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
+      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
       <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
+      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
       <description>&lt;p&gt;Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.&lt;/li&gt;
@@ -32,13 +32,13 @@
     
     <item>
       <title>New release - Juju GUI 0.15.0</title>
-      <link>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
+      <link>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
       <pubDate>Sun, 26 Jan 2014 12:49:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
+      <guid>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
       <description>&lt;p&gt;Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Git&lt;/a&gt; and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.&lt;/li&gt;
@@ -52,10 +52,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>YUI in the Wild</title>
-      <link>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
       <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
       <description>&lt;p&gt;Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.&lt;/p&gt;
 
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/lJPdH8xmOWg?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
@@ -72,15 +72,15 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>New releases - Juju GUI 0.14.0 &amp; Juju Quickstart 0.5.0</title>
-      <link>http://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</link>
+      <link>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</link>
       <pubDate>Thu, 05 Dec 2013 12:05:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</guid>
+      <guid>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</guid>
       <description>
 
 &lt;p&gt;It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;juju-gui&#34;&gt;Juju GUI&lt;/h4&gt;
 
@@ -107,7 +107,7 @@ More exciting work in this direction is coming, including long-requested feature
 &lt;li&gt;The next release will guide new users through creating environments.yaml interactively.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To try out our new releases, existing users can upgrade their GUI charm to cs:precise/juju-gui-81; or run:&lt;/p&gt;
 
@@ -143,13 +143,13 @@ juju-quickstart
     
     <item>
       <title>Juju GUI 0.13.0 release and updates</title>
-      <link>http://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</link>
+      <link>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</link>
       <pubDate>Fri, 15 Nov 2013 11:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</guid>
+      <guid>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</guid>
       <description>&lt;p&gt;Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-13-0-release-and-updates.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-13-0-release-and-updates.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Bundles!&lt;/p&gt;
 
@@ -167,10 +167,10 @@ juju-quickstart
     
     <item>
       <title>Juju GUI 0.10.1 Released - Bug fixes and updates</title>
-      <link>http://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</link>
+      <link>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</link>
       <pubDate>Tue, 01 Oct 2013 17:10:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</guid>
+      <guid>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</guid>
       <description>&lt;p&gt;About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.&lt;/p&gt;
 
 &lt;p&gt;The largest of those fixes are:
@@ -184,13 +184,13 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.10.0 Released - Brand new service inspector!</title>
-      <link>http://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</link>
+      <link>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</link>
       <pubDate>Wed, 18 Sep 2013 15:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</guid>
+      <guid>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</guid>
       <description>&lt;p&gt;After a few months of hard work we have released the &lt;a href=&#34;https://launchpad.net/juju-gui&#34;&gt;Juju GUI v0.10.0&lt;/a&gt; which has the awesome new service Inspector as the default!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-10-0-released-brand-new-service-inspector.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-10-0-released-brand-new-service-inspector.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Quickly following up on v0.9.0 which added IE10 support, this release switches the new deployment and service inspector to be the default, switches to the new Go sandbox by default, and adds internal support for the upcoming charm bundles!&lt;/p&gt;
 
@@ -200,13 +200,13 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.9.0 Released - Now with IE10 support!</title>
-      <link>http://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</link>
+      <link>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</link>
       <pubDate>Wed, 11 Sep 2013 18:21:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</guid>
+      <guid>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</guid>
       <description>&lt;p&gt;We have just released the latest &lt;a href=&#34;https://launchpad.net/juju-gui&#34;&gt;Juju GUI charm&lt;/a&gt;, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-9-0-released-now-with-ie10-support-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-9-0-released-now-with-ie10-support-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With Chrome, Firefox, and IE10 now available for the GUI and Ubuntu and OSX available for the command line tools, your ability to create and manage your environments with &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; is getting easier and easier.&lt;/p&gt;
 
@@ -218,15 +218,15 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI v0.8 and jujucharms.com released!</title>
-      <link>http://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</link>
+      <link>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</link>
       <pubDate>Mon, 22 Jul 2013 18:51:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</guid>
+      <guid>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</guid>
       <description>&lt;p&gt;It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded &lt;a href=&#34;https://www.indiegogo.com/projects/ubuntu-edge&#34;&gt;Ubuntu Edge Ubuntu smartphone campaign&lt;/a&gt; was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.&lt;/p&gt;
 
 &lt;p&gt;Most exciting to me however is release of the Juju GUI v0.8 and the new &lt;a href=&#34;https://jujucharms.com&#34;&gt;jujucharms.com&lt;/a&gt;. v0.8 has a large number of bug fixes to intagrate properly with the new jujucharms.com but most importantly enhances the new Juju Deployer format.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-v0-8-and-jujucharms-com-released-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-v0-8-and-jujucharms-com-released-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Visiting jujucharms.com now drops you right into the Juju GUI with the charm browser open allowing you to explore and discover new charms as well as deploy them into a mock Juju environment. This allows you to build your entire environment and then export it into the new Juju Deployer format for easy import into your own local environment!&lt;/p&gt;
 
@@ -240,10 +240,10 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.6.0 released</title>
-      <link>http://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</link>
+      <link>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</link>
       <pubDate>Thu, 20 Jun 2013 18:59:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</guid>
+      <guid>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</guid>
       <description>&lt;p&gt;Earlier this week we released the latest version of the Juju GUI, 0.6.0. This version brings with it a bunch of bug fixes and stability improvements, an updated UI, and a new charm browser which allows you to find new charms without leaving your environment. You can find the &lt;a href=&#34;https://launchpad.net/juju-gui/stable/0.6.0&#34;&gt;source here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Other changes include:&lt;/p&gt;
@@ -263,10 +263,10 @@ For those who aren’t in the know - Juju allows you to build entire environment
     
     <item>
       <title>Juju GUI v0.7.1 released</title>
-      <link>http://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released</link>
+      <link>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released</link>
       <pubDate>Mon, 03 Jun 2013 13:51:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released</guid>
+      <guid>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released</guid>
       <description>&lt;p&gt;As of a few minutes ago the 0.7.1 version of the Juju GUI was released. It brings with it over 1000 unit tests, performance, memory and stability improvements, along with:&lt;/p&gt;
 
 &lt;ul&gt;

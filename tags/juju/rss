@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/juju/rss/</link>
+    <link>https://fromanegg.com/tags/juju/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/juju/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/juju/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Using Juju for development</title>
-      <link>http://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
+      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
       <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
+      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
       <description>
 
 &lt;p&gt;Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu &lt;a href=&#34;http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment&#34;&gt;“Is Juju a suitable tool for development as well as deployment?”&lt;/a&gt; made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.&lt;/p&gt;
@@ -83,10 +83,10 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
     
     <item>
       <title>Juju - Explain it to me like I’m 5</title>
-      <link>http://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</link>
+      <link>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</link>
       <pubDate>Mon, 08 Sep 2014 23:10:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</guid>
+      <guid>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.&lt;/p&gt;
 
 &lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-conversation=&#34;none&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;und&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/FromAnEgg&#34;&gt;@FromAnEgg&lt;/a&gt; ELI5 Juju..&lt;/p&gt;&amp;mdash; Mark Poppen (@MarkPoppen) &lt;a href=&#34;https://twitter.com/MarkPoppen/status/509113565702127616&#34;&gt;September 8, 2014&lt;/a&gt;&lt;/blockquote&gt;
@@ -100,7 +100,7 @@ juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
 
 &lt;p&gt;Recently, I wrote a Juju Charm for the &lt;a href=&#34;https://github.com/hatched/ghost-charm&#34;&gt;Ghost blogging platform&lt;/a&gt; so that I can move this blog off of Tumblr and onto something a little more customize-able. The problem? I needed a front end server which was capable of load balancing the webservers when the load picks up and I don’t have the time to learn all about the various options and the best way to install and configure them. So I went to what’s known as the &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju Charm Browser&lt;/a&gt; and picked the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;haproxy Charm&lt;/a&gt; and added it into my environment. With multiple web servers I could no longer rely on Ghost’s built in SQLite implementation so I needed to hook up to an external MySQL database. Back to the Charm Browser I went and grabbed the &lt;a href=&#34;https://jujucharms.com/mysql/&#34;&gt;MySQL Charm&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-explain-it-to-me-like-Im-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-explain-it-to-me-like-Im-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So now I have a load-balanced horizontally scale-able Ghost blog (coming soon). You can have one too, it’s incredibly easy too. For you to get your very own horizontally scale-able load-balanced Ghost blog all you have to do is execute these commands:&lt;/p&gt;
 
@@ -162,13 +162,13 @@ juju add-relation mediawiki haproxy
     
     <item>
       <title>New Release - Juju GUI 1.1.0</title>
-      <link>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
+      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
       <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
+      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
       <description>&lt;p&gt;Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.&lt;/li&gt;
@@ -184,13 +184,13 @@ juju add-relation mediawiki haproxy
     
     <item>
       <title>New release - Juju GUI 0.15.0</title>
-      <link>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
+      <link>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</link>
       <pubDate>Sun, 26 Jan 2014 12:49:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
+      <guid>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0</guid>
       <description>&lt;p&gt;Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Git&lt;/a&gt; and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-0-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.&lt;/li&gt;
@@ -204,10 +204,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>Canonical to simplify SSO and 2FA using Ubuntu Juju</title>
-      <link>http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</link>
+      <link>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</link>
       <pubDate>Mon, 30 Dec 2013 12:09:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</guid>
+      <guid>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</guid>
       <description>&lt;p&gt;One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.&lt;/p&gt;
 
 &lt;p&gt;Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.&lt;/p&gt;
@@ -216,11 +216,11 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 
 &lt;p&gt;This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp;amp; 2FA to Juju users everywhere.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp;amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp;amp; 2FA Juju Charm.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.&lt;/p&gt;
 
@@ -230,10 +230,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>YUI in the Wild</title>
-      <link>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</link>
       <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild</guid>
       <description>&lt;p&gt;Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.&lt;/p&gt;
 
 &lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/lJPdH8xmOWg?rel=0&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
@@ -250,15 +250,15 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
     
     <item>
       <title>New releases - Juju GUI 0.14.0 &amp; Juju Quickstart 0.5.0</title>
-      <link>http://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</link>
+      <link>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</link>
       <pubDate>Thu, 05 Dec 2013 12:05:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</guid>
+      <guid>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0</guid>
       <description>
 
 &lt;p&gt;It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;juju-gui&#34;&gt;Juju GUI&lt;/h4&gt;
 
@@ -285,7 +285,7 @@ More exciting work in this direction is coming, including long-requested feature
 &lt;li&gt;The next release will guide new users through creating environments.yaml interactively.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;To try out our new releases, existing users can upgrade their GUI charm to cs:precise/juju-gui-81; or run:&lt;/p&gt;
 
@@ -321,13 +321,13 @@ juju-quickstart
     
     <item>
       <title>Juju GUI 0.13.0 release and updates</title>
-      <link>http://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</link>
+      <link>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</link>
       <pubDate>Fri, 15 Nov 2013 11:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</guid>
+      <guid>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates</guid>
       <description>&lt;p&gt;Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-13-0-release-and-updates.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-13-0-release-and-updates.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Bundles!&lt;/p&gt;
 
@@ -345,15 +345,15 @@ juju-quickstart
     
     <item>
       <title>A Juju Charm designed to fail</title>
-      <link>http://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail</link>
+      <link>https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail</link>
       <pubDate>Sat, 09 Nov 2013 14:06:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail</guid>
+      <guid>https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail</guid>
       <description>
 
 &lt;p&gt;While writing code for the next features in the Juju GUI I needed to test instances when charms would fail in various stages of their setup or execution. After a lot of messing around it became apparent that most charms are just too stable for this kind of testing so, I wrote a &lt;a href=&#34;https://jujucharms.com/u/hatch/failtester/precise/7&#34;&gt;Juju Charm&lt;/a&gt; which is designed to fail in a large number of hooks depending on the configuration set on deploy (or later), and can relate to itself to test relation failures.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/a-juju-charm-designed-to-fail-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/a-juju-charm-designed-to-fail-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The charm, innovatively named ‘failtester’, can be found on &lt;a href=&#34;https://jujucharms.com&#34;&gt;jujucharms.com&lt;/a&gt;. In depth details on proper use can be found in its README but it’s really simple to use:&lt;/p&gt;
 
@@ -377,10 +377,10 @@ juju &lt;span class=&#34;nb&#34;&gt;set&lt;/span&gt; failtester &lt;span class=&
     
     <item>
       <title>Juju GUI 0.10.1 Released - Bug fixes and updates</title>
-      <link>http://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</link>
+      <link>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</link>
       <pubDate>Tue, 01 Oct 2013 17:10:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</guid>
+      <guid>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates</guid>
       <description>&lt;p&gt;About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.&lt;/p&gt;
 
 &lt;p&gt;The largest of those fixes are:
@@ -394,13 +394,13 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.10.0 Released - Brand new service inspector!</title>
-      <link>http://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</link>
+      <link>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</link>
       <pubDate>Wed, 18 Sep 2013 15:52:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</guid>
+      <guid>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector</guid>
       <description>&lt;p&gt;After a few months of hard work we have released the &lt;a href=&#34;https://launchpad.net/juju-gui&#34;&gt;Juju GUI v0.10.0&lt;/a&gt; which has the awesome new service Inspector as the default!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-10-0-released-brand-new-service-inspector.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-10-0-released-brand-new-service-inspector.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Quickly following up on v0.9.0 which added IE10 support, this release switches the new deployment and service inspector to be the default, switches to the new Go sandbox by default, and adds internal support for the upcoming charm bundles!&lt;/p&gt;
 
@@ -410,13 +410,13 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.9.0 Released - Now with IE10 support!</title>
-      <link>http://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</link>
+      <link>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</link>
       <pubDate>Wed, 11 Sep 2013 18:21:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</guid>
+      <guid>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support</guid>
       <description>&lt;p&gt;We have just released the latest &lt;a href=&#34;https://launchpad.net/juju-gui&#34;&gt;Juju GUI charm&lt;/a&gt;, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-0-9-0-released-now-with-ie10-support-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-0-9-0-released-now-with-ie10-support-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With Chrome, Firefox, and IE10 now available for the GUI and Ubuntu and OSX available for the command line tools, your ability to create and manage your environments with &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; is getting easier and easier.&lt;/p&gt;
 
@@ -428,10 +428,10 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju for OSX is now available via Homebrew</title>
-      <link>http://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew</link>
+      <link>https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew</link>
       <pubDate>Mon, 19 Aug 2013 13:36:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew</guid>
+      <guid>https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew</guid>
       <description>&lt;p&gt;About a month ago I posted that Juju for OSX was available on GitHub. Well thanks to a &lt;a href=&#34;https://github.com/Homebrew/legacy-homebrew/pull/21858&#34;&gt;Homebrew pull request&lt;/a&gt; by Rodrigo Chacon it’s now available for easy install via Homebrew!&lt;/p&gt;
 
 &lt;p&gt;For those who don’t know, &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; enables you to build entire environments in the cloud with only a few commands on public clouds like Amazon Web Services and HP Cloud, to private clouds built on OpenStack, or raw bare metal via MAAS. &lt;a href=&#34;https://jujucharms.com&#34;&gt;Additional documentation can be found here&lt;/a&gt; and if you want to jump right in and see how easy it is you can play with the &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju GUI here&lt;/a&gt;.&lt;/p&gt;
@@ -440,15 +440,15 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI v0.8 and jujucharms.com released!</title>
-      <link>http://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</link>
+      <link>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</link>
       <pubDate>Mon, 22 Jul 2013 18:51:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</guid>
+      <guid>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released</guid>
       <description>&lt;p&gt;It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded &lt;a href=&#34;https://www.indiegogo.com/projects/ubuntu-edge&#34;&gt;Ubuntu Edge Ubuntu smartphone campaign&lt;/a&gt; was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.&lt;/p&gt;
 
 &lt;p&gt;Most exciting to me however is release of the Juju GUI v0.8 and the new &lt;a href=&#34;https://jujucharms.com&#34;&gt;jujucharms.com&lt;/a&gt;. v0.8 has a large number of bug fixes to intagrate properly with the new jujucharms.com but most importantly enhances the new Juju Deployer format.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://fromanegg.com/images/juju-gui-v0-8-and-jujucharms-com-released-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-gui-v0-8-and-jujucharms-com-released-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Visiting jujucharms.com now drops you right into the Juju GUI with the charm browser open allowing you to explore and discover new charms as well as deploy them into a mock Juju environment. This allows you to build your entire environment and then export it into the new Juju Deployer format for easy import into your own local environment!&lt;/p&gt;
 
@@ -462,10 +462,10 @@ Additional information on Juju can be found on &lt;a href=&#34;https://jujucharm
     
     <item>
       <title>Juju GUI 0.6.0 released</title>
-      <link>http://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</link>
+      <link>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</link>
       <pubDate>Thu, 20 Jun 2013 18:59:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</guid>
+      <guid>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released</guid>
       <description>&lt;p&gt;Earlier this week we released the latest version of the Juju GUI, 0.6.0. This version brings with it a bunch of bug fixes and stability improvements, an updated UI, and a new charm browser which allows you to find new charms without leaving your environment. You can find the &lt;a href=&#34;https://launchpad.net/juju-gui/stable/0.6.0&#34;&gt;source here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Other changes include:&lt;/p&gt;

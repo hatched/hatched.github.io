@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>http://fromanegg.com/tags/linux/rss/</link>
+    <link>https://fromanegg.com/tags/linux/rss/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://fromanegg.com/tags/linux/rss/" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fromanegg.com/tags/linux/rss/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>NFS between Ubuntu vm and OSX host</title>
-      <link>http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</link>
+      <link>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</link>
       <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
       
-      <guid>http://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</guid>
+      <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host</guid>
       <description>
 
 &lt;p&gt;If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.&lt;/p&gt;
