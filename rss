@@ -6,8 +6,42 @@
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Nov 2016 16:49:53 -0600</lastBuildDate>
+    <lastBuildDate>Sun, 13 Nov 2016 18:19:00 -0600</lastBuildDate>
     <atom:link href="https://fromanegg.com/rss/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Secure GitHub pages with SSL/TLS</title>
+      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</link>
+      <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</guid>
+      <description>&lt;p&gt;At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.&lt;/p&gt;
+
+&lt;p&gt;First you&amp;rsquo;ll need a couple things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A website hosted on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; with a custom domain.&lt;/li&gt;
+&lt;li&gt;An account with &lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;Cloudflare&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then follow these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;After signing up with Cloudflare you&amp;rsquo;ll be prompted to add your domain, at which point it&amp;rsquo;ll scan your DNS records automatically. You&amp;rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.&lt;/li&gt;
+&lt;li&gt;Switch to the Crypto tab and change the &lt;code&gt;SSL type&lt;/code&gt; to &lt;code&gt;Flexible&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.&lt;/li&gt;
+&lt;li&gt;Redirect all of your http traffic to https traffic using Cloudflare by adding a &lt;code&gt;Page Rule&lt;/code&gt;. You&amp;rsquo;ll want to add a rule which looks like &lt;code&gt;http://*example.com/*&lt;/code&gt; and then add a setting for &lt;code&gt;Always Use HTTPS&lt;/code&gt;. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-&#34;&gt;Cloudflare knowledge base&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add &lt;code&gt;&amp;lt;link rel=&amp;quot;canonical&amp;quot; href=&amp;quot;http://example.com/path/to/post&amp;quot;/&amp;gt;&lt;/code&gt; to the head of each page.&lt;/li&gt;
+&lt;li&gt;Update the paths for your assets so that they are requested from the https path or browsers won&amp;rsquo;t load them.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once the DNS records propagate you&amp;rsquo;ll be able to visit your website by visiting &lt;code&gt;https://example.com&lt;/code&gt;. You might notice that you&amp;rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.&lt;/p&gt;
+
+&lt;p&gt;The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &amp;ldquo;&lt;a href=&#34;https://help.github.com/articles/what-is-github-pages/&#34;&gt;GitHub Pages sites shouldn&amp;rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.&lt;/a&gt;&amp;rdquo; anyways.&lt;/p&gt;
+
+&lt;p&gt;I hope you enjoyed this post, if you have any questions or comments let me know on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or comment below. Thanks for reading!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Welcome to From An Egg v2</title>
@@ -780,32 +814,6 @@ Because your tests should test exactly what you expect your public API to return
 &lt;li&gt;The biggest change that we made in this release was entirely removing the full screen browser. This allowed us to remove over 4000 lines of code from our code base speeding up the application start up time and lowering the size of the application sent over the wire.
 If you have any questions about Juju or the Juju GUI, you can read the official documentation for &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; and join us on freenode.net in #juju and #juju-gui .&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Canonical to simplify SSO and 2FA using Ubuntu Juju</title>
-      <link>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</link>
-      <pubDate>Mon, 30 Dec 2013 12:09:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju</guid>
-      <description>&lt;p&gt;One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.&lt;/p&gt;
-
-&lt;p&gt;Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.&lt;/p&gt;
-
-&lt;p&gt;As an additional layer of security many administrators are implementing another layer of security called two factor authentication. 2FA simply means that there are multiple techniques used to identify you when you attempt to gain access to a system. This can be in the form of a text message being sent to your phone, or a random key generated by a third party key generator which is required to be entered along side your typical username and password.&lt;/p&gt;
-
-&lt;p&gt;This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp;amp; 2FA to Juju users everywhere.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp;amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp;amp; 2FA Juju Charm.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe src=&#34;//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx&#34; width=&#34;595&#34; height=&#34;485&#34; frameborder=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; scrolling=&#34;no&#34; style=&#34;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&#34; allowfullscreen&gt; &lt;/iframe&gt; &lt;div style=&#34;margin-bottom:5px&#34;&gt; &lt;strong&gt; &lt;a href=&#34;//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication&#34; title=&#34;Instant Single Sign-On and Two-Factor Authentication&#34; target=&#34;_blank&#34;&gt;Instant Single Sign-On and Two-Factor Authentication&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&#34;_blank&#34; href=&#34;//www.slideshare.net/mectors&#34;&gt;Maarten Ectors&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     

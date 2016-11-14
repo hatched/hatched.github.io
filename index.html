@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <title>From An Egg</title>
-  
-  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#cc181e">
-  <meta name="generator" content="Hugo 0.17" />
-  <link rel="canonical" href="https://fromanegg.com/"/>
-  <link rel="stylesheet" href="/css/normalize-min.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/manni.css">
-  <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
-</head>
-<div class="top-bar"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>From An Egg</title>
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.17" />
+    <link rel="canonical" href="https://fromanegg.com/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
 
-<body>
   <nav>
   <img src="/images/me.png"></img>
   <h1>Jeff Pihach</h1>
@@ -48,7 +48,7 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (7)</a></li>
+            <li><a href="/tags/development">development (8)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
@@ -64,7 +64,7 @@
           
             <li><a href="/tags/node.js">node.js (1)</a></li>
           
-            <li><a href="/tags/ops">ops (2)</a></li>
+            <li><a href="/tags/ops">ops (3)</a></li>
           
             <li><a href="/tags/osx">osx (1)</a></li>
           
@@ -93,6 +93,44 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls">Secure GitHub pages with SSL/TLS</a></h1>
+      
+        <time datetime="2016-11-13 18:19:00 -0600 CST">13 November 2016</time>
+      
+    </header>
+    <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
+
+<p>First you&rsquo;ll need a couple things:</p>
+
+<ul>
+<li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
+<li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
+</ul>
+
+<p>Then follow these steps:</p>
+
+<ol>
+<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
+<li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
+<li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
+<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
+<li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
+<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
+</ol>
+
+<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
+
+<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
+
+<p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -285,95 +323,6 @@ juju upgrade-charm --repository<span class="o">=</span>.
 </section>
 
   
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed">Write JavaScript like it’s typed</a></h1>
-      
-        <time datetime="2015-06-06 21:44:00 -0600 CST">6 June 2015</time>
-      
-    </header>
-    <p>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</p>
-
-<p>In many JavaScript projects you’ll see something like this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
-  <span class="c1">// 10 lines later</span>
-  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="k">return</span> <span class="nx">myObject</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>This essentially means that you must read through an entire functions execution, and sometimes an entire modules execution to see what the structure of that object will become.</p>
-
-<p>Now lets compare that to Go:</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">myObject</span> <span class="kd">struct</span><span class="p">{</span>
-  <span class="nx">Foo</span> <span class="kt">string</span>
-  <span class="nx">Baz</span> <span class="kt">string</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="o">*</span><span class="nx">myObject</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myObject</span><span class="p">{}</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="p">=</span> <span class="s">&quot;bar&quot;</span>
-  <span class="c1">// 10 lines later</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="p">=</span> <span class="s">&quot;bax&quot;</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="k">return</span> <span class="nx">data</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Here you don’t even have to read further than the function declaration to know what the function will return and then you simply have to reference that type in the file to know ahead of time what it’s structure will be.</p>
-
-<p>Throughout my time as a developer I’ve noticed that it’s quite rare that you cannot predict with 100% certainty what the data structure of your variables will be but, in dynamic languages, we don’t ever seem to outline that structure for people reading and writing the code. So this got me thinking about how this workflow can be adopted in JavaScript to give us the benefits of types using the native language constructs without having to use a compile target like Typescript. In practice it turns out to be quite simple:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Method to convert defined object literal &#39;type&#39;</span>
-<span class="c1">// into a &#39;locked down&#39; data store.</span>
-<span class="kd">function</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">stub</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>    
-    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">stub</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="nx">value</span><span class="o">:</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">stub</span><span class="p">);</span>
-  <span class="k">return</span> <span class="nx">stub</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="c1">// Your &#39;type&#39; which will be used to create</span>
-<span class="c1">// usable data store instances.</span>
-<span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">Foo</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-  <span class="nx">Baz</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-<span class="p">};</span>
-
-<span class="c1">// Fills the object with data.</span>
-<span class="c1">// @method dataFiller</span>
-<span class="c1">// @return {myObject}</span>
-<span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">myObject</span><span class="p">);</span>
-  <span class="c1">// Set values like normal.</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">fullData</span> <span class="o">=</span> <span class="nx">dataFiller</span><span class="p">();</span>
-<span class="nx">fullData</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s2">&quot;can Update&quot;</span><span class="p">;</span> <span class="c1">// Updated</span>
-<span class="nx">fullData</span><span class="p">.</span><span class="nx">Qux</span> <span class="o">=</span> <span class="s2">&quot;Can&#39;t add new properties&quot;</span><span class="p">;</span> <span class="c1">// Not added</span>
-</code></pre></div>
-
-<p>Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
   
     
     <ul class="pagination">
@@ -427,12 +376,15 @@ juju upgrade-charm --repository<span class="o">=</span>.
         ><a href="/page/13/">13</a></li>
         
         <li
+        ><a href="/page/14/">14</a></li>
+        
+        <li
         >
         <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
@@ -447,5 +399,6 @@ juju upgrade-charm --repository<span class="o">=</span>.
   ga('send', 'pageview');
 </script>
 
-</body>
+  </body>
 </html>
+

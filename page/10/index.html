@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <title>From An Egg</title>
-  
-  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#cc181e">
-  <meta name="generator" content="Hugo 0.17" />
-  <link rel="canonical" href="https://fromanegg.com/"/>
-  <link rel="stylesheet" href="/css/normalize-min.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/manni.css">
-  <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
-</head>
-<div class="top-bar"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>From An Egg</title>
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.17" />
+    <link rel="canonical" href="https://fromanegg.com/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
 
-<body>
   <nav>
   <img src="/images/me.png"></img>
   <h1>Jeff Pihach</h1>
@@ -48,7 +48,7 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (7)</a></li>
+            <li><a href="/tags/development">development (8)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
@@ -64,7 +64,7 @@
           
             <li><a href="/tags/node.js">node.js (1)</a></li>
           
-            <li><a href="/tags/ops">ops (2)</a></li>
+            <li><a href="/tags/ops">ops (3)</a></li>
           
             <li><a href="/tags/osx">osx (1)</a></li>
           
@@ -93,6 +93,141 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup">Form validation with keydown, keypress, and keyup</a></h1>
+      
+        <time datetime="2012-12-29 12:58:00 -0600 CST">29 December 2012</time>
+      
+    </header>
+    <p>There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.</p>
+
+<p>As with all DOM events there is a generally accepted order to which they fire and key events are no different. When the user hits a key, the events are fired in the following sequence; keydown, keypress, keyup.</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/keydown">Keydown</a>: fired when the key is pressed but before any values have been passed to the DOM. This means that you can prevent the key from being pressed to disable user inputs.</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/keypress">Keypress</a>: fired when the key which is being pressed results in a character being sent. So this excludes modifier keys, directional keys, and keys which remove text.</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/keyup">Keyup</a>: fired after the user has released the key, telling you what key was pressed but because its being fired after the fact you are unable to prevent this event.
+The best way to understand these events is an example. Lets say we have a currency input in a form which we want to validate as the user types.</li>
+</ul>
+
+<p>First we need some rules:
+- Maximum value $99999.99
+- Cents are not required but available
+Note: I am intentionally ignoring the possibility of a user pasting into the field as that’s out of scope of this post.</p>
+
+<p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/1/embed?output">Simple form validation on user input</a></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Get the string value of the charCode.</span>
+  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
+      <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
+      <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+      <span class="c1">// Construct what the value will be if the event is not prevented.</span>
+      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
+
+  <span class="c1">// Test to make sure the user is inputting only valid characters</span>
+  <span class="c1">// and that the resulting input is valid.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">handleKeyup</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
+      <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">;</span>
+
+  <span class="c1">// If the user deletes anything, test the value in the input</span>
+  <span class="c1">// again to check for validity.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span> <span class="o">||</span> <span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">toggleUI</span><span class="p">(</span><span class="nx">valid</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">valid</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;valid&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s2">&quot;warning&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// On keypress or keyup, call their callback</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="nx">handleKeypress</span><span class="p">;</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">onkeyup</span> <span class="o">=</span> <span class="nx">handleKeyup</span><span class="p">;</span>
+</code></pre></div>
+
+<p>This example should be fairly straight forward to follow along with but there are a few points of interest that relate to key events.
+- First, notice that I am listening on not only keypress but also keyup. This is because keypress does not fire when the user deletes a character but we still need to check the input value to be sure that it’s valid.
+- Second, you’ll see that I’m using e.charCode in the keypress handler but using e.keyCode in the keyup handler. This is because I don’t care what key was pressed on keypress, I only care what is being inserted into the input field; however on the keyup, I only care that a delete/backspace key was released but am not concerned about what was entered into the text box.
+Ok so now what about keydown? Another example is in order; we’ll take the previous example, but instead of notifying the user that something is wrong, we will prevent them from inputting invalid characters</p>
+
+<p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/2/embed?output">Prevent invalid input on form</a></p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Get the string value of the charCode.</span>
+  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
+      <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
+      <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+      <span class="c1">// Construct what the value will be if the event is not prevented.</span>
+      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
+
+  <span class="c1">// Test to make sure the user is inputting only valid characters</span>
+  <span class="c1">// and that the resulting input is valid.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">handleKeydown</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
+      <span class="nx">keyCode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">,</span>
+      <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
+      <span class="nx">value</span><span class="p">;</span>
+
+  <span class="c1">// If the user deletes anything, construct the resulting</span>
+  <span class="c1">// value to determine validity.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>    
+  <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// On keypress or keyup, call their callback</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="nx">handleKeypress</span><span class="p">;</span>
+<span class="nx">input</span><span class="p">.</span><span class="nx">onkeydown</span> <span class="o">=</span> <span class="nx">handleKeydown</span><span class="p">;</span>
+</code></pre></div>
+
+<p>You can see by this last example that by using keydown we can listen for the delete or backspace key, check the resulting input value, and if it’s invalid, prevent the user action.</p>
+
+<p>As with anything front end related there are going to be cross browser differences so I highly recommend using one of the quality javascript libraries and frameworks available to normalize these differences for you. If you have read any of my other posts you have probably guessed that I’m partial to the <a href="http://yuilibrary.com/">YUI framework</a>.</p>
+
+<p>I hope that these examples not only show you how keyup, keydown, and keypress function; but also give you some ideas on the best situations to use them. If you have any questions feel free to comment below or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a></p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -221,28 +356,6 @@
 </section>
 
   
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/04/hatched-links">Hatched Links</a></h1>
-      
-        <time datetime="2012-10-04 09:04:00 -0600 CST">4 October 2012</time>
-      
-    </header>
-    <ul>
-<li><a href="https://slides.com/">An Online Editor For reveal.js (rvl.io)</a>: Edit the popular reveal.js HTML presentation framework online.</li>
-<li><a href="http://reidburke.com/">YUI Test Tool (yeti.cx)</a>: Run YUI Test in multiple browsers.</li>
-<li><a href="http://fontawesome.io/">220 Icon Font (Font Awesome)</a>: Has icon parity with Bootstrap plus a lot more.</li>
-<li><a href="https://github.com/webmat/git_remote_branch">Git Remote Branch (webmat)</a>: Easily manipulate git branches in shared repos.</li>
-<li><a href="http://worrydream.com/LearnableProgramming/">Learnable Programming (worrydream)</a>: Designing a programming system for understanding programs.</li>
-</ul>
-
-<p>Have something you would like to see on the next Hatched Links? Mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or find me in #yui on irc.freenode.net</p>
-
-  </article>
-</section>
-
-  
   
     
     <ul class="pagination">
@@ -296,12 +409,15 @@
         ><a href="/page/13/">13</a></li>
         
         <li
+        ><a href="/page/14/">14</a></li>
+        
+        <li
         >
         <a href="/page/11/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
@@ -316,5 +432,6 @@
   ga('send', 'pageview');
 </script>
 
-</body>
+  </body>
 </html>
+

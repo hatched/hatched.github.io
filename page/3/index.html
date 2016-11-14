@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <title>From An Egg</title>
-  
-  <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#cc181e">
-  <meta name="generator" content="Hugo 0.17" />
-  <link rel="canonical" href="https://fromanegg.com/"/>
-  <link rel="stylesheet" href="/css/normalize-min.css">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/manni.css">
-  <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
-</head>
-<div class="top-bar"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>From An Egg</title>
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.17" />
+    <link rel="canonical" href="https://fromanegg.com/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
 
-<body>
   <nav>
   <img src="/images/me.png"></img>
   <h1>Jeff Pihach</h1>
@@ -48,7 +48,7 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (7)</a></li>
+            <li><a href="/tags/development">development (8)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
@@ -64,7 +64,7 @@
           
             <li><a href="/tags/node.js">node.js (1)</a></li>
           
-            <li><a href="/tags/ops">ops (2)</a></li>
+            <li><a href="/tags/ops">ops (3)</a></li>
           
             <li><a href="/tags/osx">osx (1)</a></li>
           
@@ -93,6 +93,41 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article>
+    <header>
+      <h1><a href="https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture">Unidirectional data flow architecture</a></h1>
+      
+        <time datetime="2014-05-15 23:18:00 -0600 CST">15 May 2014</time>
+      
+    </header>
+    <p>Since Facebook released <a href="https://facebook.github.io/react/docs/flux-overview.html">Flux</a> there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the <a href="https://github.com/juju/juju-gui">Juju GUI</a> nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users <a href="https://jujucharms.com">Juju</a> environment.</p>
+
+<p>In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:</p>
+
+<p><img src="/images/unidirectional-data-flow-architecture-1.jpg" alt="" /></p>
+
+<ol>
+<li>When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.</li>
+<li>That state is then saved into the state system.</li>
+<li>When the state system changes it diffs from it’s previous state and passes the diff off to the dispatcher.</li>
+<li>The dispatcher scans through the diff and passes off the various state components to their registered handlers.</li>
+<li>Those handlers then pass the updated data into the UI components.</li>
+<li>The UI components are then responsible for updating their DOM representation.</li>
+<li>If the user makes a change to the UI, that UI component requests a change from the state system and the cycle repeats.
+You’ll notice that this is strikingly similar to the Flux architecture:</li>
+</ol>
+
+<p><img src="/images/unidirectional-data-flow-architecture-2.png" alt="" /></p>
+
+<p>It’s great to see cases of the <a href="https://en.wikipedia.org/wiki/Multiple_discovery">multiple discovery hypothesis</a> in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.</p>
+
+<p>Do you work on a large application? Do you think this architecture could help simplify your app? Let me know in the comments below, <a href="https://twitter.com/fromanegg">@fromanegg</a>, or <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> Thanks for reading!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -355,36 +390,6 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 </section>
 
   
-    <section class="article-list">
-  <article>
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju">Canonical to simplify SSO and 2FA using Ubuntu Juju</a></h1>
-      
-        <time datetime="2013-12-30 12:09:00 -0600 CST">30 December 2013</time>
-      
-    </header>
-    <p>One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.</p>
-
-<p>Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.</p>
-
-<p>As an additional layer of security many administrators are implementing another layer of security called two factor authentication. 2FA simply means that there are multiple techniques used to identify you when you attempt to gain access to a system. This can be in the form of a text message being sent to your phone, or a random key generated by a third party key generator which is required to be entered along side your typical username and password.</p>
-
-<p>This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp; 2FA to Juju users everywhere.</p>
-
-<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png" alt="" /></p>
-
-<p>How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp; 2FA Juju Charm.</p>
-
-<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png" alt="" /></p>
-
-<p>As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.</p>
-
-<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication" title="Instant Single Sign-On and Two-Factor Authentication" target="_blank">Instant Single Sign-On and Two-Factor Authentication</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/mectors">Maarten Ectors</a></strong> </div></p>
-
-  </article>
-</section>
-
-  
   
     
     <ul class="pagination">
@@ -438,12 +443,15 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
         ><a href="/page/13/">13</a></li>
         
         <li
+        ><a href="/page/14/">14</a></li>
+        
+        <li
         >
         <a href="/page/4/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
         </li>
         
         <li>
-            <a href="/page/13/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+            <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
         </li>
         
     </ul>
@@ -458,5 +466,6 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
   ga('send', 'pageview');
 </script>
 
-</body>
+  </body>
 </html>
+

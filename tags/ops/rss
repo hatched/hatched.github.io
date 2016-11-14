@@ -9,6 +9,40 @@
     <atom:link href="https://fromanegg.com/tags/ops/rss/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Secure GitHub pages with SSL/TLS</title>
+      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</link>
+      <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</guid>
+      <description>&lt;p&gt;At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.&lt;/p&gt;
+
+&lt;p&gt;First you&amp;rsquo;ll need a couple things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A website hosted on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; with a custom domain.&lt;/li&gt;
+&lt;li&gt;An account with &lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;Cloudflare&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then follow these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;After signing up with Cloudflare you&amp;rsquo;ll be prompted to add your domain, at which point it&amp;rsquo;ll scan your DNS records automatically. You&amp;rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.&lt;/li&gt;
+&lt;li&gt;Switch to the Crypto tab and change the &lt;code&gt;SSL type&lt;/code&gt; to &lt;code&gt;Flexible&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.&lt;/li&gt;
+&lt;li&gt;Redirect all of your http traffic to https traffic using Cloudflare by adding a &lt;code&gt;Page Rule&lt;/code&gt;. You&amp;rsquo;ll want to add a rule which looks like &lt;code&gt;http://*example.com/*&lt;/code&gt; and then add a setting for &lt;code&gt;Always Use HTTPS&lt;/code&gt;. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-&#34;&gt;Cloudflare knowledge base&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add &lt;code&gt;&amp;lt;link rel=&amp;quot;canonical&amp;quot; href=&amp;quot;http://example.com/path/to/post&amp;quot;/&amp;gt;&lt;/code&gt; to the head of each page.&lt;/li&gt;
+&lt;li&gt;Update the paths for your assets so that they are requested from the https path or browsers won&amp;rsquo;t load them.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Once the DNS records propagate you&amp;rsquo;ll be able to visit your website by visiting &lt;code&gt;https://example.com&lt;/code&gt;. You might notice that you&amp;rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.&lt;/p&gt;
+
+&lt;p&gt;The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &amp;ldquo;&lt;a href=&#34;https://help.github.com/articles/what-is-github-pages/&#34;&gt;GitHub Pages sites shouldn&amp;rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.&lt;/a&gt;&amp;rdquo; anyways.&lt;/p&gt;
+
+&lt;p&gt;I hope you enjoyed this post, if you have any questions or comments let me know on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or comment below. Thanks for reading!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Automatically build files when they change with Make</title>
       <link>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</link>
       <pubDate>Wed, 26 Aug 2015 12:07:00 -0600</pubDate>
