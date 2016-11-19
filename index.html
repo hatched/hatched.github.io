@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls">Secure GitHub pages with SSL/TLS</a></h1>
+      <h1><a href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls" itemprop="url">Secure GitHub pages with SSL/TLS</a></h1>
       
-        <time datetime="2016-11-13 18:19:00 -0600 CST">13 November 2016</time>
+        <time pubdate content="2016-11-13 18:19:00 -0600 CST" datetime="2016-11-13 18:19:00 -0600 CST">13 November 2016</time>
       
     </header>
     <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
@@ -134,11 +147,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2">Welcome to From An Egg v2</a></h1>
+      <h1><a href="https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2" itemprop="url">Welcome to From An Egg v2</a></h1>
       
-        <time datetime="2016-11-12 16:49:53 -0600 CST">12 November 2016</time>
+        <time pubdate content="2016-11-12 16:49:53 -0600 CST" datetime="2016-11-12 16:49:53 -0600 CST">12 November 2016</time>
       
     </header>
     <p>Welcome to v2 of the From An Egg blog!</p>
@@ -150,11 +163,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression">The importance of minification and compression</a></h1>
+      <h1><a href="https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression" itemprop="url">The importance of minification and compression</a></h1>
       
-        <time datetime="2016-01-02 13:15:00 -0600 CST">2 January 2016</time>
+        <time pubdate content="2016-01-02 13:15:00 -0600 CST" datetime="2016-01-02 13:15:00 -0600 CST">2 January 2016</time>
       
     </header>
     <p>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.</p>
@@ -204,11 +217,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make">Automatically build files when they change with Make</a></h1>
+      <h1><a href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make" itemprop="url">Automatically build files when they change with Make</a></h1>
       
-        <time datetime="2015-08-26 12:07:00 -0600 CST">26 August 2015</time>
+        <time pubdate content="2015-08-26 12:07:00 -0600 CST" datetime="2015-08-26 12:07:00 -0600 CST">26 August 2015</time>
       
     </header>
     <p>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</p>
@@ -247,11 +260,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2015/06/13/using-juju-for-development">Using Juju for development</a></h1>
+      <h1><a href="https://fromanegg.com/post/2015/06/13/using-juju-for-development" itemprop="url">Using Juju for development</a></h1>
       
-        <time datetime="2015-06-13 16:11:00 -0600 CST">13 June 2015</time>
+        <time pubdate content="2015-06-13 16:11:00 -0600 CST" datetime="2015-06-13 16:11:00 -0600 CST">13 June 2015</time>
       
     </header>
     

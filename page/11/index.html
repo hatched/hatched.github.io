@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/04/hatched-links">Hatched Links</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/10/04/hatched-links" itemprop="url">Hatched Links</a></h1>
       
-        <time datetime="2012-10-04 09:04:00 -0600 CST">4 October 2012</time>
+        <time pubdate content="2012-10-04 09:04:00 -0600 CST" datetime="2012-10-04 09:04:00 -0600 CST">4 October 2012</time>
       
     </header>
     <ul>
@@ -118,11 +131,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements">Clicking through a div to underlying elements</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements" itemprop="url">Clicking through a div to underlying elements</a></h1>
       
-        <time datetime="2012-10-01 09:07:00 -0600 CST">1 October 2012</time>
+        <time pubdate content="2012-10-01 09:07:00 -0600 CST" datetime="2012-10-01 09:07:00 -0600 CST">1 October 2012</time>
       
     </header>
     <p>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.</p>
@@ -154,11 +167,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/09/27/hatched-links">Hatched Links</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/09/27/hatched-links" itemprop="url">Hatched Links</a></h1>
       
-        <time datetime="2012-09-27 22:39:00 -0600 CST">27 September 2012</time>
+        <time pubdate content="2012-09-27 22:39:00 -0600 CST" datetime="2012-09-27 22:39:00 -0600 CST">27 September 2012</time>
       
     </header>
     <p>Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!</p>
@@ -178,11 +191,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources">Great YUI 3 DataTable resources!</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources" itemprop="url">Great YUI 3 DataTable resources!</a></h1>
       
-        <time datetime="2012-09-19 18:05:00 -0600 CST">19 September 2012</time>
+        <time pubdate content="2012-09-19 18:05:00 -0600 CST" datetime="2012-09-19 18:05:00 -0600 CST">19 September 2012</time>
       
     </header>
     <p>It’s rare that those tasked with displaying tabular data have an easy go of it. Usually the data isn’t in the right format, the standard libraries either do too much or too little, and the styles are never quite right. For the developers using YUI 3 and the YUI 3 DataTable I have included a couple resources below which will surely make your lives a lot easier.</p>
@@ -204,11 +217,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute">Adding a validation fail event to YUI’s Y.Attribute</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute" itemprop="url">Adding a validation fail event to YUI’s Y.Attribute</a></h1>
       
-        <time datetime="2012-08-24 13:41:00 -0600 CST">24 August 2012</time>
+        <time pubdate content="2012-08-24 13:41:00 -0600 CST" datetime="2012-08-24 13:41:00 -0600 CST">24 August 2012</time>
       
     </header>
     <p>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of <a href="http://yuilibrary.com/yui/docs/attribute/">Y.Attribute</a> is the validator.</p>

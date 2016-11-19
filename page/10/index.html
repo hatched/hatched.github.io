@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup">Form validation with keydown, keypress, and keyup</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup" itemprop="url">Form validation with keydown, keypress, and keyup</a></h1>
       
-        <time datetime="2012-12-29 12:58:00 -0600 CST">29 December 2012</time>
+        <time pubdate content="2012-12-29 12:58:00 -0600 CST" datetime="2012-12-29 12:58:00 -0600 CST">29 December 2012</time>
       
     </header>
     <p>There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.</p>
@@ -231,11 +244,11 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes">Using after() event listeners to react to attribute value changes</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes" itemprop="url">Using after() event listeners to react to attribute value changes</a></h1>
       
-        <time datetime="2012-12-01 18:30:00 -0600 CST">1 December 2012</time>
+        <time pubdate content="2012-12-01 18:30:00 -0600 CST" datetime="2012-12-01 18:30:00 -0600 CST">1 December 2012</time>
       
     </header>
     <p>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_on">on()</a> and <a href="http://yuilibrary.com/yui/docs/api/classes/EventTarget.html#method_after">after()</a> methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</p>
@@ -291,11 +304,11 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/18/hatched-links">Hatched Links</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/10/18/hatched-links" itemprop="url">Hatched Links</a></h1>
       
-        <time datetime="2012-10-18 09:52:00 -0600 CST">18 October 2012</time>
+        <time pubdate content="2012-10-18 09:52:00 -0600 CST" datetime="2012-10-18 09:52:00 -0600 CST">18 October 2012</time>
       
     </header>
     <ul>
@@ -313,11 +326,11 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/18/hatched-links">Hatched Links</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/10/18/hatched-links" itemprop="url">Hatched Links</a></h1>
       
-        <time datetime="2012-10-18 09:52:00 -0600 CST">18 October 2012</time>
+        <time pubdate content="2012-10-18 09:52:00 -0600 CST" datetime="2012-10-18 09:52:00 -0600 CST">18 October 2012</time>
       
     </header>
     <ul>
@@ -335,11 +348,11 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/11/hatched-links">Hatched Links</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/10/11/hatched-links" itemprop="url">Hatched Links</a></h1>
       
-        <time datetime="2012-10-11 13:56:00 -0600 CST">11 October 2012</time>
+        <time pubdate content="2012-10-11 13:56:00 -0600 CST" datetime="2012-10-11 13:56:00 -0600 CST">11 October 2012</time>
       
     </header>
     <ul>

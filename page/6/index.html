@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew">Juju for OSX is now available via Homebrew</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew" itemprop="url">Juju for OSX is now available via Homebrew</a></h1>
       
-        <time datetime="2013-08-19 13:36:00 -0600 CST">19 August 2013</time>
+        <time pubdate content="2013-08-19 13:36:00 -0600 CST" datetime="2013-08-19 13:36:00 -0600 CST">19 August 2013</time>
       
     </header>
     <p>About a month ago I posted that Juju for OSX was available on GitHub. Well thanks to a <a href="https://github.com/Homebrew/legacy-homebrew/pull/21858">Homebrew pull request</a> by Rodrigo Chacon it’s now available for easy install via Homebrew!</p>
@@ -112,11 +125,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level">CSS selectors - The next level</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level" itemprop="url">CSS selectors - The next level</a></h1>
       
-        <time datetime="2013-08-05 16:53:00 -0600 CST">5 August 2013</time>
+        <time pubdate content="2013-08-05 16:53:00 -0600 CST" datetime="2013-08-05 16:53:00 -0600 CST">5 August 2013</time>
       
     </header>
     
@@ -299,11 +312,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file">Android file transfer - Could not replace file, could not copy file…</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file" itemprop="url">Android file transfer - Could not replace file, could not copy file…</a></h1>
       
-        <time datetime="2013-07-31 20:27:00 -0600 CST">31 July 2013</time>
+        <time pubdate content="2013-07-31 20:27:00 -0600 CST" datetime="2013-07-31 20:27:00 -0600 CST">31 July 2013</time>
       
     </header>
     <p>Do you have a new Android phone and cannot transfer files to OSX using the <a href="https://www.android.com/filetransfer/">Android File Transfer Tool</a> because you keep getting the error “Could not replace file, could not copy file <filename>.” ?</p>
@@ -317,11 +330,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released">Juju GUI v0.8 and jujucharms.com released!</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released" itemprop="url">Juju GUI v0.8 and jujucharms.com released!</a></h1>
       
-        <time datetime="2013-07-22 18:51:00 -0600 CST">22 July 2013</time>
+        <time pubdate content="2013-07-22 18:51:00 -0600 CST" datetime="2013-07-22 18:51:00 -0600 CST">22 July 2013</time>
       
     </header>
     <p>It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded <a href="https://www.indiegogo.com/projects/ubuntu-edge">Ubuntu Edge Ubuntu smartphone campaign</a> was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.</p>
@@ -343,11 +356,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released">Juju GUI 0.6.0 released</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released" itemprop="url">Juju GUI 0.6.0 released</a></h1>
       
-        <time datetime="2013-06-20 18:59:00 -0600 CST">20 June 2013</time>
+        <time pubdate content="2013-06-20 18:59:00 -0600 CST" datetime="2013-06-20 18:59:00 -0600 CST">20 June 2013</time>
       
     </header>
     <p>Earlier this week we released the latest version of the Juju GUI, 0.6.0. This version brings with it a bunch of bug fixes and stability improvements, an updated UI, and a new charm browser which allows you to find new charms without leaving your environment. You can find the <a href="https://launchpad.net/juju-gui/stable/0.6.0">source here</a>.</p>

@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer">Transparent links not clickable in Internet Explorer</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer" itemprop="url">Transparent links not clickable in Internet Explorer</a></h1>
       
-        <time datetime="2013-04-07 17:59:00 -0600 CST">7 April 2013</time>
+        <time pubdate content="2013-04-07 17:59:00 -0600 CST" datetime="2013-04-07 17:59:00 -0600 CST">7 April 2013</time>
       
     </header>
     <p>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.</p>
@@ -138,11 +151,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host">NFS between Ubuntu vm and OSX host</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host" itemprop="url">NFS between Ubuntu vm and OSX host</a></h1>
       
-        <time datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
+        <time pubdate content="2013-03-18 20:03:00 -0600 CST" datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
       
     </header>
     
@@ -235,11 +248,11 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript">Insert an array of values into an array in JavaScript</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript" itemprop="url">Insert an array of values into an array in JavaScript</a></h1>
       
-        <time datetime="2013-02-22 12:00:00 -0600 CST">22 February 2013</time>
+        <time pubdate content="2013-02-22 12:00:00 -0600 CST" datetime="2013-02-22 12:00:00 -0600 CST">22 February 2013</time>
       
     </header>
     <p>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.</p>
@@ -275,11 +288,11 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays">Using css function image-set for high-DPI displays</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays" itemprop="url">Using css function image-set for high-DPI displays</a></h1>
       
-        <time datetime="2013-02-06 14:57:00 -0600 CST">6 February 2013</time>
+        <time pubdate content="2013-02-06 14:57:00 -0600 CST" datetime="2013-02-06 14:57:00 -0600 CST">6 February 2013</time>
       
     </header>
     <p>Anyone who has put together a website with high-DPI displays in mind has likely used the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio">{prefix}-device-pixel-ratio</a> CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media">SASS CSS preprocessor</a> and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called <a href="https://drafts.csswg.org/css-images-4/#image-set-notation">image-set()</a> available under the -webkit- prefix.</p>
@@ -306,11 +319,11 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors">Understanding CSS2 and CSS3 attribute selectors</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors" itemprop="url">Understanding CSS2 and CSS3 attribute selectors</a></h1>
       
-        <time datetime="2013-01-28 10:01:00 -0600 CST">28 January 2013</time>
+        <time pubdate content="2013-01-28 10:01:00 -0600 CST" datetime="2013-01-28 10:01:00 -0600 CST">28 January 2013</time>
       
     </header>
     

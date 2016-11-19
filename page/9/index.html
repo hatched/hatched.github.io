@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar" itemprop="url">100% pure css radial progress bar</a></h1>
       
-        <time datetime="2013-01-23 15:25:00 -0600 CST">23 January 2013</time>
+        <time pubdate content="2013-01-23 15:25:00 -0600 CST" datetime="2013-01-23 15:25:00 -0600 CST">23 January 2013</time>
       
     </header>
     <p>Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.</p>
@@ -212,11 +225,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript">Prototypes and class-like objects in Javascript</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript" itemprop="url">Prototypes and class-like objects in Javascript</a></h1>
       
-        <time datetime="2013-01-21 10:00:00 -0600 CST">21 January 2013</time>
+        <time pubdate content="2013-01-21 10:00:00 -0600 CST" datetime="2013-01-21 10:00:00 -0600 CST">21 January 2013</time>
       
     </header>
     <p>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post <a href="http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a>. I recommend that you read that post first as I’ll be referencing some of the same code.</p>
@@ -342,11 +355,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012">YUIConf talk 2012</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012" itemprop="url">YUIConf talk 2012</a></h1>
       
-        <time datetime="2013-01-17 11:07:00 -0600 CST">17 January 2013</time>
+        <time pubdate content="2013-01-17 11:07:00 -0600 CST" datetime="2013-01-17 11:07:00 -0600 CST">17 January 2013</time>
       
     </header>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/3guDNBdxoE8?rel=0" frameborder="0" allowfullscreen></iframe>
@@ -358,11 +371,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects">The importance of personal developer projects</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects" itemprop="url">The importance of personal developer projects</a></h1>
       
-        <time datetime="2013-01-09 10:54:00 -0600 CST">9 January 2013</time>
+        <time pubdate content="2013-01-09 10:54:00 -0600 CST" datetime="2013-01-09 10:54:00 -0600 CST">9 January 2013</time>
       
     </header>
     <p>Fueled by the constant push for new ideas and better experiences by our clients and employers; web development has to be one of, if not the, fastest evolving industry today. It’s our job as developers to at least keep up with the curve; unfortunately because of this constant push we often end up over specializing, leaving us ill prepared come the time to move onto the next big thing. We try to remedy this complacency by reading what others are working on and dabbling here and there on side projects, but quite often we can’t dedicate enough of our personal time to keep ahead of that curve.</p>
@@ -388,11 +401,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript" itemprop="url">Constructor chaining &amp; inheritance in javascript</a></h1>
       
-        <time datetime="2013-01-03 20:56:00 -0600 CST">3 January 2013</time>
+        <time pubdate content="2013-01-03 20:56:00 -0600 CST" datetime="2013-01-03 20:56:00 -0600 CST">3 January 2013</time>
       
     </header>
     <p>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves. It gets even easier when you are able to use ES5 Javascript; or for cross browser support use a framework like YUI which adds in the OOP methods missing from Javascript which I’ll be covering in a follow up post.</p>

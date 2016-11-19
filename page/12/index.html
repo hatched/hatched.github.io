@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google">Book Review - Are You Smart Enough to Work at Google?</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google" itemprop="url">Book Review - Are You Smart Enough to Work at Google?</a></h1>
       
-        <time datetime="2012-08-10 10:36:00 -0600 CST">10 August 2012</time>
+        <time pubdate content="2012-08-10 10:36:00 -0600 CST" datetime="2012-08-10 10:36:00 -0600 CST">10 August 2012</time>
       
     </header>
     <p>I have been trying to take some time away from the warm glow of the LCD screen after hours so I haven’t had much time to write up new code related posts. Instead, I have been spending some of this time away reading books, blog posts, and articles on business and web development. So in an effort to keep my blog from going stale here is my very first book review outside of high school English class.</p>
@@ -128,11 +141,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar">Add toggle button support to Y.PopupCalendar</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar" itemprop="url">Add toggle button support to Y.PopupCalendar</a></h1>
       
-        <time datetime="2012-07-31 15:57:00 -0600 CST">31 July 2012</time>
+        <time pubdate content="2012-07-31 15:57:00 -0600 CST" datetime="2012-07-31 15:57:00 -0600 CST">31 July 2012</time>
       
     </header>
     <p>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.</p>
@@ -162,11 +175,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova">Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova" itemprop="url">Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</a></h1>
       
-        <time datetime="2012-07-01 13:34:00 -0600 CST">1 July 2012</time>
+        <time pubdate content="2012-07-01 13:34:00 -0600 CST" datetime="2012-07-01 13:34:00 -0600 CST">1 July 2012</time>
       
     </header>
     <p>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post <a href="http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova">Guide to using YUI with PhoneGap (Cordova)</a>. The good news is that it’s very easy to setup but does come with a few drawbacks.</p>
@@ -220,11 +233,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova">Guide to using YUI with PhoneGap (Cordova)</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova" itemprop="url">Guide to using YUI with PhoneGap (Cordova)</a></h1>
       
-        <time datetime="2012-06-12 07:58:00 -0600 CST">12 June 2012</time>
+        <time pubdate content="2012-06-12 07:58:00 -0600 CST" datetime="2012-06-12 07:58:00 -0600 CST">12 June 2012</time>
       
     </header>
     <p>If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).</p>
@@ -300,11 +313,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/04/12/yui-popup-calendar">YUI Popup Calendar</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/04/12/yui-popup-calendar" itemprop="url">YUI Popup Calendar</a></h1>
       
-        <time datetime="2012-04-12 19:22:00 -0600 CST">12 April 2012</time>
+        <time pubdate content="2012-04-12 19:22:00 -0600 CST" datetime="2012-04-12 19:22:00 -0600 CST">12 April 2012</time>
       
     </header>
     <p>The often requested Popup Calendar or as some may call it, Date Picker, is now finally available in the Yahoo CDN hosted YUI Gallery!</p>

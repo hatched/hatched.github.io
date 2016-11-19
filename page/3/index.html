@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture">Unidirectional data flow architecture</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture" itemprop="url">Unidirectional data flow architecture</a></h1>
       
-        <time datetime="2014-05-15 23:18:00 -0600 CST">15 May 2014</time>
+        <time pubdate content="2014-05-15 23:18:00 -0600 CST" datetime="2014-05-15 23:18:00 -0600 CST">15 May 2014</time>
       
     </header>
     <p>Since Facebook released <a href="https://facebook.github.io/react/docs/flux-overview.html">Flux</a> there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the <a href="https://github.com/juju/juju-gui">Juju GUI</a> nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users <a href="https://jujucharms.com">Juju</a> environment.</p>
@@ -131,11 +144,11 @@ You’ll notice that this is strikingly similar to the Flux architecture:</li>
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number">When to update your semver version number</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number" itemprop="url">When to update your semver version number</a></h1>
       
-        <time datetime="2014-04-25 10:49:00 -0600 CST">25 April 2014</time>
+        <time pubdate content="2014-04-25 10:49:00 -0600 CST" datetime="2014-04-25 10:49:00 -0600 CST">25 April 2014</time>
       
     </header>
     <p>Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the <a href="http://semver.org/">semver website</a>.</p>
@@ -185,11 +198,11 @@ Because your tests should test exactly what you expect your public API to return
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook">How to install Ubuntu on a Mac or Macbook</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook" itemprop="url">How to install Ubuntu on a Mac or Macbook</a></h1>
       
-        <time datetime="2014-04-09 20:09:00 -0600 CST">9 April 2014</time>
+        <time pubdate content="2014-04-09 20:09:00 -0600 CST" datetime="2014-04-09 20:09:00 -0600 CST">9 April 2014</time>
       
     </header>
     
@@ -282,11 +295,11 @@ Because your tests should test exactly what you expect your public API to return
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough">Self documenting code is not enough</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough" itemprop="url">Self documenting code is not enough</a></h1>
       
-        <time datetime="2014-03-13 09:22:00 -0600 CST">13 March 2014</time>
+        <time pubdate content="2014-03-13 09:22:00 -0600 CST" datetime="2014-03-13 09:22:00 -0600 CST">13 March 2014</time>
       
     </header>
     <p>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.</p>
@@ -367,11 +380,11 @@ Because your tests should test exactly what you expect your public API to return
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0">New release - Juju GUI 0.15.0</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0" itemprop="url">New release - Juju GUI 0.15.0</a></h1>
       
-        <time datetime="2014-01-26 12:49:00 -0600 CST">26 January 2014</time>
+        <time pubdate content="2014-01-26 12:49:00 -0600 CST" datetime="2014-01-26 12:49:00 -0600 CST">26 January 2014</time>
       
     </header>
     <p>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to <a href="https://github.com/juju/juju-gui">Git</a> and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.</p>

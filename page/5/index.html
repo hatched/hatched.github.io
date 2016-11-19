@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail">A Juju Charm designed to fail</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail" itemprop="url">A Juju Charm designed to fail</a></h1>
       
-        <time datetime="2013-11-09 14:06:00 -0600 CST">9 November 2013</time>
+        <time pubdate content="2013-11-09 14:06:00 -0600 CST" datetime="2013-11-09 14:06:00 -0600 CST">9 November 2013</time>
       
     </header>
     
@@ -132,11 +145,11 @@ juju <span class="nb">set</span> failtester <span class="nv">install</span><span
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates">Juju GUI 0.10.1 Released - Bug fixes and updates</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates" itemprop="url">Juju GUI 0.10.1 Released - Bug fixes and updates</a></h1>
       
-        <time datetime="2013-10-01 17:10:00 -0600 CST">1 October 2013</time>
+        <time pubdate content="2013-10-01 17:10:00 -0600 CST" datetime="2013-10-01 17:10:00 -0600 CST">1 October 2013</time>
       
     </header>
     <p>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.</p>
@@ -153,11 +166,11 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector">Juju GUI 0.10.0 Released - Brand new service inspector!</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector" itemprop="url">Juju GUI 0.10.0 Released - Brand new service inspector!</a></h1>
       
-        <time datetime="2013-09-18 15:52:00 -0600 CST">18 September 2013</time>
+        <time pubdate content="2013-09-18 15:52:00 -0600 CST" datetime="2013-09-18 15:52:00 -0600 CST">18 September 2013</time>
       
     </header>
     <p>After a few months of hard work we have released the <a href="https://launchpad.net/juju-gui">Juju GUI v0.10.0</a> which has the awesome new service Inspector as the default!</p>
@@ -173,11 +186,11 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object">ParseInt only numbers in an object</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object" itemprop="url">ParseInt only numbers in an object</a></h1>
       
-        <time datetime="2013-09-15 10:08:00 -0600 CST">15 September 2013</time>
+        <time pubdate content="2013-09-15 10:08:00 -0600 CST" datetime="2013-09-15 10:08:00 -0600 CST">15 September 2013</time>
       
     </header>
     <p>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.</p>
@@ -215,11 +228,11 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support">Juju GUI 0.9.0 Released - Now with IE10 support!</a></h1>
+      <h1><a href="https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support" itemprop="url">Juju GUI 0.9.0 Released - Now with IE10 support!</a></h1>
       
-        <time datetime="2013-09-11 18:21:00 -0600 CST">11 September 2013</time>
+        <time pubdate content="2013-09-11 18:21:00 -0600 CST" datetime="2013-09-11 18:21:00 -0600 CST">11 September 2013</time>
       
     </header>
     <p>We have just released the latest <a href="https://launchpad.net/juju-gui">Juju GUI charm</a>, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.</p>

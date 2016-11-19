@@ -5,9 +5,32 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>Easy testing of code involving native methods in JavaScript &middot; From An Egg</title>
+      <meta name="twitter:title" content="Easy testing of code involving native methods in JavaScript" />
+      <meta property="og:title" content="Easy testing of code involving native methods in JavaScript" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      
+        <meta name="description" itemprop="description" content="When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); }  Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure.">
+        <meta name="twitter:description" content="When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); }  Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure." />
+        <meta property="og:description" content="When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); }  Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure." />
+        
+          <meta property="article:published_time" content="2015-04-22 19:57:00 -0600 CST">
+        
+      
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +38,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=""><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,18 +111,18 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
 </nav>
 
   <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript">Easy testing of code involving native methods in JavaScript</a></h1>
+      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript" itemprop="url">Easy testing of code involving native methods in JavaScript</a></h1>
       
-        <time datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
+        <time pubdate content="2015-04-22 19:57:00 -0600 CST" datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
       
     </header>
     <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>

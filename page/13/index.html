@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1">How to make a Node.js static file server - Part 1</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1" itemprop="url">How to make a Node.js static file server - Part 1</a></h1>
       
-        <time datetime="2012-02-26 19:19:00 -0600 CST">26 February 2012</time>
+        <time pubdate content="2012-02-26 19:19:00 -0600 CST" datetime="2012-02-26 19:19:00 -0600 CST">26 February 2012</time>
       
     </header>
     
@@ -220,11 +233,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader">Handling module load errors with YUI Loader</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader" itemprop="url">Handling module load errors with YUI Loader</a></h1>
       
-        <time datetime="2012-02-06 15:50:00 -0600 CST">6 February 2012</time>
+        <time pubdate content="2012-02-06 15:50:00 -0600 CST" datetime="2012-02-06 15:50:00 -0600 CST">6 February 2012</time>
       
     </header>
     <p>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.</p>
@@ -359,11 +372,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2012/02/03/introduction">Introduction</a></h1>
+      <h1><a href="https://fromanegg.com/post/2012/02/03/introduction" itemprop="url">Introduction</a></h1>
       
-        <time datetime="2012-02-03 20:43:00 -0600 CST">3 February 2012</time>
+        <time pubdate content="2012-02-03 20:43:00 -0600 CST" datetime="2012-02-03 20:43:00 -0600 CST">3 February 2012</time>
       
     </header>
     <p>After a year of trying to get the time to roll my own blog I cut my losses and set up with tumblr. The plan is to write a quality article every week on web development but you will probably see an odd one here and there about other things that I find interesting.</p>
@@ -377,9 +390,9 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/yui-popup-calendar/"></a></h1>
+      <h1><a href="https://fromanegg.com/yui-popup-calendar/" itemprop="url"></a></h1>
       
     </header>
     
@@ -499,9 +512,9 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/about/">About</a></h1>
+      <h1><a href="https://fromanegg.com/about/" itemprop="url">About</a></h1>
       
     </header>
     <p>I&rsquo;m Jeff Pihach, welcome to From An Egg. I’m a software engineer at Canonical, entrepreneur and front end developer. I focus primarily on web application development for mobile and desktop. I blog about web development but will mix in the odd post about other things that interest me.</p>

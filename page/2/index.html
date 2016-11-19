@@ -5,9 +5,22 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
       <title>From An Egg</title>
+      <meta name="twitter:title" content="From An Egg" />
+      <meta property="og:title" content="From An Egg" />
     
-    <link rel="icon" type="image/png" alt="author's image" href="/img/me.png">
-    <meta name="description" content="">
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="/images/me.png" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
@@ -15,20 +28,20 @@
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
-    <link href="https://fromanegg.com/index.xml" rel="alternate" type="application/rss+xml" title="From An Egg" />
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
   </head>
   <body>
     <div class="top-bar"></div>
 
   <nav>
   <img src="/images/me.png"></img>
-  <h1>Jeff Pihach</h1>
+  <h1 itemprop="author">Jeff Pihach</h1>
   <label for="menu-toggle" class="icon-menu">Menu</label>
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
       <li class=" active "><a href="/" class="icon-home">Home</a></li>
-      <li class=""><a href="/about" class="icon-help">About</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
       <li class="">
@@ -88,7 +101,7 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank">Google</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -96,11 +109,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed">Write JavaScript like it’s typed</a></h1>
+      <h1><a href="https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed" itemprop="url">Write JavaScript like it’s typed</a></h1>
       
-        <time datetime="2015-06-06 21:44:00 -0600 CST">6 June 2015</time>
+        <time pubdate content="2015-06-06 21:44:00 -0600 CST" datetime="2015-06-06 21:44:00 -0600 CST">6 June 2015</time>
       
     </header>
     <p>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</p>
@@ -185,11 +198,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript">Easy testing of code involving native methods in JavaScript</a></h1>
+      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript" itemprop="url">Easy testing of code involving native methods in JavaScript</a></h1>
       
-        <time datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
+        <time pubdate content="2015-04-22 19:57:00 -0600 CST" datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
       
     </header>
     <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>
@@ -263,11 +276,11 @@
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy">How to rewrite and redirect with HAProxy</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy" itemprop="url">How to rewrite and redirect with HAProxy</a></h1>
       
-        <time datetime="2014-12-05 12:52:00 -0600 CST">5 December 2014</time>
+        <time pubdate content="2014-12-05 12:52:00 -0600 CST" datetime="2014-12-05 12:52:00 -0600 CST">5 December 2014</time>
       
     </header>
     <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
@@ -332,11 +345,11 @@ backend haproxy_service
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5">Juju - Explain it to me like I’m 5</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5" itemprop="url">Juju - Explain it to me like I’m 5</a></h1>
       
-        <time datetime="2014-09-08 23:10:00 -0600 CST">8 September 2014</time>
+        <time pubdate content="2014-09-08 23:10:00 -0600 CST" datetime="2014-09-08 23:10:00 -0600 CST">8 September 2014</time>
       
     </header>
     <p><a href="https://jujucharms.com">Juju</a> is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.</p>
@@ -415,11 +428,11 @@ juju add-relation mediawiki haproxy
 
   
     <section class="article-list">
-  <article>
+  <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
-      <h1><a href="https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0">New Release - Juju GUI 1.1.0</a></h1>
+      <h1><a href="https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0" itemprop="url">New Release - Juju GUI 1.1.0</a></h1>
       
-        <time datetime="2014-06-17 13:23:00 -0600 CST">17 June 2014</time>
+        <time pubdate content="2014-06-17 13:23:00 -0600 CST" datetime="2014-06-17 13:23:00 -0600 CST">17 June 2014</time>
       
     </header>
     <p>Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.</p>
