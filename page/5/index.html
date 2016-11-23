@@ -15,11 +15,11 @@
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fromanegg" />
-    <meta name="twitter:image" content="/images/me.png" />
+    <meta name="twitter:image" content="https://fromanegg.com//images/me.png" />
 
     <meta property="og:url" content="https://fromanegg.com/" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="/images/me.png" />
+    <meta property="og:image" content="https://fromanegg.com//images/me.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
@@ -61,11 +61,13 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (8)</a></li>
+            <li><a href="/tags/development">development (9)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
             <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+          
+            <li><a href="/tags/html">html (1)</a></li>
           
             <li><a href="/tags/javascript">javascript (16)</a></li>
           
@@ -106,6 +108,34 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates" itemprop="url">Juju GUI 0.13.0 release and updates</a></h1>
+      
+        <time pubdate content="2013-11-15 11:52:00 -0600 CST" datetime="2013-11-15 11:52:00 -0600 CST">15 November 2013</time>
+      
+    </header>
+    <p>Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.</p>
+
+<p><img src="/images/juju-gui-0-13-0-release-and-updates.jpg" alt="" /></p>
+
+<p>Bundles!</p>
+
+<p>This is probably the biggest release of the Juju GUI since it was officially unveiled. The GUI now supports importing, exporting, browsing and deploying bundles. A Bundle is a collection of charms, settings and their relations allowing you to deploy entire environments with one click. There is an excellent overview of this feature on the <a href="https://blog.jujugui.org/2013/11/07/juju-gui-0-12-0-bundles-beta/">Juju GUI Blog</a>.</p>
+
+<p>Jorge Castro also wrote a great blog post on <a href="http://www.jorgecastro.org/2013/11/14/from-0-to-hero-in-a-few-minutes/">bundles and juju quickstart</a> where he deploys a bundle with 17 charms, their settings and relations all with a single command.</p>
+
+<p>Juju Quickstart plugin (Alpha)</p>
+
+<p>The alpha release of the <a href="https://blog.jujugui.org/2013/11/07/juju-quickstart-plugin-alpha-but-useful/">Juju Quickstart plugin</a> was also released in the past month. The Juju Quickstart plugin is an opinionated plugin for Juju which makes for quick and easy deployment of the Juju bootstrap node and the Juju GUI. Follow the link for detailed information on it’s functionality.</p>
+
+<p>As always, if you would like more information about <a href="https://jujucharms.com">Juju</a> or full details about each release they can be found in our changelog.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -222,28 +252,6 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 <p>Now I compare the parsed value to the original value allowing JavaScript to do it’s type coercion and if they are equal then I overwrite the original value with the parsed value, else I continue on to the next element. This works because parseInt(“2”, 10) === 2 and 2 == “2” but parseInt(“2Foo”, 10) === 2 and 2 != “2Foo”. You can see a <a href="http://output.jsbin.com/UFIMIPO/1/">working example here</a>.</p>
 
 <p>Although this has a fairly limited use case I hope you found the technique interesting albeit a little bit of a hack. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support" itemprop="url">Juju GUI 0.9.0 Released - Now with IE10 support!</a></h1>
-      
-        <time pubdate content="2013-09-11 18:21:00 -0600 CST" datetime="2013-09-11 18:21:00 -0600 CST">11 September 2013</time>
-      
-    </header>
-    <p>We have just released the latest <a href="https://launchpad.net/juju-gui">Juju GUI charm</a>, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.</p>
-
-<p><img src="/images/juju-gui-0-9-0-released-now-with-ie10-support-1.jpg" alt="" /></p>
-
-<p>With Chrome, Firefox, and IE10 now available for the GUI and Ubuntu and OSX available for the command line tools, your ability to create and manage your environments with <a href="https://jujucharms.com">Juju</a> is getting easier and easier.</p>
-
-<p>Along with IE10 support we put a ton of work into the new service inspector panel which is available under the ‘serviceInspector’ feature flag and finished the sandbox implementation of the juju-core sandbox which means PyJuju will be retired in the future. And added autocomplete to the charm search box in the charm browser. You can find the full <a href="https://github.com/juju/juju-gui">changelog here</a>.</p>
-
-<p>If you’re looking for information on what Juju is you can visit the newly redesigned jujucharms.com webpage for more information or you can join us in #juju on irc.freenode.net. As usual, if you have any questions or want to reach out, comment below or find me on G+ or Twitter.</p>
 
   </article>
 </section>

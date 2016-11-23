@@ -15,11 +15,11 @@
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fromanegg" />
-    <meta name="twitter:image" content="/images/me.png" />
+    <meta name="twitter:image" content="https://fromanegg.com//images/me.png" />
 
     <meta property="og:url" content="https://fromanegg.com/" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="/images/me.png" />
+    <meta property="og:image" content="https://fromanegg.com//images/me.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
@@ -61,11 +61,13 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (8)</a></li>
+            <li><a href="/tags/development">development (9)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
             <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+          
+            <li><a href="/tags/html">html (1)</a></li>
           
             <li><a href="/tags/javascript">javascript (16)</a></li>
           
@@ -106,6 +108,83 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2015/06/13/using-juju-for-development" itemprop="url">Using Juju for development</a></h1>
+      
+        <time pubdate content="2015-06-13 16:11:00 -0600 CST" datetime="2015-06-13 16:11:00 -0600 CST">13 June 2015</time>
+      
+    </header>
+    
+
+<p>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu <a href="http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment">“Is Juju a suitable tool for development as well as deployment?”</a> made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.</p>
+
+<p>For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things. If you aren’t, I recommend reading an earlier post of mine <a href="http://fromanegg.com/post/97035773367/juju-explain-it-to-me-like-im-5">“Juju - Explain it to me like I’m 5”</a>.</p>
+
+<p>One of the biggest problems when developing any kind of software is getting the dependencies up and running in a way which matches the production environment close enough to be sure that you aren’t going to run into “this environment only” bugs. Sure you can install mysql onto your local machine and run the database dump on that install, but you also have to make sure that you apply all of the same configuration, indexes, build flags, etc. as the production environment.</p>
+
+<p>Even once you get it up and running you then need the ability to update it after modifications were made by someone else on the project all with high production parity, and without extraneous downtime.</p>
+
+<p>To illustrate the benefits of using Juju for development I’m going to use a fictitious photo and video sharing website. A website like this would require multiple services, load balancer, web server, database, blob store, user authentication, photo processor, video processor.</p>
+
+<p>Keeping in mind that a Juju Charm can be written using any programming language or DSL that can be executed on the host machine. This means it can use Puppet, Chef, Python, JavaScript, Docker, and pretty much anything else you would like to use. Juju provides distinct advantages for project development depending on the lifecycle of the project. For our photo video site let’s first assume that we’re just starting the project and then later on we’ll assume that the project is mature, released, and still under active development.</p>
+
+<h4 id="just-starting-out">Just starting out</h4>
+
+<p>Typically when a project starts you’re only going to need a couple services, the database and your webserver. Let’s start our environment and install the database and webserver on our local machine.</p>
+<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>juju bootstrap <span class="nb">local</span>
+juju deploy apache2
+juju deploy mongodb
+</code></pre></div>
+
+<p>Great, It’s 5 minutes in and we now have apache2 and mongodb running on our machine in separate LXC’s, we can now start developing our website and pointing it to these services.</p>
+
+<p>Parallel to this, your teammate is working on the user authentication service, it’s going well and they want someone to help them test it in the application environment. So lets get that service that they have been working on.</p>
+<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
+git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
+juju deploy --repository<span class="o">=</span>. local:trusty/authenticator
+</code></pre></div>
+
+<p><em>For more information on deploying local charms see <a href="http://askubuntu.com/questions/568137/how-to-deploy-juju-charm-in-development-branch/568174#568174">This Post</a> on Ask Ubuntu.</em></p>
+
+<p>A few minutes later and you have an identical copy to their user authenticator service, you can point your website to it and give it a try. A little later the authenticator service has been updated and you’d like to run it again.</p>
+<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span><span class="nb">cd</span> ~/charms/trusty/authenticator
+git pull
+juju upgrade-charm --repository<span class="o">=</span>.
+</code></pre></div>
+
+<p>This process repeats itself throughout each service and across each member of your team. Allowing each one to update their dependencies within minutes to identical representations of how it’ll be run in production.</p>
+
+<h4 id="released-project">Released project</h4>
+
+<p>Now that your project has been released, deployed using Juju, running in production, you’ve had a chance to take advantage of Juju’s deployment and scaling features but how does Juju help you develop now?</p>
+
+<p>In some ways it’s even easier to deploy. In this case, I’m going to assume that your services are private and not stored in the <a href="https://jujucharms.com">Juju Charm Store</a>. If they were in there you wouldn’t have to first clone the repositories.</p>
+<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
+git clone --depth <span class="m">1</span> git@github.com:photovideo/mongodb
+git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
+…
+
+juju-quickstart -e <span class="nb">local</span> photovideo.yaml
+</code></pre></div>
+
+<p>Taking advantage of Juju Quickstart and the Juju bundles functionality you can deploy your entire environment with identical services, configuration, and machine placements. This will open up the GUI which will allow you to modify the machine placement of any of those services and change configuration values before deploying to your machine. Once you hit commit, sit back and wait for it to deploy an identical environment to your production environment on your local machine.</p>
+
+<p>Now you can work on the specific service you’re interested in within an identical environment to everyone on your team. And when a service gets updated by another member on your team it’s trivial to update.</p>
+<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span><span class="nb">cd</span> ~/charms/trusty/authenticator
+git pull
+juju upgrade-charm --repository<span class="o">=</span>.
+</code></pre></div>
+
+<p>I hope this gets you excited to use Juju for development as well as deployment. My team uses Juju for development this way and has for over a year. It allows us to be more productive because we don’t have to waste time installing and updating services the hard way.</p>
+
+<p>I’ll be creating a follow-up to this post with real code examples and workflows for doing the actual development of these services, stay tuned! Thanks for reading, if you have any questions or comments file them below or you can hit me up on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -422,32 +501,6 @@ juju add-relation mediawiki haproxy
 <p>How about a <a href="https://jujucharms.com/mongodb-cluster/">MongoDB cluster</a>, <a href="https://jujucharms.com/q/hadoop-cluster?type=bundle">Hadoop cluster</a>, <a href="https://jujucharms.com/django/">Django app</a>, a <a href="https://jujucharms.com/bundle/transcode/7/cloud/">video transcoding cluster</a>, and more including your own applications. All easily deployable and scalable across public clouds like EC2, HP Cloud, Joyent, Your private OpenStack cloud, and even your very own local machine. That’s right, the above commands all work to deploy identical set ups to all of these targets and more.</p>
 
 <p>This just scratched the surface of the power of <a href="https://jujucharms.com">Juju</a> but I hope that this glimpse has made you interested enough to go do some exploring of your own. You can find the documentation to get started with <a href="https://jujucharms.com">Juju here</a>. And as always if you have any questions or comments you can comment below, find me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> on G+ <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> or hop into #juju on irc.freenode.net and ask away.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0" itemprop="url">New Release - Juju GUI 1.1.0</a></h1>
-      
-        <time pubdate content="2014-06-17 13:23:00 -0600 CST" datetime="2014-06-17 13:23:00 -0600 CST">17 June 2014</time>
-      
-    </header>
-    <p>Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.</p>
-
-<p><img src="/images/new-release-juju-gui-1-1-0-1.png" alt="" /></p>
-
-<ul>
-<li>We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.</li>
-<li>A new <a href="http://fromanegg.com/post/85890866087/unidirectional-data-flow-architecture">uni-directional data flow</a> system was implemented which dramatically simplified the GUI’s data flow and execution.</li>
-<li>Charm searching has been improved in the charm browser and will continue to be improved over time.</li>
-<li>Work for the new machine view continues under the ‘mv’ flag. To check out this work load up the GUI with ’<hostname>:flags:/mv’.</li>
-<li>Plus many many fixes. See the <a href="https://github.com/juju/juju-gui">repository</a> for more information.</li>
-</ul>
-
-<p>If you have any questions about Juju or the Juju GUI, you can read the <a href="https://jujucharms.com">official documentation</a> for Juju and join us on freenode.net in #juju and #juju-gui</p>
 
   </article>
 </section>

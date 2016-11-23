@@ -15,11 +15,11 @@
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fromanegg" />
-    <meta name="twitter:image" content="/images/me.png" />
+    <meta name="twitter:image" content="https://fromanegg.com//images/me.png" />
 
     <meta property="og:url" content="https://fromanegg.com/" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="/images/me.png" />
+    <meta property="og:image" content="https://fromanegg.com//images/me.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
@@ -61,11 +61,13 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (8)</a></li>
+            <li><a href="/tags/development">development (9)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
             <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+          
+            <li><a href="/tags/html">html (1)</a></li>
           
             <li><a href="/tags/javascript">javascript (16)</a></li>
           
@@ -106,6 +108,30 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0" itemprop="url">New release - Juju GUI 0.15.0</a></h1>
+      
+        <time pubdate content="2014-01-26 12:49:00 -0600 CST" datetime="2014-01-26 12:49:00 -0600 CST">26 January 2014</time>
+      
+    </header>
+    <p>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to <a href="https://github.com/juju/juju-gui">Git</a> and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.</p>
+
+<p><img src="/images/new-release-juju-gui-0-1-0-1.png" alt="" /></p>
+
+<ul>
+<li>We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</li>
+<li>90% speed improvement in the inspector for environments with thousands of units.</li>
+<li>Inspector relations tab now shows the relation statuses and any units that are in error</li>
+<li>The biggest change that we made in this release was entirely removing the full screen browser. This allowed us to remove over 4000 lines of code from our code base speeding up the application start up time and lowering the size of the application sent over the wire.
+If you have any questions about Juju or the Juju GUI, you can read the official documentation for <a href="https://jujucharms.com">Juju</a> and join us on freenode.net in #juju and #juju-gui .</li>
+</ul>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -248,34 +274,6 @@ juju-quickstart
     <p>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.</p>
 
 <iframe src="https://docs.google.com/presentation/d/1aU7AxXi5SvUBjAhsHNlkDi5HBGEmpK8aNOdN9YG8A34/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates" itemprop="url">Juju GUI 0.13.0 release and updates</a></h1>
-      
-        <time pubdate content="2013-11-15 11:52:00 -0600 CST" datetime="2013-11-15 11:52:00 -0600 CST">15 November 2013</time>
-      
-    </header>
-    <p>Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.</p>
-
-<p><img src="/images/juju-gui-0-13-0-release-and-updates.jpg" alt="" /></p>
-
-<p>Bundles!</p>
-
-<p>This is probably the biggest release of the Juju GUI since it was officially unveiled. The GUI now supports importing, exporting, browsing and deploying bundles. A Bundle is a collection of charms, settings and their relations allowing you to deploy entire environments with one click. There is an excellent overview of this feature on the <a href="https://blog.jujugui.org/2013/11/07/juju-gui-0-12-0-bundles-beta/">Juju GUI Blog</a>.</p>
-
-<p>Jorge Castro also wrote a great blog post on <a href="http://www.jorgecastro.org/2013/11/14/from-0-to-hero-in-a-few-minutes/">bundles and juju quickstart</a> where he deploys a bundle with 17 charms, their settings and relations all with a single command.</p>
-
-<p>Juju Quickstart plugin (Alpha)</p>
-
-<p>The alpha release of the <a href="https://blog.jujugui.org/2013/11/07/juju-quickstart-plugin-alpha-but-useful/">Juju Quickstart plugin</a> was also released in the past month. The Juju Quickstart plugin is an opinionated plugin for Juju which makes for quick and easy deployment of the Juju bootstrap node and the Juju GUI. Follow the link for detailed information on it’s functionality.</p>
-
-<p>As always, if you would like more information about <a href="https://jujucharms.com">Juju</a> or full details about each release they can be found in our changelog.</p>
 
   </article>
 </section>

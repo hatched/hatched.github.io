@@ -15,11 +15,11 @@
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fromanegg" />
-    <meta name="twitter:image" content="/images/me.png" />
+    <meta name="twitter:image" content="https://fromanegg.com//images/me.png" />
 
     <meta property="og:url" content="https://fromanegg.com/" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="/images/me.png" />
+    <meta property="og:image" content="https://fromanegg.com//images/me.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
@@ -61,11 +61,13 @@
           
             <li><a href="/tags/css">css (6)</a></li>
           
-            <li><a href="/tags/development">development (8)</a></li>
+            <li><a href="/tags/development">development (9)</a></li>
           
             <li><a href="/tags/go">go (1)</a></li>
           
             <li><a href="/tags/hatched-links">hatched-links (5)</a></li>
+          
+            <li><a href="/tags/html">html (1)</a></li>
           
             <li><a href="/tags/javascript">javascript (16)</a></li>
           
@@ -106,6 +108,32 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0" itemprop="url">New Release - Juju GUI 1.1.0</a></h1>
+      
+        <time pubdate content="2014-06-17 13:23:00 -0600 CST" datetime="2014-06-17 13:23:00 -0600 CST">17 June 2014</time>
+      
+    </header>
+    <p>Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.</p>
+
+<p><img src="/images/new-release-juju-gui-1-1-0-1.png" alt="" /></p>
+
+<ul>
+<li>We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.</li>
+<li>A new <a href="http://fromanegg.com/post/85890866087/unidirectional-data-flow-architecture">uni-directional data flow</a> system was implemented which dramatically simplified the GUI’s data flow and execution.</li>
+<li>Charm searching has been improved in the charm browser and will continue to be improved over time.</li>
+<li>Work for the new machine view continues under the ‘mv’ flag. To check out this work load up the GUI with ’<hostname>:flags:/mv’.</li>
+<li>Plus many many fixes. See the <a href="https://github.com/juju/juju-gui">repository</a> for more information.</li>
+</ul>
+
+<p>If you have any questions about Juju or the Juju GUI, you can read the <a href="https://jujucharms.com">official documentation</a> for Juju and join us on freenode.net in #juju and #juju-gui</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -374,30 +402,6 @@ Because your tests should test exactly what you expect your public API to return
 <p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
 
 <p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0" itemprop="url">New release - Juju GUI 0.15.0</a></h1>
-      
-        <time pubdate content="2014-01-26 12:49:00 -0600 CST" datetime="2014-01-26 12:49:00 -0600 CST">26 January 2014</time>
-      
-    </header>
-    <p>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to <a href="https://github.com/juju/juju-gui">Git</a> and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.</p>
-
-<p><img src="/images/new-release-juju-gui-0-1-0-1.png" alt="" /></p>
-
-<ul>
-<li>We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</li>
-<li>90% speed improvement in the inspector for environments with thousands of units.</li>
-<li>Inspector relations tab now shows the relation statuses and any units that are in error</li>
-<li>The biggest change that we made in this release was entirely removing the full screen browser. This allowed us to remove over 4000 lines of code from our code base speeding up the application start up time and lowering the size of the application sent over the wire.
-If you have any questions about Juju or the Juju GUI, you can read the official documentation for <a href="https://jujucharms.com">Juju</a> and join us on freenode.net in #juju and #juju-gui .</li>
-</ul>
 
   </article>
 </section>

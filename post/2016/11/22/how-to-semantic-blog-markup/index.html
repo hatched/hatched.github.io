@@ -4,27 +4,37 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-      <title>From An Egg</title>
-      <meta name="twitter:title" content="From An Egg" />
-      <meta property="og:title" content="From An Egg" />
+      <title>How To: Semantic blog markup &middot; From An Egg</title>
+      <meta name="twitter:title" content="How To: Semantic blog markup" />
+      <meta property="og:title" content="How To: Semantic blog markup" />
     
     <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
     
-      <meta name="description" itemprop="description" content="Jeff Pihach on all things programming.">
+      
+        <meta name="description" itemprop="description" content="After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.">
+        <meta name="twitter:description" content="After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page." />
+        <meta property="og:description" content="After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page." />
+        
+          <meta property="article:published_time" content="2016-11-22 21:23:26 -0600 CST">
+        
+      
     
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@fromanegg" />
     <meta name="twitter:image" content="https://fromanegg.com//images/me.png" />
 
-    <meta property="og:url" content="https://fromanegg.com/" />
+    <meta property="og:url" content="https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup" />
     <meta property="og:type" content="article" />
     <meta property="og:image" content="https://fromanegg.com//images/me.png" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
     <meta name="generator" content="Hugo 0.17" />
-    <link rel="canonical" href="https://fromanegg.com/"/>
+    <link rel="canonical" href="https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/manni.css">
@@ -40,7 +50,7 @@
   <input type="checkbox" id="menu-toggle"/>
   <div class="nav-wrapper">
     <ul>
-      <li class=" active "><a href="/" class="icon-home">Home</a></li>
+      <li class=""><a href="/" class="icon-home">Home</a></li>
       <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
       <li class=""><a href="/posts" class="icon-box">Posts</a></li>
       <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
@@ -109,8 +119,7 @@
   </div>
 </nav>
 
-  
-    <section class="article-list">
+  <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       <h1><a href="https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup" itemprop="url">How To: Semantic blog markup</a></h1>
@@ -180,224 +189,41 @@
   </article>
 </section>
 
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls" itemprop="url">Secure GitHub pages with SSL/TLS</a></h1>
-      
-        <time pubdate content="2016-11-13 18:19:00 -0600 CST" datetime="2016-11-13 18:19:00 -0600 CST">13 November 2016</time>
-      
-    </header>
-    <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
-
-<p>First you&rsquo;ll need a couple things:</p>
-
-<ul>
-<li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
-<li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
-</ul>
-
-<p>Then follow these steps:</p>
-
-<ol>
-<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
-<li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
-<li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
-<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
-<li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
-<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
-</ol>
-
-<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
-
-<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
-
-<p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2" itemprop="url">Welcome to From An Egg v2</a></h1>
-      
-        <time pubdate content="2016-11-12 16:49:53 -0600 CST" datetime="2016-11-12 16:49:53 -0600 CST">12 November 2016</time>
-      
-    </header>
-    <p>Welcome to v2 of the From An Egg blog!</p>
-
-<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression" itemprop="url">The importance of minification and compression</a></h1>
-      
-        <time pubdate content="2016-01-02 13:15:00 -0600 CST" datetime="2016-01-02 13:15:00 -0600 CST">2 January 2016</time>
-      
-    </header>
-    <p>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.</p>
-
-<p>The site starts out by loading in the following raw code:</p>
-
-<table>
-<thead>
-<tr>
-<th>Riot.js</th>
-<th>64KB</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Page.js</td>
-<td>14KB</td>
-</tr>
-
-<tr>
-<td>client code</td>
-<td>14KB</td>
-</tr>
-
-<tr>
-<td>Total</td>
-<td>92KB</td>
-</tr>
-</tbody>
-</table>
-
-<p>After Browserify was done rolling all of the code up into a single file it was ~92KB which was getting a little large for a website which basically did nothing. First step was to add minification to the Makefile using <a href="https://github.com/mishoo/UglifyJS2">UglifyJs2</a>.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="nf">$(CLIENT_MIN_ROLLUP)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">CLIENT_ROLLUP</span><span class="k">)</span>
-	<span class="k">$(</span>UGLIFYJS<span class="k">)</span> --screw-ie8 $^ -o <span class="nv">$@</span>
-</code></pre></div>
-
-<p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">());</span>
-</code></pre></div>
-
-<p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make" itemprop="url">Automatically build files when they change with Make</a></h1>
-      
-        <time pubdate content="2015-08-26 12:07:00 -0600 CST" datetime="2015-08-26 12:07:00 -0600 CST">26 August 2015</time>
-      
-    </header>
-    <p>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</p>
-
-<p>Introducing <a href="http://linux.die.net/man/1/inotifywait">inotifywait</a>, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And <a href="http://emcrisostomo.github.io/fswatch/">fswatch</a> for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.</p>
-
-<p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
-
-<pre><code>watch -n 2 make build
-</code></pre>
-
-<p>Or they will build the loop into the makefile.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
-<span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    make build --silent<span class="p">;</span> <span class="se">\</span>
-    sleep 1<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
-<span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\</span>
-    make build<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
-
-<p>Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-  
+  <section class="article-list tags-list">
+  <article>
     
-    <ul class="pagination">
-        
-        <li>
-            <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-        </li>
-        
-        <li
-        class="disabled">
-        <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-        </li>
-        
-        <li
-        class="active"><a href="/">1</a></li>
-        
-        <li
-        ><a href="/page/2/">2</a></li>
-        
-        <li
-        ><a href="/page/3/">3</a></li>
-        
-        <li
-        ><a href="/page/4/">4</a></li>
-        
-        <li
-        ><a href="/page/5/">5</a></li>
-        
-        <li
-        ><a href="/page/6/">6</a></li>
-        
-        <li
-        ><a href="/page/7/">7</a></li>
-        
-        <li
-        ><a href="/page/8/">8</a></li>
-        
-        <li
-        ><a href="/page/9/">9</a></li>
-        
-        <li
-        ><a href="/page/10/">10</a></li>
-        
-        <li
-        ><a href="/page/11/">11</a></li>
-        
-        <li
-        ><a href="/page/12/">12</a></li>
-        
-        <li
-        ><a href="/page/13/">13</a></li>
-        
-        <li
-        ><a href="/page/14/">14</a></li>
-        
-        <li
-        >
-        <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-        </li>
-        
-        <li>
-            <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-        </li>
-        
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/development">development</a></li>
+      
+        <li><a href="/tags/html">html</a></li>
+      
     </ul>
     
+  </article>
+</section>
+
+  
+    <div id="disqus_thread"></div>
+<script>
+    
+
+    var disqus_config = function () {
+        
+          this.page.url = "https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup"
+        
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.async = true;
+        s.src = '//fromanegg.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+  
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
