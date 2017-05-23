@@ -170,17 +170,17 @@ nav ul li .tag-list {
   background-color: white;
 }
 
-nav ul li .tag-list a:hover {
-  text-decoration: none;
+nav ul li .tag-list li {
+  margin: 0.2em 0;
+}
+
+nav ul li .tag-list li:first-of-type {
+  margin-top: 0;
+  padding-top: 1em;
 }
 
 nav ul li.active .tag-list a {
   color: black;
-}
-
-nav ul li.active .tag-list li:first-of-type {
-  margin-top: 0;
-  padding-top: 1em;
 }
 
 nav li input[type=checkbox]:checked + ul {
