@@ -2,866 +2,677 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
-    <link>https://fromanegg.com/rss/</link>
+    <link>https://fromanegg.com/</link>
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Nov 2016 21:23:26 -0600</lastBuildDate>
-    <atom:link href="https://fromanegg.com/rss/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://fromanegg.com/rss." rel="self" type="application/rss" />
+    
     
     <item>
       <title>How To: Semantic blog markup</title>
-      <link>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup</link>
+      <link>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</link>
       <pubDate>Tue, 22 Nov 2016 21:23:26 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup</guid>
-      <description>&lt;p&gt;After writing some great content you&amp;rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.&lt;/p&gt;
-
-&lt;p&gt;You&amp;rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The &lt;code&gt;description&lt;/code&gt; tag is the summary description of the content on the page. The &lt;code&gt;canonical&lt;/code&gt; tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemprop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;description&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Description of post&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;canonical&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;http://example.com/path/to/post&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the &lt;code&gt;section&lt;/code&gt; and &lt;code&gt;article&lt;/code&gt; tags. The &lt;code&gt;section&lt;/code&gt; tag represents a generic section of the document, like a list of articles. The &lt;code&gt;article&lt;/code&gt; tag represents the actual post content including the title, publication date, content, etc.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;article&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;permalink&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Post Title&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;1970-01-01T00:00:00+00:00&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;January 1 1970&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Your name&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;header&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-    Post content.
-  &lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;article&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;section&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This doesn&amp;rsquo;t however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on &lt;a href=&#34;https://www.w3.org/TR/microdata/&#34;&gt;microdata&lt;/a&gt; and &lt;a href=&#34;http://schema.org/&#34;&gt;schema.org&lt;/a&gt; to fill in the blanks and describe the content in the markup.&lt;/p&gt;
-
-&lt;p&gt;Because this is a blog post we&amp;rsquo;ll start by labeling the actual blog post. By adding &lt;code&gt;itemscope&lt;/code&gt; to the article tag you&amp;rsquo;re specifying that the content within the &lt;code&gt;article&lt;/code&gt; tag is about a specific item, and the &lt;code&gt;itemtype&lt;/code&gt; is the type of item you&amp;rsquo;re wrapping. in this case, a &lt;a href=&#34;http://schema.org/BlogPosting&#34;&gt;BlogPosting&lt;/a&gt; which has a list of sub tags that we can now define.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;article&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemscope&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemtype&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;http://schema.org/BlogPosting&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;article&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;The title is defined using the &lt;a href=&#34;http://schema.org/name&#34;&gt;name&lt;/a&gt; tag and the permalink is defined using the &lt;a href=&#34;http://schema.org/url&#34;&gt;url&lt;/a&gt; tag.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemprop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;permalink&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemprop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Post Title&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;h1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;To indicate the date that the content was first published we use the &lt;a href=&#34;http://schema.org/datePublished&#34;&gt;datePublished&lt;/a&gt; tag supplying the datetime value.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;pubdate&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemprop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;datePublished&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;1970-01-01T00:00:00+00:00&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;datetime&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;1970-01-01T00:00:00+00:00&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;January 1 1970&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;the &lt;code&gt;author&lt;/code&gt; has a number of various implementations including one in HTML5, the &lt;code&gt;rel&lt;/code&gt; tag. In microdata it&amp;rsquo;s the &lt;a href=&#34;http://schema.org/author&#34;&gt;author&lt;/a&gt; tag.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;itemprop&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;author&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;Your name&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;span&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you&amp;rsquo;ll want to set up &lt;a href=&#34;https://dev.twitter.com/cards/types/summary&#34;&gt;Twitter cards&lt;/a&gt; and &lt;a href=&#34;https://developers.facebook.com/docs/sharing/webmasters&#34;&gt;Facebook Open Graph data&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The Twitter card metadata fields are as follows (taken from their documentation):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;twitter:card&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;summary&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;twitter:site&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;@flickr&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;twitter:title&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;Small Island Developing States Photo Submission&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;twitter:description&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;View the album on Flickr.&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;twitter:image&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;And the Facebook Open Graph data meta fields are (taken from their documentation):&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-HTML&#34; data-lang=&#34;HTML&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;og:url&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;http://www.example.com/post/1234&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;og:type&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;article&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;og:title&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;When Great Minds Don’t Think Alike&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;og:description&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;How much does culture influence creative thinking?&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;og:image&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;http://example.com/image.jpg&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;meta&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;property&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;article:published_time&amp;quot;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;1970-01-01T00:00:00+00:00&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Thanks for reading, do you have any other tips for proper blog markup? Let me know below!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</guid>
+      <description>After writing some great content you&amp;rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&amp;rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
     </item>
     
     <item>
       <title>Secure GitHub pages with SSL/TLS</title>
-      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</link>
+      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</link>
       <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls</guid>
-      <description>&lt;p&gt;At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.&lt;/p&gt;
-
-&lt;p&gt;First you&amp;rsquo;ll need a couple things:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;A website hosted on &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Pages&lt;/a&gt; with a custom domain.&lt;/li&gt;
-&lt;li&gt;An account with &lt;a href=&#34;https://www.cloudflare.com/&#34;&gt;Cloudflare&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then follow these steps:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;After signing up with Cloudflare you&amp;rsquo;ll be prompted to add your domain, at which point it&amp;rsquo;ll scan your DNS records automatically. You&amp;rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.&lt;/li&gt;
-&lt;li&gt;Switch to the Crypto tab and change the &lt;code&gt;SSL type&lt;/code&gt; to &lt;code&gt;Flexible&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.&lt;/li&gt;
-&lt;li&gt;Redirect all of your http traffic to https traffic using Cloudflare by adding a &lt;code&gt;Page Rule&lt;/code&gt;. You&amp;rsquo;ll want to add a rule which looks like &lt;code&gt;http://*example.com/*&lt;/code&gt; and then add a setting for &lt;code&gt;Always Use HTTPS&lt;/code&gt;. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. &lt;a href=&#34;https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-&#34;&gt;Cloudflare knowledge base&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add &lt;code&gt;&amp;lt;link rel=&amp;quot;canonical&amp;quot; href=&amp;quot;http://example.com/path/to/post&amp;quot;/&amp;gt;&lt;/code&gt; to the head of each page.&lt;/li&gt;
-&lt;li&gt;Update the paths for your assets so that they are requested from the https path or browsers won&amp;rsquo;t load them.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Once the DNS records propagate you&amp;rsquo;ll be able to visit your website by visiting &lt;code&gt;https://example.com&lt;/code&gt;. You might notice that you&amp;rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.&lt;/p&gt;
-
-&lt;p&gt;The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &amp;ldquo;&lt;a href=&#34;https://help.github.com/articles/what-is-github-pages/&#34;&gt;GitHub Pages sites shouldn&amp;rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.&lt;/a&gt;&amp;rdquo; anyways.&lt;/p&gt;
-
-&lt;p&gt;I hope you enjoyed this post, if you have any questions or comments let me know on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; or comment below. Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
+      <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
+First you&amp;rsquo;ll need a couple things:
+ A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
     </item>
     
     <item>
       <title>Welcome to From An Egg v2</title>
-      <link>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2</link>
+      <link>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2/</link>
       <pubDate>Sat, 12 Nov 2016 16:49:53 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2</guid>
-      <description>&lt;p&gt;Welcome to v2 of the From An Egg blog!&lt;/p&gt;
-
-&lt;p&gt;Built with &lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt;, a static site generator built with &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt;, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&amp;rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2/</guid>
+      <description>Welcome to v2 of the From An Egg blog!
+Built with Hugo, a static site generator built with Go, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&amp;rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</description>
     </item>
     
     <item>
       <title>The importance of minification and compression</title>
-      <link>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</link>
+      <link>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression/</link>
       <pubDate>Sat, 02 Jan 2016 13:15:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression</guid>
-      <description>&lt;p&gt;Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.&lt;/p&gt;
-
-&lt;p&gt;The site starts out by loading in the following raw code:&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Riot.js&lt;/th&gt;
-&lt;th&gt;64KB&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Page.js&lt;/td&gt;
-&lt;td&gt;14KB&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;client code&lt;/td&gt;
-&lt;td&gt;14KB&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Total&lt;/td&gt;
-&lt;td&gt;92KB&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;After Browserify was done rolling all of the code up into a single file it was ~92KB which was getting a little large for a website which basically did nothing. First step was to add minification to the Makefile using &lt;a href=&#34;https://github.com/mishoo/UglifyJS2&#34;&gt;UglifyJs2&lt;/a&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;$(CLIENT_MIN_ROLLUP)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;CLIENT_ROLLUP&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
-	&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;UGLIFYJS&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt; --screw-ie8 $^ -o &lt;span class=&#34;nv&#34;&gt;$@&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using &lt;a href=&#34;https://github.com/expressjs/express&#34;&gt;expressjs 4.0&lt;/a&gt; as the webserver so to add gzip it’s as easy as:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;compression&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;compression&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;use&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;compression&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;. Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression/</guid>
+      <description>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.
+The site starts out by loading in the following raw code:</description>
     </item>
     
     <item>
       <title>Automatically build files when they change with Make</title>
-      <link>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</link>
+      <link>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/</link>
       <pubDate>Wed, 26 Aug 2015 12:07:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make</guid>
-      <description>&lt;p&gt;When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?&lt;/p&gt;
-
-&lt;p&gt;Introducing &lt;a href=&#34;http://linux.die.net/man/1/inotifywait&#34;&gt;inotifywait&lt;/a&gt;, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And &lt;a href=&#34;http://emcrisostomo.github.io/fswatch/&#34;&gt;fswatch&lt;/a&gt; for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.&lt;/p&gt;
-
-&lt;p&gt;If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;watch -n 2 make build
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or they will build the loop into the makefile.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.PHONY&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;watch&lt;/span&gt;
-&lt;span class=&#34;nf&#34;&gt;watch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; true&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-    make build --silent&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-    sleep 1&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-make&#34; data-lang=&#34;make&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;.PHONY&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;watch&lt;/span&gt;
-&lt;span class=&#34;nf&#34;&gt;watch&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; true&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-    inotifywait -qr -e modify -e create -e delete -e move app/src&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-    make build&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;done&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.&lt;/p&gt;
-
-&lt;p&gt;Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;. Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/</guid>
+      <description>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</description>
     </item>
     
     <item>
       <title>Using Juju for development</title>
-      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development</link>
+      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</link>
       <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development</guid>
-      <description>
-
-&lt;p&gt;Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu &lt;a href=&#34;http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment&#34;&gt;“Is Juju a suitable tool for development as well as deployment?”&lt;/a&gt; made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.&lt;/p&gt;
-
-&lt;p&gt;For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things. If you aren’t, I recommend reading an earlier post of mine &lt;a href=&#34;http://fromanegg.com/post/97035773367/juju-explain-it-to-me-like-im-5&#34;&gt;“Juju - Explain it to me like I’m 5”&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;One of the biggest problems when developing any kind of software is getting the dependencies up and running in a way which matches the production environment close enough to be sure that you aren’t going to run into “this environment only” bugs. Sure you can install mysql onto your local machine and run the database dump on that install, but you also have to make sure that you apply all of the same configuration, indexes, build flags, etc. as the production environment.&lt;/p&gt;
-
-&lt;p&gt;Even once you get it up and running you then need the ability to update it after modifications were made by someone else on the project all with high production parity, and without extraneous downtime.&lt;/p&gt;
-
-&lt;p&gt;To illustrate the benefits of using Juju for development I’m going to use a fictitious photo and video sharing website. A website like this would require multiple services, load balancer, web server, database, blob store, user authentication, photo processor, video processor.&lt;/p&gt;
-
-&lt;p&gt;Keeping in mind that a Juju Charm can be written using any programming language or DSL that can be executed on the host machine. This means it can use Puppet, Chef, Python, JavaScript, Docker, and pretty much anything else you would like to use. Juju provides distinct advantages for project development depending on the lifecycle of the project. For our photo video site let’s first assume that we’re just starting the project and then later on we’ll assume that the project is mature, released, and still under active development.&lt;/p&gt;
-
-&lt;h4 id=&#34;just-starting-out&#34;&gt;Just starting out&lt;/h4&gt;
-
-&lt;p&gt;Typically when a project starts you’re only going to need a couple services, the database and your webserver. Let’s start our environment and install the database and webserver on our local machine.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span&gt;&lt;/span&gt;juju bootstrap &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt;
-juju deploy apache2
-juju deploy mongodb
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Great, It’s 5 minutes in and we now have apache2 and mongodb running on our machine in separate LXC’s, we can now start developing our website and pointing it to these services.&lt;/p&gt;
-
-&lt;p&gt;Parallel to this, your teammate is working on the user authentication service, it’s going well and they want someone to help them test it in the application environment. So lets get that service that they have been working on.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span&gt;&lt;/span&gt;mkdir -p ~/charms/trusty &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/charms/trusty
-git clone --depth &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; git@github.com:photovideo/authenticator
-juju deploy --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;. local:trusty/authenticator
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;em&gt;For more information on deploying local charms see &lt;a href=&#34;http://askubuntu.com/questions/568137/how-to-deploy-juju-charm-in-development-branch/568174#568174&#34;&gt;This Post&lt;/a&gt; on Ask Ubuntu.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;A few minutes later and you have an identical copy to their user authenticator service, you can point your website to it and give it a try. A little later the authenticator service has been updated and you’d like to run it again.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/charms/trusty/authenticator
-git pull
-juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This process repeats itself throughout each service and across each member of your team. Allowing each one to update their dependencies within minutes to identical representations of how it’ll be run in production.&lt;/p&gt;
-
-&lt;h4 id=&#34;released-project&#34;&gt;Released project&lt;/h4&gt;
-
-&lt;p&gt;Now that your project has been released, deployed using Juju, running in production, you’ve had a chance to take advantage of Juju’s deployment and scaling features but how does Juju help you develop now?&lt;/p&gt;
-
-&lt;p&gt;In some ways it’s even easier to deploy. In this case, I’m going to assume that your services are private and not stored in the &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju Charm Store&lt;/a&gt;. If they were in there you wouldn’t have to first clone the repositories.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span&gt;&lt;/span&gt;mkdir -p ~/charms/trusty &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/charms/trusty
-git clone --depth &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; git@github.com:photovideo/mongodb
-git clone --depth &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; git@github.com:photovideo/authenticator
-…
-
-juju-quickstart -e &lt;span class=&#34;nb&#34;&gt;local&lt;/span&gt; photovideo.yaml
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Taking advantage of Juju Quickstart and the Juju bundles functionality you can deploy your entire environment with identical services, configuration, and machine placements. This will open up the GUI which will allow you to modify the machine placement of any of those services and change configuration values before deploying to your machine. Once you hit commit, sit back and wait for it to deploy an identical environment to your production environment on your local machine.&lt;/p&gt;
-
-&lt;p&gt;Now you can work on the specific service you’re interested in within an identical environment to everyone on your team. And when a service gets updated by another member on your team it’s trivial to update.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-Shell&#34; data-lang=&#34;Shell&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ~/charms/trusty/authenticator
-git pull
-juju upgrade-charm --repository&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;I hope this gets you excited to use Juju for development as well as deployment. My team uses Juju for development this way and has for over a year. It allows us to be more productive because we don’t have to waste time installing and updating services the hard way.&lt;/p&gt;
-
-&lt;p&gt;I’ll be creating a follow-up to this post with real code examples and workflows for doing the actual development of these services, stay tuned! Thanks for reading, if you have any questions or comments file them below or you can hit me up on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</guid>
+      <description>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu “Is Juju a suitable tool for development as well as deployment?” made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.
+For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things.</description>
     </item>
     
     <item>
       <title>Write JavaScript like it’s typed</title>
-      <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</link>
+      <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed/</link>
       <pubDate>Sat, 06 Jun 2015 21:44:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed</guid>
-      <description>&lt;p&gt;Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.&lt;/p&gt;
-
-&lt;p&gt;In many JavaScript projects you’ll see something like this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dataFiller&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{};&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 5 lines later&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 10 lines later&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Baz&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;bax&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 5 lines later&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This essentially means that you must read through an entire functions execution, and sometimes an entire modules execution to see what the structure of that object will become.&lt;/p&gt;
-
-&lt;p&gt;Now lets compare that to Go:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;Baz&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dataFiller&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 5 lines later&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;bar&amp;quot;&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 10 lines later&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Baz&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;bax&amp;quot;&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// 5 lines later&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Here you don’t even have to read further than the function declaration to know what the function will return and then you simply have to reference that type in the file to know ahead of time what it’s structure will be.&lt;/p&gt;
-
-&lt;p&gt;Throughout my time as a developer I’ve noticed that it’s quite rare that you cannot predict with 100% certainty what the data structure of your variables will be but, in dynamic languages, we don’t ever seem to outline that structure for people reading and writing the code. So this got me thinking about how this workflow can be adopted in JavaScript to give us the benefits of types using the native language constructs without having to use a compile target like Typescript. In practice it turns out to be quite simple:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// Method to convert defined object literal &amp;#39;type&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;// into a &amp;#39;locked down&amp;#39; data store.&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stub&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;create&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;keys&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;keys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;forEach&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;    
-    &lt;span class=&#34;nb&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;defineProperty&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stub&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;configurable&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;enumerable&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;writable&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;obj&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;key&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;Object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;seal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;stub&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stub&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;// Your &amp;#39;type&amp;#39; which will be used to create&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;// usable data store instances.&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;Baz&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;// Fills the object with data.&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;// @method dataFiller&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;// @return {myObject}&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dataFiller&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;createObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;myObject&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// Set values like normal.&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;bar&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Baz&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;bax&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;fullData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;dataFiller&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;fullData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Foo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;can Update&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// Updated&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;fullData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Qux&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;Can&amp;#39;t add new properties&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// Not added&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;. Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed/</guid>
+      <description>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</description>
     </item>
     
     <item>
       <title>Easy testing of code involving native methods in JavaScript</title>
-      <link>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</link>
+      <link>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/</link>
       <pubDate>Wed, 22 Apr 2015 19:57:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript</guid>
-      <description>&lt;p&gt;When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;processData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Pre &amp;lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generateFileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;processData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generateFileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Then we’ll move the onload callback to a named function.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generateFileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_readerOnloadHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generateFileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FileReader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_readerOnloadHandler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;processData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;it&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;parses files&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Set up the stubs.&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;processStub&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stubMethod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;processData&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// The second parameter of the stubMethod is what generateFileReader&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// will return when it&amp;#39;s called.&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stubMethod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;generateFileReader&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;onload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-      &lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;stubFunction&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Call the public method.&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;importFile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;/path/to/file&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Make assertions&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;equal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;calledOnce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;equal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;calledOnce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;equal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;readAsText&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lastArguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;/path/to/file&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Call the callback.&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;onload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;target&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;file data&amp;#39;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}});&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Make assertions&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;equal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;processStub&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;calledOnce&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-    &lt;span class=&#34;nx&#34;&gt;assert&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;equal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;processStub&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lastArguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;file data&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/</guid>
+      <description>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); }  Pre &amp;lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure.</description>
     </item>
     
     <item>
       <title>How to rewrite and redirect with HAProxy</title>
-      <link>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</link>
+      <link>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/</link>
       <pubDate>Fri, 05 Dec 2014 12:52:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy</guid>
-      <description>&lt;p&gt;It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.&lt;/p&gt;
-
-&lt;p&gt;I have a rather common use case. I plan on moving this blog from Tumblr to &lt;a href=&#34;https://ghost.org/&#34;&gt;Ghost&lt;/a&gt; using the &lt;a href=&#34;https://jujucharms.com/ghost/&#34;&gt;Ghost Juju charm&lt;/a&gt; and the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;HAProxy charm&lt;/a&gt; to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.&lt;/p&gt;
-
-&lt;p&gt;Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;RewriteEngine On  
-RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep&#34;&gt;reqrep&lt;/a&gt;, to rewrite the url, and &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect&#34;&gt;redirect&lt;/a&gt;, to handle the actual redirection.&lt;/p&gt;
-
-&lt;p&gt;Assume the following front and backend configurations:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
-    bind 0.0.0.0:80
-    default_backend haproxy_service
-
-backend haproxy_service
-    balance leastconn
-    cookie SRVNAME insert
-    server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;In order to rewrite the url we first need to add the rewrite into the frontend:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
-    bind 0.0.0.0:80
-    default_backend haproxy_service
-    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
-    bind 0.0.0.0:80
-    default_backend haproxy_service
-    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
-    redirect prefix / code 301
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &amp;lsquo;prefix’, and &amp;lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.&lt;/p&gt;
-
-&lt;p&gt;We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an &lt;a href=&#34;http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7&#34;&gt;access control list&lt;/a&gt; to only redirect the old urls:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;frontend haproxy-0-80
-    bind 0.0.0.0:80
-    default_backend haproxy_service
-    acl old_url path_beg /post
-    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
-    redirect prefix / code 301 if old_url
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &amp;lsquo;if old_url&amp;rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.&lt;/p&gt;
-
-&lt;p&gt;In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a &lt;a href=&#34;http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy&#34;&gt;serverfault question&lt;/a&gt; which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/</guid>
+      <description>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</description>
     </item>
     
     <item>
       <title>Juju - Explain it to me like I’m 5</title>
-      <link>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</link>
+      <link>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/</link>
       <pubDate>Mon, 08 Sep 2014 23:10:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.&lt;/p&gt;
-
-&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34; data-conversation=&#34;none&#34; data-lang=&#34;en&#34;&gt;&lt;p lang=&#34;und&#34; dir=&#34;ltr&#34;&gt;&lt;a href=&#34;https://twitter.com/FromAnEgg&#34;&gt;@FromAnEgg&lt;/a&gt; ELI5 Juju..&lt;/p&gt;&amp;mdash; Mark Poppen (@MarkPoppen) &lt;a href=&#34;https://twitter.com/MarkPoppen/status/509113565702127616&#34;&gt;September 8, 2014&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;//platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;p&gt;Juju is often described as &lt;a href=&#34;https://help.ubuntu.com/12.04/serverguide/apt-get.html&#34;&gt;apt-get&lt;/a&gt; for the cloud, but what does someone who isn’t familiar with the Ubuntu ecosystem know about apt-get? I think I’ll need to go even more abstract…&lt;/p&gt;
-
-&lt;p&gt;Let’s say that you had built the most awesome Lego race car body (kids still play with Lego right?) but you didn’t know how to make the wheels or make it move with one of those Mindstorm engines. So now you have to go and play around for a long time to learn how to make a wheel and how to hook up engines. But this is going to take a long time and your mom is going to call you for supper soon, there has to be someone who is an expert wheel maker and Mindstorm engine builder right? Wouldn’t it be awesome if they could build wheels and engines you could use in your race car so you can finish it before supper?&lt;/p&gt;
-
-&lt;p&gt;Well that is what Juju does. It allows people who have expertise in a specific field to build packages that you can connect to your own projects without needing to be an expert in that field. So how does this help you write software faster in the cloud? Well I think that’s best explained with another, more grown up, example.&lt;/p&gt;
-
-&lt;p&gt;Recently, I wrote a Juju Charm for the &lt;a href=&#34;https://github.com/hatched/ghost-charm&#34;&gt;Ghost blogging platform&lt;/a&gt; so that I can move this blog off of Tumblr and onto something a little more customize-able. The problem? I needed a front end server which was capable of load balancing the webservers when the load picks up and I don’t have the time to learn all about the various options and the best way to install and configure them. So I went to what’s known as the &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju Charm Browser&lt;/a&gt; and picked the &lt;a href=&#34;https://jujucharms.com/haproxy/&#34;&gt;haproxy Charm&lt;/a&gt; and added it into my environment. With multiple web servers I could no longer rely on Ghost’s built in SQLite implementation so I needed to hook up to an external MySQL database. Back to the Charm Browser I went and grabbed the &lt;a href=&#34;https://jujucharms.com/mysql/&#34;&gt;MySQL Charm&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/juju-explain-it-to-me-like-Im-5-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So now I have a load-balanced horizontally scale-able Ghost blog (coming soon). You can have one too, it’s incredibly easy too. For you to get your very own horizontally scale-able load-balanced Ghost blog all you have to do is execute these commands:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;juju deploy ghost
-juju deploy haproxy
-juju deploy mysql
-juju add-relation ghost haproxy
-juju add-relation ghost mysql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Lets pretend for a moment that haproxy isn’t cutting it any longer and you instead want to use apache2:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;juju destroy-service haproxy
-juju deploy apache2
-juju add-relation ghost apache2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Maybe your blog is super popular and you need another 5 webservers:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;juju add-unit ghost -n 5
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That’s it. You have now taken advantage of many peoples domain expertise to develop a cloud environment for your own blog.&lt;/p&gt;
-
-&lt;p&gt;So what if you wanted to use MySQL or any of these other Charms for a different application? That’s the best part these charms are written using the best practices for the particular charm but have easy to interface with hooks. To enable the Ghost charm to communicate with the haproxy charm all I had to write was:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;ch&#34;&gt;#!/usr/bin/node&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;child_process&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;port&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;storePort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;returnedPort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;returnedPort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;unit-get --format=json private-address&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;storeAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;storeAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;returnedAddress&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;address&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;returnedAddress&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;relation-set port=&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;port&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39; hostname=&amp;#39;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;address&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;nx&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;config-get --format=json port&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;storePort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju charms&lt;/a&gt; can be written in anything that can be executed. The Ghost charm was written in JavaScript, the MySQL one in bash. Others use Python, Puppet, Chef, Ansible, even Docker containers can be orchestrated using a Juju Charm.&lt;/p&gt;
-
-&lt;p&gt;Want to run your own wiki:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;juju deploy mediawiki
-juju deploy mysql
-juju deploy haproxy
-juju add-relation mediawiki mysql
-juju add-relation mediawiki haproxy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;How about a &lt;a href=&#34;https://jujucharms.com/mongodb-cluster/&#34;&gt;MongoDB cluster&lt;/a&gt;, &lt;a href=&#34;https://jujucharms.com/q/hadoop-cluster?type=bundle&#34;&gt;Hadoop cluster&lt;/a&gt;, &lt;a href=&#34;https://jujucharms.com/django/&#34;&gt;Django app&lt;/a&gt;, a &lt;a href=&#34;https://jujucharms.com/bundle/transcode/7/cloud/&#34;&gt;video transcoding cluster&lt;/a&gt;, and more including your own applications. All easily deployable and scalable across public clouds like EC2, HP Cloud, Joyent, Your private OpenStack cloud, and even your very own local machine. That’s right, the above commands all work to deploy identical set ups to all of these targets and more.&lt;/p&gt;
-
-&lt;p&gt;This just scratched the surface of the power of &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; but I hope that this glimpse has made you interested enough to go do some exploring of your own. You can find the documentation to get started with &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju here&lt;/a&gt;. And as always if you have any questions or comments you can comment below, find me on Twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt; on G+ &lt;a href=&#34;https://plus.google.com/+JeffPihach&#34;&gt;+Jeff Pihach&lt;/a&gt; or hop into #juju on irc.freenode.net and ask away.&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/</guid>
+      <description>Juju is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.
+@FromAnEgg ELI5 Juju.</description>
     </item>
     
     <item>
       <title>New Release - Juju GUI 1.1.0</title>
-      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</link>
+      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0/</link>
       <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0</guid>
-      <description>&lt;p&gt;Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/new-release-juju-gui-1-1-0-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment.&lt;/li&gt;
-&lt;li&gt;A new &lt;a href=&#34;http://fromanegg.com/post/85890866087/unidirectional-data-flow-architecture&#34;&gt;uni-directional data flow&lt;/a&gt; system was implemented which dramatically simplified the GUI’s data flow and execution.&lt;/li&gt;
-&lt;li&gt;Charm searching has been improved in the charm browser and will continue to be improved over time.&lt;/li&gt;
-&lt;li&gt;Work for the new machine view continues under the ‘mv’ flag. To check out this work load up the GUI with ’&lt;hostname&gt;:flags:/mv’.&lt;/li&gt;
-&lt;li&gt;Plus many many fixes. See the &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;repository&lt;/a&gt; for more information.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you have any questions about Juju or the Juju GUI, you can read the &lt;a href=&#34;https://jujucharms.com&#34;&gt;official documentation&lt;/a&gt; for Juju and join us on freenode.net in #juju and #juju-gui&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0/</guid>
+      <description>Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.
+ We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment. A new uni-directional data flow system was implemented which dramatically simplified the GUI’s data flow and execution.</description>
     </item>
     
     <item>
       <title>Unidirectional data flow architecture</title>
-      <link>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</link>
+      <link>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture/</link>
       <pubDate>Thu, 15 May 2014 23:18:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture</guid>
-      <description>&lt;p&gt;Since Facebook released &lt;a href=&#34;https://facebook.github.io/react/docs/flux-overview.html&#34;&gt;Flux&lt;/a&gt; there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Juju GUI&lt;/a&gt; nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users &lt;a href=&#34;https://jujucharms.com&#34;&gt;Juju&lt;/a&gt; environment.&lt;/p&gt;
-
-&lt;p&gt;In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.&lt;/li&gt;
-&lt;li&gt;That state is then saved into the state system.&lt;/li&gt;
-&lt;li&gt;When the state system changes it diffs from it’s previous state and passes the diff off to the dispatcher.&lt;/li&gt;
-&lt;li&gt;The dispatcher scans through the diff and passes off the various state components to their registered handlers.&lt;/li&gt;
-&lt;li&gt;Those handlers then pass the updated data into the UI components.&lt;/li&gt;
-&lt;li&gt;The UI components are then responsible for updating their DOM representation.&lt;/li&gt;
-&lt;li&gt;If the user makes a change to the UI, that UI component requests a change from the state system and the cycle repeats.
-You’ll notice that this is strikingly similar to the Flux architecture:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/unidirectional-data-flow-architecture-2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s great to see cases of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Multiple_discovery&#34;&gt;multiple discovery hypothesis&lt;/a&gt; in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.&lt;/p&gt;
-
-&lt;p&gt;Do you work on a large application? Do you think this architecture could help simplify your app? Let me know in the comments below, &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;, or &lt;a href=&#34;https://plus.google.com/+JeffPihach&#34;&gt;+Jeff Pihach&lt;/a&gt; Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture/</guid>
+      <description>Since Facebook released Flux there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the Juju GUI nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users Juju environment.</description>
     </item>
     
     <item>
       <title>When to update your semver version number</title>
-      <link>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</link>
+      <link>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/</link>
       <pubDate>Fri, 25 Apr 2014 10:49:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number</guid>
-      <description>&lt;p&gt;Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the &lt;a href=&#34;http://semver.org/&#34;&gt;semver website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The semver website outlines the rules for incrementing version numbers as:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;MAJOR: When you make incompatible API changes.&lt;/li&gt;
-&lt;li&gt;MINOR: When you add functionality in a backwards-compatible manner.&lt;/li&gt;
-&lt;li&gt;PATCH: When you make backwards compatible bug fixes.
-At &lt;a href=&#34;https://gophercon.com/&#34;&gt;gophercon&lt;/a&gt; I had a discussion with another engineer about what these mean. When does a change make the API incompatible with a previous release? Take the following contrived example:&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Your API typically returns a key/value pair for a requested field:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;‘&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;bar&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;But now you decide to change the value returned by capitalizing the first character in the returned strings:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;foo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;‘&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Bar&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;’&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;What portion of the version should be updated with this change?&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;MAJOR: It could break someones code who is relying on the case of the returned value.&lt;/li&gt;
-&lt;li&gt;MINOR: This is adding functionality because the value being returned is actually a title for a story.&lt;/li&gt;
-&lt;li&gt;PATCH: Stories should always have been capitalized so this is actually a bug fix.
-This shows that the rules are up for a lot of interpretation and will depend heavily on your situation. This unfortunately doesn’t make it easier to explain to someone who is new to, or skeptical of, semver. As a solution I came up with a slightly more specific set of rules which I think make the decision much easier for everyone.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Jeff’s semver incrementing version number rules:&lt;/p&gt;
-
-&lt;p&gt;I inverted the rule set so it can be read that any later rule overwrites the previous rule so the version section moves up a level.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;If this is fixing a reported bug in your system: PATCH&lt;/li&gt;
-&lt;li&gt;If this is adding a feature to your public or private api: MINOR&lt;/li&gt;
-&lt;li&gt;If this is a change to your private methods or data structures: MINOR&lt;/li&gt;
-&lt;li&gt;If it broke your public api call tests: MAJOR
-Because your tests should test exactly what you expect your public API to return it should be very trivial to know when a change is breaking what others could be relying on.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;What do you think of this approach? Do you find it any easier to understand? Do you have any other rules to add? Or are you already using semver and have a different approach to deciding when to increase which number? Comment below or mention me on twitter &lt;a href=&#34;https://twitter.com/FromAnEgg&#34;&gt;@fromanegg&lt;/a&gt; and let me know. Thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/</guid>
+      <description>Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the semver website.
+The semver website outlines the rules for incrementing version numbers as:
+ MAJOR: When you make incompatible API changes. MINOR: When you add functionality in a backwards-compatible manner.</description>
     </item>
     
     <item>
       <title>How to install Ubuntu on a Mac or Macbook</title>
-      <link>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</link>
+      <link>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</link>
       <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook</guid>
-      <description>
-
-&lt;p&gt;The official release date of &lt;a href=&#34;http://www.ubuntu.com/download/desktop&#34;&gt;Ubuntu 14.04 LTS Trusty Tahr&lt;/a&gt; is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!&lt;/p&gt;
-
-&lt;p&gt;You’re going to need a few things before we get started:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Download Ubuntu 14.04 LTS Trusty Tahr. (If you’re here before it’s released you can download the &lt;a href=&#34;http://cdimage.ubuntu.com/daily-live/current/&#34;&gt;daily image here&lt;/a&gt;. Be sure you download the iso which does NOT have ’+mac’ in the filename. This is for older Apple computers.&lt;/li&gt;
-&lt;li&gt;Download the &lt;a href=&#34;http://www.rodsbooks.com/refind/&#34;&gt;rEFInd Boot Manager&lt;/a&gt;. You want the &lt;a href=&#34;http://www.rodsbooks.com/refind/getting.html&#34;&gt;Binary source file zip&lt;/a&gt; which you need to extract.&lt;/li&gt;
-&lt;li&gt;A 2GB or bigger USB stick which has nothing on it that you don’t care to lose. This will be our boot stick…(remember when they were boot disks?)&lt;/li&gt;
-&lt;li&gt;A thunderbolt to ethernet adapter or if your machine has an ethernet port, plug it in. After installing Ubuntu it is unlikely you will have wifi until the final step.&lt;/li&gt;
-&lt;li&gt;Your computers hard drive should have a big chunk of free space…you’re going to use this as your primary operating system afterall!&lt;/li&gt;
-&lt;li&gt;An hour or so of free time. This took me about 30 minutes from start to finish but I had done it a number of times by the time I created this post.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;obligatory-warning&#34;&gt;Obligatory Warning&lt;/h4&gt;
-
-&lt;p&gt;All of this information is provided without warranty of any kind. Always make and keep proper backups of your data.&lt;/p&gt;
-
-&lt;h4 id=&#34;step-1&#34;&gt;Step 1&lt;/h4&gt;
-
-&lt;h4 id=&#34;backup-your-computer&#34;&gt;BACKUP YOUR COMPUTER&lt;/h4&gt;
-
-&lt;p&gt;While it’s unlikely that an issue will occur which wipes the data on your disk it’s always highly advisable to have a couple quality backups just in case.&lt;/p&gt;
-
-&lt;p&gt;Go make another backup…I’ll wait.&lt;/p&gt;
-
-&lt;h4 id=&#34;did-you-back-up-your-data-yet&#34;&gt;DID YOU BACK UP YOUR DATA YET?&lt;/h4&gt;
-
-&lt;h4 id=&#34;step-2&#34;&gt;Step 2&lt;/h4&gt;
-
-&lt;p&gt;Now that you have a quality backup safely tucked away you will need to install rEFInd. Open the terminal and navigate to the location that you extracted the zip file and then follow the &lt;a href=&#34;http://www.rodsbooks.com/refind/installing.html#installsh&#34;&gt;installation instructions for OSX&lt;/a&gt;. Once completed, restart your computer to confirm that rEFInd was installed correctly. On rebooting, the rEFInd boot loader should load up and you should select the Apple logo to get back into OSX. (sorry for the sub par photos)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;step-3&#34;&gt;Step 3&lt;/h4&gt;
-
-&lt;p&gt;Now that you’re back in OSX we need to take that iso of Ubuntu 14.04 that you downloaded and make a bootable USB stick. Follow the &lt;a href=&#34;http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx&#34;&gt;10 steps outlined here&lt;/a&gt; to create the bootable stick. You’ll know when it’s ready because OSX will pop open a dialogue saying that it cannot read the device.&lt;/p&gt;
-
-&lt;h4 id=&#34;step-4&#34;&gt;Step 4&lt;/h4&gt;
-
-&lt;p&gt;You need a place to put Ubuntu on your computer, so you’ll need to create a partition on your hard drive. The size of this partition will depend on the size of your disk and what you plan to do in Ubuntu, but it should be at least 10GB to give you some wiggle room (mine is 100GB). To do so you will use the OSX tool ‘Disk Utility’. There are some dated, but still accurate instructions on &lt;a href=&#34;https://help.ubuntu.com/community/MactelSupportTeam/AppleIntelInstallation#Manual_partitioning_using_Disk_Utility_GUI&#34;&gt;creating this partition here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;step-5&#34;&gt;Step 5&lt;/h4&gt;
-
-&lt;p&gt;With the partition made it’s now time to stick the USB stick into your computer and reboot. After rebooting you should land on the rEFInd boot loader again with a few more options than before. If you do not see these options then reboot again holding the “option” key.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Your options may look a little different but you want to pick one of the options which are provided from the USB stick (There are three provided in this image). For the Haswell equipped machines you want to pick the option which reads something along the lines of “Boot EFI\boot\grubx64.efi …” and hit enter. This will start another boot loader with the first option “Install Ubuntu”, hit enter to select this option. After a little while you should be in the Ubuntu installer, follow through the steps until the installer asks you where you would like to install Ubuntu.&lt;/p&gt;
-
-&lt;p&gt;Note: If after progressing through the install process and you find that it boots into a black screen start again from Step 5 but choose an installer without “EFI” in the path name.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;step-6&#34;&gt;Step 6&lt;/h4&gt;
-
-&lt;p&gt;Note: partitioning will be a little different for everyone so if you get confused hop onto IRC in #ubuntu on freenode.net or create a question on &lt;a href=&#34;http://askubuntu.com&#34;&gt;http://askubuntu.com&lt;/a&gt; for some help.&lt;/p&gt;
-
-&lt;p&gt;When you step through the installer you will get to a pane which asks you where you want to install Ubuntu to. The options should be pretty self explanatory. But if there isn’t an option to install Ubuntu into your new partition you will need to take the manual route. Select the manual partition option and you should be shown a screen which looks like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see form this list, I created a 100GB partition originally and then created a 3GB swap partition. To take the partition you created in OSX and create a swap from it you will need to select it then hit the “Change” button and downsize it 3GB. This will leave you with “free space” of 3GB. Click the “+” button and create a new partition of the type “swap”. You’ll want to make sure your primary partition is of type “ext4” and that the mount point is “/”.&lt;/p&gt;
-
-&lt;p&gt;Continue on from here installing Ubuntu to your new partition.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;step-7&#34;&gt;Step 7&lt;/h4&gt;
-
-&lt;p&gt;After the installation has completed remove the USB stick from your computer and reboot. Now when rEFInd shows up you should have an extra option with the Ubuntu logo. Click it and boot into Ubuntu.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;step-8&#34;&gt;Step 8&lt;/h4&gt;
-
-&lt;p&gt;Once you have logged into Ubuntu, click the &amp;lsquo;System Settings’ icon in the launcher bar on the left. Select &amp;lsquo;Software and Updates’ and then select the &amp;lsquo;Additional Drivers’ tab. After this tab loads you should see a proprietary driver for the Broadcom wireless, select it and click &amp;lsquo;Apply’. Reboot the computer and you should now be able to click the network icon in the top right of the desktop to connect to a wireless connection.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;https://fromanegg.com/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Congratulations you now have Ubuntu installed along side OSX!&lt;/p&gt;
-
-&lt;p&gt;If you run into any problems along the way or have any questions your first stop should be your search engine of choice there are thousands of great resources for Ubuntu scattered around on many topics. You will also find a ton of great people in Ubuntu community hanging out in the #ubuntu room on IRC on freenode.net or if you prefer to ask direct detailed questions check out &lt;a href=&#34;http://askubuntu.com&#34;&gt;http://askubuntu.com&lt;/a&gt;. I hope that this guide has helped you get up and running with Ubuntu, please comment below with any questions or comments or I can be found on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;, thanks for reading!&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</guid>
+      <description>The official release date of Ubuntu 14.04 LTS Trusty Tahr is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!</description>
     </item>
     
     <item>
       <title>Self documenting code is not enough</title>
-      <link>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</link>
+      <link>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/</link>
       <pubDate>Thu, 13 Mar 2014 09:22:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough</guid>
-      <description>&lt;p&gt;Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.&lt;/p&gt;
-
-&lt;p&gt;As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as &lt;a href=&#34;https://en.wikipedia.org/wiki/Self-documenting_code&#34;&gt;self-documenting code&lt;/a&gt; with comments which detail, to anyone reading it, the why the code is doing what it’s doing.&lt;/p&gt;
-
-&lt;p&gt;Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;gd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Into:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;getDifference&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;point1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;It’s much easier to understand what the second function is doing at a glance vs the first.&lt;/p&gt;
-
-&lt;p&gt;This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.&lt;/p&gt;
-
-&lt;p&gt;Lets assume for a moment that this function was copy &amp;amp; pasted into a larger projects utility class. Wouldn’t it be nice if it would automatically be added to the API docs?&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/**&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;  Calculate the difference between the x and y coords of two points.&lt;/span&gt;
-
-&lt;span class=&#34;cm&#34;&gt;  @method getDifference&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;  @param {Object} point1 The first point to compare.&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;  @param {Object} point2 The second point to compare.&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;  @return {Array} The difference between the two points in the format [x, y]&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;*/&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;getDifference&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;point1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;point2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.&lt;/p&gt;
-
-&lt;p&gt;To illustrate the importance of inline comments even with self documenting code. Take the following method from the &lt;a href=&#34;https://github.com/juju/juju-gui&#34;&gt;Juju GUI source&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportYAML&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportDeployer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exportData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsyaml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exportBlob&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Blob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-             &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;text/plain;charset=utf-8&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;saveAs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportBlob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;export.yaml&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;cm&#34;&gt;/**&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;  Export the YAML for this environment.&lt;/span&gt;
-
-&lt;span class=&#34;cm&#34;&gt;  @method exportYAML&lt;/span&gt;
-&lt;span class=&#34;cm&#34;&gt;*/&lt;/span&gt;
-&lt;span class=&#34;nx&#34;&gt;exportYAML&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;db&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportDeployer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exportData&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;jsyaml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dump&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// In order to support Safari 7 the type of this blob needs&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;// to be text/plain instead of it&amp;#39;s actual type of application/yaml.&lt;/span&gt;
-  &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;exportBlob&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Blob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;([&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;text/plain;charset=utf-8&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;saveAs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;exportBlob&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;export.yaml&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.&lt;/p&gt;
-
-&lt;p&gt;Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter &lt;a href=&#34;https://twitter.com/fromanegg&#34;&gt;@fromanegg&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/</guid>
+      <description>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.
+As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as self-documenting code with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</description>
+    </item>
+    
+    <item>
+      <title>New release - Juju GUI 0.15.0</title>
+      <link>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0/</link>
+      <pubDate>Sun, 26 Jan 2014 12:49:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0/</guid>
+      <description>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to Git and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.
+ We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</description>
+    </item>
+    
+    <item>
+      <title>Canonical to simplify SSO and 2FA using Ubuntu Juju</title>
+      <link>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju/</link>
+      <pubDate>Mon, 30 Dec 2013 12:09:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/30/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju/</guid>
+      <description>One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.</description>
+    </item>
+    
+    <item>
+      <title>YUI in the Wild</title>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</link>
+      <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</guid>
+      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.
+ The links I mentioned in the video:
+ Juju GUI Demo Site Juju GUI Bazaar repository Juju GUI Git repository  </description>
+    </item>
+    
+    <item>
+      <title>New releases - Juju GUI 0.14.0 &amp; Juju Quickstart 0.5.0</title>
+      <link>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0/</link>
+      <pubDate>Thu, 05 Dec 2013 12:05:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0/</guid>
+      <description>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…
+Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-day tool:
+ The service inspectors now categorize errors and pending units by their types instead of grouped as ‘error’ and &amp;lsquo;pending’ so that it’s easier to see your services status at a glance.</description>
+    </item>
+    
+    <item>
+      <title>Intro to Go from a JavaScript developer - Barcamp YXE Sides</title>
+      <link>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/</link>
+      <pubDate>Sat, 16 Nov 2013 12:22:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/</guid>
+      <description>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.
+ </description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.13.0 release and updates</title>
+      <link>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates/</link>
+      <pubDate>Fri, 15 Nov 2013 11:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates/</guid>
+      <description>Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.
+Bundles!
+This is probably the biggest release of the Juju GUI since it was officially unveiled. The GUI now supports importing, exporting, browsing and deploying bundles.</description>
+    </item>
+    
+    <item>
+      <title>A Juju Charm designed to fail</title>
+      <link>https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail/</link>
+      <pubDate>Sat, 09 Nov 2013 14:06:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail/</guid>
+      <description>While writing code for the next features in the Juju GUI I needed to test instances when charms would fail in various stages of their setup or execution. After a lot of messing around it became apparent that most charms are just too stable for this kind of testing so, I wrote a Juju Charm which is designed to fail in a large number of hooks depending on the configuration set on deploy (or later), and can relate to itself to test relation failures.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.10.1 Released - Bug fixes and updates</title>
+      <link>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/</link>
+      <pubDate>Tue, 01 Oct 2013 17:10:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/</guid>
+      <description>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.
+The largest of those fixes are: - Changing settings did not work in Juju Core. (Fixed) - The GUI was unable to deploy charms without config options. (Fixed) - Remove unit button did not work in Juju Core. (Fixed) - Plus a number of additional fixes.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.10.0 Released - Brand new service inspector!</title>
+      <link>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector/</link>
+      <pubDate>Wed, 18 Sep 2013 15:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector/</guid>
+      <description>After a few months of hard work we have released the Juju GUI v0.10.0 which has the awesome new service Inspector as the default!
+Quickly following up on v0.9.0 which added IE10 support, this release switches the new deployment and service inspector to be the default, switches to the new Go sandbox by default, and adds internal support for the upcoming charm bundles!
+Additional information on Juju can be found on the newly redesigned https://jujucharms.</description>
+    </item>
+    
+    <item>
+      <title>ParseInt only numbers in an object</title>
+      <link>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/</link>
+      <pubDate>Sun, 15 Sep 2013 10:08:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/</guid>
+      <description>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.
+I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.9.0 Released - Now with IE10 support!</title>
+      <link>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support/</link>
+      <pubDate>Wed, 11 Sep 2013 18:21:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support/</guid>
+      <description>We have just released the latest Juju GUI charm, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.
+With Chrome, Firefox, and IE10 now available for the GUI and Ubuntu and OSX available for the command line tools, your ability to create and manage your environments with Juju is getting easier and easier.</description>
+    </item>
+    
+    <item>
+      <title>Juju for OSX is now available via Homebrew</title>
+      <link>https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew/</link>
+      <pubDate>Mon, 19 Aug 2013 13:36:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew/</guid>
+      <description>About a month ago I posted that Juju for OSX was available on GitHub. Well thanks to a Homebrew pull request by Rodrigo Chacon it’s now available for easy install via Homebrew!
+For those who don’t know, Juju enables you to build entire environments in the cloud with only a few commands on public clouds like Amazon Web Services and HP Cloud, to private clouds built on OpenStack, or raw bare metal via MAAS.</description>
+    </item>
+    
+    <item>
+      <title>CSS selectors - The next level</title>
+      <link>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level/</link>
+      <pubDate>Mon, 05 Aug 2013 16:53:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level/</guid>
+      <description>As a continuation of my previous post Understanding CSS2 and CSS3 attribute selectors I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.
+IE6+ SUPPORT S1::first-line: Pseudo element selector Selects the first line of text in an element which matches the S1 selector.</description>
+    </item>
+    
+    <item>
+      <title>Android file transfer - Could not replace file, could not copy file…</title>
+      <link>https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file/</link>
+      <pubDate>Wed, 31 Jul 2013 20:27:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file/</guid>
+      <description>Do you have a new Android phone and cannot transfer files to OSX using the Android File Transfer Tool because you keep getting the error “Could not replace file, could not copy file .” ?
+The fix for me was to make sure that the phone was unlocked and the screen on on the homescreen.
+Hope this helps anyone else running into this error. Do you have another solution? Let me know and I’ll add it here for others.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI v0.8 and jujucharms.com released!</title>
+      <link>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released/</link>
+      <pubDate>Mon, 22 Jul 2013 18:51:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released/</guid>
+      <description>It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded Ubuntu Edge Ubuntu smartphone campaign was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.
+Most exciting to me however is release of the Juju GUI v0.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.6.0 released</title>
+      <link>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released/</link>
+      <pubDate>Thu, 20 Jun 2013 18:59:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released/</guid>
+      <description>Earlier this week we released the latest version of the Juju GUI, 0.6.0. This version brings with it a bunch of bug fixes and stability improvements, an updated UI, and a new charm browser which allows you to find new charms without leaving your environment. You can find the source here.
+Other changes include:
+ The beginnings of a Go backend sandbox. Automatic view portal zoom and centring. Support for Google Analytics.</description>
+    </item>
+    
+    <item>
+      <title>Juju for OSX is now available</title>
+      <link>https://fromanegg.com/post/2013/06/13/juju-for-osx-is-now-available/</link>
+      <pubDate>Thu, 13 Jun 2013 17:11:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/13/juju-for-osx-is-now-available/</guid>
+      <description>This just in… Juju for OSX is now available! From the team which brought you Juju brings you the ability to manage your OpenStack, AWS, and HP Cloud environments from OSX.
+Setup:
+ Untar the tarball, run the binary. Open up the above documentation list and skip to the configuration section to set up your cloud.  At the time of writing there are 137 services ready to deploy. Plus you can deploy your app right from github using our node.</description>
+    </item>
+    
+    <item>
+      <title>Test driven development - the easy way!</title>
+      <link>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/</link>
+      <pubDate>Fri, 07 Jun 2013 22:45:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/</guid>
+      <description>A number of people, myself included, have a hard time getting started with test driven development (TDD). The issue lies in that it’s difficult to wrap your head around something that is rather non specific in its implementation and it is usually described as “writing your tests before you write your code”.
+When developers hear “Write your tests before you write your code”, then they look at their previous test suite they wonder… “How can I possibly write this without having written the code first?</description>
+    </item>
+    
+    <item>
+      <title>Calculating timezones in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</link>
+      <pubDate>Thu, 06 Jun 2013 10:02:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</guid>
+      <description>I&amp;rsquo;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
+Converting a timestamp to UTC time. To display a timestamp in UTC around the world instead of in the users local timezone you use getTimezoneOffset, multiply it by 60,000 and then subtract that from your timestamp.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI v0.7.1 released</title>
+      <link>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/</link>
+      <pubDate>Mon, 03 Jun 2013 13:51:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/</guid>
+      <description>As of a few minutes ago the 0.7.1 version of the Juju GUI was released. It brings with it over 1000 unit tests, performance, memory and stability improvements, along with:
+ Added drag and drop deployment from charm browser. Export environment to Juju deployer YAML format from keyboard shortcut (shift-d). Databinding and conflict resolution finalized (feature-flagged). Start of new service inspector development (feature-flagged). Added relations to Go sandbox (Go sandbox still in progress).</description>
+    </item>
+    
+    <item>
+      <title>XOR in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/06/01/xor-in-javascript/</link>
+      <pubDate>Sat, 01 Jun 2013 12:08:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/01/xor-in-javascript/</guid>
+      <description>Typically when writing a XOR check in JavaScript you would do something like…
+if (( foo || bar ) &amp;amp;&amp;amp; !( foo &amp;amp;&amp;amp; bar )) { }  The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</description>
+    </item>
+    
+    <item>
+      <title>Transparent links not clickable in Internet Explorer</title>
+      <link>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/</link>
+      <pubDate>Sun, 07 Apr 2013 17:59:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/</guid>
+      <description>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.
+This is going to work as intended until you try it in IE.</description>
+    </item>
+    
+    <item>
+      <title>NFS between Ubuntu vm and OSX host</title>
+      <link>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</link>
+      <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</guid>
+      <description>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
+At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM.</description>
+    </item>
+    
+    <item>
+      <title>Insert an array of values into an array in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/</link>
+      <pubDate>Fri, 22 Feb 2013 12:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/</guid>
+      <description>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
+// Array #1 [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, 3, 4, 5]  But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.</description>
+    </item>
+    
+    <item>
+      <title>Using css function image-set for high-DPI displays</title>
+      <link>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/</link>
+      <pubDate>Wed, 06 Feb 2013 14:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/</guid>
+      <description>Anyone who has put together a website with high-DPI displays in mind has likely used the {prefix}-device-pixel-ratio CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the SASS CSS preprocessor and the @media directive which allows you to keep your element media query rules with the element styles.</description>
+    </item>
+    
+    <item>
+      <title>Understanding CSS2 and CSS3 attribute selectors</title>
+      <link>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/</link>
+      <pubDate>Mon, 28 Jan 2013 10:01:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/</guid>
+      <description>I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
+Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [user] /* matches */ &amp;lt;div user&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div user=&amp;quot;foo&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  Any element which has a user attribute regardless of value.</description>
+    </item>
+    
+    <item>
+      <title>100% pure css radial progress bar</title>
+      <link>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/</link>
+      <pubDate>Wed, 23 Jan 2013 15:25:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/</guid>
+      <description>Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.</description>
+    </item>
+    
+    <item>
+      <title>Prototypes and class-like objects in Javascript</title>
+      <link>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript/</link>
+      <pubDate>Mon, 21 Jan 2013 10:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript/</guid>
+      <description>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post Constructor chaining &amp;amp; inheritance in javascript. I recommend that you read that post first as I’ll be referencing some of the same code.
+The prototype is defined as an “object that provides shared properties for other objects” - Ecma International.</description>
+    </item>
+    
+    <item>
+      <title>YUIConf talk 2012</title>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</link>
+      <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</guid>
+      <description>My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!</description>
+    </item>
+    
+    <item>
+      <title>The importance of personal developer projects</title>
+      <link>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects/</link>
+      <pubDate>Wed, 09 Jan 2013 10:54:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects/</guid>
+      <description>Fueled by the constant push for new ideas and better experiences by our clients and employers; web development has to be one of, if not the, fastest evolving industry today. It’s our job as developers to at least keep up with the curve; unfortunately because of this constant push we often end up over specializing, leaving us ill prepared come the time to move onto the next big thing. We try to remedy this complacency by reading what others are working on and dabbling here and there on side projects, but quite often we can’t dedicate enough of our personal time to keep ahead of that curve.</description>
+    </item>
+    
+    <item>
+      <title>Constructor chaining &amp; inheritance in javascript</title>
+      <link>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript/</link>
+      <pubDate>Thu, 03 Jan 2013 20:56:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript/</guid>
+      <description>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves.</description>
+    </item>
+    
+    <item>
+      <title>Form validation with keydown, keypress, and keyup</title>
+      <link>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</link>
+      <pubDate>Sat, 29 Dec 2012 12:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</guid>
+      <description>There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.
+As with all DOM events there is a generally accepted order to which they fire and key events are no different.</description>
+    </item>
+    
+    <item>
+      <title>Using after() event listeners to react to attribute value changes</title>
+      <link>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</link>
+      <pubDate>Sat, 01 Dec 2012 18:30:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</guid>
+      <description>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the on() and after() methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links/</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links/</guid>
+      <description>HTTP access control (CORS) (mozilla.org): Learn how Cross-Origin Resource Sharing works. Never use black (ianstormtaylor.com): Design tip on why you should never use black. 31 CSS code snippets (designyourway.net): Great list of some cool css hacks. CSS3 &amp;amp; HTML5 Experiments (designyourway.net): a list of 47 great CSS3 and HTML5 experiments. Rundown of handling flexible media (css-tricks.com): Great resource for information on how to handle flexible media.  Have something you would like to see on the next Hatched Links?</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links/</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links/</guid>
+      <description>Flick Scroll (simurai.com): Very cool new swipe technique. Responsive Embeds (andmag.se): Great technique for using responsive sized embeds. Responsive Sketchsheets (zurb.com): Unique collection of sketchsheets for responsive layouts. Javascript Array Methods Reference (impressivewebs.com): Reference for the various array manipulation methods in javascript. Box-Shadow vs Filter-Drop-Shadow (bricss.net): A comparison of these two shadow css rules.  Have something you would like to see on the next Hatched Links? Mention me on Twitter @fromanegg or find me in #yui on irc.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/11/hatched-links/</link>
+      <pubDate>Thu, 11 Oct 2012 13:56:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/11/hatched-links/</guid>
+      <description>GUI Git Client For OSX (laullon.com): Open source and runs on OSX 10.6+ and Git 1.6.0+. Test Across Devices With Adobe Shadow (adobe.com): Setup browsing and debugging with Adobe Shadow. Web Platform Docs (webplatform.org): Community driven wiki looking to become the be-all end-all of web development docs. Windy: A Plugin For Swift Content Navigation (tympanus.net): Make items fly away like a deck of cards. Transition to height: auto trick (dropshado.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/04/hatched-links/</link>
+      <pubDate>Thu, 04 Oct 2012 09:04:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/04/hatched-links/</guid>
+      <description>An Online Editor For reveal.js (rvl.io): Edit the popular reveal.js HTML presentation framework online. YUI Test Tool (yeti.cx): Run YUI Test in multiple browsers. 220 Icon Font (Font Awesome): Has icon parity with Bootstrap plus a lot more. Git Remote Branch (webmat): Easily manipulate git branches in shared repos. Learnable Programming (worrydream): Designing a programming system for understanding programs.  Have something you would like to see on the next Hatched Links?</description>
+    </item>
+    
+    <item>
+      <title>Clicking through a div to underlying elements</title>
+      <link>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/</link>
+      <pubDate>Mon, 01 Oct 2012 09:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/</guid>
+      <description>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.
+Let me introduce you to the pointer-events CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/09/27/hatched-links/</link>
+      <pubDate>Thu, 27 Sep 2012 22:39:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/09/27/hatched-links/</guid>
+      <description>Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!
+ YUI3 3.7.2 Patch Release (YUI Blog): Fixing a couple loader &amp;amp; module issues. Designing for Android (Smashing Magazine): Tips and techniques for designing applications for Android. Interactive Globe with CSS Shaders (HTML5 Rocks): Applying the new CSS Shaders to Google Maps.</description>
+    </item>
+    
+    <item>
+      <title>Great YUI 3 DataTable resources!</title>
+      <link>https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/</link>
+      <pubDate>Wed, 19 Sep 2012 18:05:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/</guid>
+      <description>It’s rare that those tasked with displaying tabular data have an easy go of it. Usually the data isn’t in the right format, the standard libraries either do too much or too little, and the styles are never quite right. For the developers using YUI 3 and the YUI 3 DataTable I have included a couple resources below which will surely make your lives a lot easier.
+ YUI 3 DataTable documentation : Extensive documentation outlining the core features of DataTable.</description>
+    </item>
+    
+    <item>
+      <title>Adding a validation fail event to YUI’s Y.Attribute</title>
+      <link>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</link>
+      <pubDate>Fri, 24 Aug 2012 13:41:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</guid>
+      <description>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of Y.Attribute is the validator.
+The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute.</description>
+    </item>
+    
+    <item>
+      <title>Book Review - Are You Smart Enough to Work at Google?</title>
+      <link>https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google/</link>
+      <pubDate>Fri, 10 Aug 2012 10:36:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google/</guid>
+      <description>I have been trying to take some time away from the warm glow of the LCD screen after hours so I haven’t had much time to write up new code related posts. Instead, I have been spending some of this time away reading books, blog posts, and articles on business and web development. So in an effort to keep my blog from going stale here is my very first book review outside of high school English class.</description>
+    </item>
+    
+    <item>
+      <title>Add toggle button support to Y.PopupCalendar</title>
+      <link>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</link>
+      <pubDate>Tue, 31 Jul 2012 15:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</guid>
+      <description>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.
+Until I am able to add support into the module, simply copy and paste the following code before the first instance of Y.</description>
+    </item>
+    
+    <item>
+      <title>Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</link>
+      <pubDate>Sun, 01 Jul 2012 13:34:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</guid>
+      <description>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post Guide to using YUI with PhoneGap (Cordova). The good news is that it’s very easy to setup but does come with a few drawbacks.
+Using the code from the previous post we only need to make minor changes to load from the CDN.
+&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt; &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;cordova-1.</description>
+    </item>
+    
+    <item>
+      <title>Guide to using YUI with PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</link>
+      <pubDate>Tue, 12 Jun 2012 07:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</guid>
+      <description>If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).
+This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t.</description>
+    </item>
+    
+    <item>
+      <title>YUI Popup Calendar</title>
+      <link>https://fromanegg.com/post/2012/04/12/yui-popup-calendar/</link>
+      <pubDate>Thu, 12 Apr 2012 19:22:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/04/12/yui-popup-calendar/</guid>
+      <description>The often requested Popup Calendar or as some may call it, Date Picker, is now finally available in the Yahoo CDN hosted YUI Gallery!
+The YUI Popup Calendar component extends YUI’s Calendar Widget as well as a few other Widget modules you likely have already loaded on the page giving you a very lightweight (1.6KB minified) way to add date picker like functionality to your web page or application.
+Additional details, examples, and more can be found by following the links below.</description>
+    </item>
+    
+    <item>
+      <title>How to make a Node.js static file server - Part 1</title>
+      <link>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</link>
+      <pubDate>Sun, 26 Feb 2012 19:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</guid>
+      <description>This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.
+I’m going to assume you already have Node.js up running on your computer and that you know javascript. This code was developed on v0.6.1-pre and I will make an effort to update it and the version number as things change with Node.</description>
+    </item>
+    
+    <item>
+      <title>Handling module load errors with YUI Loader</title>
+      <link>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</link>
+      <pubDate>Mon, 06 Feb 2012 15:50:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</guid>
+      <description>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.
+From time to time you may find yourself loading modules that aren’t available. Whether it be from a user supplied modules list or an unreliable source, the YUI instance confg gives you an easy way to check if there are any errors while loading your modules.
+A common YUI config and use statement would look like the following.</description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://fromanegg.com/post/2012/02/03/introduction/</link>
+      <pubDate>Fri, 03 Feb 2012 20:43:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/03/introduction/</guid>
+      <description>After a year of trying to get the time to roll my own blog I cut my losses and set up with tumblr. The plan is to write a quality article every week on web development but you will probably see an odd one here and there about other things that I find interesting.
+I hope you enjoy the things to come and I look forward to your comments.
+-Jeff Pihach</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://fromanegg.com/yui-popup-calendar/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fromanegg.com/yui-popup-calendar/</guid>
+      <description>YUI Popup Calendar The YUI Popup Calendar component extends YUI’s Calendar Widget as well as a few other Widget modules you likely have already loaded on the page giving you a very lightweight (1.6KB minified) way to add date picker like functionality to your web page or application.
+You can find the code via Github here: YUI Gallery fork
+How to use Almost all of the configuration properties for Y.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://fromanegg.com/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fromanegg.com/about/</guid>
+      <description>I&amp;rsquo;m Jeff Pihach, welcome to From An Egg. I’m a software engineer at Canonical, entrepreneur and front end developer. I focus primarily on web application development for mobile and desktop. I blog about web development but will mix in the odd post about other things that interest me.</description>
+    </item>
+    
+    <item>
+      <title>Projects</title>
+      <link>https://fromanegg.com/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fromanegg.com/projects/</guid>
+      <description> Active  Depot.JS - Small, modular, &amp;amp; fast JavaScript datastore. Juju GUI - A web-based GUI for Juju.  Bit Rot  YUI Popup Calendar - Date picker for YUI3.  </description>
     </item>
     
   </channel>
