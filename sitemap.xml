@@ -433,13 +433,13 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/posts/</loc>
+    <loc>https://fromanegg.com/post/</loc>
+    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+    <loc>https://fromanegg.com/posts/</loc>
     <priority>0</priority>
   </url>
   
