@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,22 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/" itemprop="url">Intro to Go from a JavaScript developer - Barcamp YXE Sides</a></h1>
+      
+        <time pubdate content="2013-11-16 12:22:00 -0600 CST" datetime="2013-11-16 12:22:00 -0600 CST">16 November 2013</time>
+      
+    </header>
+    <p>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.</p>
+
+<iframe src="https://docs.google.com/presentation/d/1aU7AxXi5SvUBjAhsHNlkDi5HBGEmpK8aNOdN9YG8A34/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="749" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -210,48 +230,6 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 <p>Quickly following up on v0.9.0 which added IE10 support, this release switches the new deployment and service inspector to be the default, switches to the new Go sandbox by default, and adds internal support for the upcoming charm bundles!</p>
 
 <p>Additional information on Juju can be found on the newly redesigned <a href="https://jujucharms.com">https://jujucharms.com</a> or join us in #juju on irc.freenode.net. Interested about more of the changes in this release? You can read the full changelog to see all of the other updates that come with this version and what we have been up to over the past few releases.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/" itemprop="url">ParseInt only numbers in an object</a></h1>
-      
-        <time pubdate content="2013-09-15 10:08:00 -0600 CST" datetime="2013-09-15 10:08:00 -0600 CST">15 September 2013</time>
-      
-    </header>
-    <p>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.</p>
-
-<p>I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">parsed</span><span class="p">;</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>So what’s happening here?</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-</code></pre></div>
-
-<p>I am using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a> method to get the keys of each element in an array and then looping over them using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a> instead of using a for loop.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
-</code></pre></div>
-
-<p>In the loop I parseInt every value and store it in a temporary variable.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">origVal</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Now I compare the parsed value to the original value allowing JavaScript to do it’s type coercion and if they are equal then I overwrite the original value with the parsed value, else I continue on to the next element. This works because parseInt(“2”, 10) === 2 and 2 == “2” but parseInt(“2Foo”, 10) === 2 and 2 != “2Foo”. You can see a <a href="http://output.jsbin.com/UFIMIPO/1/">working example here</a>.</p>
-
-<p>Although this has a fairly limited use case I hope you found the technique interesting albeit a little bit of a hack. Thanks for reading!</p>
 
   </article>
 </section>

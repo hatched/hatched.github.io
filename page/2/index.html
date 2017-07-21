@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,49 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/" itemprop="url">Automatically build files when they change with Make</a></h1>
+      
+        <time pubdate content="2015-08-26 12:07:00 -0600 CST" datetime="2015-08-26 12:07:00 -0600 CST">26 August 2015</time>
+      
+    </header>
+    <p>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</p>
+
+<p>Introducing <a href="http://linux.die.net/man/1/inotifywait">inotifywait</a>, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And <a href="http://emcrisostomo.github.io/fswatch/">fswatch</a> for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.</p>
+
+<p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
+
+<pre><code>watch -n 2 make build
+</code></pre>
+
+<p>Or they will build the loop into the makefile.</p>
+<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
+<span class="nf">watch</span><span class="o">:</span>
+  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
+    make build --silent<span class="p">;</span> <span class="se">\</span>
+    sleep 1<span class="p">;</span> <span class="se">\</span>
+  <span class="k">done</span>
+</code></pre></div>
+
+<p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
+<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
+<span class="nf">watch</span><span class="o">:</span>
+  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
+    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\</span>
+    make build<span class="p">;</span> <span class="se">\</span>
+  <span class="k">done</span>
+</code></pre></div>
+
+<p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
+
+<p>Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -418,89 +465,6 @@ backend haproxy_service
 <p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
 
 <p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/" itemprop="url">Juju - Explain it to me like I’m 5</a></h1>
-      
-        <time pubdate content="2014-09-08 23:10:00 -0600 CST" datetime="2014-09-08 23:10:00 -0600 CST">8 September 2014</time>
-      
-    </header>
-    <p><a href="https://jujucharms.com">Juju</a> is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.</p>
-
-<p><blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/FromAnEgg">@FromAnEgg</a> ELI5 Juju..</p>&mdash; Mark Poppen (@MarkPoppen) <a href="https://twitter.com/MarkPoppen/status/509113565702127616">September 8, 2014</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-
-<p>Juju is often described as <a href="https://help.ubuntu.com/12.04/serverguide/apt-get.html">apt-get</a> for the cloud, but what does someone who isn’t familiar with the Ubuntu ecosystem know about apt-get? I think I’ll need to go even more abstract…</p>
-
-<p>Let’s say that you had built the most awesome Lego race car body (kids still play with Lego right?) but you didn’t know how to make the wheels or make it move with one of those Mindstorm engines. So now you have to go and play around for a long time to learn how to make a wheel and how to hook up engines. But this is going to take a long time and your mom is going to call you for supper soon, there has to be someone who is an expert wheel maker and Mindstorm engine builder right? Wouldn’t it be awesome if they could build wheels and engines you could use in your race car so you can finish it before supper?</p>
-
-<p>Well that is what Juju does. It allows people who have expertise in a specific field to build packages that you can connect to your own projects without needing to be an expert in that field. So how does this help you write software faster in the cloud? Well I think that’s best explained with another, more grown up, example.</p>
-
-<p>Recently, I wrote a Juju Charm for the <a href="https://github.com/hatched/ghost-charm">Ghost blogging platform</a> so that I can move this blog off of Tumblr and onto something a little more customize-able. The problem? I needed a front end server which was capable of load balancing the webservers when the load picks up and I don’t have the time to learn all about the various options and the best way to install and configure them. So I went to what’s known as the <a href="https://jujucharms.com">Juju Charm Browser</a> and picked the <a href="https://jujucharms.com/haproxy/">haproxy Charm</a> and added it into my environment. With multiple web servers I could no longer rely on Ghost’s built in SQLite implementation so I needed to hook up to an external MySQL database. Back to the Charm Browser I went and grabbed the <a href="https://jujucharms.com/mysql/">MySQL Charm</a>.</p>
-
-<p><img src="/images/juju-explain-it-to-me-like-Im-5-1.png" alt="" /></p>
-
-<p>So now I have a load-balanced horizontally scale-able Ghost blog (coming soon). You can have one too, it’s incredibly easy too. For you to get your very own horizontally scale-able load-balanced Ghost blog all you have to do is execute these commands:</p>
-
-<pre><code>juju deploy ghost
-juju deploy haproxy
-juju deploy mysql
-juju add-relation ghost haproxy
-juju add-relation ghost mysql
-</code></pre>
-
-<p>Lets pretend for a moment that haproxy isn’t cutting it any longer and you instead want to use apache2:</p>
-
-<pre><code>juju destroy-service haproxy
-juju deploy apache2
-juju add-relation ghost apache2
-</code></pre>
-
-<p>Maybe your blog is super popular and you need another 5 webservers:</p>
-
-<pre><code>juju add-unit ghost -n 5
-</code></pre>
-
-<p>That’s it. You have now taken advantage of many peoples domain expertise to develop a cloud environment for your own blog.</p>
-
-<p>So what if you wanted to use MySQL or any of these other Charms for a different application? That’s the best part these charms are written using the best practices for the particular charm but have easy to interface with hooks. To enable the Ghost charm to communicate with the haproxy charm all I had to write was:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="ch">#!/usr/bin/node</span>
-<span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">exec</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">address</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">storePort</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedPort</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">port</span> <span class="o">=</span> <span class="nx">returnedPort</span><span class="p">;</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">storeAddress</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedAddress</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">address</span> <span class="o">=</span> <span class="nx">returnedAddress</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">);</span>
-</code></pre></div>
-
-<p><a href="https://jujucharms.com">Juju charms</a> can be written in anything that can be executed. The Ghost charm was written in JavaScript, the MySQL one in bash. Others use Python, Puppet, Chef, Ansible, even Docker containers can be orchestrated using a Juju Charm.</p>
-
-<p>Want to run your own wiki:</p>
-
-<pre><code>juju deploy mediawiki
-juju deploy mysql
-juju deploy haproxy
-juju add-relation mediawiki mysql
-juju add-relation mediawiki haproxy
-</code></pre>
-
-<p>How about a <a href="https://jujucharms.com/mongodb-cluster/">MongoDB cluster</a>, <a href="https://jujucharms.com/q/hadoop-cluster?type=bundle">Hadoop cluster</a>, <a href="https://jujucharms.com/django/">Django app</a>, a <a href="https://jujucharms.com/bundle/transcode/7/cloud/">video transcoding cluster</a>, and more including your own applications. All easily deployable and scalable across public clouds like EC2, HP Cloud, Joyent, Your private OpenStack cloud, and even your very own local machine. That’s right, the above commands all work to deploy identical set ups to all of these targets and more.</p>
-
-<p>This just scratched the surface of the power of <a href="https://jujucharms.com">Juju</a> but I hope that this glimpse has made you interested enough to go do some exploring of your own. You can find the documentation to get started with <a href="https://jujucharms.com">Juju here</a>. And as always if you have any questions or comments you can comment below, find me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> on G+ <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> or hop into #juju on irc.freenode.net and ask away.</p>
 
   </article>
 </section>

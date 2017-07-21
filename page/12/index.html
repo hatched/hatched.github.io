@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,32 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/" itemprop="url">Great YUI 3 DataTable resources!</a></h1>
+      
+        <time pubdate content="2012-09-19 18:05:00 -0600 CST" datetime="2012-09-19 18:05:00 -0600 CST">19 September 2012</time>
+      
+    </header>
+    <p>It’s rare that those tasked with displaying tabular data have an easy go of it. Usually the data isn’t in the right format, the standard libraries either do too much or too little, and the styles are never quite right. For the developers using YUI 3 and the YUI 3 DataTable I have included a couple resources below which will surely make your lives a lot easier.</p>
+
+<ul>
+<li><a href="http://yuilibrary.com/yui/docs/datatable/">YUI 3 DataTable documentation</a> : Extensive documentation outlining the core features of DataTable.</li>
+<li><a href="http://yuilibrary.com/yui/docs/api/modules/datatable.html">YUI 3 DataTable API</a> : Every public, protected, and private method, property, and attribute is listed here.</li>
+<li><a href="http://yuilibrary.com/gallery-archive/gallery/tag/datatable.html?">Gallery modules</a> The list of YUI Gallery modules tagged with <code>datatable</code>.</li>
+<li><a href="http://www.blunderalong.com/">Blunderalong</a> : Active community member (#yui on irc.freenode.net) t_smith has spent many hours putting together this amazing list of working examples complete with easy to read code for common roadblocks developers run into.</li>
+<li><a href="https://css-tricks.com/responsive-data-tables/">CSS-Tricks</a>: Responsive Data Tables : A few great examples of responsive tables.</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table">MDN table documentation</a> : Easy to read documentation on the core HTML table tag.</li>
+<li><a href="https://www.w3.org/TR/CSS2/tables.html">W3 table documentation</a> : Everything there is to know about the html table tag.</li>
+</ul>
+
+<p>If you found these links helpful or would like to see this list grow leave a comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -294,86 +324,6 @@
 <p>But all isn’t perfect, at the beginning I mentioned some drawbacks. In the previous version we were packaging up all of the required assets into the package which will be stored on the device. This will guarantee that those files are always available regardless of the users network connection. Using the remote loading method, once the application loads up it needs to make the request of the remote files before it will become functional. This can cause unnecessary delays in the bootup of the application or cause the application to be entirely useless if there is no network connection. Because of that I don’t recommend using remote loading for core application components. This technique can be very useful during development where your required modules may be changing frequently.</p>
 
 <p>I’m going to try to keep making these tutorials so if you have anything specific you would find helpful for yourself or others please comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/" itemprop="url">Guide to using YUI with PhoneGap (Cordova)</a></h1>
-      
-        <time pubdate content="2012-06-12 07:58:00 -0600 CST" datetime="2012-06-12 07:58:00 -0600 CST">12 June 2012</time>
-      
-    </header>
-    <p>If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).</p>
-
-<p>This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t. I am also not going to cover the installation and setup as it is covered in detail in the <a href="http://docs.phonegap.com/en/1.8.0/guide_getting-started_index.md.html">Getting Started Guide</a>. If you have never built a PhoneGap app I highly recommend completing their <code>Hello World</code> application first. I will be progressing through using an HTC Incredible S with Android 2.3.3 but I will be sure to point out what is device or OS specific. The application that we are going to make is going to build upon the aforementioned <code>Hello World</code> application adding in a button to change the text color.</p>
-
-<p>Most of the confusion with using YUI and PhoneGap (Cordova) is the combo loading - How do you use the Loader in a mobile app? The simple answer is that to get started we aren’t going to be. To accomplish our task we require a certain set of YUI modules. To simplify this tutorial we are going to use the <a href="http://yuilibrary.com/yui/configurator/">YUI Configurator</a>. In the All Module list, click on the Node and Event Rollups. These rollups include more code than necessary but it makes the setup easier.</p>
-
-<p>The configurator will generate two script tags, be sure to select both urls individually Then copy the URL portions of the link generated by the configurator and paste it into the address bar of your browser. If you are having trouble with the configurator I have included the link to the two required files: <a href="http://yui.yahooapis.com/combo?3.5.1/build/yui-base/yui-base-min.js&amp;3.5.1/build/oop/oop-min.js&amp;3.5.1/build/event-custom-base/event-custom-base-min.js&amp;3.5.1/build/features/features-min.js&amp;3.5.1/build/dom-core/dom-core-min.js&amp;3.5.1/build/dom-base/dom-base-min.js&amp;3.5.1/build/selector-native/selector-native-min.js&amp;3.5.1/build/selector/selector-min.js&amp;3.5.1/build/node-core/node-core-min.js&amp;3.5.1/build/node-base/node-base-min.js&amp;3.5.1/build/event-base/event-base-min.js&amp;3.5.1/build/event-delegate/event-delegate-min.js&amp;3.5.1/build/node-event-delegate/node-event-delegate-min.js&amp;3.5.1/build/pluginhost-base/pluginhost-base-min.js&amp;3.5.1/build/pluginhost-config/pluginhost-config-min.js&amp;3.5.1/build/node-pluginhost/node-pluginhost-min.js&amp;3.5.1/build/dom-style/dom-style-min.js&amp;3.5.1/build/dom-screen/dom-screen-min.js&amp;3.5.1/build/node-screen/node-screen-min.js&amp;3.5.1/build/node-style/node-style-min.js&amp;3.5.1/build/event-custom-complex/event-custom-complex-min.js&amp;3.5.1/build/event-synthetic/event-synthetic-min.js">File 1</a> and <a href="http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;3.5.1/build/event-key/event-key-min.js&amp;3.5.1/build/event-focus/event-focus-min.js&amp;3.5.1/build/event-resize/event-resize-min.js&amp;3.5.1/build/event-hover/event-hover-min.js&amp;3.5.1/build/event-outside/event-outside-min.js&amp;3.5.1/build/event-touch/event-touch-min.js&amp;3.5.1/build/event-move/event-move-min.js&amp;3.5.1/build/event-flick/event-flick-min.js&amp;3.5.1/build/event-valuechange/event-valuechange-min.js">File 2</a></p>
-
-<p>Copy the code which is in your browser window and save the code into your assets/www directory in yui-file-1.js and yui-file-2.js respectively, <strong>the order these files are loaded is important</strong></p>
-
-<p>Now we are going to get YUI loaded and set up in our index.html file with three additional script tags.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;cordova-1.8.0.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;yui-file-1.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;yui-file-2.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>First we load in the Cordova script followed by the two files generated by the YUI configurator plus one more to configure the YUI instance to follow. By setting bootstrap to false we are preventing YUI from trying to load the Loader. Additional details can be found in the <a href="http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;3.5.1/build/event-key/event-key-min.js&amp;3.5.1/build/event-focus/event-focus-min.js&amp;3.5.1/build/event-resize/event-resize-min.js&amp;3.5.1/build/event-hover/event-hover-min.js&amp;3.5.1/build/event-outside/event-outside-min.js&amp;3.5.1/build/event-touch/event-touch-min.js&amp;3.5.1/build/event-move/event-move-min.js&amp;3.5.1/build/event-flick/event-flick-min.js&amp;3.5.1/build/event-valuechange/event-valuechange-min.js">bootstrap api</a> documentation.</p>
-
-<p>We are ready for our typical YUI().use statement. Add another script tag just above the closing body tag and instead of loading in specific modules like you normally would, we are going to load in all modules that have been loaded into the page using the * symbol.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
-<span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
-
-	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
-	<span class="p">});</span>
-
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>We use the <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_one">Y.one()</a> method to select our dom elements as usual and then attach an event listener to the <code>button</code> using the <a href="http://yuilibrary.com/yui/docs/api/classes/Node.html#method_on">Node.on()</a> method. But instead of using the typical <code>click</code> event, we substitute it for the <code>touchstart</code> event. Just for fun you can change the <code>touchstart</code> back to <code>click</code> and you will see that it works but there is a noticeable delay in the action - this will happen with any click event handler with PhoneGap (Cordova). we then take the element we assigned to the <code>header</code> property and set it’s color with the <a href="http://yuilibrary.com/yui/docs/api/classes/Node.html#method_setStyle">Node.setStyle()</a> method.</p>
-
-<p>And that’s it! You can now load this onto your device using the same method described in the PhoneGap (Cordova) example and you have made your very first YUI PhoneGap (Cordova) application. I hope you enjoyed this brief tutorial and if you have any questions feel free to comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;cordova-1.8.0.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;yui-file-1.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;yui-file-2.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Click Me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
-<span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
-
-	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
-	<span class="p">});</span>
-
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div>
 
   </article>
 </section>

@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,48 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/" itemprop="url">ParseInt only numbers in an object</a></h1>
+      
+        <time pubdate content="2013-09-15 10:08:00 -0600 CST" datetime="2013-09-15 10:08:00 -0600 CST">15 September 2013</time>
+      
+    </header>
+    <p>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.</p>
+
+<p>I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">parsed</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>So what’s happening here?</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div>
+
+<p>I am using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a> method to get the keys of each element in an array and then looping over them using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a> instead of using a for loop.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
+
+<p>In the loop I parseInt every value and store it in a temporary variable.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">origVal</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Now I compare the parsed value to the original value allowing JavaScript to do it’s type coercion and if they are equal then I overwrite the original value with the parsed value, else I continue on to the next element. This works because parseInt(“2”, 10) === 2 and 2 == “2” but parseInt(“2Foo”, 10) === 2 and 2 != “2Foo”. You can see a <a href="http://output.jsbin.com/UFIMIPO/1/">working example here</a>.</p>
+
+<p>Although this has a fairly limited use case I hope you found the technique interesting albeit a little bit of a hack. Thanks for reading!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -348,32 +394,6 @@
 <p>The fix for me was to make sure that the phone was unlocked and the screen on on the homescreen.</p>
 
 <p>Hope this helps anyone else running into this error. Do you have another solution? Let me know and I’ll add it here for others.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released/" itemprop="url">Juju GUI v0.8 and jujucharms.com released!</a></h1>
-      
-        <time pubdate content="2013-07-22 18:51:00 -0600 CST" datetime="2013-07-22 18:51:00 -0600 CST">22 July 2013</time>
-      
-    </header>
-    <p>It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded <a href="https://www.indiegogo.com/projects/ubuntu-edge">Ubuntu Edge Ubuntu smartphone campaign</a> was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.</p>
-
-<p>Most exciting to me however is release of the Juju GUI v0.8 and the new <a href="https://jujucharms.com">jujucharms.com</a>. v0.8 has a large number of bug fixes to intagrate properly with the new jujucharms.com but most importantly enhances the new Juju Deployer format.</p>
-
-<p><img src="/images/juju-gui-v0-8-and-jujucharms-com-released-1.jpg" alt="" /></p>
-
-<p>Visiting jujucharms.com now drops you right into the Juju GUI with the charm browser open allowing you to explore and discover new charms as well as deploy them into a mock Juju environment. This allows you to build your entire environment and then export it into the new Juju Deployer format for easy import into your own local environment!</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/V2H3fat0K5w?rel=0" frameborder="0" allowfullscreen></iframe>
-
-<p>We don’t plan to slow down now, there are a number of great improvements coming down the pipeline very soon. If you have been following our development trunk I would like to let you know that the <code>uistage</code> link will be being retired in favour of <a href="http://comingsoon.jujucharms.com/">http://comingsoon.jujucharms.com/</a> which will, just like with uistage, host our dev trunk, updated throughout the day as new code makes it in.</p>
-
-<p>It’s a great time to be involved with open source! Let me know what you think of all of the great things coming out of Canonical. Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>, Thanks for reading!.</p>
 
   </article>
 </section>

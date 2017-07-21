@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,44 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/" itemprop="url">Eliminating missing props in React components</a></h1>
+      
+        <time pubdate content="2017-07-21 10:51:26 -0600 CST" datetime="2017-07-21 10:51:26 -0600 CST">21 July 2017</time>
+      
+    </header>
+    <p>An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.</p>
+
+<p>This was an issue that we ran into a few times with the <a href="https://jujucharms.com/new">Juju GUI</a>. The Juju GUI is a web app with a large portion of it rendered using a number of parent React components which then render the appropriate children based on the state of the application.  When one of the children needs access to a method or data, it’s possible that it will need to be passed from the top application down through the parent and various children. This caused issues where it was easy to miss updating a components call signature when it was updated.</p>
+
+<p>To remedy this, <a href="https://twitter.com/frankban_">Francesco Banconi</a>, one of my teammates wrote a <a href="https://github.com/juju/juju-gui/blob/develop/scripts/inspect-components">Python script</a> to analyze all of the components included in the application and their call signatures to ensure that every place it was being called, it was being called with the appropriate props.</p>
+
+<p>We simply added this into our lint target in the Makefile so that CI will fail if a branch attempts to modify the call signatures without updated the rest of the application.</p>
+<div class="highlight"><pre><code class="language-Makefile" data-lang="Makefile"><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
+<span class="nf">lint</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">python</span> <span class="n">lint</span>-<span class="n">components</span> <span class="n">lint</span>-<span class="n">js</span> <span class="n">lint</span>-<span class="n">css</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">components</span>
+<span class="nf">lint-components</span><span class="o">:</span>
+	 @./scripts/inspect-components validate --path jujugui/static/gui/src/ --short
+</code></pre></div>
+
+<p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
+<div class="highlight"><pre><code class="language-Bash" data-lang="Bash"><span></span>EntityContent:
+  instantiated at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/entity-details.js:98
+  defined at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/content/content.js:21
+  entityModel provided but not declared
+
+component validation failed: <span class="m">1</span> error found
+</code></pre></div>
+
+<p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -284,49 +326,6 @@
 </code></pre></div>
 
 <p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/" itemprop="url">Automatically build files when they change with Make</a></h1>
-      
-        <time pubdate content="2015-08-26 12:07:00 -0600 CST" datetime="2015-08-26 12:07:00 -0600 CST">26 August 2015</time>
-      
-    </header>
-    <p>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</p>
-
-<p>Introducing <a href="http://linux.die.net/man/1/inotifywait">inotifywait</a>, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And <a href="http://emcrisostomo.github.io/fswatch/">fswatch</a> for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.</p>
-
-<p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
-
-<pre><code>watch -n 2 make build
-</code></pre>
-
-<p>Or they will build the loop into the makefile.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
-<span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    make build --silent<span class="p">;</span> <span class="se">\</span>
-    sleep 1<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
-<span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\</span>
-    make build<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
-
-<p>Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>

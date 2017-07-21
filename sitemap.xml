@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</loc>
     <lastmod>2016-11-22T21:23:26-06:00</lastmod>
   </url>
@@ -362,7 +367,7 @@
   
   <url>
     <loc>https://fromanegg.com/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -434,7 +439,7 @@
   
   <url>
     <loc>https://fromanegg.com/post/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -445,6 +450,18 @@
   
   <url>
     <loc>https://fromanegg.com/projects/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/python/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/react/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>

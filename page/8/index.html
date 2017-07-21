@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,30 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/" itemprop="url">Juju GUI v0.7.1 released</a></h1>
+      
+        <time pubdate content="2013-06-03 13:51:00 -0600 CST" datetime="2013-06-03 13:51:00 -0600 CST">3 June 2013</time>
+      
+    </header>
+    <p>As of a few minutes ago the 0.7.1 version of the Juju GUI was released. It brings with it over 1000 unit tests, performance, memory and stability improvements, along with:</p>
+
+<ul>
+<li>Added drag and drop deployment from charm browser.</li>
+<li>Export environment to Juju deployer YAML format from keyboard shortcut (shift-d).</li>
+<li>Databinding and conflict resolution finalized (feature-flagged).</li>
+<li>Start of new service inspector development (feature-flagged).</li>
+<li>Added relations to Go sandbox (Go sandbox still in progress).</li>
+</ul>
+
+<p>You can download it from <a href="https://launchpad.net/juju-gui/stable">Juju GUI on Launchpad</a>. If you would like to learn more about <a href="https://jujucharms.com">Juju, you can find more information here</a>.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -386,37 +414,6 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 <span class="c1">// [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">);</span>
 </code></pre></div>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/" itemprop="url">Using css function image-set for high-DPI displays</a></h1>
-      
-        <time pubdate content="2013-02-06 14:57:00 -0600 CST" datetime="2013-02-06 14:57:00 -0600 CST">6 February 2013</time>
-      
-    </header>
-    <p>Anyone who has put together a website with high-DPI displays in mind has likely used the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio">{prefix}-device-pixel-ratio</a> CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media">SASS CSS preprocessor</a> and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called <a href="https://drafts.csswg.org/css-images-4/#image-set-notation">image-set()</a> available under the -webkit- prefix.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">);</span>
-</code></pre></div>
-
-<p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">);</span>
-<span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">);</span>
-</code></pre></div>
-
-<p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
-
-<p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>

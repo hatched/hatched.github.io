@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>Eliminating missing props in React components &middot; From An Egg</title>
+      <meta name="twitter:title" content="Eliminating missing props in React components" />
+      <meta property="og:title" content="Eliminating missing props in React components" />
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      
+        <meta name="description" itemprop="description" content="An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.">
+        <meta name="twitter:description" content="An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves." />
+        <meta property="og:description" content="An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves." />
+        
+          <meta property="article:published_time" content="2017-07-21 10:51:26 -0600 CST">
+        
+      
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.25.1" />
+    <link rel="canonical" href="https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
+
+  <nav>
+  <img src="/images/me.png"></img>
+  <h1 itemprop="author">Jeff Pihach</h1>
+  <label for="menu-toggle" class="icon-menu">Menu</label>
+  <input type="checkbox" id="menu-toggle"/>
+  <div class="nav-wrapper">
+    <ul>
+      <li class=""><a href="/" class="icon-home">Home</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
+      <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+      <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+      <li class="">
+        <label for="tags-toggle">
+          <span class="icon-tag">Tags</span>
+          <span class="icon-down-dir arrow"></span>
+        </label>
+        <input type="checkbox" id="tags-toggle"/>
+        <ul class="tag-list">
+          
+          
+            <li><a href="/tags/android">android</a></li>
+          
+            <li><a href="/tags/book-review">book-review</a></li>
+          
+            <li><a href="/tags/cordova">cordova</a></li>
+          
+            <li><a href="/tags/css">css</a></li>
+          
+            <li><a href="/tags/development">development</a></li>
+          
+            <li><a href="/tags/go">go</a></li>
+          
+            <li><a href="/tags/hatched-links">hatched-links</a></li>
+          
+            <li><a href="/tags/html">html</a></li>
+          
+            <li><a href="/tags/javascript">javascript</a></li>
+          
+            <li><a href="/tags/juju">juju</a></li>
+          
+            <li><a href="/tags/juju-gui">juju-gui</a></li>
+          
+            <li><a href="/tags/linux">linux</a></li>
+          
+            <li><a href="/tags/node.js">node.js</a></li>
+          
+            <li><a href="/tags/ops">ops</a></li>
+          
+            <li><a href="/tags/osx">osx</a></li>
+          
+            <li><a href="/tags/phonegap">phonegap</a></li>
+          
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
+            <li><a href="/tags/testing">testing</a></li>
+          
+            <li><a href="/tags/ubuntu">ubuntu</a></li>
+          
+            <li><a href="/tags/video">video</a></li>
+          
+            <li><a href="/tags/yui">yui</a></li>
+          
+        </ul>
+      </li>
+      <li><a href="https://fromanegg.com/rss.xml" class="icon-rss">RSS</a></li>
+    </ul>
+    <hr></hr>
+    <h3>Social</h3>
+    <ul class="social-list">
+      <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+      <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+      <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
+      <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/" itemprop="url">Eliminating missing props in React components</a></h1>
+      
+        <time pubdate content="2017-07-21 10:51:26 -0600 CST" datetime="2017-07-21 10:51:26 -0600 CST">21 July 2017</time>
+      
+    </header>
+    <p>An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.</p>
+
+<p>This was an issue that we ran into a few times with the <a href="https://jujucharms.com/new">Juju GUI</a>. The Juju GUI is a web app with a large portion of it rendered using a number of parent React components which then render the appropriate children based on the state of the application.  When one of the children needs access to a method or data, it’s possible that it will need to be passed from the top application down through the parent and various children. This caused issues where it was easy to miss updating a components call signature when it was updated.</p>
+
+<p>To remedy this, <a href="https://twitter.com/frankban_">Francesco Banconi</a>, one of my teammates wrote a <a href="https://github.com/juju/juju-gui/blob/develop/scripts/inspect-components">Python script</a> to analyze all of the components included in the application and their call signatures to ensure that every place it was being called, it was being called with the appropriate props.</p>
+
+<p>We simply added this into our lint target in the Makefile so that CI will fail if a branch attempts to modify the call signatures without updated the rest of the application.</p>
+<div class="highlight"><pre><code class="language-Makefile" data-lang="Makefile"><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
+<span class="nf">lint</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">python</span> <span class="n">lint</span>-<span class="n">components</span> <span class="n">lint</span>-<span class="n">js</span> <span class="n">lint</span>-<span class="n">css</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">components</span>
+<span class="nf">lint-components</span><span class="o">:</span>
+	 @./scripts/inspect-components validate --path jujugui/static/gui/src/ --short
+</code></pre></div>
+
+<p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
+<div class="highlight"><pre><code class="language-Bash" data-lang="Bash"><span></span>EntityContent:
+  instantiated at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/entity-details.js:98
+  defined at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/content/content.js:21
+  entityModel provided but not declared
+
+component validation failed: <span class="m">1</span> error found
+</code></pre></div>
+
+<p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/react">react</a></li>
+      
+        <li><a href="/tags/python">python</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

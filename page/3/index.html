@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25" />
+    <meta name="generator" content="Hugo 0.25.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -85,6 +85,10 @@
           
             <li><a href="/tags/phonegap">phonegap</a></li>
           
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
             <li><a href="/tags/testing">testing</a></li>
           
             <li><a href="/tags/ubuntu">ubuntu</a></li>
@@ -108,6 +112,89 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/" itemprop="url">Juju - Explain it to me like I’m 5</a></h1>
+      
+        <time pubdate content="2014-09-08 23:10:00 -0600 CST" datetime="2014-09-08 23:10:00 -0600 CST">8 September 2014</time>
+      
+    </header>
+    <p><a href="https://jujucharms.com">Juju</a> is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.</p>
+
+<p><blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="und" dir="ltr"><a href="https://twitter.com/FromAnEgg">@FromAnEgg</a> ELI5 Juju..</p>&mdash; Mark Poppen (@MarkPoppen) <a href="https://twitter.com/MarkPoppen/status/509113565702127616">September 8, 2014</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>Juju is often described as <a href="https://help.ubuntu.com/12.04/serverguide/apt-get.html">apt-get</a> for the cloud, but what does someone who isn’t familiar with the Ubuntu ecosystem know about apt-get? I think I’ll need to go even more abstract…</p>
+
+<p>Let’s say that you had built the most awesome Lego race car body (kids still play with Lego right?) but you didn’t know how to make the wheels or make it move with one of those Mindstorm engines. So now you have to go and play around for a long time to learn how to make a wheel and how to hook up engines. But this is going to take a long time and your mom is going to call you for supper soon, there has to be someone who is an expert wheel maker and Mindstorm engine builder right? Wouldn’t it be awesome if they could build wheels and engines you could use in your race car so you can finish it before supper?</p>
+
+<p>Well that is what Juju does. It allows people who have expertise in a specific field to build packages that you can connect to your own projects without needing to be an expert in that field. So how does this help you write software faster in the cloud? Well I think that’s best explained with another, more grown up, example.</p>
+
+<p>Recently, I wrote a Juju Charm for the <a href="https://github.com/hatched/ghost-charm">Ghost blogging platform</a> so that I can move this blog off of Tumblr and onto something a little more customize-able. The problem? I needed a front end server which was capable of load balancing the webservers when the load picks up and I don’t have the time to learn all about the various options and the best way to install and configure them. So I went to what’s known as the <a href="https://jujucharms.com">Juju Charm Browser</a> and picked the <a href="https://jujucharms.com/haproxy/">haproxy Charm</a> and added it into my environment. With multiple web servers I could no longer rely on Ghost’s built in SQLite implementation so I needed to hook up to an external MySQL database. Back to the Charm Browser I went and grabbed the <a href="https://jujucharms.com/mysql/">MySQL Charm</a>.</p>
+
+<p><img src="/images/juju-explain-it-to-me-like-Im-5-1.png" alt="" /></p>
+
+<p>So now I have a load-balanced horizontally scale-able Ghost blog (coming soon). You can have one too, it’s incredibly easy too. For you to get your very own horizontally scale-able load-balanced Ghost blog all you have to do is execute these commands:</p>
+
+<pre><code>juju deploy ghost
+juju deploy haproxy
+juju deploy mysql
+juju add-relation ghost haproxy
+juju add-relation ghost mysql
+</code></pre>
+
+<p>Lets pretend for a moment that haproxy isn’t cutting it any longer and you instead want to use apache2:</p>
+
+<pre><code>juju destroy-service haproxy
+juju deploy apache2
+juju add-relation ghost apache2
+</code></pre>
+
+<p>Maybe your blog is super popular and you need another 5 webservers:</p>
+
+<pre><code>juju add-unit ghost -n 5
+</code></pre>
+
+<p>That’s it. You have now taken advantage of many peoples domain expertise to develop a cloud environment for your own blog.</p>
+
+<p>So what if you wanted to use MySQL or any of these other Charms for a different application? That’s the best part these charms are written using the best practices for the particular charm but have easy to interface with hooks. To enable the Ghost charm to communicate with the haproxy charm all I had to write was:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="ch">#!/usr/bin/node</span>
+<span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">exec</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">address</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">storePort</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedPort</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">port</span> <span class="o">=</span> <span class="nx">returnedPort</span><span class="p">;</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">storeAddress</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedAddress</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">address</span> <span class="o">=</span> <span class="nx">returnedAddress</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">);</span>
+</code></pre></div>
+
+<p><a href="https://jujucharms.com">Juju charms</a> can be written in anything that can be executed. The Ghost charm was written in JavaScript, the MySQL one in bash. Others use Python, Puppet, Chef, Ansible, even Docker containers can be orchestrated using a Juju Charm.</p>
+
+<p>Want to run your own wiki:</p>
+
+<pre><code>juju deploy mediawiki
+juju deploy mysql
+juju deploy haproxy
+juju add-relation mediawiki mysql
+juju add-relation mediawiki haproxy
+</code></pre>
+
+<p>How about a <a href="https://jujucharms.com/mongodb-cluster/">MongoDB cluster</a>, <a href="https://jujucharms.com/q/hadoop-cluster?type=bundle">Hadoop cluster</a>, <a href="https://jujucharms.com/django/">Django app</a>, a <a href="https://jujucharms.com/bundle/transcode/7/cloud/">video transcoding cluster</a>, and more including your own applications. All easily deployable and scalable across public clouds like EC2, HP Cloud, Joyent, Your private OpenStack cloud, and even your very own local machine. That’s right, the above commands all work to deploy identical set ups to all of these targets and more.</p>
+
+<p>This just scratched the surface of the power of <a href="https://jujucharms.com">Juju</a> but I hope that this glimpse has made you interested enough to go do some exploring of your own. You can find the documentation to get started with <a href="https://jujucharms.com">Juju here</a>. And as always if you have any questions or comments you can comment below, find me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> on G+ <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> or hop into #juju on irc.freenode.net and ask away.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -317,91 +404,6 @@ Because your tests should test exactly what you expect your public API to return
 <p>Congratulations you now have Ubuntu installed along side OSX!</p>
 
 <p>If you run into any problems along the way or have any questions your first stop should be your search engine of choice there are thousands of great resources for Ubuntu scattered around on many topics. You will also find a ton of great people in Ubuntu community hanging out in the #ubuntu room on IRC on freenode.net or if you prefer to ask direct detailed questions check out <a href="http://askubuntu.com">http://askubuntu.com</a>. I hope that this guide has helped you get up and running with Ubuntu, please comment below with any questions or comments or I can be found on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>, thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/" itemprop="url">Self documenting code is not enough</a></h1>
-      
-        <time pubdate content="2014-03-13 09:22:00 -0600 CST" datetime="2014-03-13 09:22:00 -0600 CST">13 March 2014</time>
-      
-    </header>
-    <p>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.</p>
-
-<p>As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as <a href="https://en.wikipedia.org/wiki/Self-documenting_code">self-documenting code</a> with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</p>
-
-<p>Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">gd</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>Into:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
-
-<p>This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.</p>
-
-<p>Lets assume for a moment that this function was copy &amp; pasted into a larger projects utility class. Wouldn’t it be nice if it would automatically be added to the API docs?</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
-<span class="cm">  Calculate the difference between the x and y coords of two points.</span>
-
-<span class="cm">  @method getDifference</span>
-<span class="cm">  @param {Object} point1 The first point to compare.</span>
-<span class="cm">  @param {Object} point2 The second point to compare.</span>
-<span class="cm">  @return {Array} The difference between the two points in the format [x, y]</span>
-<span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
-
-<p>To illustrate the importance of inline comments even with self documenting code. Take the following method from the <a href="https://github.com/juju/juju-gui">Juju GUI source</a>.</p>
-
-<p>The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
-             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
-<span class="p">},</span>
-</code></pre></div>
-
-<p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
-<span class="cm">  Export the YAML for this environment.</span>
-
-<span class="cm">  @method exportYAML</span>
-<span class="cm">*/</span>
-<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-  <span class="c1">// In order to support Safari 7 the type of this blob needs</span>
-  <span class="c1">// to be text/plain instead of it&#39;s actual type of application/yaml.</span>
-  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
-      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
-<span class="p">},</span>
-</code></pre></div>
-
-<p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
-
-<p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
 </section>
