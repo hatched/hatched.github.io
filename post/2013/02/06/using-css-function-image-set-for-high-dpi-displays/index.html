@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -114,7 +114,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -129,22 +128,17 @@
       
     </header>
     <p>Anyone who has put together a website with high-DPI displays in mind has likely used the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#-moz-device-pixel-ratio">{prefix}-device-pixel-ratio</a> CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#media">SASS CSS preprocessor</a> and the @media directive which allows you to keep your element media query rules with the element styles. Also available is the recently released css function called <a href="https://drafts.csswg.org/css-images-4/#image-set-notation">image-set()</a> available under the -webkit- prefix.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">);</span>
-</code></pre></div>
-
-<p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span><span class="o">;</span>
 <span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
-  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="nc">.jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">);</span>
-</code></pre></div>
-
-<p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
-
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
+  <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">2x</span>
+<span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
 <p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>

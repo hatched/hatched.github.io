@@ -12,11 +12,11 @@
     
       
         <meta name="description" itemprop="description" content="I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
-Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&quot;foo&quot;&gt;&lt;/div&gt;  Any element which has a user attribute regardless of value.">
+Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&#34;foo&#34;&gt;&lt;/div&gt; Any element which has a user attribute regardless of value.">
         <meta name="twitter:description" content="I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
-Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&quot;foo&quot;&gt;&lt;/div&gt;  Any element which has a user attribute regardless of value." />
+Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&#34;foo&#34;&gt;&lt;/div&gt; Any element which has a user attribute regardless of value." />
         <meta property="og:description" content="I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
-Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&quot;foo&quot;&gt;&lt;/div&gt;  Any element which has a user attribute regardless of value." />
+Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [user] /* matches */ &lt;div user&gt;&lt;/div&gt; &lt;div user=&#34;foo&#34;&gt;&lt;/div&gt; Any element which has a user attribute regardless of value." />
         
           <meta property="article:published_time" content="2013-01-28 10:01:00 -0600 CST">
         
@@ -33,7 +33,7 @@ Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [u
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [u
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -131,62 +130,41 @@ Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [u
         <time pubdate content="2013-01-28 10:01:00 -0600 CST" datetime="2013-01-28 10:01:00 -0600 CST">28 January 2013</time>
       
     </header>
-    
-
-<p>I received a large number of questions after my last blog post, <a href="http://fromanegg.com/post/41302147556/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a>, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.</p>
-
+    <p>I received a large number of questions after my last blog post, <a href="http://fromanegg.com/post/41302147556/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a>, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.</p>
 <h4 id="attribute-selector-syntax">Attribute Selector Syntax</h4>
-
 <pre><code>[attributeName{selector}value]
-</code></pre>
-
-<h4 id="attribute-selectors">Attribute Selectors</h4>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user]
+</code></pre><h4 id="attribute-selectors">Attribute Selectors</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute regardless of value.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user=foo]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute regardless of value.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user=foo]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with the exact value <code>foo</code>.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user~=bar]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>foo</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user~=bar]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foo bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with the exact value <code>bar</code> or the value <code>bar</code> in a whitespace-separated list.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user|=baz]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>bar</code> or the value <code>bar</code> in a whitespace-separated list.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user|=baz]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;baz&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;baz-bar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with the exact value <code>baz</code> or a value starting with <code>baz</code> followed by a “-”.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user^=foo]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz-bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>baz</code> or a value starting with <code>baz</code> followed by a “-”.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user^=foo]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;fooBar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with a value that starts with <code>foo</code>.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user$=bar]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;fooBar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that starts with <code>foo</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user$=bar]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foobar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with a value that ends with <code>bar</code>.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span>[user*=baz]
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that ends with <code>bar</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user*=baz]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&quot;foobazbar&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Any element which has a <code>user</code> attribute with a value that has <code>baz</code> anywhere in it.</p>
-
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobazbar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that has <code>baz</code> anywhere in it.</p>
 <p>If you don’t have to support IE 6 you’re in luck because you should have full support for all of these all the way back to IE 7. As usual feel free to let me know your thoughts below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> - Happy selecting!</p>
 
   </article>

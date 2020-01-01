@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on From An Egg</title>
+    <link>https://fromanegg.com/tags/javascript/</link>
+    <description>Recent content in javascript on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jun 2015 21:44:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/javascript/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Write JavaScript like it’s typed</title>
+      <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed/</link>
+      <pubDate>Sat, 06 Jun 2015 21:44:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed/</guid>
+      <description>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</description>
+    </item>
+    
+    <item>
+      <title>Easy testing of code involving native methods in JavaScript</title>
+      <link>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/</link>
+      <pubDate>Wed, 22 Apr 2015 19:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/</guid>
+      <description>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); } Pre &amp;lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure.</description>
+    </item>
+    
+    <item>
+      <title>ParseInt only numbers in an object</title>
+      <link>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/</link>
+      <pubDate>Sun, 15 Sep 2013 10:08:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/</guid>
+      <description>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.
+I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.</description>
+    </item>
+    
+    <item>
+      <title>Test driven development - the easy way!</title>
+      <link>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</link>
+      <pubDate>Fri, 07 Jun 2013 22:45:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</guid>
+      <description>A number of people, myself included, have a hard time getting started with test driven development (TDD). The issue lies in that it’s difficult to wrap your head around something that is rather non specific in its implementation and it is usually described as “writing your tests before you write your code”.
+When developers hear “Write your tests before you write your code”, then they look at their previous test suite they wonder… “How can I possibly write this without having written the code first?</description>
+    </item>
+    
+    <item>
+      <title>Calculating timezones in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</link>
+      <pubDate>Thu, 06 Jun 2013 10:02:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</guid>
+      <description>I&#39;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
+Converting a timestamp to UTC time. To display a timestamp in UTC around the world instead of in the users local timezone you use getTimezoneOffset, multiply it by 60,000 and then subtract that from your timestamp.</description>
+    </item>
+    
+    <item>
+      <title>XOR in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/06/01/xor-in-javascript/</link>
+      <pubDate>Sat, 01 Jun 2013 12:08:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/01/xor-in-javascript/</guid>
+      <description>Typically when writing a XOR check in JavaScript you would do something like…
+if (( foo || bar ) &amp;amp;&amp;amp; !( foo &amp;amp;&amp;amp; bar )) { } The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.
+In order to start working towards a better solution we first need to define our desired outcome.</description>
+    </item>
+    
+    <item>
+      <title>Insert an array of values into an array in JavaScript</title>
+      <link>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/</link>
+      <pubDate>Fri, 22 Feb 2013 12:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/</guid>
+      <description>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
+// Array #1 [&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;, 3, 4, 5] But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.</description>
+    </item>
+    
+    <item>
+      <title>Prototypes and class-like objects in Javascript</title>
+      <link>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript/</link>
+      <pubDate>Mon, 21 Jan 2013 10:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript/</guid>
+      <description>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post Constructor chaining &amp;amp; inheritance in javascript. I recommend that you read that post first as I’ll be referencing some of the same code.
+The prototype is defined as an “object that provides shared properties for other objects” - Ecma International.</description>
+    </item>
+    
+    <item>
+      <title>YUIConf talk 2012</title>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</link>
+      <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</guid>
+      <description>My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!</description>
+    </item>
+    
+    <item>
+      <title>Constructor chaining &amp; inheritance in javascript</title>
+      <link>https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/</link>
+      <pubDate>Thu, 03 Jan 2013 20:56:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/</guid>
+      <description>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves.</description>
+    </item>
+    
+    <item>
+      <title>Form validation with keydown, keypress, and keyup</title>
+      <link>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</link>
+      <pubDate>Sat, 29 Dec 2012 12:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</guid>
+      <description>There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.
+As with all DOM events there is a generally accepted order to which they fire and key events are no different.</description>
+    </item>
+    
+    <item>
+      <title>Using after() event listeners to react to attribute value changes</title>
+      <link>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</link>
+      <pubDate>Sat, 01 Dec 2012 18:30:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</guid>
+      <description>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the on() and after() methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</description>
+    </item>
+    
+    <item>
+      <title>Adding a validation fail event to YUI’s Y.Attribute</title>
+      <link>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</link>
+      <pubDate>Fri, 24 Aug 2012 13:41:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</guid>
+      <description>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of Y.Attribute is the validator.
+The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute.</description>
+    </item>
+    
+    <item>
+      <title>Add toggle button support to Y.PopupCalendar</title>
+      <link>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</link>
+      <pubDate>Tue, 31 Jul 2012 15:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</guid>
+      <description>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.
+Until I am able to add support into the module, simply copy and paste the following code before the first instance of Y.</description>
+    </item>
+    
+    <item>
+      <title>How to make a Node.js static file server - Part 1</title>
+      <link>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</link>
+      <pubDate>Sun, 26 Feb 2012 19:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</guid>
+      <description>This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.
+I’m going to assume you already have Node.js up running on your computer and that you know javascript. This code was developed on v0.6.1-pre and I will make an effort to update it and the version number as things change with Node.</description>
+    </item>
+    
+    <item>
+      <title>Handling module load errors with YUI Loader</title>
+      <link>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</link>
+      <pubDate>Mon, 06 Feb 2012 15:50:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</guid>
+      <description>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.
+From time to time you may find yourself loading modules that aren’t available. Whether it be from a user supplied modules list or an unreliable source, the YUI instance confg gives you an easy way to check if there are any errors while loading your modules.
+A common YUI config and use statement would look like the following.</description>
+    </item>
+    
+  </channel>
+</rss>

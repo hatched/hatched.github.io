@@ -33,7 +33,7 @@ Let me introduce you to the pointer-events CSS property. This property allows yo
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ Let me introduce you to the pointer-events CSS property. This property allows yo
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,28 +131,21 @@ Let me introduce you to the pointer-events CSS property. This property allows yo
       
     </header>
     <p>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.</p>
-
 <p>Let me introduce you to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a> CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events. As an experimental feature in CSS3 it has also added basic support for non-SVG elements in modern browsers (Chrome 2, FireFox 3.6, Safari, 4).</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-    <span class="nb">pointer</span><span class="o">-</span><span class="n">events</span><span class="o">:</span> <span class="nb">none</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+    <span class="n">pointer-events</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-        <span class="n">filter</span><span class="o">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="n">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="o">,</span> <span class="n">sizingMethod</span><span class="o">=</span><span class="s1">&#39;scale&#39;</span><span class="p">);</span>
-        <span class="nb">background</span><span class="o">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
+</code></pre></div><p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Or in IE8 and up outside of a conditional.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">div</span><span class="nc">.overlay</span> <span class="p">{</span>
-    <span class="o">-</span><span class="n">ms</span><span class="o">-</span><span class="n">filter</span><span class="o">:</span> <span class="s1">&#39;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=overlay.png,  sizingMethod=scale)&#39;</span><span class="p">;</span>
-    <span class="nb">background</span><span class="o">:</span> <span class="nb">none</span> <span class="cp">!important</span><span class="p">;</span>
+</code></pre></div><p>Or in IE8 and up outside of a conditional.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+    <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s1">&#39;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=overlay.png,  sizingMethod=scale)&#39;</span><span class="p">;</span>
+    <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Having issues implementing this? Mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or leave a comment below. Until next time!</p>
+</code></pre></div><p>Having issues implementing this? Mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or leave a comment below. Until next time!</p>
 
   </article>
 </section>

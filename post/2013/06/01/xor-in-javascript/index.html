@@ -12,11 +12,14 @@
     
       
         <meta name="description" itemprop="description" content="Typically when writing a XOR check in JavaScript you would do something like…
-if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.">
+if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { } The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.
+In order to start working towards a better solution we first need to define our desired outcome.">
         <meta name="twitter:description" content="Typically when writing a XOR check in JavaScript you would do something like…
-if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example." />
+if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { } The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.
+In order to start working towards a better solution we first need to define our desired outcome." />
         <meta property="og:description" content="Typically when writing a XOR check in JavaScript you would do something like…
-if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example." />
+if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { } The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.
+In order to start working towards a better solution we first need to define our desired outcome." />
         
           <meta property="article:published_time" content="2013-06-01 12:08:00 -0600 CST">
         
@@ -33,7 +36,7 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/06/01/xor-in-javascript/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +120,6 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,13 +134,9 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
       
     </header>
     <p>Typically when writing a XOR check in JavaScript you would do something like…</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">((</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">))</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></div>
-
-<p>The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">)</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div><p>The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</p>
 <p>In order to start working towards a better solution we first need to define our desired outcome. Wikipedia explains an <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> to be a logical operation that outputs true whenever both inputs differ (one is true, the other is false).</p>
-
 <table>
 <thead>
 <tr>
@@ -147,26 +145,22 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
 <th>Output</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 </tr>
-
 <tr>
 <td>0</td>
 <td>1</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>1</td>
 <td>0</td>
 <td>1</td>
 </tr>
-
 <tr>
 <td>1</td>
 <td>1</td>
@@ -174,13 +168,9 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
 </tr>
 </tbody>
 </table>
-
 <p>So with the truth table above we can now check out alternative approaches. As it turns out the quirkyness of JavaScript can actually help us clean this up. Because using the NOT (!) operator on a string will typecast it to false we can actually reduce the above if check to…</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span> <span class="o">!=</span> <span class="o">!</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></div>
-
-<p>So lets create an output table for this new technique to see if it works as expected.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span> <span class="o">!=</span> <span class="o">!</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div><p>So lets create an output table for this new technique to see if it works as expected.</p>
 <table>
 <thead>
 <tr>
@@ -189,26 +179,22 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
 <th>Output</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>0</td>
 <td>0</td>
 <td>false</td>
 </tr>
-
 <tr>
 <td>0</td>
 <td>1</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>1</td>
 <td>0</td>
 <td>true</td>
 </tr>
-
 <tr>
 <td>1</td>
 <td>1</td>
@@ -216,9 +202,7 @@ if (( foo || bar ) &amp;&amp; !( foo &amp;&amp; bar )) { }  The issue with this 
 </tr>
 </tbody>
 </table>
-
 <p>Works great and with a lot less keystrokes!</p>
-
 <p>Thanks for reading! If you have any questions or comments please feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>

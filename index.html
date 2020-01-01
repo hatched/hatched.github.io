@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -107,7 +107,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -123,30 +122,23 @@
       
     </header>
     <p>An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.</p>
-
 <p>This was an issue that we ran into a few times with the <a href="https://jujucharms.com/new">Juju GUI</a>. The Juju GUI is a web app with a large portion of it rendered using a number of parent React components which then render the appropriate children based on the state of the application.  When one of the children needs access to a method or data, it’s possible that it will need to be passed from the top application down through the parent and various children. This caused issues where it was easy to miss updating a components call signature when it was updated.</p>
-
 <p>To remedy this, <a href="https://twitter.com/frankban_">Francesco Banconi</a>, one of my teammates wrote a <a href="https://github.com/juju/juju-gui/blob/develop/scripts/inspect-components">Python script</a> to analyze all of the components included in the application and their call signatures to ensure that every place it was being called, it was being called with the appropriate props.</p>
-
 <p>We simply added this into our lint target in the Makefile so that CI will fail if a branch attempts to modify the call signatures without updated the rest of the application.</p>
-<div class="highlight"><pre><code class="language-Makefile" data-lang="Makefile"><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
+<div class="highlight"><pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
 <span class="nf">lint</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">python</span> <span class="n">lint</span>-<span class="n">components</span> <span class="n">lint</span>-<span class="n">js</span> <span class="n">lint</span>-<span class="n">css</span>
 
 <span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">components</span>
 <span class="nf">lint-components</span><span class="o">:</span>
 	 @./scripts/inspect-components validate --path jujugui/static/gui/src/ --short
-</code></pre></div>
-
-<p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
-<div class="highlight"><pre><code class="language-Bash" data-lang="Bash"><span></span>EntityContent:
+</code></pre></div><p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">EntityContent:
   instantiated at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/entity-details.js:98
   defined at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/content/content.js:21
   entityModel provided but not declared
 
 component validation failed: <span class="m">1</span> error found
-</code></pre></div>
-
-<p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
+</code></pre></div><p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
 
   </article>
 </section>
@@ -160,64 +152,45 @@ component validation failed: <span class="m">1</span> error found
         <time pubdate content="2016-11-22 21:23:26 -0600 CST" datetime="2016-11-22 21:23:26 -0600 CST">22 November 2016</time>
       
     </header>
-    <p>After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
-
-<p>You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Description of post&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://example.com/path/to/post&quot;</span><span class="p">/&gt;</span>
-</code></pre></div>
-
-<p>HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the <code>section</code> and <code>article</code> tags. The <code>section</code> tag represents a generic section of the document, like a list of articles. The <code>article</code> tag represents the actual post content including the title, publication date, content, etc.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;permalink&quot;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;1970-01-01T00:00:00+00:00&quot;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <p>After writing some great content you'll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
+<p>You'll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Description of post&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;canonical&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://example.com/path/to/post&#34;</span><span class="p">/</span><span class="p">&gt;</span>
+</code></pre></div><p>HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the <code>section</code> and <code>article</code> tags. The <code>section</code> tag represents a generic section of the document, like a list of articles. The <code>article</code> tag represents the actual post content including the title, publication date, content, etc.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">section</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p"></span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span><span class="p"></span><span class="p">&gt;</span>Post Title<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;</span><span class="p">/</span><span class="nt">time</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p"></span><span class="p">&gt;</span>Your name<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">header</span><span class="p">&gt;</span>
     Post content.
-  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>This doesn&rsquo;t however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
-
-<p>Because this is a blog post we&rsquo;ll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you&rsquo;re specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you&rsquo;re wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&quot;http://schema.org/BlogPosting&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>The title is defined using the <a href="http://schema.org/name">name</a> tag and the permalink is defined using the <a href="http://schema.org/url">url</a> tag.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;name&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;permalink&quot;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;url&quot;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>To indicate the date that the content was first published we use the <a href="http://schema.org/datePublished">datePublished</a> tag supplying the datetime value.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;datePublished&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;1970-01-01T00:00:00+00:00&quot;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&quot;1970-01-01T00:00:00+00:00&quot;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it&rsquo;s the <a href="http://schema.org/author">author</a> tag.</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&quot;author&quot;</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you&rsquo;ll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
-
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">section</span><span class="p">&gt;</span>
+</code></pre></div><p>This doesn't however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
+<p>Because this is a blog post we'll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you're specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you're wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/BlogPosting&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">article</span><span class="p">&gt;</span>
+</code></pre></div><p>The title is defined using the <a href="http://schema.org/name">name</a> tag and the permalink is defined using the <a href="http://schema.org/url">url</a> tag.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p"></span><span class="p">&gt;</span>Post Title<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></div><p>To indicate the date that the content was first published we use the <a href="http://schema.org/datePublished">datePublished</a> tag supplying the datetime value.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;datePublished&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;</span><span class="p">/</span><span class="nt">time</span><span class="p">&gt;</span>
+</code></pre></div><p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it's the <a href="http://schema.org/author">author</a> tag.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p"></span><span class="p">&gt;</span>Your name<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div><p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you'll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
 <p>The Twitter card metadata fields are as follows (taken from their documentation):</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;summary&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;@flickr&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;Small Island Developing States Photo Submission&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;View the album on Flickr.&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;twitter:image&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&quot;</span> <span class="p">/&gt;</span>
-</code></pre></div>
-
-<p>And the Facebook Open Graph data meta fields are (taken from their documentation):</p>
-<div class="highlight"><pre><code class="language-HTML" data-lang="HTML"><span></span><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:url&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;http://www.example.com/post/1234&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:type&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;article&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:title&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;When Great Minds Don’t Think Alike&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:description&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;How much does culture influence creative thinking?&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;og:image&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;http://example.com/image.jpg&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;article:published_time&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;1970-01-01T00:00:00+00:00&quot;</span><span class="p">&gt;</span>
-</code></pre></div>
-
-<p>Thanks for reading, do you have any other tips for proper blog markup? Let me know below!</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:card&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;summary&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:site&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;@flickr&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Small Island Developing States Photo Submission&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;View the album on Flickr.&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+</code></pre></div><p>And the Facebook Open Graph data meta fields are (taken from their documentation):</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:url&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://www.example.com/post/1234&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;article&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;When Great Minds Don’t Think Alike&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;How much does culture influence creative thinking?&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://example.com/image.jpg&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;article:published_time&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>
+</code></pre></div><p>Thanks for reading, do you have any other tips for proper blog markup? Let me know below!</p>
 
   </article>
 </section>
@@ -232,29 +205,22 @@ component validation failed: <span class="m">1</span> error found
       
     </header>
     <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
-
-<p>First you&rsquo;ll need a couple things:</p>
-
+<p>First you'll need a couple things:</p>
 <ul>
 <li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
 <li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
 </ul>
-
 <p>Then follow these steps:</p>
-
 <ol>
-<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
+<li>After signing up with Cloudflare you'll be prompted to add your domain, at which point it'll scan your DNS records automatically. You'll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
 <li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
 <li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
-<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
+<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You'll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
 <li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
-<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
+<li>Update the paths for your assets so that they are requested from the https path or browsers won't load them.</li>
 </ol>
-
-<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
-
-<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
-
+<p>Once the DNS records propagate you'll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you'll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
+<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn't be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
 <p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
 
   </article>
@@ -270,8 +236,7 @@ component validation failed: <span class="m">1</span> error found
       
     </header>
     <p>Welcome to v2 of the From An Egg blog!</p>
-
-<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</p>
+<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I'll be releasing the theme sometime in the future. Thanks for stopping by!</p>
 
   </article>
 </section>
@@ -286,9 +251,7 @@ component validation failed: <span class="m">1</span> error found
       
     </header>
     <p>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.</p>
-
 <p>The site starts out by loading in the following raw code:</p>
-
 <table>
 <thead>
 <tr>
@@ -296,36 +259,28 @@ component validation failed: <span class="m">1</span> error found
 <th>64KB</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Page.js</td>
 <td>14KB</td>
 </tr>
-
 <tr>
 <td>client code</td>
 <td>14KB</td>
 </tr>
-
 <tr>
 <td>Total</td>
 <td>92KB</td>
 </tr>
 </tbody>
 </table>
-
 <p>After Browserify was done rolling all of the code up into a single file it was ~92KB which was getting a little large for a website which basically did nothing. First step was to add minification to the Makefile using <a href="https://github.com/mishoo/UglifyJS2">UglifyJs2</a>.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="nf">$(CLIENT_MIN_ROLLUP)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">CLIENT_ROLLUP</span><span class="k">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="nf">$(CLIENT_MIN_ROLLUP)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">CLIENT_ROLLUP</span><span class="k">)</span>
 	<span class="k">$(</span>UGLIFYJS<span class="k">)</span> --screw-ie8 $^ -o <span class="nv">$@</span>
-</code></pre></div>
-
-<p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">());</span>
-</code></pre></div>
-
-<p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+</code></pre></div><p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>
@@ -335,50 +290,25 @@ component validation failed: <span class="m">1</span> error found
 
 <ul class="pagination">
     
-    <li>
-        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    class="disabled">
-    <a href="" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item disabled">
+    <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
     
     
     
-     
+    
+    
         
         
     
     
-    <li
-    class="active"><a href="/">1</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/3/">3</a></li>
+    <li class="page-item active"><a class="page-link" href="/">1</a></li>
     
     
     
@@ -389,7 +319,7 @@ component validation failed: <span class="m">1</span> error found
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
     
     
     
@@ -399,6 +329,19 @@ component validation failed: <span class="m">1</span> error found
         
         
     
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -476,25 +419,33 @@ component validation failed: <span class="m">1</span> error found
     
     
     
-     
+    
         
         
     
     
-    <li
-    ><a href="/page/14/">14</a></li>
     
     
-    <li
-    >
-    <a href="/page/2/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
+
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

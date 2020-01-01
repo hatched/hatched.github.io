@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on From An Egg</title>
+    <link>https://fromanegg.com/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Apr 2014 20:09:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/ubuntu/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to install Ubuntu on a Mac or Macbook</title>
+      <link>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</link>
+      <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</guid>
+      <description>The official release date of Ubuntu 14.04 LTS Trusty Tahr is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!</description>
+    </item>
+    
+    <item>
+      <title>NFS between Ubuntu vm and OSX host</title>
+      <link>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</link>
+      <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</guid>
+      <description>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
+At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -114,7 +114,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -129,11 +128,8 @@
       
     </header>
     <p>Since Facebook released <a href="https://facebook.github.io/react/docs/flux-overview.html">Flux</a> there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the <a href="https://github.com/juju/juju-gui">Juju GUI</a> nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users <a href="https://jujucharms.com">Juju</a> environment.</p>
-
 <p>In an effort to remedy this we determined that the only way to solve our current issues and prevent new ones going forward is to develop a unidirectional data flow architecture vs our MVC event style system which was currently in place. The execution flow we decided on was as follows:</p>
-
-<p><img src="/images/unidirectional-data-flow-architecture-1.jpg" alt="" /></p>
-
+<p><img src="/images/unidirectional-data-flow-architecture-1.jpg" alt=""></p>
 <ol>
 <li>When a user visits a url or a delta comes in over the websocket it is parsed and split into disparate sections of state for each component that’s involved.</li>
 <li>That state is then saved into the state system.</li>
@@ -144,11 +140,8 @@
 <li>If the user makes a change to the UI, that UI component requests a change from the state system and the cycle repeats.
 You’ll notice that this is strikingly similar to the Flux architecture:</li>
 </ol>
-
-<p><img src="/images/unidirectional-data-flow-architecture-2.png" alt="" /></p>
-
+<p><img src="/images/unidirectional-data-flow-architecture-2.png" alt=""></p>
 <p>It’s great to see cases of the <a href="https://en.wikipedia.org/wiki/Multiple_discovery">multiple discovery hypothesis</a> in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.</p>
-
 <p>Do you work on a large application? Do you think this architecture could help simplify your app? Let me know in the comments below, <a href="https://twitter.com/fromanegg">@fromanegg</a>, or <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> Thanks for reading!</p>
 
   </article>

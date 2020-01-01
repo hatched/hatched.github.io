@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>android on From An Egg</title>
+    <link>https://fromanegg.com/tags/android/</link>
+    <description>Recent content in android on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 31 Jul 2013 20:27:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/android/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android file transfer - Could not replace file, could not copy file…</title>
+      <link>https://fromanegg.com/post/2013/07/31/android-file-transfer-could-not-replace-file-could-not-copy-file/</link>
+      <pubDate>Wed, 31 Jul 2013 20:27:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/07/31/android-file-transfer-could-not-replace-file-could-not-copy-file/</guid>
+      <description>Do you have a new Android phone and cannot transfer files to OSX using the Android File Transfer Tool because you keep getting the error “Could not replace file, could not copy file .” ?
+The fix for me was to make sure that the phone was unlocked and the screen on on the homescreen.
+Hope this helps anyone else running into this error. Do you have another solution? Let me know and I’ll add it here for others.</description>
+    </item>
+    
+  </channel>
+</rss>

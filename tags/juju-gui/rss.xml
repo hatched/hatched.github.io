@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>juju-gui on From An Egg</title>
+    <link>https://fromanegg.com/tags/juju-gui/</link>
+    <description>Recent content in juju-gui on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Jun 2014 13:23:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/juju-gui/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>New Release - Juju GUI 1.1.0</title>
+      <link>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0/</link>
+      <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/06/17/new-release-juju-gui-1-1-0/</guid>
+      <description>Last week we released a new version of the Juju GUI which brings with it one major UI change plus a huge refactoring of the application state system.
+ We moved the inspectors default rendering position to the left over top of the charm browser to give you more room to work with your active environment. A new uni-directional data flow system was implemented which dramatically simplified the GUI’s data flow and execution.</description>
+    </item>
+    
+    <item>
+      <title>New release - Juju GUI 0.15.0</title>
+      <link>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0/</link>
+      <pubDate>Sun, 26 Jan 2014 12:49:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/01/26/new-release-juju-gui-1-15-0/</guid>
+      <description>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to Git and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.
+ We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</description>
+    </item>
+    
+    <item>
+      <title>YUI in the Wild</title>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</link>
+      <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</guid>
+      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&#39;﻿.
+The links I mentioned in the video:
+ Juju GUI Demo Site Juju GUI Bazaar repository Juju GUI Git repository  </description>
+    </item>
+    
+    <item>
+      <title>New releases - Juju GUI 0.14.0 &amp; Juju Quickstart 0.5.0</title>
+      <link>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0/</link>
+      <pubDate>Thu, 05 Dec 2013 12:05:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0/</guid>
+      <description>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…
+Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-day tool:
+ The service inspectors now categorize errors and pending units by their types instead of grouped as ‘error’ and &amp;lsquo;pending’ so that it’s easier to see your services status at a glance.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.13.0 release and updates</title>
+      <link>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates/</link>
+      <pubDate>Fri, 15 Nov 2013 11:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/11/15/juju-gui-0-13-0-release-and-updates/</guid>
+      <description>Over the past month and a half we have done 3 releases of the Juju GUI and with each release came a lot of great functionality. If you are not on 0.13.0 you should definitely upgrade your GUI charm to take advantage of these great new features.
+Bundles!
+This is probably the biggest release of the Juju GUI since it was officially unveiled. The GUI now supports importing, exporting, browsing and deploying bundles.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.10.1 Released - Bug fixes and updates</title>
+      <link>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/</link>
+      <pubDate>Tue, 01 Oct 2013 17:10:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/</guid>
+      <description>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.
+The largest of those fixes are:
+ Changing settings did not work in Juju Core. (Fixed) The GUI was unable to deploy charms without config options. (Fixed) Remove unit button did not work in Juju Core. (Fixed) Plus a number of additional fixes.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.10.0 Released - Brand new service inspector!</title>
+      <link>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector/</link>
+      <pubDate>Wed, 18 Sep 2013 15:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector/</guid>
+      <description>After a few months of hard work we have released the Juju GUI v0.10.0 which has the awesome new service Inspector as the default!
+Quickly following up on v0.9.0 which added IE10 support, this release switches the new deployment and service inspector to be the default, switches to the new Go sandbox by default, and adds internal support for the upcoming charm bundles!
+Additional information on Juju can be found on the newly redesigned https://jujucharms.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.9.0 Released - Now with IE10 support!</title>
+      <link>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support/</link>
+      <pubDate>Wed, 11 Sep 2013 18:21:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/09/11/juju-gui-0-9-0-released-now-with-ie10-support/</guid>
+      <description>We have just released the latest Juju GUI charm, 0.9.0 which brings with it a number of improvements as well as full IE10 support. Yes, we have added IE10 to our support matrix for the GUI bringing some company to the latest Chrome and Firefox release versions.
+With Chrome, Firefox, and IE10 now available for the GUI and Ubuntu and OSX available for the command line tools, your ability to create and manage your environments with Juju is getting easier and easier.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI v0.8 and jujucharms.com released!</title>
+      <link>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released/</link>
+      <pubDate>Mon, 22 Jul 2013 18:51:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/07/22/juju-gui-0-8-and-jujucharms-com-released/</guid>
+      <description>It was a very busy day for Canonical releases. Juju core 1.11.3(devel) was released which brought with it a number of bug fixes along with the long awaited Local Provider support. The stunning, cutting edge, crowd funded Ubuntu Edge Ubuntu smartphone campaign was released and, at the time of this writing is sitting at $2.4Million of it’s record setting $32Million goal after less than 24 hours.
+Most exciting to me however is release of the Juju GUI v0.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI 0.6.0 released</title>
+      <link>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released/</link>
+      <pubDate>Thu, 20 Jun 2013 18:59:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/20/juju-gui-0-6-0-released/</guid>
+      <description>Earlier this week we released the latest version of the Juju GUI, 0.6.0. This version brings with it a bunch of bug fixes and stability improvements, an updated UI, and a new charm browser which allows you to find new charms without leaving your environment. You can find the source here.
+Other changes include:
+ The beginnings of a Go backend sandbox. Automatic view portal zoom and centring. Support for Google Analytics.</description>
+    </item>
+    
+    <item>
+      <title>Juju GUI v0.7.1 released</title>
+      <link>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/</link>
+      <pubDate>Mon, 03 Jun 2013 13:51:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/</guid>
+      <description>As of a few minutes ago the 0.7.1 version of the Juju GUI was released. It brings with it over 1000 unit tests, performance, memory and stability improvements, along with:
+ Added drag and drop deployment from charm browser. Export environment to Juju deployer YAML format from keyboard shortcut (shift-d). Databinding and conflict resolution finalized (feature-flagged). Start of new service inspector development (feature-flagged). Added relations to Go sandbox (Go sandbox still in progress).</description>
+    </item>
+    
+  </channel>
+</rss>

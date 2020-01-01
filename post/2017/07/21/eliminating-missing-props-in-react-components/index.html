@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -114,7 +114,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -129,30 +128,23 @@
       
     </header>
     <p>An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.</p>
-
 <p>This was an issue that we ran into a few times with the <a href="https://jujucharms.com/new">Juju GUI</a>. The Juju GUI is a web app with a large portion of it rendered using a number of parent React components which then render the appropriate children based on the state of the application.  When one of the children needs access to a method or data, it’s possible that it will need to be passed from the top application down through the parent and various children. This caused issues where it was easy to miss updating a components call signature when it was updated.</p>
-
 <p>To remedy this, <a href="https://twitter.com/frankban_">Francesco Banconi</a>, one of my teammates wrote a <a href="https://github.com/juju/juju-gui/blob/develop/scripts/inspect-components">Python script</a> to analyze all of the components included in the application and their call signatures to ensure that every place it was being called, it was being called with the appropriate props.</p>
-
 <p>We simply added this into our lint target in the Makefile so that CI will fail if a branch attempts to modify the call signatures without updated the rest of the application.</p>
-<div class="highlight"><pre><code class="language-Makefile" data-lang="Makefile"><span></span><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
+<div class="highlight"><pre class="chroma"><code class="language-Makefile" data-lang="Makefile"><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>
 <span class="nf">lint</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">python</span> <span class="n">lint</span>-<span class="n">components</span> <span class="n">lint</span>-<span class="n">js</span> <span class="n">lint</span>-<span class="n">css</span>
 
 <span class="nf">.PHONY</span><span class="o">:</span> <span class="n">lint</span>-<span class="n">components</span>
 <span class="nf">lint-components</span><span class="o">:</span>
 	 @./scripts/inspect-components validate --path jujugui/static/gui/src/ --short
-</code></pre></div>
-
-<p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
-<div class="highlight"><pre><code class="language-Bash" data-lang="Bash"><span></span>EntityContent:
+</code></pre></div><p>The GUI is over 150k lines of code without dependencies and the script takes less than 300ms to run and outputs errors similar to the following allowing you to track them down quickly.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">EntityContent:
   instantiated at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/entity-details.js:98
   defined at: /juju-gui/jujugui/static/gui/src/app/components/entity-details/content/content.js:21
   entityModel provided but not declared
 
 component validation failed: <span class="m">1</span> error found
-</code></pre></div>
-
-<p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
+</code></pre></div><p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
 
   </article>
 </section>

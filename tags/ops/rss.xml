@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ops on From An Egg</title>
+    <link>https://fromanegg.com/tags/ops/</link>
+    <description>Recent content in ops on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 13 Nov 2016 18:19:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/ops/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Secure GitHub pages with SSL/TLS</title>
+      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</link>
+      <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
+      <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
+First you&#39;ll need a couple things:
+ A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
+    </item>
+    
+    <item>
+      <title>Automatically build files when they change with Make</title>
+      <link>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/</link>
+      <pubDate>Wed, 26 Aug 2015 12:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/</guid>
+      <description>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</description>
+    </item>
+    
+    <item>
+      <title>How to rewrite and redirect with HAProxy</title>
+      <link>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/</link>
+      <pubDate>Fri, 05 Dec 2014 12:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/</guid>
+      <description>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</description>
+    </item>
+    
+  </channel>
+</rss>

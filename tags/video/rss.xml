@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>video on From An Egg</title>
+    <link>https://fromanegg.com/tags/video/</link>
+    <description>Recent content in video on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Dec 2013 22:57:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/video/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>YUI in the Wild</title>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</link>
+      <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</guid>
+      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&#39;﻿.
+The links I mentioned in the video:
+ Juju GUI Demo Site Juju GUI Bazaar repository Juju GUI Git repository  </description>
+    </item>
+    
+    <item>
+      <title>YUIConf talk 2012</title>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</link>
+      <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</guid>
+      <description>My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!</description>
+    </item>
+    
+  </channel>
+</rss>

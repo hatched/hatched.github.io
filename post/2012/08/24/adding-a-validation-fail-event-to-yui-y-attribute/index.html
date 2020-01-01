@@ -33,7 +33,7 @@ The validator allows you to test that a value is valid for the attribute prior t
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ The validator allows you to test that a value is valid for the attribute prior t
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,57 +131,48 @@ The validator allows you to test that a value is valid for the attribute prior t
       
     </header>
     <p>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of <a href="http://yuilibrary.com/yui/docs/attribute/">Y.Attribute</a> is the validator.</p>
-
 <p>The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute. Returning true from the validator sends the value to the setter, returning false causes the value to not be set. But unlike a successful change event no event is fired to notify you that the value failed validation and was not set. So lets augment our modules to fire a validation failed event.</p>
-
 <p>Unfortunately to <a href="https://en.wikipedia.org/wiki/Monkey_patch">monkey patch</a> this feature into Y.Attribute properly would require a large amount of code duplication so we’ll leave that to the coming pull request. Instead we are going to pick a small simple method which will allow us to inject our enhancement but not force us to duplicate a bunch of the library code. This is only intended to be a short term solution until the patch makes its way into the library as monkey patching introduces a number of potential negative side effects.</p>
-
 <p>Because we may not want to apply this patch to all of the modules which extend Y.Attribute we will only modify this method in the objects that we need it for. To make this really easy we will create a small object and mix it into the instances.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">_defAttrChangeFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_setAttrVal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">e</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">();</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="o">+</span><span class="s1">&#39;ValidationFail&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span> <span class="c1">// The only new line</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_setAttrVal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="o">+</span><span class="s1">&#39;ValidationFail&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span><span class="p">;</span> <span class="c1">// The only new line
+</span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></div>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></div><p>We then mix that patch into our new module</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">CustomModule</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">]</span><span class="p">,</span> <span class="p">{</span>
 
-<p>We then mix that patch into our new module</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">CustomModule</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">],</span> <span class="p">{</span>
-
-    <span class="c1">//Custom  module code here</span>
-
-<span class="p">},</span> <span class="p">{</span>
+    <span class="c1">//Custom  module code here
+</span><span class="c1"></span>
+<span class="p">}</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;number&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&#34;number&#34;</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>And now we are able to listen for that attributes validation fail event just like we would for the change event</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomModule</span><span class="p">();</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>And now we are able to listen for that attributes validation fail event just like we would for the change event</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomModule</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 
 <span class="nx">MyModule</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;numberValidationFail&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Validation failed setting &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">MyModule</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-<span class="p">});</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Validation failed setting &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">MyModule</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
 
-<span class="c1">// As usual you need to listen using &#39;after&#39; to be sure attributes were set</span>
-<span class="nx">MyModule</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;numberChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;New value is: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span> <span class="p">});</span>
+<span class="c1">// As usual you need to listen using &#39;after&#39; to be sure attributes were set
+</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;numberChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;New value is: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
 
-<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// Valid value</span>
-<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;to string&#39;</span><span class="p">);</span> <span class="c1">//Invalid value</span>
-</code></pre></div>
-
-<p>Wrap all of the above code up in a use() and watch your console to see it in action. As usual If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Valid value
+</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;to string&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//Invalid value
+</span></code></pre></div><p>Wrap all of the above code up in a use() and watch your console to see it in action. As usual If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
 </section>

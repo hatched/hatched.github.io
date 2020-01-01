@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>css on From An Egg</title>
+    <link>https://fromanegg.com/tags/css/</link>
+    <description>Recent content in css on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Aug 2013 16:53:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/css/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CSS selectors - The next level</title>
+      <link>https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/</link>
+      <pubDate>Mon, 05 Aug 2013 16:53:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/</guid>
+      <description>As a continuation of my previous post Understanding CSS2 and CSS3 attribute selectors I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.
+IE6+ SUPPORT S1::first-line: Pseudo element selector Selects the first line of text in an element which matches the S1 selector.</description>
+    </item>
+    
+    <item>
+      <title>Transparent links not clickable in Internet Explorer</title>
+      <link>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/</link>
+      <pubDate>Sun, 07 Apr 2013 17:59:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/</guid>
+      <description>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.
+This is going to work as intended until you try it in IE.</description>
+    </item>
+    
+    <item>
+      <title>Using css function image-set for high-DPI displays</title>
+      <link>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/</link>
+      <pubDate>Wed, 06 Feb 2013 14:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/</guid>
+      <description>Anyone who has put together a website with high-DPI displays in mind has likely used the {prefix}-device-pixel-ratio CSS media query and then specified the background images independently under each different media query. This can not only get tedious but media queries also split the display rules for a single element into multiple locations in your stylesheet. You can get away from this separation by using the SASS CSS preprocessor and the @media directive which allows you to keep your element media query rules with the element styles.</description>
+    </item>
+    
+    <item>
+      <title>Understanding CSS2 and CSS3 attribute selectors</title>
+      <link>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/</link>
+      <pubDate>Mon, 28 Jan 2013 10:01:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/</guid>
+      <description>I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
+Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [user] /* matches */ &amp;lt;div user&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div user=&amp;#34;foo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; Any element which has a user attribute regardless of value.</description>
+    </item>
+    
+    <item>
+      <title>100% pure css radial progress bar</title>
+      <link>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/</link>
+      <pubDate>Wed, 23 Jan 2013 15:25:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/</guid>
+      <description>Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.</description>
+    </item>
+    
+    <item>
+      <title>Clicking through a div to underlying elements</title>
+      <link>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/</link>
+      <pubDate>Mon, 01 Oct 2012 09:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/</guid>
+      <description>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.
+Let me introduce you to the pointer-events CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events.</description>
+    </item>
+    
+  </channel>
+</rss>

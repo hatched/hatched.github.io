@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>yui on From An Egg</title>
+    <link>https://fromanegg.com/tags/yui/</link>
+    <description>Recent content in yui on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Dec 2013 22:57:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/yui/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>YUI in the Wild</title>
+      <link>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</link>
+      <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</guid>
+      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&#39;﻿.
+The links I mentioned in the video:
+ Juju GUI Demo Site Juju GUI Bazaar repository Juju GUI Git repository  </description>
+    </item>
+    
+    <item>
+      <title>YUIConf talk 2012</title>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</link>
+      <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</guid>
+      <description>My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!</description>
+    </item>
+    
+    <item>
+      <title>Form validation with keydown, keypress, and keyup</title>
+      <link>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</link>
+      <pubDate>Sat, 29 Dec 2012 12:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/</guid>
+      <description>There is quite a bit of confusion in the beginner JavaScript world as to what the difference is between the keydown, keypress, and keyup events. So I hope that the following can help clear up some of the common questions as well as provide some solutions to make your life easier when dealing with cross browser key events.
+As with all DOM events there is a generally accepted order to which they fire and key events are no different.</description>
+    </item>
+    
+    <item>
+      <title>Using after() event listeners to react to attribute value changes</title>
+      <link>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</link>
+      <pubDate>Sat, 01 Dec 2012 18:30:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/12/01/using-after-event-listeners-to-react-to-attribute-value-changes/</guid>
+      <description>If you have written anything using events in YUI you know that you have a few ways to listen to a single event on a target, two of the most popular are the on() and after() methods. Essentially the on() method allows you to listen to the event before the after() listeners are given a chance to react to it and after() allows you to listen after the on() callbacks have had a chance to execute.</description>
+    </item>
+    
+    <item>
+      <title>Great YUI 3 DataTable resources!</title>
+      <link>https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/</link>
+      <pubDate>Wed, 19 Sep 2012 18:05:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/</guid>
+      <description>It’s rare that those tasked with displaying tabular data have an easy go of it. Usually the data isn’t in the right format, the standard libraries either do too much or too little, and the styles are never quite right. For the developers using YUI 3 and the YUI 3 DataTable I have included a couple resources below which will surely make your lives a lot easier.
+ YUI 3 DataTable documentation : Extensive documentation outlining the core features of DataTable.</description>
+    </item>
+    
+    <item>
+      <title>Adding a validation fail event to YUI’s Y.Attribute</title>
+      <link>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</link>
+      <pubDate>Fri, 24 Aug 2012 13:41:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/08/24/adding-a-validation-fail-event-to-yui-y-attribute/</guid>
+      <description>One of the first things that a YUI developer learns about are the attribute change events that are fired any time an attribute value is successfully changed. But one often overlooked feature of Y.Attribute is the validator.
+The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute.</description>
+    </item>
+    
+    <item>
+      <title>Add toggle button support to Y.PopupCalendar</title>
+      <link>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</link>
+      <pubDate>Tue, 31 Jul 2012 15:57:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/</guid>
+      <description>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.
+Until I am able to add support into the module, simply copy and paste the following code before the first instance of Y.</description>
+    </item>
+    
+    <item>
+      <title>Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</link>
+      <pubDate>Sun, 01 Jul 2012 13:34:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</guid>
+      <description>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post Guide to using YUI with PhoneGap (Cordova). The good news is that it’s very easy to setup but does come with a few drawbacks.
+Using the code from the previous post we only need to make minor changes to load from the CDN.
+&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34; src=&amp;#34;cordova-1.</description>
+    </item>
+    
+    <item>
+      <title>Guide to using YUI with PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</link>
+      <pubDate>Tue, 12 Jun 2012 07:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</guid>
+      <description>If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).
+This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t.</description>
+    </item>
+    
+    <item>
+      <title>YUI Popup Calendar</title>
+      <link>https://fromanegg.com/post/2012/04/12/yui-popup-calendar/</link>
+      <pubDate>Thu, 12 Apr 2012 19:22:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/04/12/yui-popup-calendar/</guid>
+      <description>The often requested Popup Calendar or as some may call it, Date Picker, is now finally available in the Yahoo CDN hosted YUI Gallery!
+The YUI Popup Calendar component extends YUI’s Calendar Widget as well as a few other Widget modules you likely have already loaded on the page giving you a very lightweight (1.6KB minified) way to add date picker like functionality to your web page or application.
+Additional details, examples, and more can be found by following the links below.</description>
+    </item>
+    
+    <item>
+      <title>Handling module load errors with YUI Loader</title>
+      <link>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</link>
+      <pubDate>Mon, 06 Feb 2012 15:50:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</guid>
+      <description>This information is accurate for YUI 3.5.0pr2 - there are cross browser issues with the following method on previous versions.
+From time to time you may find yourself loading modules that aren’t available. Whether it be from a user supplied modules list or an unreliable source, the YUI instance confg gives you an easy way to check if there are any errors while loading your modules.
+A common YUI config and use statement would look like the following.</description>
+    </item>
+    
+  </channel>
+</rss>

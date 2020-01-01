@@ -12,11 +12,11 @@
     
       
         <meta name="description" itemprop="description" content="Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
-// Array #1 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]  But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.">
+// Array #1 [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5] But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.">
         <meta name="twitter:description" content="Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
-// Array #1 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]  But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values." />
+// Array #1 [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5] But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values." />
         <meta property="og:description" content="Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
-// Array #1 [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]  But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values." />
+// Array #1 [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5] But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values." />
         
           <meta property="article:published_time" content="2013-02-22 12:00:00 -0600 CST">
         
@@ -33,7 +33,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,33 +131,30 @@
       
     </header>
     <p>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Array #1</span>
-<span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Array #1
+</span><span class="c1"></span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span>
 
-<span class="c1">// Array #2</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="c1">// Array #2
+</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
-<span class="c1">// Desired outcome</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</code></pre></div>
-
-<p>But none of the native array methods allowed me to insert an array of values into an array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice</a> comes close but it takes a comma delimited list of values, not an array of values. Conveniently however you can still use the native splice function using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to achieve the desired result.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
-    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="c1">// Desired outcome
+</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div><p>But none of the native array methods allowed me to insert an array of values into an array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice</a> comes close but it takes a comma delimited list of values, not an array of values. Conveniently however you can still use the native splice function using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to achieve the desired result.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span><span class="p">,</span>
+    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span><span class="p">,</span>
     <span class="nx">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
-<span class="c1">// We want to push the starting index and the number of values we want</span>
-<span class="c1">// to delete (in this case 0) onto the beginning of the first array.</span>
-<span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">// We want to push the starting index and the number of values we want
+</span><span class="c1"></span><span class="c1">// to delete (in this case 0) onto the beginning of the first array.
+</span><span class="c1"></span><span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
 
-<span class="c1">// Next we want to apply the native splice method to arrayOne under</span>
-<span class="c1">// the context of arrayTwo</span>
-<span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">);</span>
+<span class="c1">// Next we want to apply the native splice method to arrayOne under
+</span><span class="c1"></span><span class="c1">// the context of arrayTwo
+</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">)</span><span class="p">;</span>
 
-<span class="c1">// [1, 2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;, 3, 4, 5]</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">);</span>
+<span class="c1">// [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5]
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">)</span><span class="p">;</span>
 </code></pre></div>
-
   </article>
 </section>
 

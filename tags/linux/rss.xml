@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on From An Egg</title>
+    <link>https://fromanegg.com/tags/linux/</link>
+    <description>Recent content in linux on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Mar 2013 20:03:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NFS between Ubuntu vm and OSX host</title>
+      <link>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</link>
+      <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</guid>
+      <description>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
+At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues.</description>
+    </item>
+    
+  </channel>
+</rss>

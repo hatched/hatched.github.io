@@ -33,7 +33,7 @@ I ended coming up with a little hack using some of JavaScripts type coercion to 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/09/15/parseint-only-numbers-in-an-object/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ I ended coming up with a little hack using some of JavaScripts type coercion to 
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,33 +131,23 @@ I ended coming up with a little hack using some of JavaScripts type coercion to 
       
     </header>
     <p>A couple weeks ago I had an issue…I needed to send the number values contained in an object to the server as integers. The only catch was, I didn’t know how many elements were in the object or which ones were supposed to be integers and which were supposed to be strings. I could however trust that the values in the object were appropriate for each key.</p>
-
 <p>I ended coming up with a little hack using some of JavaScripts type coercion to get the results I needed.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">parsed</span><span class="p">;</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">parsed</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
   <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
-
-<p>So what’s happening here?</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-</code></pre></div>
-
-<p>I am using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a> method to get the keys of each element in an array and then looping over them using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a> instead of using a for loop.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="mi">10</span><span class="p">);</span>
-</code></pre></div>
-
-<p>In the loop I parseInt every value and store it in a temporary variable.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">origVal</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>So what’s happening here?</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">values</span><span class="p">)</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><p>I am using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys">Object.keys()</a> method to get the keys of each element in an array and then looping over them using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">Array.prototype.forEach()</a> instead of using a for loop.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">parsed</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>In the loop I parseInt every value and store it in a temporary variable.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">origVal</span> <span class="o">==</span> <span class="nx">parsed</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">values</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Now I compare the parsed value to the original value allowing JavaScript to do it’s type coercion and if they are equal then I overwrite the original value with the parsed value, else I continue on to the next element. This works because parseInt(“2”, 10) === 2 and 2 == “2” but parseInt(“2Foo”, 10) === 2 and 2 != “2Foo”. You can see a <a href="http://output.jsbin.com/UFIMIPO/1/">working example here</a>.</p>
-
+</code></pre></div><p>Now I compare the parsed value to the original value allowing JavaScript to do it’s type coercion and if they are equal then I overwrite the original value with the parsed value, else I continue on to the next element. This works because parseInt(“2”, 10) === 2 and 2 == “2” but parseInt(“2Foo”, 10) === 2 and 2 != “2Foo”. You can see a <a href="http://output.jsbin.com/UFIMIPO/1/">working example here</a>.</p>
 <p>Although this has a fairly limited use case I hope you found the technique interesting albeit a little bit of a hack. Thanks for reading!</p>
 
   </article>

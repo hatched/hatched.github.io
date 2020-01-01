@@ -33,7 +33,7 @@ Until I am able to add support into the module, simply copy and paste the follow
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ Until I am able to add support into the module, simply copy and paste the follow
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,26 +131,23 @@ Until I am able to add support into the module, simply copy and paste the follow
       
     </header>
     <p>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.</p>
-
 <p>Until I am able to add support into the module, simply copy and paste the following code before the first instance of <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar.html?">Y.PopupCalendar</a> or <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar-group.html?">Y.PopupCalendarGroup</a>.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="p">;</span>
 
-  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="p">;</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-<span class="p">},</span>
-</code></pre></div>
-
-<p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">,</span>
+</code></pre></div><p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
 </section>

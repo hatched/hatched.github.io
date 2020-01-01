@@ -33,7 +33,7 @@ This is going to work as intended until you try it in IE." />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ This is going to work as intended until you try it in IE." />
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,34 +131,22 @@ This is going to work as intended until you try it in IE." />
       
     </header>
     <p>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.</p>
-
 <p>This is going to work as intended until you try it in IE. This is because transparent links aren’t clickable in Internet Explorer &lt; 10 requiring us to resort to yet another IE workaround.</p>
-
 <p>Note - this will work properly in all versions of IE if you’re changing the browser mode in the IE10 developer tools. I strongly suggest not testing for older versions of IE using the ‘Browser Mode’ setting in the IE 10 dev tools as there are more than a few things which will fail in the real browsers that don’t in the simulator.</p>
-
 <p>Visit <a href="http://output.jsbin.com/uhukaq/1">here for a demo</a> in &lt; IE 10 and again in any other browser to see it working.</p>
-
 <p>There are a few techniques that we can use to make IE recognize the clicks on our anchor tags. The first is to add a transparent 1px background to the anchors. This is going to add another http request, albeit a small one, possibly delaying the loading of the page.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;1px.gif&quot;</span><span class="o">)</span> <span class="nt">0</span> <span class="nt">0</span> <span class="nt">repeat</span><span class="o">;</span>
-</code></pre></div>
-
-<p>Second is to add one of the following fake url to a background image on the trigger elements. While these will get it working in IE it will cause chrome to throw a console warning that it &lsquo;Failed to load resource’ or &lsquo;Resource interpreted as Image but transferred with MIME type text/html: “about:blank”.’ neither of which are ideal.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;iehack:///&quot;</span><span class="o">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;1px.gif&#34;</span><span class="o">)</span> <span class="nt">0</span> <span class="nt">0</span> <span class="nt">repeat</span><span class="o">;</span>
+</code></pre></div><p>Second is to add one of the following fake url to a background image on the trigger elements. While these will get it working in IE it will cause chrome to throw a console warning that it &lsquo;Failed to load resource’ or &lsquo;Resource interpreted as Image but transferred with MIME type text/html: “about:blank”.’ neither of which are ideal.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;iehack:///&#34;</span><span class="o">)</span><span class="o">;</span>
 <span class="nt">-or-</span>
-<span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&quot;about:blank&quot;</span><span class="o">);</span>
-</code></pre></div>
-
-<p>And finally, by setting the background color on the anchor tags and then setting the opacity to 0 we are able to get the desired functionality without any of the side effects previously mentioned.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-color</span><span class="o">:</span> <span class="nn">#ffffff</span><span class="o">;</span>
-<span class="nt">filter</span><span class="nd">:alpha</span><span class="o">(</span><span class="nt">opacity</span><span class="o">=</span><span class="nt">0</span><span class="o">);</span>
+<span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;about:blank&#34;</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>And finally, by setting the background color on the anchor tags and then setting the opacity to 0 we are able to get the desired functionality without any of the side effects previously mentioned.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-color</span><span class="o">:</span> <span class="p">#</span><span class="nn">ffffff</span><span class="o">;</span>
+<span class="nt">filter</span><span class="p">:</span><span class="nd">alpha</span><span class="o">(</span><span class="nt">opacity</span><span class="o">=</span><span class="nt">0</span><span class="o">)</span><span class="o">;</span>
 <span class="nt">opacity</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
-</code></pre></div>
-
-<p>Update: Thanks to an idea from Geo Fili in the comment section you can also embed a 1x1px transparent image into the css.</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span></span><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">data</span><span class="nd">:image</span><span class="o">/</span><span class="nt">gif</span><span class="o">;</span><span class="nt">base64</span><span class="o">,</span><span class="nt">R0lGODlhAQABAIAAAAAAAP</span><span class="o">///</span><span class="nt">yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</span><span class="o">);</span>
-</code></pre></div>
-
-<p>This technique works in all of the modern browsers and I was able to test it successfully back to IE7. If you have the ability to test in IE6 feel free to comment below and let us know if it works there too. And as always If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+</code></pre></div><p>Update: Thanks to an idea from Geo Fili in the comment section you can also embed a 1x1px transparent image into the css.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">data</span><span class="p">:</span><span class="nd">image</span><span class="o">/</span><span class="nt">gif</span><span class="o">;</span><span class="nt">base64</span><span class="o">,</span><span class="nt">R0lGODlhAQABAIAAAAAAAP</span><span class="o">/</span><span class="o">/</span><span class="o">/</span><span class="nt">yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</span><span class="o">)</span><span class="o">;</span>
+</code></pre></div><p>This technique works in all of the modern browsers and I was able to test it successfully back to IE7. If you have the ability to test in IE6 feel free to comment below and let us know if it works there too. And as always If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>

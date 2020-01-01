@@ -36,7 +36,7 @@ Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/12/05/new-release-juju-gui-0-14-0-juju-quickstart-0-5-0/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -120,7 +120,6 @@ Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -134,16 +133,10 @@ Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-
         <time pubdate content="2013-12-05 12:05:00 -0600 CST" datetime="2013-12-05 12:05:00 -0600 CST">5 December 2013</time>
       
     </header>
-    
-
-<p>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…</p>
-
-<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg" alt="" /></p>
-
+    <p>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…</p>
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg" alt=""></p>
 <h4 id="juju-gui">Juju GUI</h4>
-
 <p>Our latest work focuses on making the Juju GUI a more effective day-to-day tool:</p>
-
 <ul>
 <li>The service inspectors now categorize errors and pending units by their types instead of grouped as ‘error’ and &lsquo;pending’ so that it’s easier to see your services status at a glance.</li>
 <li>Services that are in the process of being destroyed no longer disappear immediately from the canvas so you can follow along and make sure that there aren’t any problems in the teardown.</li>
@@ -153,48 +146,29 @@ Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-
 <li>The remaining notes can be found in the changelog
 More exciting work in this direction is coming, including long-requested features like per-unit debug logs and local charm deployments!</li>
 </ul>
-
 <h4 id="juju-quickstart">Juju Quickstart</h4>
-
 <p>The quickstart plugin is nearing feature completion and has a lot of great improvements.</p>
-
 <ul>
 <li>For new users, if you don’t have Juju installed, after it adds the stable PPA to your system and installs Juju, it will create an environments.yaml file that you need to edit.</li>
 <li>For everyone, when you run quickstart, it will automatically log into the GUI for you as long as you accept the security certificate in your browser within two minutes of it appearing.</li>
 <li>We also fixed a bug triggered when your default series was not precise.</li>
 <li>The next release will guide new users through creating environments.yaml interactively.</li>
 </ul>
-
-<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg" alt="" /></p>
-
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg" alt=""></p>
 <p>To try out our new releases, existing users can upgrade their GUI charm to cs:precise/juju-gui-81; or run:</p>
-
 <pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
-</code></pre>
-
-<p>…or update the juju-quickstart plugin via apt and run:</p>
-
+</code></pre><p>…or update the juju-quickstart plugin via apt and run:</p>
 <pre><code>juju quickstart
-</code></pre>
-
-<p>New users on Ubuntu can do the following to get everything installed and start an environment with the GUI running and ready:</p>
-
+</code></pre><p>New users on Ubuntu can do the following to get everything installed and start an environment with the GUI running and ready:</p>
 <pre><code>sudo add-apt-repository ppa:juju/stable
 sudo apt-get update &amp;&amp; sudo apt-get install juju-quickstart
 juju-quickstart
 ## ...edit ~/.juju/environments.yaml file...
 juju-quickstart
-</code></pre>
-
-<p>Next quickstart release will hopefully remove those last two steps.</p>
-
+</code></pre><p>Next quickstart release will hopefully remove those last two steps.</p>
 <p>New users on other operating systems can’t use Quickstart right now, but the <a href="https://jujucharms.com/docs/stable/getting-started">Juju installation instructions</a> can get you started, and..</p>
-
 <pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
-</code></pre>
-
-<p>..can add the GUI to your bootstrapped environment.</p>
-
+</code></pre><p>..can add the GUI to your bootstrapped environment.</p>
 <p><a href="https://jujucharms.com/docs/stable/getting-started">Juju GUI Installation documentation can be found here.</a></p>
 
   </article>

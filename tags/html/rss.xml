@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>html on From An Egg</title>
+    <link>https://fromanegg.com/tags/html/</link>
+    <description>Recent content in html on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2016 21:23:26 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/html/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How To: Semantic blog markup</title>
+      <link>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</link>
+      <pubDate>Tue, 22 Nov 2016 21:23:26 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</guid>
+      <description>After writing some great content you&#39;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&#39;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
+    </item>
+    
+  </channel>
+</rss>

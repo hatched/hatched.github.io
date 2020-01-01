@@ -33,7 +33,7 @@ The site starts out by loading in the following raw code:" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -117,7 +117,6 @@ The site starts out by loading in the following raw code:" />
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -132,9 +131,7 @@ The site starts out by loading in the following raw code:" />
       
     </header>
     <p>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.</p>
-
 <p>The site starts out by loading in the following raw code:</p>
-
 <table>
 <thead>
 <tr>
@@ -142,36 +139,28 @@ The site starts out by loading in the following raw code:" />
 <th>64KB</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Page.js</td>
 <td>14KB</td>
 </tr>
-
 <tr>
 <td>client code</td>
 <td>14KB</td>
 </tr>
-
 <tr>
 <td>Total</td>
 <td>92KB</td>
 </tr>
 </tbody>
 </table>
-
 <p>After Browserify was done rolling all of the code up into a single file it was ~92KB which was getting a little large for a website which basically did nothing. First step was to add minification to the Makefile using <a href="https://github.com/mishoo/UglifyJS2">UglifyJs2</a>.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="nf">$(CLIENT_MIN_ROLLUP)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">CLIENT_ROLLUP</span><span class="k">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="nf">$(CLIENT_MIN_ROLLUP)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">CLIENT_ROLLUP</span><span class="k">)</span>
 	<span class="k">$(</span>UGLIFYJS<span class="k">)</span> --screw-ie8 $^ -o <span class="nv">$@</span>
-</code></pre></div>
-
-<p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">());</span>
-</code></pre></div>
-
-<p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+</code></pre></div><p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>

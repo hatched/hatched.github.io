@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -107,7 +107,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -123,76 +122,59 @@
       
     </header>
     <p>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.</p>
-
 <p>As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as <a href="https://en.wikipedia.org/wiki/Self-documenting_code">self-documenting code</a> with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</p>
-
 <p>Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">gd</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">];</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">gd</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Into:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div><p>Into:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
-
+</code></pre></div><p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
 <p>This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.</p>
-
 <p>Lets assume for a moment that this function was copy &amp; pasted into a larger projects utility class. Wouldn’t it be nice if it would automatically be added to the API docs?</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
-<span class="cm">  Calculate the difference between the x and y coords of two points.</span>
-
-<span class="cm">  @method getDifference</span>
-<span class="cm">  @param {Object} point1 The first point to compare.</span>
-<span class="cm">  @param {Object} point2 The second point to compare.</span>
-<span class="cm">  @return {Array} The difference between the two points in the format [x, y]</span>
-<span class="cm">*/</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+</span><span class="cm">  Calculate the difference between the x and y coords of two points.
+</span><span class="cm">
+</span><span class="cm">  @method getDifference
+</span><span class="cm">  @param {Object} point1 The first point to compare.
+</span><span class="cm">  @param {Object} point2 The second point to compare.
+</span><span class="cm">  @return {Array} The difference between the two points in the format [x, y]
+</span><span class="cm">*/</span>
 <span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
-
+</code></pre></div><p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
 <p>To illustrate the importance of inline comments even with self documenting code. Take the following method from the <a href="https://github.com/juju/juju-gui">Juju GUI source</a>.</p>
-
 <p>The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
-             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
-<span class="p">},</span>
-</code></pre></div>
-
-<p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="cm">/**</span>
-<span class="cm">  Export the YAML for this environment.</span>
-
-<span class="cm">  @method exportYAML</span>
-<span class="cm">*/</span>
-<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-  <span class="c1">// In order to support Safari 7 the type of this blob needs</span>
-  <span class="c1">// to be text/plain instead of it&#39;s actual type of application/yaml.</span>
-  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
-      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
-<span class="p">},</span>
-</code></pre></div>
-
-<p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span><span class="p">[</span><span class="nx">exportData</span><span class="p">]</span><span class="p">,</span>
+             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">,</span>
+</code></pre></div><p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
+</span><span class="cm">  Export the YAML for this environment.
+</span><span class="cm">
+</span><span class="cm">  @method exportYAML
+</span><span class="cm">*/</span>
+<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="c1">// In order to support Safari 7 the type of this blob needs
+</span><span class="c1"></span>  <span class="c1">// to be text/plain instead of it&#39;s actual type of application/yaml.
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span><span class="p">[</span><span class="nx">exportData</span><span class="p">]</span><span class="p">,</span>
+      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">,</span>
+</code></pre></div><p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
 <p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
@@ -208,9 +190,7 @@
       
     </header>
     <p>Last week the latest version of the Juju GUI was released. With the holidays and our move from Bazaar and Launchpad to <a href="https://github.com/juju/juju-gui">Git</a> and Github there was unfortunately over a month from our last release. Have no fear however because this one brings with it some big changes.</p>
-
-<p><img src="/images/new-release-juju-gui-0-1-0-1.png" alt="" /></p>
-
+<p><img src="/images/new-release-juju-gui-0-1-0-1.png" alt=""></p>
 <ul>
 <li>We made a large number of bug fixes most of which were reported by you, like incorrect unit counts in bundle details and fixing the inspector height calculations so that it doesn’t hide some of the lower buttons for environments with a lot of units.</li>
 <li>90% speed improvement in the inspector for environments with thousands of units.</li>
@@ -232,22 +212,14 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
       
     </header>
     <p>One thing that anyone who has used the internet for more than a day can attest to, is that we have a lot of credentials to remember. Every new product we purchase, every new website we log into, every system in corporate networks need a unique username and password to access. To help combat the huge number of credentials we need to remember many administrators have started to implement what is known as single sign on.</p>
-
 <p>Single sign on, or SSO, is the practice of having the user to log into a central system which then grants them access to multiple systems. If you have ever logged into a third party website using your Facebook, Google, or Twitter account you have used SSO. From the user perspective this is incredibly convenient because now they only have to remember a single set of credentials for multiple systems. Unfortunately SSO does little to combat users from using simple insecure passwords which, when compromised, will now give the attackers full access to a number of systems instead of just a single one.</p>
-
 <p>As an additional layer of security many administrators are implementing another layer of security called two factor authentication. 2FA simply means that there are multiple techniques used to identify you when you attempt to gain access to a system. This can be in the form of a text message being sent to your phone, or a random key generated by a third party key generator which is required to be entered along side your typical username and password.</p>
-
 <p>This all sounds excellent, but unfortunately it is very complicated and time consuming to implement both systems correctly and securely. To solve this issue the great people in Juju Labs at Canonical have started a project to bring instant SSO &amp; 2FA to Juju users everywhere.</p>
-
-<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png" alt="" /></p>
-
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-1.png" alt=""></p>
 <p>How are they going to do it? Because every system from Apache, to MongoDB requires a different technique to implement SSO &amp; 2FA, a third party repository will be created which will house a large collection of expertly written components which will interface with the SSO &amp; 2FA Juju Charm.</p>
-
-<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png" alt="" /></p>
-
+<p><img src="/images/canonical-to-simplify-sso-and-2fa-using-ubuntu-juju-2.png" alt=""></p>
 <p>As with everything in Juju Labs this will require buy-in and support from the community to push forward. There are already three contributors out of the required five to move it to the next stage and a number of people who are very interested in seeing this become a reality. If you are interested in being able to add SSO and 2FA into your systems with a few clicks or want to lend a hand as a contributor you can flip through the slide deck below, spread the word around, or sign up as a contributor.</p>
-
-<p><iframe src="//www.slideshare.net/slideshow/embed_code/key/eBNYglOmdjExzx" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/mectors/instant-single-signon-and-twofactor-authentication" title="Instant Single Sign-On and Two-Factor Authentication" target="_blank">Instant Single Sign-On and Two-Factor Authentication</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/mectors">Maarten Ectors</a></strong> </div></p>
+<!-- raw HTML omitted -->
 
   </article>
 </section>
@@ -261,12 +233,9 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
         <time pubdate content="2013-12-05 22:57:00 -0600 CST" datetime="2013-12-05 22:57:00 -0600 CST">5 December 2013</time>
       
     </header>
-    <p>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&rsquo;﻿.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lJPdH8xmOWg?rel=0" frameborder="0" allowfullscreen></iframe>
-
+    <p>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild'﻿.</p>
+<!-- raw HTML omitted -->
 <p>The links I mentioned in the video:</p>
-
 <ul>
 <li><a href="https://jujucharms.com">Juju GUI Demo Site</a></li>
 <li>Juju GUI Bazaar repository</li>
@@ -285,16 +254,10 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
         <time pubdate content="2013-12-05 12:05:00 -0600 CST" datetime="2013-12-05 12:05:00 -0600 CST">5 December 2013</time>
       
     </header>
-    
-
-<p>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…</p>
-
-<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg" alt="" /></p>
-
+    <p>It’s been a few weeks since our last Juju GUI release which means here comes another! This GUI release brings with it the latest beta version of the Juju quickstart plugin…</p>
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-1.jpg" alt=""></p>
 <h4 id="juju-gui">Juju GUI</h4>
-
 <p>Our latest work focuses on making the Juju GUI a more effective day-to-day tool:</p>
-
 <ul>
 <li>The service inspectors now categorize errors and pending units by their types instead of grouped as ‘error’ and &lsquo;pending’ so that it’s easier to see your services status at a glance.</li>
 <li>Services that are in the process of being destroyed no longer disappear immediately from the canvas so you can follow along and make sure that there aren’t any problems in the teardown.</li>
@@ -304,48 +267,29 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 <li>The remaining notes can be found in the changelog
 More exciting work in this direction is coming, including long-requested features like per-unit debug logs and local charm deployments!</li>
 </ul>
-
 <h4 id="juju-quickstart">Juju Quickstart</h4>
-
 <p>The quickstart plugin is nearing feature completion and has a lot of great improvements.</p>
-
 <ul>
 <li>For new users, if you don’t have Juju installed, after it adds the stable PPA to your system and installs Juju, it will create an environments.yaml file that you need to edit.</li>
 <li>For everyone, when you run quickstart, it will automatically log into the GUI for you as long as you accept the security certificate in your browser within two minutes of it appearing.</li>
 <li>We also fixed a bug triggered when your default series was not precise.</li>
 <li>The next release will guide new users through creating environments.yaml interactively.</li>
 </ul>
-
-<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg" alt="" /></p>
-
+<p><img src="/images/new-releases-juju-gui-0-14-0-juju-quickstart-0-5-0-2.jpg" alt=""></p>
 <p>To try out our new releases, existing users can upgrade their GUI charm to cs:precise/juju-gui-81; or run:</p>
-
 <pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
-</code></pre>
-
-<p>…or update the juju-quickstart plugin via apt and run:</p>
-
+</code></pre><p>…or update the juju-quickstart plugin via apt and run:</p>
 <pre><code>juju quickstart
-</code></pre>
-
-<p>New users on Ubuntu can do the following to get everything installed and start an environment with the GUI running and ready:</p>
-
+</code></pre><p>New users on Ubuntu can do the following to get everything installed and start an environment with the GUI running and ready:</p>
 <pre><code>sudo add-apt-repository ppa:juju/stable
 sudo apt-get update &amp;&amp; sudo apt-get install juju-quickstart
 juju-quickstart
 ## ...edit ~/.juju/environments.yaml file...
 juju-quickstart
-</code></pre>
-
-<p>Next quickstart release will hopefully remove those last two steps.</p>
-
+</code></pre><p>Next quickstart release will hopefully remove those last two steps.</p>
 <p>New users on other operating systems can’t use Quickstart right now, but the <a href="https://jujucharms.com/docs/stable/getting-started">Juju installation instructions</a> can get you started, and..</p>
-
 <pre><code>juju deploy juju-gui &amp;&amp; juju expose juju-gui
-</code></pre>
-
-<p>..can add the GUI to your bootstrapped environment.</p>
-
+</code></pre><p>..can add the GUI to your bootstrapped environment.</p>
 <p><a href="https://jujucharms.com/docs/stable/getting-started">Juju GUI Installation documentation can be found here.</a></p>
 
   </article>
@@ -356,74 +300,25 @@ juju-quickstart
 
 <ul class="pagination">
     
-    <li>
-        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/page/3/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
     
     
     
-     
+    
+    
         
         
     
     
-    <li
-    ><a href="/">1</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    class="active"><a href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/5/">5</a></li>
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
     
     
     
@@ -434,7 +329,7 @@ juju-quickstart
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
     
     
     
@@ -444,6 +339,41 @@ juju-quickstart
         
         
     
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item active"><a class="page-link" href="/page/4/">4</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -503,25 +433,33 @@ juju-quickstart
     
     
     
-     
+    
         
         
     
     
-    <li
-    ><a href="/page/14/">14</a></li>
     
     
-    <li
-    >
-    <a href="/page/5/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
+
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

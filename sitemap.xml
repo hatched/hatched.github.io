@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
@@ -8,8 +8,48 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/post/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/python/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/react/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/</loc>
+    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/development/</loc>
+    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</loc>
     <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/html/</loc>
+    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/ops/</loc>
+    <lastmod>2016-11-13T18:19:00-06:00</lastmod>
   </url>
   
   <url>
@@ -33,8 +73,18 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/tags/juju/</loc>
+    <lastmod>2015-06-13T16:11:00-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</loc>
     <lastmod>2015-06-13T16:11:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/javascript/</loc>
+    <lastmod>2015-06-06T21:44:00-06:00</lastmod>
   </url>
   
   <url>
@@ -53,8 +103,13 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/</loc>
+    <loc>https://fromanegg.com/post/2014/09/08/juju-explain-it-to-me-like-im-5/</loc>
     <lastmod>2014-09-08T23:10:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/juju-gui/</loc>
+    <lastmod>2014-06-17T13:23:00-06:00</lastmod>
   </url>
   
   <url>
@@ -78,6 +133,16 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/tags/osx/</loc>
+    <lastmod>2014-04-09T20:09:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/ubuntu/</loc>
+    <lastmod>2014-04-09T20:09:00-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/</loc>
     <lastmod>2014-03-13T09:22:00-06:00</lastmod>
   </url>
@@ -93,6 +158,16 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/tags/video/</loc>
+    <lastmod>2013-12-05T22:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/yui/</loc>
+    <lastmod>2013-12-05T22:57:00-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</loc>
     <lastmod>2013-12-05T22:57:00-06:00</lastmod>
   </url>
@@ -103,7 +178,12 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/</loc>
+    <loc>https://fromanegg.com/tags/go/</loc>
+    <lastmod>2013-11-16T12:22:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer-barcamp-yxe-sides/</loc>
     <lastmod>2013-11-16T12:22:00-06:00</lastmod>
   </url>
   
@@ -143,12 +223,22 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level/</loc>
+    <loc>https://fromanegg.com/tags/css/</loc>
     <lastmod>2013-08-05T16:53:00-06:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file/</loc>
+    <loc>https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/</loc>
+    <lastmod>2013-08-05T16:53:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/android/</loc>
+    <lastmod>2013-07-31T20:27:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/post/2013/07/31/android-file-transfer-could-not-replace-file-could-not-copy-file/</loc>
     <lastmod>2013-07-31T20:27:00-06:00</lastmod>
   </url>
   
@@ -168,7 +258,12 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/</loc>
+    <loc>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</loc>
+    <lastmod>2013-06-07T22:45:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/testing/</loc>
     <lastmod>2013-06-07T22:45:00-06:00</lastmod>
   </url>
   
@@ -190,6 +285,11 @@
   <url>
     <loc>https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/</loc>
     <lastmod>2013-04-07T17:59:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/linux/</loc>
+    <lastmod>2013-03-18T20:03:00-06:00</lastmod>
   </url>
   
   <url>
@@ -233,7 +333,7 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript/</loc>
+    <loc>https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/</loc>
     <lastmod>2013-01-03T20:56:00-06:00</lastmod>
   </url>
   
@@ -254,6 +354,11 @@
   
   <url>
     <loc>https://fromanegg.com/post/2012/10/18/hatched-links/</loc>
+    <lastmod>2012-10-18T09:52:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/hatched-links/</loc>
     <lastmod>2012-10-18T09:52:00-06:00</lastmod>
   </url>
   
@@ -288,7 +393,12 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google/</loc>
+    <loc>https://fromanegg.com/post/2012/08/10/book-review-are-you-smart-enough-to-work-at-google/</loc>
+    <lastmod>2012-08-10T10:36:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/book-review/</loc>
     <lastmod>2012-08-10T10:36:00-06:00</lastmod>
   </url>
   
@@ -298,7 +408,17 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/tags/cordova/</loc>
+    <lastmod>2012-07-01T13:34:00-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</loc>
+    <lastmod>2012-07-01T13:34:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/phonegap/</loc>
     <lastmod>2012-07-01T13:34:00-06:00</lastmod>
   </url>
   
@@ -318,6 +438,11 @@
   </url>
   
   <url>
+    <loc>https://fromanegg.com/tags/node.js/</loc>
+    <lastmod>2012-02-26T19:19:00-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/</loc>
     <lastmod>2012-02-06T15:50:00-06:00</lastmod>
   </url>
@@ -329,6 +454,7 @@
   
   <url>
     <loc>https://fromanegg.com/yui-popup-calendar/</loc>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -336,162 +462,11 @@
   </url>
   
   <url>
-    <loc>https://fromanegg.com/tags/android/</loc>
-    <lastmod>2013-07-31T20:27:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/book-review/</loc>
-    <lastmod>2012-08-10T10:36:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/cordova/</loc>
-    <lastmod>2012-07-01T13:34:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/css/</loc>
-    <lastmod>2013-08-05T16:53:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/development/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/go/</loc>
-    <lastmod>2013-11-16T12:22:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/hatched-links/</loc>
-    <lastmod>2012-10-18T09:52:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/html/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/javascript/</loc>
-    <lastmod>2015-06-06T21:44:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/juju/</loc>
-    <lastmod>2015-06-13T16:11:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/juju-gui/</loc>
-    <lastmod>2014-06-17T13:23:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/linux/</loc>
-    <lastmod>2013-03-18T20:03:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/node.js/</loc>
-    <lastmod>2012-02-26T19:19:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/ops/</loc>
-    <lastmod>2016-11-13T18:19:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/osx/</loc>
-    <lastmod>2014-04-09T20:09:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/phonegap/</loc>
-    <lastmod>2012-07-01T13:34:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/post/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://fromanegg.com/posts/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://fromanegg.com/projects/</loc>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/python/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/react/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/</loc>
-    <lastmod>2013-07-31T20:27:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/testing/</loc>
-    <lastmod>2013-06-07T22:45:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/ubuntu/</loc>
-    <lastmod>2014-04-09T20:09:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/video/</loc>
-    <lastmod>2013-12-05T22:57:00-06:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/yui/</loc>
-    <lastmod>2013-12-05T22:57:00-06:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

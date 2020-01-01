@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>react on From An Egg</title>
+    <link>https://fromanegg.com/tags/react/</link>
+    <description>Recent content in react on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 21 Jul 2017 10:51:26 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/react/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eliminating missing props in React components</title>
+      <link>https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/</link>
+      <pubDate>Fri, 21 Jul 2017 10:51:26 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/</guid>
+      <description>An advantage to components, React or otherwise, is that they can be used multiple times in various contexts across your application. As the application grows and components get modified over time the component call signatures can drift from their original spec and the many call locations across the application can miss getting updated. Compound that with shallow rendering unit tests and you’ve got yourself a problem where parts of your application don’t work as expected because of invalid data being sent to the components, not because the components are broken themselves.</description>
+    </item>
+    
+  </channel>
+</rss>

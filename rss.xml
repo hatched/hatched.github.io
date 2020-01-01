@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>From An Egg</title>
@@ -26,8 +26,8 @@
       <pubDate>Tue, 22 Nov 2016 21:23:26 -0600</pubDate>
       
       <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</guid>
-      <description>After writing some great content you&amp;rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
-You&amp;rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
+      <description>After writing some great content you&#39;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&#39;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
     </item>
     
     <item>
@@ -37,7 +37,7 @@ You&amp;rsquo;ll first want to start with the original description and canonical
       
       <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
       <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&amp;rsquo;ll need a couple things:
+First you&#39;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
     </item>
     
@@ -48,7 +48,7 @@ First you&amp;rsquo;ll need a couple things:
       
       <guid>https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2/</guid>
       <description>Welcome to v2 of the From An Egg blog!
-Built with Hugo, a static site generator built with Go, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&amp;rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</description>
+Built with Hugo, a static site generator built with Go, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&#39;ll be releasing the theme sometime in the future. Thanks for stopping by!</description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@ For the rest of this post I’m going to assume that you are already familiar wi
       
       <guid>https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/</guid>
       <description>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.
-function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); }  Pre &amp;lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure.</description>
+function importFile(file) { var reader = new FileReader(); reader.onload = function(e) { processData(e.target.result); }; reader.readAsText(file); } Pre &amp;lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure.</description>
     </item>
     
     <item>
@@ -110,12 +110,12 @@ function importFile(file) { var reader = new FileReader(); reader.onload = funct
     
     <item>
       <title>Juju - Explain it to me like I’m 5</title>
-      <link>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/</link>
+      <link>https://fromanegg.com/post/2014/09/08/juju-explain-it-to-me-like-im-5/</link>
       <pubDate>Mon, 08 Sep 2014 23:10:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2014/09/08/juju---explain-it-to-me-like-im-5/</guid>
+      <guid>https://fromanegg.com/post/2014/09/08/juju-explain-it-to-me-like-im-5/</guid>
       <description>Juju is brilliant. Ok I am a little biased being that I work at Canonical on the Juju project, but every week I’m more and more impressed with how awesome Juju is and how easy it makes developing software and working in the cloud. I tweet and post a bunch about Juju but today I was asked to explain what Juju is to someone like they are 5.
-@FromAnEgg ELI5 Juju.</description>
+Juju is often described as apt-get for the cloud, but what does someone who isn’t familiar with the Ubuntu ecosystem know about apt-get?</description>
     </item>
     
     <item>
@@ -192,8 +192,8 @@ As an industry as a whole we need to understand this and write all code, even th
       <pubDate>Thu, 05 Dec 2013 22:57:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/post/2013/12/05/yui-in-the-wild/</guid>
-      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&amp;rsquo;﻿.
- The links I mentioned in the video:
+      <description>Earlier today I talked with some of the YUI team about the Juju GUI and how we use YUI for the first ‘YUI in the wild&#39;﻿.
+The links I mentioned in the video:
  Juju GUI Demo Site Juju GUI Bazaar repository Juju GUI Git repository  </description>
     </item>
     
@@ -210,12 +210,11 @@ Juju GUI Our latest work focuses on making the Juju GUI a more effective day-to-
     
     <item>
       <title>Intro to Go from a JavaScript developer - Barcamp YXE Sides</title>
-      <link>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/</link>
+      <link>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer-barcamp-yxe-sides/</link>
       <pubDate>Sat, 16 Nov 2013 12:22:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer---barcamp-yxe-sides/</guid>
-      <description>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.
- </description>
+      <guid>https://fromanegg.com/post/2013/11/16/intro-to-go-from-a-javascript-developer-barcamp-yxe-sides/</guid>
+      <description>Today I gave a quick presentation at Barcamp YXE and below are the slides. I’ll be following it up with a screencast within a week for those who couldn’t make it.</description>
     </item>
     
     <item>
@@ -245,7 +244,8 @@ This is probably the biggest release of the Juju GUI since it was officially unv
       
       <guid>https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/</guid>
       <description>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.
-The largest of those fixes are: - Changing settings did not work in Juju Core. (Fixed) - The GUI was unable to deploy charms without config options. (Fixed) - Remove unit button did not work in Juju Core. (Fixed) - Plus a number of additional fixes.</description>
+The largest of those fixes are:
+ Changing settings did not work in Juju Core. (Fixed) The GUI was unable to deploy charms without config options. (Fixed) Remove unit button did not work in Juju Core. (Fixed) Plus a number of additional fixes.</description>
     </item>
     
     <item>
@@ -291,20 +291,20 @@ For those who don’t know, Juju enables you to build entire environments in the
     
     <item>
       <title>CSS selectors - The next level</title>
-      <link>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level/</link>
+      <link>https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/</link>
       <pubDate>Mon, 05 Aug 2013 16:53:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2013/08/05/css-selectors---the-next-level/</guid>
+      <guid>https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/</guid>
       <description>As a continuation of my previous post Understanding CSS2 and CSS3 attribute selectors I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.
 IE6+ SUPPORT S1::first-line: Pseudo element selector Selects the first line of text in an element which matches the S1 selector.</description>
     </item>
     
     <item>
       <title>Android file transfer - Could not replace file, could not copy file…</title>
-      <link>https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file/</link>
+      <link>https://fromanegg.com/post/2013/07/31/android-file-transfer-could-not-replace-file-could-not-copy-file/</link>
       <pubDate>Wed, 31 Jul 2013 20:27:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2013/07/31/android-file-transfer---could-not-replace-file-could-not-copy-file/</guid>
+      <guid>https://fromanegg.com/post/2013/07/31/android-file-transfer-could-not-replace-file-could-not-copy-file/</guid>
       <description>Do you have a new Android phone and cannot transfer files to OSX using the Android File Transfer Tool because you keep getting the error “Could not replace file, could not copy file .” ?
 The fix for me was to make sure that the phone was unlocked and the screen on on the homescreen.
 Hope this helps anyone else running into this error. Do you have another solution? Let me know and I’ll add it here for others.</description>
@@ -344,10 +344,10 @@ Setup:
     
     <item>
       <title>Test driven development - the easy way!</title>
-      <link>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/</link>
+      <link>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</link>
       <pubDate>Fri, 07 Jun 2013 22:45:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/</guid>
+      <guid>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</guid>
       <description>A number of people, myself included, have a hard time getting started with test driven development (TDD). The issue lies in that it’s difficult to wrap your head around something that is rather non specific in its implementation and it is usually described as “writing your tests before you write your code”.
 When developers hear “Write your tests before you write your code”, then they look at their previous test suite they wonder… “How can I possibly write this without having written the code first?</description>
     </item>
@@ -358,7 +358,7 @@ When developers hear “Write your tests before you write your code”, then the
       <pubDate>Thu, 06 Jun 2013 10:02:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</guid>
-      <description>I&amp;rsquo;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
+      <description>I&#39;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
 Converting a timestamp to UTC time. To display a timestamp in UTC around the world instead of in the users local timezone you use getTimezoneOffset, multiply it by 60,000 and then subtract that from your timestamp.</description>
     </item>
     
@@ -379,7 +379,8 @@ Converting a timestamp to UTC time. To display a timestamp in UTC around the wor
       
       <guid>https://fromanegg.com/post/2013/06/01/xor-in-javascript/</guid>
       <description>Typically when writing a XOR check in JavaScript you would do something like…
-if (( foo || bar ) &amp;amp;&amp;amp; !( foo &amp;amp;&amp;amp; bar )) { }  The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</description>
+if (( foo || bar ) &amp;amp;&amp;amp; !( foo &amp;amp;&amp;amp; bar )) { } The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.
+In order to start working towards a better solution we first need to define our desired outcome.</description>
     </item>
     
     <item>
@@ -399,7 +400,7 @@ This is going to work as intended until you try it in IE.</description>
       
       <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</guid>
       <description>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
-At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM.</description>
+At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues.</description>
     </item>
     
     <item>
@@ -409,7 +410,7 @@ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also work
       
       <guid>https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/</guid>
       <description>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.
-// Array #1 [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;, 3, 4, 5]  But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.</description>
+// Array #1 [&amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;] // Array #2 [1, 2, 3, 4, 5] // Desired outcome [1, 2, &amp;#34;a&amp;#34;, &amp;#34;b&amp;#34;, &amp;#34;c&amp;#34;, 3, 4, 5] But none of the native array methods allowed me to insert an array of values into an array. Splice comes close but it takes a comma delimited list of values, not an array of values.</description>
     </item>
     
     <item>
@@ -428,7 +429,7 @@ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also work
       
       <guid>https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/</guid>
       <description>I received a large number of questions after my last blog post, 100% pure css radial progress bar, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.
-Attribute Selector Syntax [attributeName{selector}value]  Attribute Selectors [user] /* matches */ &amp;lt;div user&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div user=&amp;quot;foo&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;  Any element which has a user attribute regardless of value.</description>
+Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [user] /* matches */ &amp;lt;div user&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div user=&amp;#34;foo&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; Any element which has a user attribute regardless of value.</description>
     </item>
     
     <item>
@@ -470,10 +471,10 @@ The prototype is defined as an “object that provides shared properties for oth
     
     <item>
       <title>Constructor chaining &amp; inheritance in javascript</title>
-      <link>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript/</link>
+      <link>https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/</link>
       <pubDate>Thu, 03 Jan 2013 20:56:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2013/01/03/constructor-chaining--inheritance-in-javascript/</guid>
+      <guid>https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/</guid>
       <description>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves.</description>
     </item>
     
@@ -574,10 +575,10 @@ The validator allows you to test that a value is valid for the attribute prior t
     
     <item>
       <title>Book Review - Are You Smart Enough to Work at Google?</title>
-      <link>https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google/</link>
+      <link>https://fromanegg.com/post/2012/08/10/book-review-are-you-smart-enough-to-work-at-google/</link>
       <pubDate>Fri, 10 Aug 2012 10:36:00 -0600</pubDate>
       
-      <guid>https://fromanegg.com/post/2012/08/10/book-review---are-you-smart-enough-to-work-at-google/</guid>
+      <guid>https://fromanegg.com/post/2012/08/10/book-review-are-you-smart-enough-to-work-at-google/</guid>
       <description>I have been trying to take some time away from the warm glow of the LCD screen after hours so I haven’t had much time to write up new code related posts. Instead, I have been spending some of this time away reading books, blog posts, and articles on business and web development. So in an effort to keep my blog from going stale here is my very first book review outside of high school English class.</description>
     </item>
     
@@ -599,7 +600,7 @@ Until I am able to add support into the module, simply copy and paste the follow
       <guid>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</guid>
       <description>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post Guide to using YUI with PhoneGap (Cordova). The good news is that it’s very easy to setup but does come with a few drawbacks.
 Using the code from the previous post we only need to make minor changes to load from the CDN.
-&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt; &amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;cordova-1.</description>
+&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34; src=&amp;#34;cordova-1.</description>
     </item>
     
     <item>
@@ -663,7 +664,7 @@ I hope you enjoy the things to come and I look forward to your comments.
       <guid>https://fromanegg.com/yui-popup-calendar/</guid>
       <description>YUI Popup Calendar The YUI Popup Calendar component extends YUI’s Calendar Widget as well as a few other Widget modules you likely have already loaded on the page giving you a very lightweight (1.6KB minified) way to add date picker like functionality to your web page or application.
 You can find the code via Github here: YUI Gallery fork
-How to use Almost all of the configuration properties for Y.</description>
+How to use Almost all of the configuration properties for Y.PopupCalendar are for Y.</description>
     </item>
     
     <item>
@@ -672,7 +673,7 @@ How to use Almost all of the configuration properties for Y.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fromanegg.com/about/</guid>
-      <description>I&amp;rsquo;m Jeff Pihach, welcome to From An Egg. I’m a software engineer at Canonical, entrepreneur and front end developer. I focus primarily on web application development for mobile and desktop. I blog about web development but will mix in the odd post about other things that interest me.</description>
+      <description>I&#39;m Jeff Pihach, welcome to From An Egg. I’m a senior software engineer at Canonical, entrepreneur and front end developer. I focus primarily on web application development for mobile and desktop. I blog about web development but will mix in the odd post about other things that interest me.</description>
     </item>
     
     <item>
@@ -681,7 +682,7 @@ How to use Almost all of the configuration properties for Y.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fromanegg.com/projects/</guid>
-      <description> Active  Depot.JS - Small, modular, &amp;amp; fast JavaScript datastore. Juju GUI - A web-based GUI for Juju.  Bit Rot  YUI Popup Calendar - Date picker for YUI3.  </description>
+      <description>Active  JAAS Dashboard - A Dashboard for Juju and JAAS  Bit Rot  Depot.JS - Small, modular, &amp;amp; fast JavaScript datastore. Juju GUI - A web-based GUI for Juju. YUI Popup Calendar - Date picker for YUI3.  </description>
     </item>
     
   </channel>

@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -107,7 +107,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -123,34 +122,24 @@
       
     </header>
     <p>When writing code which needs to be built before it can be used, whether that’s a transpile step like ES7 JavaScript to ES5, or a compile step like with Go, you’re likely going to want to do this when a file in your application tree is modified. There are a large number of project and language specific tools which were developed to tackle this problem but did you know that there are system level packages available that you can use across all your projects?</p>
-
 <p>Introducing <a href="http://linux.die.net/man/1/inotifywait">inotifywait</a>, which is an efficient and easy to use cli tool which uses Linux’s inotify interface to watch for changes to the file system. And <a href="http://emcrisostomo.github.io/fswatch/">fswatch</a> for those on OSX. Most of the language and project specific tools are built using wrappers around these two tools.</p>
-
 <p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
-
 <pre><code>watch -n 2 make build
-</code></pre>
-
-<p>Or they will build the loop into the makefile.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
+</code></pre><p>Or they will build the loop into the makefile.</p>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
 <span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    make build --silent<span class="p">;</span> <span class="se">\</span>
-    sleep 1<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
-<div class="highlight"><pre><code class="language-make" data-lang="make"><span></span><span class="err">.PHONY</span> <span class="err">watch</span>
+  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
+</span><span class="se"></span>    make build --silent<span class="p">;</span> <span class="se">\
+</span><span class="se"></span>    sleep 1<span class="p">;</span> <span class="se">\
+</span><span class="se"></span>  <span class="k">done</span>
+</code></pre></div><p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
 <span class="nf">watch</span><span class="o">:</span>
-  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\</span>
-    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\</span>
-    make build<span class="p">;</span> <span class="se">\</span>
-  <span class="k">done</span>
-</code></pre></div>
-
-<p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
-
+  <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
+</span><span class="se"></span>    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\
+</span><span class="se"></span>    make build<span class="p">;</span> <span class="se">\
+</span><span class="se"></span>  <span class="k">done</span>
+</code></pre></div><p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
 <p>Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
@@ -165,69 +154,43 @@
         <time pubdate content="2015-06-13 16:11:00 -0600 CST" datetime="2015-06-13 16:11:00 -0600 CST">13 June 2015</time>
       
     </header>
-    
-
-<p>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu <a href="http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment">“Is Juju a suitable tool for development as well as deployment?”</a> made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.</p>
-
+    <p>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu <a href="http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment">“Is Juju a suitable tool for development as well as deployment?”</a> made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.</p>
 <p>For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things. If you aren’t, I recommend reading an earlier post of mine <a href="http://fromanegg.com/post/97035773367/juju-explain-it-to-me-like-im-5">“Juju - Explain it to me like I’m 5”</a>.</p>
-
 <p>One of the biggest problems when developing any kind of software is getting the dependencies up and running in a way which matches the production environment close enough to be sure that you aren’t going to run into “this environment only” bugs. Sure you can install mysql onto your local machine and run the database dump on that install, but you also have to make sure that you apply all of the same configuration, indexes, build flags, etc. as the production environment.</p>
-
 <p>Even once you get it up and running you then need the ability to update it after modifications were made by someone else on the project all with high production parity, and without extraneous downtime.</p>
-
 <p>To illustrate the benefits of using Juju for development I’m going to use a fictitious photo and video sharing website. A website like this would require multiple services, load balancer, web server, database, blob store, user authentication, photo processor, video processor.</p>
-
 <p>Keeping in mind that a Juju Charm can be written using any programming language or DSL that can be executed on the host machine. This means it can use Puppet, Chef, Python, JavaScript, Docker, and pretty much anything else you would like to use. Juju provides distinct advantages for project development depending on the lifecycle of the project. For our photo video site let’s first assume that we’re just starting the project and then later on we’ll assume that the project is mature, released, and still under active development.</p>
-
 <h4 id="just-starting-out">Just starting out</h4>
-
 <p>Typically when a project starts you’re only going to need a couple services, the database and your webserver. Let’s start our environment and install the database and webserver on our local machine.</p>
-<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>juju bootstrap <span class="nb">local</span>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">juju bootstrap <span class="nb">local</span>
 juju deploy apache2
 juju deploy mongodb
-</code></pre></div>
-
-<p>Great, It’s 5 minutes in and we now have apache2 and mongodb running on our machine in separate LXC’s, we can now start developing our website and pointing it to these services.</p>
-
+</code></pre></div><p>Great, It’s 5 minutes in and we now have apache2 and mongodb running on our machine in separate LXC’s, we can now start developing our website and pointing it to these services.</p>
 <p>Parallel to this, your teammate is working on the user authentication service, it’s going well and they want someone to help them test it in the application environment. So lets get that service that they have been working on.</p>
-<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
 git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
 juju deploy --repository<span class="o">=</span>. local:trusty/authenticator
-</code></pre></div>
-
-<p><em>For more information on deploying local charms see <a href="http://askubuntu.com/questions/568137/how-to-deploy-juju-charm-in-development-branch/568174#568174">This Post</a> on Ask Ubuntu.</em></p>
-
+</code></pre></div><p><em>For more information on deploying local charms see <a href="http://askubuntu.com/questions/568137/how-to-deploy-juju-charm-in-development-branch/568174#568174">This Post</a> on Ask Ubuntu.</em></p>
 <p>A few minutes later and you have an identical copy to their user authenticator service, you can point your website to it and give it a try. A little later the authenticator service has been updated and you’d like to run it again.</p>
-<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span><span class="nb">cd</span> ~/charms/trusty/authenticator
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> ~/charms/trusty/authenticator
 git pull
 juju upgrade-charm --repository<span class="o">=</span>.
-</code></pre></div>
-
-<p>This process repeats itself throughout each service and across each member of your team. Allowing each one to update their dependencies within minutes to identical representations of how it’ll be run in production.</p>
-
+</code></pre></div><p>This process repeats itself throughout each service and across each member of your team. Allowing each one to update their dependencies within minutes to identical representations of how it’ll be run in production.</p>
 <h4 id="released-project">Released project</h4>
-
 <p>Now that your project has been released, deployed using Juju, running in production, you’ve had a chance to take advantage of Juju’s deployment and scaling features but how does Juju help you develop now?</p>
-
 <p>In some ways it’s even easier to deploy. In this case, I’m going to assume that your services are private and not stored in the <a href="https://jujucharms.com">Juju Charm Store</a>. If they were in there you wouldn’t have to first clone the repositories.</p>
-<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span>mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
 git clone --depth <span class="m">1</span> git@github.com:photovideo/mongodb
 git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
 …
 
 juju-quickstart -e <span class="nb">local</span> photovideo.yaml
-</code></pre></div>
-
-<p>Taking advantage of Juju Quickstart and the Juju bundles functionality you can deploy your entire environment with identical services, configuration, and machine placements. This will open up the GUI which will allow you to modify the machine placement of any of those services and change configuration values before deploying to your machine. Once you hit commit, sit back and wait for it to deploy an identical environment to your production environment on your local machine.</p>
-
+</code></pre></div><p>Taking advantage of Juju Quickstart and the Juju bundles functionality you can deploy your entire environment with identical services, configuration, and machine placements. This will open up the GUI which will allow you to modify the machine placement of any of those services and change configuration values before deploying to your machine. Once you hit commit, sit back and wait for it to deploy an identical environment to your production environment on your local machine.</p>
 <p>Now you can work on the specific service you’re interested in within an identical environment to everyone on your team. And when a service gets updated by another member on your team it’s trivial to update.</p>
-<div class="highlight"><pre><code class="language-Shell" data-lang="Shell"><span></span><span class="nb">cd</span> ~/charms/trusty/authenticator
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> ~/charms/trusty/authenticator
 git pull
 juju upgrade-charm --repository<span class="o">=</span>.
-</code></pre></div>
-
-<p>I hope this gets you excited to use Juju for development as well as deployment. My team uses Juju for development this way and has for over a year. It allows us to be more productive because we don’t have to waste time installing and updating services the hard way.</p>
-
+</code></pre></div><p>I hope this gets you excited to use Juju for development as well as deployment. My team uses Juju for development this way and has for over a year. It allows us to be more productive because we don’t have to waste time installing and updating services the hard way.</p>
 <p>I’ll be creating a follow-up to this post with real code examples and workflows for doing the actual development of these services, stay tuned! Thanks for reading, if you have any questions or comments file them below or you can hit me up on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
@@ -243,81 +206,72 @@ juju upgrade-charm --repository<span class="o">=</span>.
       
     </header>
     <p>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</p>
-
 <p>In many JavaScript projects you’ll see something like this:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
-  <span class="c1">// 10 lines later</span>
-  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="k">return</span> <span class="nx">myObject</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
+  <span class="c1">// 5 lines later
+</span><span class="c1"></span>  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+  <span class="c1">// 10 lines later
+</span><span class="c1"></span>  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
+  <span class="c1">// 5 lines later
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">myObject</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>This essentially means that you must read through an entire functions execution, and sometimes an entire modules execution to see what the structure of that object will become.</p>
-
+</code></pre></div><p>This essentially means that you must read through an entire functions execution, and sometimes an entire modules execution to see what the structure of that object will become.</p>
 <p>Now lets compare that to Go:</p>
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span></span><span class="kd">type</span> <span class="nx">myObject</span> <span class="kd">struct</span><span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">myObject</span> <span class="kd">struct</span><span class="p">{</span>
   <span class="nx">Foo</span> <span class="kt">string</span>
   <span class="nx">Baz</span> <span class="kt">string</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="o">*</span><span class="nx">myObject</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myObject</span><span class="p">{}</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="p">=</span> <span class="s">&quot;bar&quot;</span>
-  <span class="c1">// 10 lines later</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="p">=</span> <span class="s">&quot;bax&quot;</span>
-  <span class="c1">// 5 lines later</span>
-  <span class="k">return</span> <span class="nx">data</span>
+<span class="kd">func</span> <span class="nf">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="o">*</span><span class="nx">myObject</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myObject</span><span class="p">{</span><span class="p">}</span>
+  <span class="c1">// 5 lines later
+</span><span class="c1"></span>  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="p">=</span> <span class="s">&#34;bar&#34;</span>
+  <span class="c1">// 10 lines later
+</span><span class="c1"></span>  <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="p">=</span> <span class="s">&#34;bax&#34;</span>
+  <span class="c1">// 5 lines later
+</span><span class="c1"></span>  <span class="k">return</span> <span class="nx">data</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Here you don’t even have to read further than the function declaration to know what the function will return and then you simply have to reference that type in the file to know ahead of time what it’s structure will be.</p>
-
+</code></pre></div><p>Here you don’t even have to read further than the function declaration to know what the function will return and then you simply have to reference that type in the file to know ahead of time what it’s structure will be.</p>
 <p>Throughout my time as a developer I’ve noticed that it’s quite rare that you cannot predict with 100% certainty what the data structure of your variables will be but, in dynamic languages, we don’t ever seem to outline that structure for people reading and writing the code. So this got me thinking about how this workflow can be adopted in JavaScript to give us the benefits of types using the native language constructs without having to use a compile target like Typescript. In practice it turns out to be quite simple:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Method to convert defined object literal &#39;type&#39;</span>
-<span class="c1">// into a &#39;locked down&#39; data store.</span>
-<span class="kd">function</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">stub</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>    
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Method to convert defined object literal &#39;type&#39;
+</span><span class="c1"></span><span class="c1">// into a &#39;locked down&#39; data store.
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">stub</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>    
     <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">stub</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
       <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">value</span><span class="o">:</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
-    <span class="p">});</span>
-  <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">stub</span><span class="p">);</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">stub</span><span class="p">)</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">stub</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="c1">// Your &#39;type&#39; which will be used to create</span>
-<span class="c1">// usable data store instances.</span>
-<span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+<span class="c1">// Your &#39;type&#39; which will be used to create
+</span><span class="c1"></span><span class="c1">// usable data store instances.
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">Foo</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
   <span class="nx">Baz</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-<span class="p">};</span>
+<span class="p">}</span><span class="p">;</span>
 
-<span class="c1">// Fills the object with data.</span>
-<span class="c1">// @method dataFiller</span>
-<span class="c1">// @return {myObject}</span>
-<span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">myObject</span><span class="p">);</span>
-  <span class="c1">// Set values like normal.</span>
-  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="c1">// Fills the object with data.
+</span><span class="c1"></span><span class="c1">// @method dataFiller
+</span><span class="c1"></span><span class="c1">// @return {myObject}
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">myObject</span><span class="p">)</span><span class="p">;</span>
+  <span class="c1">// Set values like normal.
+</span><span class="c1"></span>  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
   <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">fullData</span> <span class="o">=</span> <span class="nx">dataFiller</span><span class="p">();</span>
-<span class="nx">fullData</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s2">&quot;can Update&quot;</span><span class="p">;</span> <span class="c1">// Updated</span>
-<span class="nx">fullData</span><span class="p">.</span><span class="nx">Qux</span> <span class="o">=</span> <span class="s2">&quot;Can&#39;t add new properties&quot;</span><span class="p">;</span> <span class="c1">// Not added</span>
-</code></pre></div>
-
-<p>Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+<span class="kd">var</span> <span class="nx">fullData</span> <span class="o">=</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">fullData</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s2">&#34;can Update&#34;</span><span class="p">;</span> <span class="c1">// Updated
+</span><span class="c1"></span><span class="nx">fullData</span><span class="p">.</span><span class="nx">Qux</span> <span class="o">=</span> <span class="s2">&#34;Can&#39;t add new properties&#34;</span><span class="p">;</span> <span class="c1">// Not added
+</span></code></pre></div><p>Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
 </section>
@@ -332,70 +286,62 @@ juju upgrade-charm --repository<span class="o">=</span>.
       
     </header>
     <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
+</code></pre></div><p>Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
-  <span class="p">};</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Then we’ll move the onload callback to a named function.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
+</code></pre></div><p>Then we’ll move the onload callback to a named function.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
   <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">_readerOnloadHandler</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">_readerOnloadHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-
-<p>Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Set up the stubs.</span>
-    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">);</span>
-    <span class="c1">// The second parameter of the stubMethod is what generateFileReader</span>
-    <span class="c1">// will return when it&#39;s called.</span>
-    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;generateFileReader&#39;</span><span class="p">,</span> <span class="p">{</span>
+</code></pre></div><p>Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Set up the stubs.
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// The second parameter of the stubMethod is what generateFileReader
+</span><span class="c1"></span>    <span class="c1">// will return when it&#39;s called.
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;generateFileReader&#39;</span><span class="p">,</span> <span class="p">{</span>
       <span class="nx">onload</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">();</span>
-    <span class="p">});</span>
-    <span class="c1">// Call the public method.</span>
-    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
-    <span class="c1">// Make assertions</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
-    <span class="c1">// Call the callback.</span>
-    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">({</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}});</span>
-    <span class="c1">// Make assertions</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;file data&#39;</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre></div>
-
-<p>Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!</p>
+      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Call the public method.
+</span><span class="c1"></span>    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Make assertions
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Call the callback.
+</span><span class="c1"></span>    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">(</span><span class="p">{</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Make assertions
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;file data&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!</p>
 
   </article>
 </section>
@@ -410,19 +356,12 @@ juju upgrade-charm --repository<span class="o">=</span>.
       
     </header>
     <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
-
 <p>I have a rather common use case. I plan on moving this blog from Tumblr to <a href="https://ghost.org/">Ghost</a> using the <a href="https://jujucharms.com/ghost/">Ghost Juju charm</a> and the <a href="https://jujucharms.com/haproxy/">HAProxy charm</a> to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.</p>
-
 <p>Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:</p>
-
 <pre><code>RewriteEngine On  
 RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
-</code></pre>
-
-<p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
-
+</code></pre><p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
 <p>Assume the following front and backend configurations:</p>
-
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
@@ -431,39 +370,26 @@ backend haproxy_service
     balance leastconn
     cookie SRVNAME insert
     server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
-</code></pre>
-
-<p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
-
+</code></pre><p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
-</code></pre>
-
-<p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
-
+</code></pre><p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
     redirect prefix / code 301
-</code></pre>
-
-<p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
-
+</code></pre><p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
 <p>We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7">access control list</a> to only redirect the old urls:</p>
-
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     acl old_url path_beg /post
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
     redirect prefix / code 301 if old_url
-</code></pre>
-
-<p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
-
+</code></pre><p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
 <p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
@@ -474,50 +400,25 @@ backend haproxy_service
 
 <ul class="pagination">
     
-    <li>
-        <a href="/" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+    <li class="page-item">
+        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
     </li>
     
-    <li
-    >
-    <a href="/" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+    <li class="page-item">
+    <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
     </li>
     
     
     
     
     
-     
+    
+    
         
         
     
     
-    <li
-    ><a href="/">1</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    class="active"><a href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-     
-        
-        
-    
-    
-    <li
-    ><a href="/page/3/">3</a></li>
+    <li class="page-item"><a class="page-link" href="/">1</a></li>
     
     
     
@@ -528,7 +429,7 @@ backend haproxy_service
         
     
     
-    <li class="disabled"><span aria-hidden="true">&hellip;</span></li>
+    <li class="page-item active"><a class="page-link" href="/page/2/">2</a></li>
     
     
     
@@ -538,6 +439,19 @@ backend haproxy_service
         
         
     
+    
+    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
+    
+    
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
     
     
     
@@ -615,25 +529,33 @@ backend haproxy_service
     
     
     
-     
+    
         
         
     
     
-    <li
-    ><a href="/page/14/">14</a></li>
     
     
-    <li
-    >
-    <a href="/page/3/" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
+    
+    
+    <li class="page-item">
+    <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
-    <li>
-        <a href="/page/14/" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <li class="page-item">
+        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
+
 
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

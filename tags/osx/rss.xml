@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>osx on From An Egg</title>
+    <link>https://fromanegg.com/tags/osx/</link>
+    <description>Recent content in osx on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Apr 2014 20:09:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/osx/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to install Ubuntu on a Mac or Macbook</title>
+      <link>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</link>
+      <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/</guid>
+      <description>The official release date of Ubuntu 14.04 LTS Trusty Tahr is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!</description>
+    </item>
+    
+  </channel>
+</rss>

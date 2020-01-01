@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>book-review on From An Egg</title>
+    <link>https://fromanegg.com/tags/book-review/</link>
+    <description>Recent content in book-review on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Aug 2012 10:36:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/book-review/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Book Review - Are You Smart Enough to Work at Google?</title>
+      <link>https://fromanegg.com/post/2012/08/10/book-review-are-you-smart-enough-to-work-at-google/</link>
+      <pubDate>Fri, 10 Aug 2012 10:36:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/08/10/book-review-are-you-smart-enough-to-work-at-google/</guid>
+      <description>I have been trying to take some time away from the warm glow of the LCD screen after hours so I haven’t had much time to write up new code related posts. Instead, I have been spending some of this time away reading books, blog posts, and articles on business and web development. So in an effort to keep my blog from going stale here is my very first book review outside of high school English class.</description>
+    </item>
+    
+  </channel>
+</rss>

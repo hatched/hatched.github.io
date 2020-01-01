@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hatched-links on From An Egg</title>
+    <link>https://fromanegg.com/tags/hatched-links/</link>
+    <description>Recent content in hatched-links on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Oct 2012 09:52:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/hatched-links/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links/</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links/</guid>
+      <description>HTTP access control (CORS) (mozilla.org): Learn how Cross-Origin Resource Sharing works. Never use black (ianstormtaylor.com): Design tip on why you should never use black. 31 CSS code snippets (designyourway.net): Great list of some cool css hacks. CSS3 &amp;amp; HTML5 Experiments (designyourway.net): a list of 47 great CSS3 and HTML5 experiments. Rundown of handling flexible media (css-tricks.com): Great resource for information on how to handle flexible media.  Have something you would like to see on the next Hatched Links?</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/18/hatched-links/</link>
+      <pubDate>Thu, 18 Oct 2012 09:52:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/18/hatched-links/</guid>
+      <description>Flick Scroll (simurai.com): Very cool new swipe technique. Responsive Embeds (andmag.se): Great technique for using responsive sized embeds. Responsive Sketchsheets (zurb.com): Unique collection of sketchsheets for responsive layouts. Javascript Array Methods Reference (impressivewebs.com): Reference for the various array manipulation methods in javascript. Box-Shadow vs Filter-Drop-Shadow (bricss.net): A comparison of these two shadow css rules.  Have something you would like to see on the next Hatched Links? Mention me on Twitter @fromanegg or find me in #yui on irc.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/11/hatched-links/</link>
+      <pubDate>Thu, 11 Oct 2012 13:56:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/11/hatched-links/</guid>
+      <description>GUI Git Client For OSX (laullon.com): Open source and runs on OSX 10.6+ and Git 1.6.0+. Test Across Devices With Adobe Shadow (adobe.com): Setup browsing and debugging with Adobe Shadow. Web Platform Docs (webplatform.org): Community driven wiki looking to become the be-all end-all of web development docs. Windy: A Plugin For Swift Content Navigation (tympanus.net): Make items fly away like a deck of cards. Transition to height: auto trick (dropshado.</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/10/04/hatched-links/</link>
+      <pubDate>Thu, 04 Oct 2012 09:04:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/10/04/hatched-links/</guid>
+      <description>An Online Editor For reveal.js (rvl.io): Edit the popular reveal.js HTML presentation framework online. YUI Test Tool (yeti.cx): Run YUI Test in multiple browsers. 220 Icon Font (Font Awesome): Has icon parity with Bootstrap plus a lot more. Git Remote Branch (webmat): Easily manipulate git branches in shared repos. Learnable Programming (worrydream): Designing a programming system for understanding programs.  Have something you would like to see on the next Hatched Links?</description>
+    </item>
+    
+    <item>
+      <title>Hatched Links</title>
+      <link>https://fromanegg.com/post/2012/09/27/hatched-links/</link>
+      <pubDate>Thu, 27 Sep 2012 22:39:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/09/27/hatched-links/</guid>
+      <description>Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!
+ YUI3 3.7.2 Patch Release (YUI Blog): Fixing a couple loader &amp;amp; module issues. Designing for Android (Smashing Magazine): Tips and techniques for designing applications for Android. Interactive Globe with CSS Shaders (HTML5 Rocks): Applying the new CSS Shaders to Google Maps.</description>
+    </item>
+    
+  </channel>
+</rss>

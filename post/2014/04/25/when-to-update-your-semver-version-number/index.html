@@ -36,7 +36,7 @@ The semver website outlines the rules for incrementing version numbers as:
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -120,7 +120,6 @@ The semver website outlines the rules for incrementing version numbers as:
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -135,37 +134,26 @@ The semver website outlines the rules for incrementing version numbers as:
       
     </header>
     <p>Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the <a href="http://semver.org/">semver website</a>.</p>
-
 <p>The semver website outlines the rules for incrementing version numbers as:</p>
-
 <ul>
 <li>MAJOR: When you make incompatible API changes.</li>
 <li>MINOR: When you add functionality in a backwards-compatible manner.</li>
 <li>PATCH: When you make backwards compatible bug fixes.
 At <a href="https://gophercon.com/">gophercon</a> I had a discussion with another engineer about what these mean. When does a change make the API incompatible with a previous release? Take the following contrived example:</li>
 </ul>
-
 <p>Your API typically returns a key/value pair for a requested field:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">bar</span><span class="err">’</span> <span class="p">}</span>
-</code></pre></div>
-
-<p>But now you decide to change the value returned by capitalizing the first character in the returned strings:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">Bar</span><span class="err">’</span> <span class="p">}</span>
-</code></pre></div>
-
-<p>What portion of the version should be updated with this change?</p>
-
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">bar</span><span class="err">’</span> <span class="p">}</span>
+</code></pre></div><p>But now you decide to change the value returned by capitalizing the first character in the returned strings:</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">Bar</span><span class="err">’</span> <span class="p">}</span>
+</code></pre></div><p>What portion of the version should be updated with this change?</p>
 <ul>
 <li>MAJOR: It could break someones code who is relying on the case of the returned value.</li>
 <li>MINOR: This is adding functionality because the value being returned is actually a title for a story.</li>
 <li>PATCH: Stories should always have been capitalized so this is actually a bug fix.
 This shows that the rules are up for a lot of interpretation and will depend heavily on your situation. This unfortunately doesn’t make it easier to explain to someone who is new to, or skeptical of, semver. As a solution I came up with a slightly more specific set of rules which I think make the decision much easier for everyone.</li>
 </ul>
-
 <p>Jeff’s semver incrementing version number rules:</p>
-
 <p>I inverted the rule set so it can be read that any later rule overwrites the previous rule so the version section moves up a level.</p>
-
 <ul>
 <li>If this is fixing a reported bug in your system: PATCH</li>
 <li>If this is adding a feature to your public or private api: MINOR</li>
@@ -173,7 +161,6 @@ This shows that the rules are up for a lot of interpretation and will depend hea
 <li>If it broke your public api call tests: MAJOR
 Because your tests should test exactly what you expect your public API to return it should be very trivial to know when a change is breaking what others could be relying on.</li>
 </ul>
-
 <p>What do you think of this approach? Do you find it any easier to understand? Do you have any other rules to add? Or are you already using semver and have a different approach to deciding when to increase which number? Comment below or mention me on twitter <a href="https://twitter.com/FromAnEgg">@fromanegg</a> and let me know. Thanks for reading!</p>
 
   </article>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>node.js on From An Egg</title>
+    <link>https://fromanegg.com/tags/node.js/</link>
+    <description>Recent content in node.js on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Feb 2012 19:19:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/node.js/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to make a Node.js static file server - Part 1</title>
+      <link>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</link>
+      <pubDate>Sun, 26 Feb 2012 19:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/</guid>
+      <description>This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.
+I’m going to assume you already have Node.js up running on your computer and that you know javascript. This code was developed on v0.6.1-pre and I will make an effort to update it and the version number as things change with Node.</description>
+    </item>
+    
+  </channel>
+</rss>

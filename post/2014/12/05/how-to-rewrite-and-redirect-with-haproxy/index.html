@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.25.1" />
+    <meta name="generator" content="Hugo 0.62.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -114,7 +114,6 @@
       <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
       <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
       <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
-      <li><a href="https://plus.google.com/+JeffPihach" class="icon-google" target="_blank" rel="me">Google</a></li>
       <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
     </ul>
   </div>
@@ -129,19 +128,12 @@
       
     </header>
     <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
-
 <p>I have a rather common use case. I plan on moving this blog from Tumblr to <a href="https://ghost.org/">Ghost</a> using the <a href="https://jujucharms.com/ghost/">Ghost Juju charm</a> and the <a href="https://jujucharms.com/haproxy/">HAProxy charm</a> to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.</p>
-
 <p>Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:</p>
-
 <pre><code>RewriteEngine On  
 RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
-</code></pre>
-
-<p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
-
+</code></pre><p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
 <p>Assume the following front and backend configurations:</p>
-
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
@@ -150,39 +142,26 @@ backend haproxy_service
     balance leastconn
     cookie SRVNAME insert
     server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
-</code></pre>
-
-<p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
-
+</code></pre><p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
-</code></pre>
-
-<p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
-
+</code></pre><p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
     redirect prefix / code 301
-</code></pre>
-
-<p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
-
+</code></pre><p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
 <p>We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7">access control list</a> to only redirect the old urls:</p>
-
 <pre><code>frontend haproxy-0-80
     bind 0.0.0.0:80
     default_backend haproxy_service
     acl old_url path_beg /post
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
     redirect prefix / code 301 if old_url
-</code></pre>
-
-<p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
-
+</code></pre><p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
 <p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>phonegap on From An Egg</title>
+    <link>https://fromanegg.com/tags/phonegap/</link>
+    <description>Recent content in phonegap on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Jul 2012 13:34:00 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/phonegap/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</link>
+      <pubDate>Sun, 01 Jul 2012 13:34:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/</guid>
+      <description>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post Guide to using YUI with PhoneGap (Cordova). The good news is that it’s very easy to setup but does come with a few drawbacks.
+Using the code from the previous post we only need to make minor changes to load from the CDN.
+&amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My First Cordova YUI App&amp;lt;/title&amp;gt; &amp;lt;script type=&amp;#34;text/javascript&amp;#34; src=&amp;#34;cordova-1.</description>
+    </item>
+    
+    <item>
+      <title>Guide to using YUI with PhoneGap (Cordova)</title>
+      <link>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</link>
+      <pubDate>Tue, 12 Jun 2012 07:58:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2012/06/12/guide-to-using-yui-with-phonegap-cordova/</guid>
+      <description>If you have ever wanted to use YUI in your next PhoneGap (Cordova) application you are in luck, it is so easy, it’s almost trivial. This will be the first in what will probably be a series of posts about using YUI with PhoneGap (Cordova).
+This tutorial assumes that you already know the basics of YUI but, at least for this first instalment, you shouldn’t have any problem following along if you don’t.</description>
+    </item>
+    
+  </channel>
+</rss>

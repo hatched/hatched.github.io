@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>development on From An Egg</title>
+    <link>https://fromanegg.com/tags/development/</link>
+    <description>Recent content in development on From An Egg</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Nov 2016 21:23:26 -0600</lastBuildDate>
+    
+	<atom:link href="https://fromanegg.com/tags/development/rss.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How To: Semantic blog markup</title>
+      <link>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</link>
+      <pubDate>Tue, 22 Nov 2016 21:23:26 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</guid>
+      <description>After writing some great content you&#39;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&#39;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
+    </item>
+    
+    <item>
+      <title>Secure GitHub pages with SSL/TLS</title>
+      <link>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</link>
+      <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
+      <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
+First you&#39;ll need a couple things:
+ A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
+    </item>
+    
+    <item>
+      <title>The importance of minification and compression</title>
+      <link>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression/</link>
+      <pubDate>Sat, 02 Jan 2016 13:15:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2016/01/02/the-importance-of-minification-and-compression/</guid>
+      <description>Over the holidays I’ve been working on a small project playing with some of the new Javascript libraries that came out over the past year. After a while I noticed that the size of the Javascript I was sending to the client was growing and starting to approach 100 KB for a basic isomorphic website. I figured now was a good time to look into minification and compression.
+The site starts out by loading in the following raw code:</description>
+    </item>
+    
+    <item>
+      <title>Using Juju for development</title>
+      <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</link>
+      <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</guid>
+      <description>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu “Is Juju a suitable tool for development as well as deployment?” made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.
+For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things.</description>
+    </item>
+    
+    <item>
+      <title>Unidirectional data flow architecture</title>
+      <link>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture/</link>
+      <pubDate>Thu, 15 May 2014 23:18:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/05/15/unidirectional-data-flow-architecture/</guid>
+      <description>Since Facebook released Flux there has been a lot of chatter about the unidirectional data flow architecture and how it helps large scale applications be easier to reason about and develop. With the Juju GUI nearing 70,000 lines of code in the core application we were running into an issue where it was becoming difficult to maintain the correct state throughout the many rendered UI components which are being consistently changed from the user interactions and changes coming in over the websocket from the users Juju environment.</description>
+    </item>
+    
+    <item>
+      <title>When to update your semver version number</title>
+      <link>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/</link>
+      <pubDate>Fri, 25 Apr 2014 10:49:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/</guid>
+      <description>Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the semver website.
+The semver website outlines the rules for incrementing version numbers as:
+ MAJOR: When you make incompatible API changes. MINOR: When you add functionality in a backwards-compatible manner.</description>
+    </item>
+    
+    <item>
+      <title>Self documenting code is not enough</title>
+      <link>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/</link>
+      <pubDate>Thu, 13 Mar 2014 09:22:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/</guid>
+      <description>Our industry moves so fast that just to stay on the curve, let alone ahead of it, you need to spend a considerable amount of time reading other peoples code. Whether that be in code reviews, gists, or open source projects, you can glean a lot of invaluable information about new technologies, protocols, and techniques.
+As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as self-documenting code with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</description>
+    </item>
+    
+    <item>
+      <title>YUIConf talk 2012</title>
+      <link>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</link>
+      <pubDate>Thu, 17 Jan 2013 11:07:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/17/yuiconf-talk-2012/</guid>
+      <description>My talk from YUIConf 2012, where I showcase the issues of modern web development that arise when using various libraries and explain how the features of YUI make it a clear leader for development teams of any size. I discuss standard development procedures, modular development and extensibility, API consistency, documentation, and testing. Hope you enjoy, Let me know what you think!</description>
+    </item>
+    
+    <item>
+      <title>The importance of personal developer projects</title>
+      <link>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects/</link>
+      <pubDate>Wed, 09 Jan 2013 10:54:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2013/01/09/the-importance-of-personal-developer-projects/</guid>
+      <description>Fueled by the constant push for new ideas and better experiences by our clients and employers; web development has to be one of, if not the, fastest evolving industry today. It’s our job as developers to at least keep up with the curve; unfortunately because of this constant push we often end up over specializing, leaving us ill prepared come the time to move onto the next big thing. We try to remedy this complacency by reading what others are working on and dabbling here and there on side projects, but quite often we can’t dedicate enough of our personal time to keep ahead of that curve.</description>
+    </item>
+    
+  </channel>
+</rss>
