@@ -6,10 +6,19 @@
     <description>Recent content in Posts on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 21 Jul 2017 10:51:26 -0600</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2020 18:40:00 -0600</lastBuildDate>
     
 	<atom:link href="https://fromanegg.com/post/rss.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Testing your user contract</title>
+      <link>https://fromanegg.com/post/2020/01/01/testing-your-user-contract/</link>
+      <pubDate>Wed, 01 Jan 2020 18:40:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2020/01/01/testing-your-user-contract/</guid>
+      <description>Whenever you write any code that is to be consumed by another, whether it be a library or some UI element, that consumer expects it to work in a certain way every time they interact with it. All good developers would agree and that’s why we also write tests that either break our code up into chunks and test that each chunk works as expected, unit tests, or test the entire lifecycle, end to end tests.</description>
+    </item>
     
     <item>
       <title>Eliminating missing props in React components</title>

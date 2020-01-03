@@ -116,6 +116,44 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/" itemprop="url">Calculating timezones in JavaScript</a></h1>
+      
+        <time pubdate content="2013-06-06 10:02:00 -0600 CST" datetime="2013-06-06 10:02:00 -0600 CST">6 June 2013</time>
+      
+    </header>
+    <p>I'm sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.</p>
+<h4 id="converting-a-timestamp-to-utc-time">Converting a timestamp to UTC time.</h4>
+<p>To display a timestamp in UTC around the world instead of in the users local timezone you use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset">getTimezoneOffset</a>, multiply it by 60,000 and then subtract that from your timestamp.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">rd</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">getTimezoneOffset</span><span class="p">(</span><span class="p">)</span><span class="o">*</span><span class="mi">60000</span><span class="p">,</span>
+    <span class="nx">time</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="p">(</span><span class="mf">1349797266.032</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-</span> <span class="nx">rd</span><span class="p">)</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;UTC timestamp is &#39;</span> <span class="o">+</span> <span class="nx">time</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h4 id="calculating-the-users-timezone">Calculating the users timezone</h4>
+<p>To calculate the users timezone we need to determine the offset between the current time and the UTC time. To do that we use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCHours">getUTCHours</a> method and the compare the two dates.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">dateATmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">dateA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateATmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Your timezone is GMT &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">dateATmp</span> <span class="o">-</span> <span class="nx">dateA</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h4 id="determining-if-the-user-observes-daylight-savings-time">Determining if the user observes daylight savings time</h4>
+<p>Calculating if the user observes daylight savings time (DST) is a little long winded but is certainly possible. We need to calculate the timezone difference between January and July. To do that we create the two dates, one in their current timezone and the other in UTC. We then divide the difference by 3600000 to get the hour offset and if they are the same DST is not observed.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">dateATmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">dateA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateATmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">dateBTmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">dateB</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">dateBTmp</span><span class="p">.</span><span class="nx">getUTCHours</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">diffStdTime</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dateATmp</span> <span class="o">-</span> <span class="nx">dateA</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">,</span>
+    <span class="nx">diffDaylightTime</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dateBTmp</span> <span class="o">-</span> <span class="nx">dateB</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3600000</span><span class="p">,</span>
+    <span class="nx">dst</span> <span class="o">=</span> <span class="p">(</span><span class="nx">diffStdTime</span> <span class="o">==</span> <span class="nx">diffDaylightTime</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;not&#39;</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;DST is %s observed here.&#39;</span><span class="p">,</span> <span class="nx">dst</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>I hope that some or all of these solutions help make your life with dates in JavaScript a little easier. If you have any problems, or if you know of a better way to accomplish these tasks please let me know below or by mentioning me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/06/03/juju-gui-0-7-1-released/" itemprop="url">Juju GUI v0.7.1 released</a></h1>
       
         <time pubdate content="2013-06-03 13:51:00 -0600 CST" datetime="2013-06-03 13:51:00 -0600 CST">3 June 2013</time>
@@ -295,43 +333,6 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 <pre><code>exec ssh-agent bash
 </code></pre><p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
 
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/" itemprop="url">Insert an array of values into an array in JavaScript</a></h1>
-      
-        <time pubdate content="2013-02-22 12:00:00 -0600 CST" datetime="2013-02-22 12:00:00 -0600 CST">22 February 2013</time>
-      
-    </header>
-    <p>Yesterday I had an array of objects which needed to be inserted into another array at a specific index point.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Array #1
-</span><span class="c1"></span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span>
-
-<span class="c1">// Array #2
-</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="c1">// Desired outcome
-</span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</code></pre></div><p>But none of the native array methods allowed me to insert an array of values into an array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice</a> comes close but it takes a comma delimited list of values, not an array of values. Conveniently however you can still use the native splice function using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to achieve the desired result.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span><span class="p">,</span>
-    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span><span class="p">,</span>
-    <span class="nx">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-
-<span class="c1">// We want to push the starting index and the number of values we want
-</span><span class="c1"></span><span class="c1">// to delete (in this case 0) onto the beginning of the first array.
-</span><span class="c1"></span><span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
-
-<span class="c1">// Next we want to apply the native splice method to arrayOne under
-</span><span class="c1"></span><span class="c1">// the context of arrayTwo
-</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">)</span><span class="p">;</span>
-
-<span class="c1">// [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5]
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div>
   </article>
 </section>
 

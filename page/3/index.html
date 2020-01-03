@@ -116,6 +116,55 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/" itemprop="url">How to rewrite and redirect with HAProxy</a></h1>
+      
+        <time pubdate content="2014-12-05 12:52:00 -0600 CST" datetime="2014-12-05 12:52:00 -0600 CST">5 December 2014</time>
+      
+    </header>
+    <p>It’s common when moving from one version of your application to another that you will want to maintain all of the SEO cred you have built up while simultaneously moving to a new url syntax. To do this people usually reach for mod_rewrite with apache or nginx for which there is quite a bit of documentation on this topic. Unfortunately the same can’t be said for rewriting and 301 redirecting when using HAProxy.</p>
+<p>I have a rather common use case. I plan on moving this blog from Tumblr to <a href="https://ghost.org/">Ghost</a> using the <a href="https://jujucharms.com/ghost/">Ghost Juju charm</a> and the <a href="https://jujucharms.com/haproxy/">HAProxy charm</a> to handle load balancing, reverse proxy and rewriting and redirecting the old Tumblr style urls to the Ghost url format.</p>
+<p>Using mod_rewrite you would likely write something similar to the following to handle rewriting the url to the new syntax and redirecting with a 301 response code:</p>
+<pre><code>RewriteEngine On  
+RewriteRule ^/post/\d+/(.+)/? http://example.com/$1  [R=301,L]
+</code></pre><p>HAProxy however doesn’t have a single rule for rewrite and redirect instead we have to combine <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-reqrep">reqrep</a>, to rewrite the url, and <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#4-redirect">redirect</a>, to handle the actual redirection.</p>
+<p>Assume the following front and backend configurations:</p>
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+
+backend haproxy_service
+    balance leastconn
+    cookie SRVNAME insert
+    server ghost-0-2368 10.0.3.220:2368 maxconn 100 cookie S0 check
+</code></pre><p>In order to rewrite the url we first need to add the rewrite into the frontend:</p>
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+</code></pre><p>This will rewrite the old Tumblr style url format to the new Ghost style url format and pass that url off to the Ghost webserver. If you’re ok with the user still seeing and using the old url style then you can stop here. Both the real Ghost url format and the old Tumblr style url format will work. If however you want to tell the users and any search engines that the old url is no longer valid and to use a new one instead we need to add the redirect rule:</p>
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301
+</code></pre><p>The HAProxy redirect syntax requires us to specify what kind of redirect we want to occur. The options are ‘location’, &lsquo;prefix’, and &lsquo;scheme’ none of these truly fit redirecting an old to new url. Fortunately we can trick HAProxy into doing just what we want by telling it we want to redirect to change the prefix of the url and passing / as the url to prefix along with the code we want to send, 301.</p>
+<p>We aren’t quite done. If we leave this as is it will redirect every rule, including the Ghost url formatted ones which will put it into a redirect loop. In order to fix this we need to create an <a href="http://cbonte.github.io/haproxy-dconv/configuration-1.4.html#7">access control list</a> to only redirect the old urls:</p>
+<pre><code>frontend haproxy-0-80
+    bind 0.0.0.0:80
+    default_backend haproxy_service
+    acl old_url path_beg /post
+    reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
+    redirect prefix / code 301 if old_url
+</code></pre><p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
+<p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2014/09/08/juju-explain-it-to-me-like-im-5/" itemprop="url">Juju - Explain it to me like I’m 5</a></h1>
       
         <time pubdate content="2014-09-08 23:10:00 -0600 CST" datetime="2014-09-08 23:10:00 -0600 CST">8 September 2014</time>
@@ -260,64 +309,6 @@ This shows that the rules are up for a lot of interpretation and will depend hea
 Because your tests should test exactly what you expect your public API to return it should be very trivial to know when a change is breaking what others could be relying on.</li>
 </ul>
 <p>What do you think of this approach? Do you find it any easier to understand? Do you have any other rules to add? Or are you already using semver and have a different approach to deciding when to increase which number? Comment below or mention me on twitter <a href="https://twitter.com/FromAnEgg">@fromanegg</a> and let me know. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/04/09/how-to-install-ubuntu-on-a-mac-or-macbook/" itemprop="url">How to install Ubuntu on a Mac or Macbook</a></h1>
-      
-        <time pubdate content="2014-04-09 20:09:00 -0600 CST" datetime="2014-04-09 20:09:00 -0600 CST">9 April 2014</time>
-      
-    </header>
-    <p>The official release date of <a href="http://www.ubuntu.com/download/desktop">Ubuntu 14.04 LTS Trusty Tahr</a> is coming up in just over a week from the time of writing. With that, many of you are going to want to install the next version of the best Linux operating system on your computers, and if you want to install on metal along side OSX and have a Apple Mac or Macbook this is the guide for you!</p>
-<p>You’re going to need a few things before we get started:</p>
-<ul>
-<li>Download Ubuntu 14.04 LTS Trusty Tahr. (If you’re here before it’s released you can download the <a href="http://cdimage.ubuntu.com/daily-live/current/">daily image here</a>. Be sure you download the iso which does NOT have ’+mac’ in the filename. This is for older Apple computers.</li>
-<li>Download the <a href="http://www.rodsbooks.com/refind/">rEFInd Boot Manager</a>. You want the <a href="http://www.rodsbooks.com/refind/getting.html">Binary source file zip</a> which you need to extract.</li>
-<li>A 2GB or bigger USB stick which has nothing on it that you don’t care to lose. This will be our boot stick…(remember when they were boot disks?)</li>
-<li>A thunderbolt to ethernet adapter or if your machine has an ethernet port, plug it in. After installing Ubuntu it is unlikely you will have wifi until the final step.</li>
-<li>Your computers hard drive should have a big chunk of free space…you’re going to use this as your primary operating system afterall!</li>
-<li>An hour or so of free time. This took me about 30 minutes from start to finish but I had done it a number of times by the time I created this post.</li>
-</ul>
-<h4 id="obligatory-warning">Obligatory Warning</h4>
-<p>All of this information is provided without warranty of any kind. Always make and keep proper backups of your data.</p>
-<h4 id="step-1">Step 1</h4>
-<h4 id="backup-your-computer">BACKUP YOUR COMPUTER</h4>
-<p>While it’s unlikely that an issue will occur which wipes the data on your disk it’s always highly advisable to have a couple quality backups just in case.</p>
-<p>Go make another backup…I’ll wait.</p>
-<h4 id="did-you-back-up-your-data-yet">DID YOU BACK UP YOUR DATA YET?</h4>
-<h4 id="step-2">Step 2</h4>
-<p>Now that you have a quality backup safely tucked away you will need to install rEFInd. Open the terminal and navigate to the location that you extracted the zip file and then follow the <a href="http://www.rodsbooks.com/refind/installing.html#installsh">installation instructions for OSX</a>. Once completed, restart your computer to confirm that rEFInd was installed correctly. On rebooting, the rEFInd boot loader should load up and you should select the Apple logo to get back into OSX. (sorry for the sub par photos)</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-1.jpg" alt=""></p>
-<h4 id="step-3">Step 3</h4>
-<p>Now that you’re back in OSX we need to take that iso of Ubuntu 14.04 that you downloaded and make a bootable USB stick. Follow the <a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx">10 steps outlined here</a> to create the bootable stick. You’ll know when it’s ready because OSX will pop open a dialogue saying that it cannot read the device.</p>
-<h4 id="step-4">Step 4</h4>
-<p>You need a place to put Ubuntu on your computer, so you’ll need to create a partition on your hard drive. The size of this partition will depend on the size of your disk and what you plan to do in Ubuntu, but it should be at least 10GB to give you some wiggle room (mine is 100GB). To do so you will use the OSX tool ‘Disk Utility’. There are some dated, but still accurate instructions on <a href="https://help.ubuntu.com/community/MactelSupportTeam/AppleIntelInstallation#Manual_partitioning_using_Disk_Utility_GUI">creating this partition here</a>.</p>
-<h4 id="step-5">Step 5</h4>
-<p>With the partition made it’s now time to stick the USB stick into your computer and reboot. After rebooting you should land on the rEFInd boot loader again with a few more options than before. If you do not see these options then reboot again holding the “option” key.</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-2.jpg" alt=""></p>
-<p>Your options may look a little different but you want to pick one of the options which are provided from the USB stick (There are three provided in this image). For the Haswell equipped machines you want to pick the option which reads something along the lines of “Boot EFI\boot\grubx64.efi …” and hit enter. This will start another boot loader with the first option “Install Ubuntu”, hit enter to select this option. After a little while you should be in the Ubuntu installer, follow through the steps until the installer asks you where you would like to install Ubuntu.</p>
-<p>Note: If after progressing through the install process and you find that it boots into a black screen start again from Step 5 but choose an installer without “EFI” in the path name.</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-3.jpg" alt=""></p>
-<h4 id="step-6">Step 6</h4>
-<p>Note: partitioning will be a little different for everyone so if you get confused hop onto IRC in #ubuntu on freenode.net or create a question on <a href="http://askubuntu.com">http://askubuntu.com</a> for some help.</p>
-<p>When you step through the installer you will get to a pane which asks you where you want to install Ubuntu to. The options should be pretty self explanatory. But if there isn’t an option to install Ubuntu into your new partition you will need to take the manual route. Select the manual partition option and you should be shown a screen which looks like:</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-4.jpg" alt=""></p>
-<p>As you can see form this list, I created a 100GB partition originally and then created a 3GB swap partition. To take the partition you created in OSX and create a swap from it you will need to select it then hit the “Change” button and downsize it 3GB. This will leave you with “free space” of 3GB. Click the “+” button and create a new partition of the type “swap”. You’ll want to make sure your primary partition is of type “ext4” and that the mount point is “/”.</p>
-<p>Continue on from here installing Ubuntu to your new partition.</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-5.jpg" alt=""></p>
-<h4 id="step-7">Step 7</h4>
-<p>After the installation has completed remove the USB stick from your computer and reboot. Now when rEFInd shows up you should have an extra option with the Ubuntu logo. Click it and boot into Ubuntu.</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-6.jpg" alt=""></p>
-<h4 id="step-8">Step 8</h4>
-<p>Once you have logged into Ubuntu, click the &lsquo;System Settings’ icon in the launcher bar on the left. Select &lsquo;Software and Updates’ and then select the &lsquo;Additional Drivers’ tab. After this tab loads you should see a proprietary driver for the Broadcom wireless, select it and click &lsquo;Apply’. Reboot the computer and you should now be able to click the network icon in the top right of the desktop to connect to a wireless connection.</p>
-<p><img src="/images/how-to-install-ubuntu-on-a-mac-or-macbook-7.jpg" alt=""></p>
-<p>Congratulations you now have Ubuntu installed along side OSX!</p>
-<p>If you run into any problems along the way or have any questions your first stop should be your search engine of choice there are thousands of great resources for Ubuntu scattered around on many topics. You will also find a ton of great people in Ubuntu community hanging out in the #ubuntu room on IRC on freenode.net or if you prefer to ask direct detailed questions check out <a href="http://askubuntu.com">http://askubuntu.com</a>. I hope that this guide has helped you get up and running with Ubuntu, please comment below with any questions or comments or I can be found on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>, thanks for reading!</p>
 
   </article>
 </section>

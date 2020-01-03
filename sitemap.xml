@@ -3,17 +3,37 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+    <loc>https://fromanegg.com/tags/development/</loc>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
   </url>
   
   <url>
     <loc>https://fromanegg.com/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
   </url>
   
   <url>
     <loc>https://fromanegg.com/post/</loc>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/</loc>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/tags/testing/</loc>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/post/2020/01/01/testing-your-user-contract/</loc>
+    <lastmod>2020-01-01T18:40:00-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fromanegg.com/post/2017/07/21/eliminating-missing-props-in-react-components/</loc>
     <lastmod>2017-07-21T10:51:26-06:00</lastmod>
   </url>
   
@@ -25,16 +45,6 @@
   <url>
     <loc>https://fromanegg.com/tags/react/</loc>
     <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/</loc>
-    <lastmod>2017-07-21T10:51:26-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/development/</loc>
-    <lastmod>2016-11-22T21:23:26-06:00</lastmod>
   </url>
   
   <url>
@@ -259,11 +269,6 @@
   
   <url>
     <loc>https://fromanegg.com/post/2013/06/07/test-driven-development-the-easy-way/</loc>
-    <lastmod>2013-06-07T22:45:00-06:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fromanegg.com/tags/testing/</loc>
     <lastmod>2013-06-07T22:45:00-06:00</lastmod>
   </url>
   

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>Testing your user contract &middot; From An Egg</title>
+      <meta name="twitter:title" content="Testing your user contract" />
+      <meta property="og:title" content="Testing your user contract" />
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      
+        <meta name="description" itemprop="description" content="Whenever you write any code that is to be consumed by another, whether it be a library or some UI element, that consumer expects it to work in a certain way every time they interact with it. All good developers would agree and that’s why we also write tests that either break our code up into chunks and test that each chunk works as expected, unit tests, or test the entire lifecycle, end to end tests.">
+        <meta name="twitter:description" content="Whenever you write any code that is to be consumed by another, whether it be a library or some UI element, that consumer expects it to work in a certain way every time they interact with it. All good developers would agree and that’s why we also write tests that either break our code up into chunks and test that each chunk works as expected, unit tests, or test the entire lifecycle, end to end tests." />
+        <meta property="og:description" content="Whenever you write any code that is to be consumed by another, whether it be a library or some UI element, that consumer expects it to work in a certain way every time they interact with it. All good developers would agree and that’s why we also write tests that either break our code up into chunks and test that each chunk works as expected, unit tests, or test the entire lifecycle, end to end tests." />
+        
+          <meta property="article:published_time" content="2020-01-01 18:40:00 -0600 CST">
+        
+      
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/post/2020/01/01/testing-your-user-contract/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.62.1" />
+    <link rel="canonical" href="https://fromanegg.com/post/2020/01/01/testing-your-user-contract/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
+
+  <nav>
+  <img src="/images/me.png"></img>
+  <h1 itemprop="author">Jeff Pihach</h1>
+  <label for="menu-toggle" class="icon-menu">Menu</label>
+  <input type="checkbox" id="menu-toggle"/>
+  <div class="nav-wrapper">
+    <ul>
+      <li class=""><a href="/" class="icon-home">Home</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
+      <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+      <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+      <li class="">
+        <label for="tags-toggle">
+          <span class="icon-tag">Tags</span>
+          <span class="icon-down-dir arrow"></span>
+        </label>
+        <input type="checkbox" id="tags-toggle"/>
+        <ul class="tag-list">
+          
+          
+            <li><a href="/tags/android">android</a></li>
+          
+            <li><a href="/tags/book-review">book-review</a></li>
+          
+            <li><a href="/tags/cordova">cordova</a></li>
+          
+            <li><a href="/tags/css">css</a></li>
+          
+            <li><a href="/tags/development">development</a></li>
+          
+            <li><a href="/tags/go">go</a></li>
+          
+            <li><a href="/tags/hatched-links">hatched-links</a></li>
+          
+            <li><a href="/tags/html">html</a></li>
+          
+            <li><a href="/tags/javascript">javascript</a></li>
+          
+            <li><a href="/tags/juju">juju</a></li>
+          
+            <li><a href="/tags/juju-gui">juju-gui</a></li>
+          
+            <li><a href="/tags/linux">linux</a></li>
+          
+            <li><a href="/tags/node.js">node.js</a></li>
+          
+            <li><a href="/tags/ops">ops</a></li>
+          
+            <li><a href="/tags/osx">osx</a></li>
+          
+            <li><a href="/tags/phonegap">phonegap</a></li>
+          
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
+            <li><a href="/tags/testing">testing</a></li>
+          
+            <li><a href="/tags/ubuntu">ubuntu</a></li>
+          
+            <li><a href="/tags/video">video</a></li>
+          
+            <li><a href="/tags/yui">yui</a></li>
+          
+        </ul>
+      </li>
+      <li><a href="https://fromanegg.com/rss.xml" class="icon-rss">RSS</a></li>
+    </ul>
+    <hr></hr>
+    <h3>Social</h3>
+    <ul class="social-list">
+      <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+      <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+      <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+      <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2020/01/01/testing-your-user-contract/" itemprop="url">Testing your user contract</a></h1>
+      
+        <time pubdate content="2020-01-01 18:40:00 -0600 CST" datetime="2020-01-01 18:40:00 -0600 CST">1 January 2020</time>
+      
+    </header>
+    <p>Whenever you write any code that is to be consumed by another, whether it be a library or some UI element, that consumer expects it to work in a certain way every time they interact with it. All good developers would agree and that’s why we also write tests that either break our code up into chunks and test that each chunk works as expected, unit tests, or test the entire lifecycle, end to end tests.</p>
+<p>Anyone who has written unit tests for long enough knows that they are tedious to keep in sync with refactors and often end up taking a disproportionate amount of time compared to the time it took to write the functional code. I propose that that we focus less on unit tests and replace them with what I’m calling the <strong>user contract</strong> of your code.</p>
+<h4 id="what-is-a-user-contract">What is a user contract?</h4>
+<p>The consumer expects that when they perform action X, they receive outcome Y. Typically they are not concerned about how X became Y just that it does so reliably. This is what I’m calling the <strong>user contract</strong>. If we as the authors of the code take the same view from a testing perspective, it allows us to write simpler tests and gives us the ability to refactor how a library or UI component works without having to update our tests, dramatically speeding up refactoring.</p>
+<p>While these examples are written in Javascript the same techniques apply to all languages.</p>
+<h4 id="library-example">Library example</h4>
+<p>Starting with a simple library that another developer may be using&hellip;</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Fetch content from the database.
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">_formatuserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Reformat the data as returned from the database.
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>A consumer of this API would have a couple expectations:</p>
+<ul>
+<li>That function is asynchronous.</li>
+<li>It returns a user list in a specific structure.</li>
+</ul>
+<p>These expectations then outline what your tests are:</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;fetchUserList&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not block&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns in the correct format&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>This will look strikingly similar to Test Driven Development. You should also note that we don’t test any method that wasn’t exported, nor do we export methods simply for testing purposes.</p>
+<p>To aid the user in understanding what this contract is you can outline it in the docblock for the exported function. This way it can be used to generate the documentation for your library and help outline what your test structure is.</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
+</span><span class="cm">  Returns a formatted user list.
+</span><span class="cm">  @return {Object} The user list in the following format:
+</span><span class="cm">  { id: INT, name: STRING, favouriteColour: STRING }
+</span><span class="cm">*/</span>
+<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>We don’t explicitly test the  <code>_queryFBForUSerList</code> and <code>_formatUserList</code> functions as they are implementation details. If you were to change the type of database returning the user list, or the algorithm being used to format the user list you should not have to also modify your tests as the contract to your users has not changed. They still expect that if they call <code>fetchUserList</code> they will receive the list in the specified format.</p>
+<h4 id="ui-example">UI Example</h4>
+<p>Let’s take a look at a UI component this time using the React javascript library, in an effort to save space I’ve removed the functions that aren’t exported. This also helps to illustrate their irrelevance in our testing strategy.</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">LogIn</span> <span class="o">=</span> <span class="p">(</span><span class="p">{</span> <span class="nx">children</span> <span class="p">}</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userIsLoggedIn</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">userIsConnecting</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isConnecting</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">_generateButton</span><span class="p">(</span><span class="nx">userIsConnecting</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userIsLoggedIn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login&#34;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login__logo&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&#34;logo&#34;</span> <span class="o">/</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="nx">button</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/</span><span class="err">m</span><span class="err">a</span><span class="err">i</span><span class="err">n</span><span class="err">&gt;</span>
+      <span class="o">&lt;</span><span class="err">/</span><span class="err">&gt;</span>
+    <span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">children</span><span class="p">;</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></div><p>This is a fairly simple component that renders a login button with a logo. Let’s go through the exercise and see what our User Contract is:</p>
+<ul>
+<li>If the user is not logged in
+<ul>
+<li>It renders a logo and button to log in.</li>
+<li>It renders any children passed to it.</li>
+<li>clicking the button logs in.</li>
+</ul>
+</li>
+<li>If the user is logged in
+<ul>
+<li>It does not render a logo and button.</li>
+<li>It renders any children passed to it.</li>
+</ul>
+</li>
+</ul>
+<p>Our tests would be:</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LogIn&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is not logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clicking the button logs in&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not render a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Testing the returned value in a UI component is a little more nuanced than checking a return value of a library function. We don’t necessarily want to check every specific detail of each element returned unless it’s part of the contract. I’ll expand these tests with assertions but eschew the component setup and rendering in interest of space.</p>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login__logo&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+<span class="p">)</span><span class="p">;</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;main .items&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;logs the user in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">simulate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>It’s important to note here that we have tried to limit the specific details that aren’t relevant to the contract of the component. This allows the design to change and the contract to remain valid and we do not need to update the tests. This is especially beneficial when you have a shared component library within your company. You can update the designs and implementation details of your components without updating the tests.</p>
+<h4 id="what-if-i">What if I&hellip;</h4>
+<ul>
+<li>&hellip;want to test that an api call is being made with the correct signature?
+<ul>
+<li>You should consider moving this sub api call into its own library and having it tested there. You'll then be testing the <strong>user contract</strong> of this new library, that a call to your api is making a specific call to another api.</li>
+</ul>
+</li>
+<li>&hellip;have to mock out an api call?
+<ul>
+<li>You’ll find value in implementing a system that mocks out the layer which returns the data. In this layer it’ll return a pre-defined set of data depending on the arugments it receives. This way, if the arguments ever change and become invalid, it’ll no longer return the correctly formatted outcome and your tests will fail.</li>
+</ul>
+</li>
+<li>&hellip;have a complex algorithm that needs testing?
+<ul>
+<li>Consider moving this to a separate library and test it separately so that the <strong>user contract</strong> of that library is being tested.</li>
+</ul>
+</li>
+<li>&hellip;want to change the contract?
+<ul>
+<li>You can release a major version bump of your code. See how to use the <a href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/">semver versioning system</a>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="conclusion">Conclusion</h4>
+<p>When writing the code and exporting methods, ask yourself if the user needs to have access to this method or if you’re only doing it for testing purposes. You can always export more methods, you can’t always take exported methods away.</p>
+<p>When writing tests ask yourself how can the consumer interact with your code and what type of outcome is expected for those interactions and them make sure you have those documented and assertions in your tests.</p>
+<p>Don't test implementation details of an exported method or UI component. Consider moving those to a different <strong>user contract</strong> if you feel they need direct testing.</p>
+<h4 id="more-reading">More reading</h4>
+<p>I have written some content many years ago which you may also find helpful:</p>
+<ul>
+<li><a href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/">When to update your semver version number (2014)</a></li>
+<li><a href="https://fromanegg.com/post/2014/03/13/self-documenting-code-is-not-enough/">Self documenting code is not enough (2014)</a></li>
+<li><a href="https://fromanegg.com/post/2013/06/07/test-driven-development---the-easy-way/">Test driven development the easy way (2013)</a></li>
+</ul>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/testing">testing</a></li>
+      
+        <li><a href="/tags/development">development</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

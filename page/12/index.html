@@ -116,6 +116,28 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2012/09/27/hatched-links/" itemprop="url">Hatched Links</a></h1>
+      
+        <time pubdate content="2012-09-27 22:39:00 -0600 CST" datetime="2012-09-27 22:39:00 -0600 CST">27 September 2012</time>
+      
+    </header>
+    <p>Today I bring you the very first Hatched Links! Hatched Links is going to be a weekly post bringing you links to cool things in software development from around the web. I hope you enjoy!</p>
+<ul>
+<li><a href="http://yuiblog.com/blog/2012/09/24/yui-3-7-2-patch-release/">YUI3 3.7.2 Patch Release (YUI Blog)</a>: Fixing a couple loader &amp; module issues.</li>
+<li><a href="https://www.smashingmagazine.com/2012/07/android-design-tips/">Designing for Android (Smashing Magazine)</a>: Tips and techniques for designing applications for Android.</li>
+<li><a href="https://developers.google.com/web/updates/2012/09/Interactive-Globe-with-CSS-shaders-Google-Maps">Interactive Globe with CSS Shaders (HTML5 Rocks)</a>: Applying the new CSS Shaders to Google Maps.</li>
+<li><a href="http://v5.hakim.se/experiments/fokus">Fokus</a>: Emphasize anything by covering the rest of the page with semi-transparent black (Hakim).</li>
+<li><a href="http://www.speedawarenessmonth.com/15-things-for-making-your-site-faster-for-mobile-users/">15 Ways To Speed Up Your Mobile Site (Speed Awareness Month)</a>: 15 tips and tricks on how to make your site faster for mobile users.</li>
+</ul>
+<p>Have something you would like to see on the next Hatched Links? Mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or find me in #yui on irc.freenode.net</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2012/09/19/great-yui-3-datatable-resources/" itemprop="url">Great YUI 3 DataTable resources!</a></h1>
       
         <time pubdate content="2012-09-19 18:05:00 -0600 CST" datetime="2012-09-19 18:05:00 -0600 CST">19 September 2012</time>
@@ -242,59 +264,6 @@
   <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
 <span class="p">}</span><span class="p">,</span>
 </code></pre></div><p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/" itemprop="url">Loading YUI from Yahoo!’s CDN for PhoneGap (Cordova)</a></h1>
-      
-        <time pubdate content="2012-07-01 13:34:00 -0600 CST" datetime="2012-07-01 13:34:00 -0600 CST">1 July 2012</time>
-      
-    </header>
-    <p>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post <a href="http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova">Guide to using YUI with PhoneGap (Cordova)</a>. The good news is that it’s very easy to setup but does come with a few drawbacks.</p>
-<p>Using the code from the previous post we only need to make minor changes to load from the CDN.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Add in the YUI seed file </span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Remove the included local scripts and YUI_CONFIG object
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">1.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">2.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34;&gt;YUI_CONFIG = { bootstrap: false };&lt;/script&gt;</span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p"></span><span class="p">&gt;</span>Click Me<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
-<span class="c1">// Remove the &#39;load all&#39; flag from the use statement
-</span><span class="c1"></span><span class="c1">// YUI().use(&#39;*&#39;, function(Y) {
-</span><span class="c1"></span><span class="c1">// Request the Node and Event modules
-</span><span class="c1"></span><span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
-
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span><span class="p">,</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="p">;</span>
-
-	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div><p>And that’s it! That will load the YUI seed and loader from Yahoo!’s CDN then load in the Node, Event, and all dependent modules automatically for you. Isn’t loader great?</p>
-<p>But all isn’t perfect, at the beginning I mentioned some drawbacks. In the previous version we were packaging up all of the required assets into the package which will be stored on the device. This will guarantee that those files are always available regardless of the users network connection. Using the remote loading method, once the application loads up it needs to make the request of the remote files before it will become functional. This can cause unnecessary delays in the bootup of the application or cause the application to be entirely useless if there is no network connection. Because of that I don’t recommend using remote loading for core application components. This technique can be very useful during development where your required modules may be changing frequently.</p>
-<p>I’m going to try to keep making these tutorials so if you have anything specific you would find helpful for yourself or others please comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
 
   </article>
 </section>
