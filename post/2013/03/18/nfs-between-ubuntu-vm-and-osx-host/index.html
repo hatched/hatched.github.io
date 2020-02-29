@@ -12,11 +12,14 @@
     
       
         <meta name="description" itemprop="description" content="If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
-At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues.">
+ An updated version of this post can be found here: Use Ubuntu on Mac OS with Multipass
+ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.">
         <meta name="twitter:description" content="If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
-At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues." />
+ An updated version of this post can be found here: Use Ubuntu on Mac OS with Multipass
+ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10." />
         <meta property="og:description" content="If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
-At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues." />
+ An updated version of this post can be found here: Use Ubuntu on Mac OS with Multipass
+ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10." />
         
           <meta property="article:published_time" content="2013-03-18 20:03:00 -0600 CST">
         
@@ -131,42 +134,45 @@ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also work
       
     </header>
     <p>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.</p>
+<blockquote>
+<p><em>An updated version of this post can be found here: <a href="/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/">Use Ubuntu on Mac OS with Multipass</a></em></p>
+</blockquote>
 <p>At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues. To verify this, open up a terminal window in the host and VM and enter:</p>
-<pre><code>ifconfig
-</code></pre><p>One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">ifconfig
+</code></pre></div><p>One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.</p>
 <h4 id="ubuntu-vm-setup">Ubuntu VM Setup</h4>
 <p>Install the NFS server.</p>
-<pre><code>apt-get install nfs-kernel-server
-</code></pre><p>Then we are going to create a pseudo filesystem where we will share our users home directory from.</p>
-<pre><code>mkdir -p /export/your-user-name
-</code></pre><p>We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:</p>
-<pre><code>/export    192.168.1.0/24(rw,fsid=0,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">apt-get install nfs-kernel-server
+</code></pre></div><p>Then we are going to create a pseudo filesystem where we will share our users home directory from.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mkdir -p /export/your-user-name
+</code></pre></div><p>We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">/export    192.168.1.0/24<span class="o">(</span>rw,fsid<span class="o">=</span>0,insecure,no_subtree_check,all_squash,async,anonuid<span class="o">=</span>1000,anongid<span class="o">=</span>1000<span class="o">)</span>
 
-/export/your-user-name    192.168.1.0/24(rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)
-</code></pre><p>To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.</p>
-<pre><code>sudo chmod -R 777 /export
-</code></pre><p>Now lets link our home directory to the export directory.</p>
-<pre><code>mount --bind /home/your-user-name /export/your-user-name
-</code></pre><p>To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:</p>
-<pre><code>/home/your-user-name    /export/your-user-name    none    bind  0  0
-</code></pre><p>And finally, you’ll need to export the shares and restart your nfs server</p>
-<pre><code>sudo exportfs -a
+/export/your-user-name    192.168.1.0/24<span class="o">(</span>rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid<span class="o">=</span>1000,anongid<span class="o">=</span>1000<span class="o">)</span>
+</code></pre></div><p>To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo chmod -R <span class="m">777</span> /export
+</code></pre></div><p>Now lets link our home directory to the export directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mount --bind /home/your-user-name /export/your-user-name
+</code></pre></div><p>To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">/home/your-user-name    /export/your-user-name    none    <span class="nb">bind</span>  <span class="m">0</span>  <span class="m">0</span>
+</code></pre></div><p>And finally, you’ll need to export the shares and restart your nfs server</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo exportfs -a
 sudo service nfs-kernel-server restart
-</code></pre><h4 id="osx-setup">OSX Setup</h4>
+</code></pre></div><h4 id="osx-setup">OSX Setup</h4>
 <p>On the OSX side things are very simple. First lets create the directory we are going to mount our remote home directory into.</p>
-<pre><code>sudo mkdir ~/linux-vm
-</code></pre><p>And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.</p>
-<pre><code>sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
-</code></pre><p>If you get an error that reads ‘Operation not permitted’ then you can try the following.</p>
-<pre><code>sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
-</code></pre><p>And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mkdir ~/linux-vm
+</code></pre></div><p>And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre></div><p>If you get an error that reads ‘Operation not permitted’ then you can try the following.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre></div><p>And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.</p>
 <h4 id="problems---solutions">Problems - Solutions</h4>
 <p>Stale File Handle - Try un-mounting and re-mounting the NFS.</p>
-<pre><code>sudo umount -f /Users/your-user-name/linux-vm
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo umount -f /Users/your-user-name/linux-vm
 sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
-</code></pre><p>Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.</p>
-<pre><code>exec ssh-agent bash
-</code></pre><p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+</code></pre></div><p>Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">exec</span> ssh-agent bash
+</code></pre></div><p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
 
   </article>
 </section>

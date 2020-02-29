@@ -116,6 +116,52 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/" itemprop="url">Use Ubuntu on Mac OS with Multipass</a></h1>
+      
+        <time pubdate content="2020-02-28 16:28:00 -0600 CST" datetime="2020-02-28 16:28:00 -0600 CST">28 February 2020</time>
+      
+    </header>
+    <p>Running and developing an Ubuntu based workload on Mac OS has never been easier. <a href="https://canonical.com/">Canonical</a> has released a new tool called <a href="https://multipass.run">Multipass</a> which allows you to quickly spin up Ubuntu Server virtual machines on Ubuntu, Mac OS and Windows. The following instructions will get you an Ubuntu Server VM up and running, and the Ubuntu file system mounted to Mac OS so that you can work in the Mac OS UI using your regular development tools like VS Code.</p>
+<h4 id="mac-os">Mac OS</h4>
+<p>You'll first need to get Multipass installed by visiting the <a href="https://multipass.run">Multipass website</a> and downloading and installing the package on your Mac OS host. Once installed, open the terminal on your Mac OS host and run the following to download and install the latest LTS release of Ubuntu Server.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch --name ubuntu
+multipass shell ubuntu
+</code></pre></div><h4 id="ubuntu">Ubuntu</h4>
+<p>After the VM has been started we need to connect to it to install the nfs server.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo apt install nfs-kernel-server -y
+</code></pre></div><p>Now we need to create the folder that we’re going to work from in the home directory of our new Ubuntu VM and open up the permissions on it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mkdir -p ~/code
+sudo chmod -R <span class="m">777</span> ~/code
+</code></pre></div><p>This folder needs to be exported from the VM’s file system which is done by appending the following content to the <code>/etc/exports</code> file. If your VM has a different IP range than what is shown below you can simply update the command below to match your environment.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">echo</span> <span class="s2">&#34;/home/ubuntu/code 192.168.64.0/24(rw,fsid=0,insecure,no_subtree_check,all_squash,async,anonuid=1000,anongid=1000)&#34;</span> <span class="p">|</span> sudo tee -a /etc/exports
+</code></pre></div><p>Then we have to export the folder and restart the NFS service.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo exportfs -a
+sudo service nfs-kernel-server restart
+</code></pre></div><p>Create a temporary file so you can see if your mount worked successfully later.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">touch ~/code/test
+</code></pre></div><h4 id="mac-os-1">Mac OS</h4>
+<p>In another terminal window on your Mac OS host we need to mount our VM’s code folder. Replace the string for the VM’s IP address and the UserName of the user on Mac OS.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mkdir -p ~/code
+sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
+</code></pre></div><p>To keep the drive mounted after refreshing and restarting the VM</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">echo</span> <span class="s2">&#34;&lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code nfs resvport,rw,rsize=8192,wsize=8192,timeo=14,intr&#34;</span> <span class="p">|</span> sudo tee -a /etc/fstab
+</code></pre></div><p>Now you should be able to see the test file that you created previously in Ubuntu from Mac OS.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">ls -al ~/code
+</code></pre></div><p>From the terminal on your Mac OS host you can now open these folders like they live in Mac OS with your code editor of choice.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">code ~/code
+</code></pre></div><h4 id="tips--tricks">Tips &amp; Tricks</h4>
+<p>On a day to day basis the most efficient way to work with these files is to perform your heavy IO interactions like git clones and builds from within your new Ubuntu VM. This can be done by leaving a terminal open SSH'd into it.</p>
+<p>The services that Multipass use to create the VM on Mac OS allow you to over subscribe the VM's resources so if you want to have the fastest VM possible you can give it all CPU cores and RAM as well as ample disk space. The following command will give the new Ubuntu VM 16 cores, 100GB of disk space and 16GB of ram while allowing the host and other Multipass VM's to share the same resources.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch -c <span class="m">16</span> -d 100G -m 16G --name ubuntu
+</code></pre></div><p>At the time of writing you cannot resize the VM's disk space so you'll want to give it more than you think you'll need.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2020/01/01/testing-your-user-contract/" itemprop="url">Testing your user contract</a></h1>
       
         <time pubdate content="2020-01-01 18:40:00 -0600 CST" datetime="2020-01-01 18:40:00 -0600 CST">1 January 2020</time>
@@ -372,21 +418,6 @@ component validation failed: <span class="m">1</span> error found
 <p>Once the DNS records propagate you'll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you'll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
 <p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn't be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
 <p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/12/welcome-to-from-an-egg-v2/" itemprop="url">Welcome to From An Egg v2</a></h1>
-      
-        <time pubdate content="2016-11-12 16:49:53 -0600 CST" datetime="2016-11-12 16:49:53 -0600 CST">12 November 2016</time>
-      
-    </header>
-    <p>Welcome to v2 of the From An Egg blog!</p>
-<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I'll be releasing the theme sometime in the future. Thanks for stopping by!</p>
 
   </article>
 </section>

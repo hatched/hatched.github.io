@@ -116,6 +116,76 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2015/04/22/easy-testing-of-code-involving-native-methods-in-javascript/" itemprop="url">Easy testing of code involving native methods in JavaScript</a></h1>
+      
+        <time pubdate content="2015-04-22 19:57:00 -0600 CST" datetime="2015-04-22 19:57:00 -0600 CST">22 April 2015</time>
+      
+    </header>
+    <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Then we’ll move the onload callback to a named function.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">_readerOnloadHandler</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">_readerOnloadHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Set up the stubs.
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// The second parameter of the stubMethod is what generateFileReader
+</span><span class="c1"></span>    <span class="c1">// will return when it&#39;s called.
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;generateFileReader&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">onload</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Call the public method.
+</span><span class="c1"></span>    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Make assertions
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Call the callback.
+</span><span class="c1"></span>    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">(</span><span class="p">{</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="c1">// Make assertions
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;file data&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2014/12/05/how-to-rewrite-and-redirect-with-haproxy/" itemprop="url">How to rewrite and redirect with HAProxy</a></h1>
       
         <time pubdate content="2014-12-05 12:52:00 -0600 CST" datetime="2014-12-05 12:52:00 -0600 CST">5 December 2014</time>
@@ -267,48 +337,6 @@ You’ll notice that this is strikingly similar to the Flux architecture:</li>
 <p><img src="/images/unidirectional-data-flow-architecture-2.png" alt=""></p>
 <p>It’s great to see cases of the <a href="https://en.wikipedia.org/wiki/Multiple_discovery">multiple discovery hypothesis</a> in action. It’s a sign that you’re on the right track for solving the bigger picture problems. It’s also nice to see someone formalizing this architecture for client side applications in the hopes that others will be able to skip these scalability problems. While our implementation differs from Flux, the architecture is nearly identical. I highly recommend this architecture to anyone writing a large complex application of any kind, client or server side, as it dramatically reduces the complexity of the applications execution.</p>
 <p>Do you work on a large application? Do you think this architecture could help simplify your app? Let me know in the comments below, <a href="https://twitter.com/fromanegg">@fromanegg</a>, or <a href="https://plus.google.com/+JeffPihach">+Jeff Pihach</a> Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2014/04/25/when-to-update-your-semver-version-number/" itemprop="url">When to update your semver version number</a></h1>
-      
-        <time pubdate content="2014-04-25 10:49:00 -0600 CST" datetime="2014-04-25 10:49:00 -0600 CST">25 April 2014</time>
-      
-    </header>
-    <p>Anyone who is familiar with package versioning has used, or at the very least heard of, Semantic Versioning. For the uninitiated, semver is a three part version number in the format MAJOR.MINOR.PATCH ex) 1.13.2, and you can find very in-depth details on the <a href="http://semver.org/">semver website</a>.</p>
-<p>The semver website outlines the rules for incrementing version numbers as:</p>
-<ul>
-<li>MAJOR: When you make incompatible API changes.</li>
-<li>MINOR: When you add functionality in a backwards-compatible manner.</li>
-<li>PATCH: When you make backwards compatible bug fixes.
-At <a href="https://gophercon.com/">gophercon</a> I had a discussion with another engineer about what these mean. When does a change make the API incompatible with a previous release? Take the following contrived example:</li>
-</ul>
-<p>Your API typically returns a key/value pair for a requested field:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">bar</span><span class="err">’</span> <span class="p">}</span>
-</code></pre></div><p>But now you decide to change the value returned by capitalizing the first character in the returned strings:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">{</span> <span class="nx">foo</span><span class="o">:</span> <span class="err">‘</span><span class="nx">Bar</span><span class="err">’</span> <span class="p">}</span>
-</code></pre></div><p>What portion of the version should be updated with this change?</p>
-<ul>
-<li>MAJOR: It could break someones code who is relying on the case of the returned value.</li>
-<li>MINOR: This is adding functionality because the value being returned is actually a title for a story.</li>
-<li>PATCH: Stories should always have been capitalized so this is actually a bug fix.
-This shows that the rules are up for a lot of interpretation and will depend heavily on your situation. This unfortunately doesn’t make it easier to explain to someone who is new to, or skeptical of, semver. As a solution I came up with a slightly more specific set of rules which I think make the decision much easier for everyone.</li>
-</ul>
-<p>Jeff’s semver incrementing version number rules:</p>
-<p>I inverted the rule set so it can be read that any later rule overwrites the previous rule so the version section moves up a level.</p>
-<ul>
-<li>If this is fixing a reported bug in your system: PATCH</li>
-<li>If this is adding a feature to your public or private api: MINOR</li>
-<li>If this is a change to your private methods or data structures: MINOR</li>
-<li>If it broke your public api call tests: MAJOR
-Because your tests should test exactly what you expect your public API to return it should be very trivial to know when a change is breaking what others could be relying on.</li>
-</ul>
-<p>What do you think of this approach? Do you find it any easier to understand? Do you have any other rules to add? Or are you already using semver and have a different approach to deciding when to increase which number? Comment below or mention me on twitter <a href="https://twitter.com/FromAnEgg">@fromanegg</a> and let me know. Thanks for reading!</p>
 
   </article>
 </section>

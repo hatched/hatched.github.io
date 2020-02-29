@@ -6,10 +6,19 @@
     <description>Recent content in ops on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 13 Nov 2016 18:19:00 -0600</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate>
     
 	<atom:link href="https://fromanegg.com/tags/ops/rss.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Use Ubuntu on Mac OS with Multipass</title>
+      <link>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</link>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</guid>
+      <description>Running and developing an Ubuntu based workload on Mac OS has never been easier. Canonical has released a new tool called Multipass which allows you to quickly spin up Ubuntu Server virtual machines on Ubuntu, Mac OS and Windows. The following instructions will get you an Ubuntu Server VM up and running, and the Ubuntu file system mounted to Mac OS so that you can work in the Mac OS UI using your regular development tools like VS Code.</description>
+    </item>
     
     <item>
       <title>Secure GitHub pages with SSL/TLS</title>

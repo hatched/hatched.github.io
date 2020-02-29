@@ -52,6 +52,11 @@ h3, h4 {
   font-weight: normal;
 }
 
+blockquote {
+  border: 1px solid #b7b7b7;
+  text-align: center;
+}
+
 ::selection {
   background-color: #cc181e;
   color: white;

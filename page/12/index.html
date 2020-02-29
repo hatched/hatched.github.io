@@ -116,6 +116,35 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/" itemprop="url">Clicking through a div to underlying elements</a></h1>
+      
+        <time pubdate content="2012-10-01 09:07:00 -0600 CST" datetime="2012-10-01 09:07:00 -0600 CST">1 October 2012</time>
+      
+    </header>
+    <p>Yes it is possible to click through a div to underlying elements using only css. I’ve seen this question asked so many times online and so often the answer given is that you require javascript, or even sometimes whole libraries to accomplish this task.</p>
+<p>Let me introduce you to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events">pointer-events</a> CSS property. This property allows you to control under what situations an SVG target element should become the target of mouse events. As an experimental feature in CSS3 it has also added basic support for non-SVG elements in modern browsers (Chrome 2, FireFox 3.6, Safari, 4).</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+    <span class="n">pointer-events</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Or in IE8 and up outside of a conditional.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
+    <span class="kp">-ms-</span><span class="k">filter</span><span class="p">:</span> <span class="s1">&#39;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=overlay.png,  sizingMethod=scale)&#39;</span><span class="p">;</span>
+    <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Having issues implementing this? Mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or leave a comment below. Until next time!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2012/09/27/hatched-links/" itemprop="url">Hatched Links</a></h1>
       
         <time pubdate content="2012-09-27 22:39:00 -0600 CST" datetime="2012-09-27 22:39:00 -0600 CST">27 September 2012</time>
@@ -233,37 +262,6 @@
 <p>For those not in the industry it’s hard to believe that with today’s unemployment rates that there is a shortage of qualified developers available for company’s to hire from, but ask any manager tasked with growing their team and they will happily discuss with you the challenges of finding a qualified work force. Even when most companies are struggling to find qualified employees Google still maintains it’s stringent hiring practices to ensure they they only hire the most qualified people for their teams.</p>
 <p>If you are looking to learn about the new hiring practices employed by many companies looking to find just the right candidate to help their company grow and enjoy a bunch of brain teasers on the way I highly recommend picking this book up.</p>
 <p><a href="https://www.chapters.indigo.ca/en-ca/books/You-Smart-Enough-Work-Google-William-Poundstone/9780316099974-item.html">Are you smart enough to work at Google - Indigo.ca</a></p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/07/31/add-toggle-button-support-to-y-popupcalendar/" itemprop="url">Add toggle button support to Y.PopupCalendar</a></h1>
-      
-        <time pubdate content="2012-07-31 15:57:00 -0600 CST" datetime="2012-07-31 15:57:00 -0600 CST">31 July 2012</time>
-      
-    </header>
-    <p>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.</p>
-<p>Until I am able to add support into the module, simply copy and paste the following code before the first instance of <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar.html?">Y.PopupCalendar</a> or <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar-group.html?">Y.PopupCalendarGroup</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="p">;</span>
-
-  <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">,</span>
-</code></pre></div><p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
 </section>

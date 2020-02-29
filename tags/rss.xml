@@ -6,7 +6,7 @@
     <description>Recent content in Tags on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 18:40:00 -0600</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate>
     
 	<atom:link href="https://fromanegg.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>development</title>
       <link>https://fromanegg.com/tags/development/</link>
-      <pubDate>Wed, 01 Jan 2020 18:40:00 -0600</pubDate>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/development/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://fromanegg.com/tags/linux/</link>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ops</title>
+      <link>https://fromanegg.com/tags/ops/</link>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/tags/ops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>https://fromanegg.com/tags/ubuntu/</link>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -57,15 +84,6 @@
     </item>
     
     <item>
-      <title>ops</title>
-      <link>https://fromanegg.com/tags/ops/</link>
-      <pubDate>Sun, 13 Nov 2016 18:19:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/tags/ops/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>juju</title>
       <link>https://fromanegg.com/tags/juju/</link>
       <pubDate>Sat, 13 Jun 2015 16:11:00 -0600</pubDate>
@@ -98,15 +116,6 @@
       <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/osx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>https://fromanegg.com/tags/ubuntu/</link>
-      <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/tags/ubuntu/</guid>
       <description></description>
     </item>
     
@@ -152,15 +161,6 @@
       <pubDate>Wed, 31 Jul 2013 20:27:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/android/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://fromanegg.com/tags/linux/</link>
-      <pubDate>Mon, 18 Mar 2013 20:03:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/tags/linux/</guid>
       <description></description>
     </item>
     

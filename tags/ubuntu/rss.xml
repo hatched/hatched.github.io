@@ -6,10 +6,19 @@
     <description>Recent content in ubuntu on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Apr 2014 20:09:00 -0600</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate>
     
 	<atom:link href="https://fromanegg.com/tags/ubuntu/rss.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Use Ubuntu on Mac OS with Multipass</title>
+      <link>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</link>
+      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</guid>
+      <description>Running and developing an Ubuntu based workload on Mac OS has never been easier. Canonical has released a new tool called Multipass which allows you to quickly spin up Ubuntu Server virtual machines on Ubuntu, Mac OS and Windows. The following instructions will get you an Ubuntu Server VM up and running, and the Ubuntu file system mounted to Mac OS so that you can work in the Mac OS UI using your regular development tools like VS Code.</description>
+    </item>
     
     <item>
       <title>How to install Ubuntu on a Mac or Macbook</title>
@@ -27,7 +36,8 @@
       
       <guid>https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/</guid>
       <description>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.
-At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues.</description>
+ An updated version of this post can be found here: Use Ubuntu on Mac OS with Multipass
+ At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.</description>
     </item>
     
   </channel>

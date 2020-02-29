@@ -116,6 +116,28 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/" itemprop="url">Juju GUI 0.10.1 Released - Bug fixes and updates</a></h1>
+      
+        <time pubdate content="2013-10-01 17:10:00 -0600 CST" datetime="2013-10-01 17:10:00 -0600 CST">1 October 2013</time>
+      
+    </header>
+    <p>About a week after releasing the new service inspector in the Juju GUI we are following it up with another quick release which consists primarily of bug fixes.</p>
+<p>The largest of those fixes are:</p>
+<ul>
+<li>Changing settings did not work in Juju Core. (Fixed)</li>
+<li>The GUI was unable to deploy charms without config options. (Fixed)</li>
+<li>Remove unit button did not work in Juju Core. (Fixed)</li>
+<li>Plus a number of additional fixes. You can read the full <a href="https://github.com/juju/juju-gui">changelog here</a>.
+Additional information on Juju can be found on <a href="https://jujucharms.com">https://jujucharms.com</a> or join us in #juju on irc.freenode.net.</li>
+</ul>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/09/18/juju-gui-0-10-0-released-0-brand-new-service-inspector/" itemprop="url">Juju GUI 0.10.0 Released - Brand new service inspector!</a></h1>
       
         <time pubdate content="2013-09-18 15:52:00 -0600 CST" datetime="2013-09-18 15:52:00 -0600 CST">18 September 2013</time>
@@ -190,142 +212,6 @@
     </header>
     <p>About a month ago I posted that Juju for OSX was available on GitHub. Well thanks to a <a href="https://github.com/Homebrew/legacy-homebrew/pull/21858">Homebrew pull request</a> by Rodrigo Chacon it’s now available for easy install via Homebrew!</p>
 <p>For those who don’t know, <a href="https://jujucharms.com">Juju</a> enables you to build entire environments in the cloud with only a few commands on public clouds like Amazon Web Services and HP Cloud, to private clouds built on OpenStack, or raw bare metal via MAAS. <a href="https://jujucharms.com">Additional documentation can be found here</a> and if you want to jump right in and see how easy it is you can play with the <a href="https://jujucharms.com">Juju GUI here</a>.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/08/05/css-selectors-the-next-level/" itemprop="url">CSS selectors - The next level</a></h1>
-      
-        <time pubdate content="2013-08-05 16:53:00 -0600 CST" datetime="2013-08-05 16:53:00 -0600 CST">5 August 2013</time>
-      
-    </header>
-    <p>As a continuation of my previous post <a href="http://fromanegg.com/post/41704399239/understanding-css2-and-css3-attribute-selectors">Understanding CSS2 and CSS3 attribute selectors</a> I wanted to bring everyones attention to some of the less used but very powerful CSS selectors. I have sorted these by their IE support because they are all supported by all of the other modern browsers.</p>
-<h4 id="ie6-support">IE6+ SUPPORT</h4>
-<h4 id="s1first-line-pseudo-element-selector">S1::first-line: Pseudo element selector</h4>
-<p>Selects the first line of text in an element which matches the S1 selector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog::first-line
-</code></pre></div><h4 id="s1first-letter-pseudo-element-selector">S1::first-letter: Pseudo element selector</h4>
-<p>Selects the first letter in an element which matches the S1 selector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog::first-letter
-</code></pre></div><h4 id="ie7-support">IE7+ SUPPORT</h4>
-<h4 id="s1--s2--sibling-selector">S1 ~ S2 : Sibling selector</h4>
-<p>Selects any element which matches the S2 selector as long as it is a sibling of the S1 selector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog ~ .leg
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* match */
-</code></pre></div><h4 id="s1--s2--immediate-children-selector">S1 &gt; S2 : Immediate children selector</h4>
-<p>Only selects elements which match the S2 selector which are immediate children of the S1 selector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog &gt; .leg
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span> /* match */
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
-  <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1--s2--adjacent-selector">S1 + S2 : Adjacent selector</h4>
-<p>Will select a single element which matches the S2 selector as long as it is immediately after the S1 selector element.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog + .leg
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
-</code></pre></div><h4 id="s1first-child--pseudo-element-selector">S1:first-child : Pseudo element selector</h4>
-<p>Only selects the element which matches the S1 selector that is the first child of it’s parent element.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.leg:first-child
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1last-child--pseudo-element-selector">S1:last-child : Pseudo element selector</h4>
-<p>Only selects the element which matches the S1 selector that is the last child of it’s parent element.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.leg:last-child
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="ie9-support">IE9+ SUPPORT</h4>
-<h4 id="s1nots2--negation-pseudo-class-selector">S1:not(S2) : Negation pseudo class selector</h4>
-<p>Selects all elements which match the S1 selector except those which also match S2</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog:not(.cat)
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;cat leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>  /* will not match */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-</code></pre></div><h4 id="s1only-child--pseudo-class-selector">S1:only-child : Pseudo class selector</h4>
-<p>Selects elements which match the S1 selector and are the only child of their parent container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.leg:only-child
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1first-of-type--pseudo-class-selector">S1:first-of-type : Pseudo class selector</h4>
-<p>Selects the elements that match the S1 selector which are the first of a type in it’s parent container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog p:first-of-type
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1only-of-type--pseudo-class-selector">S1:only-of-type : Pseudo class selector</h4>
-<p>Selects elements that match the S1 selector which do not have any siblings within their parent container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog div:only-of-type
-/* markup */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1nth-childx--pseudo-class-selector">S1:nth-child(x) : Pseudo class selector</h4>
-<p>Only selects the element which matches the S1 selector which is the nth child of its parent container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog p:nth-child(2)
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1nth-last-childx--pseudo-class-selector">S1:nth-last-child(x) : Pseudo class selector</h4>
-<p>Only selects the element which matches the S1 selector which is the nth child of its parent container counted from the last child.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog p:nth-last-child(1)
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1nth-of-typex--pseudo-class-selector">S1:nth-of-type(x) : Pseudo class selector</h4>
-<p>Only selects the element which matches the S1 selector which is the nth child type of its parent container.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog p:nth-of-type(2)
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><h4 id="s1nth-last-of-typex--pseudo-class-selector">S1:nth-last-of-type(x) : Pseudo class selector</h4>
-<p>Only selects the element which matches the S1 selector which is the nth child type of its parent container counted from the last child.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">.dog p:nth-of-type(1)
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dog&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* will not match */
-  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;leg&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span> /* match */
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Using some of these more advanced/unknown selectors can make your styling a lot easier without having to rely on more classes or javascript tricks. I hope I got them all, if I missed one that you think should be included please comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> and I’ll be sure to add it. Thanks for reading!</p>
 
   </article>
 </section>

@@ -116,6 +116,59 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/" itemprop="url">NFS between Ubuntu vm and OSX host</a></h1>
+      
+        <time pubdate content="2013-03-18 20:03:00 -0600 CST" datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
+      
+    </header>
+    <p>If you find yourself needing to run Linux-only-software for development of some kind but would prefer to work in the host OSX operating system for whatever reason instead of the VM then this guide is for you.</p>
+<blockquote>
+<p><em>An updated version of this post can be found here: <a href="/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/">Use Ubuntu on Mac OS with Multipass</a></em></p>
+</blockquote>
+<p>At the time of writing I am using OSX 10.7.5 and Ubuntu 12.04 [Update: Also works with OSX 10.7.5 and Ubuntu 13.04, OSX 10.10.5 and Ubuntu 14.04] inside of a Parallels 8.0 VM. But as long as the host and VM have IP’s assigned then you shouldn’t have any huge issues. To verify this, open up a terminal window in the host and VM and enter:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">ifconfig
+</code></pre></div><p>One of the network interfaces should have an address similar to 192.168.1.100 - If each machine has a different IP assigned then continue on. If not then you will first have to set your network up to assign those IP’s.</p>
+<h4 id="ubuntu-vm-setup">Ubuntu VM Setup</h4>
+<p>Install the NFS server.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">apt-get install nfs-kernel-server
+</code></pre></div><p>Then we are going to create a pseudo filesystem where we will share our users home directory from.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mkdir -p /export/your-user-name
+</code></pre></div><p>We need to add these directories to the access control list for export to NFS. Open up /etc/exports in your favorite text editor and add the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">/export    192.168.1.0/24<span class="o">(</span>rw,fsid<span class="o">=</span>0,insecure,no_subtree_check,all_squash,async,anonuid<span class="o">=</span>1000,anongid<span class="o">=</span>1000<span class="o">)</span>
+
+/export/your-user-name    192.168.1.0/24<span class="o">(</span>rw,nohide,insecure,no_subtree_check,all_squash,async,anonuid<span class="o">=</span>1000,anongid<span class="o">=</span>1000<span class="o">)</span>
+</code></pre></div><p>To avoid having to set up authentication because we are only sharing locally you will need to set these directories to have 777 permissions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo chmod -R <span class="m">777</span> /export
+</code></pre></div><p>Now lets link our home directory to the export directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">mount --bind /home/your-user-name /export/your-user-name
+</code></pre></div><p>To avoid from having to re-mount that directory every time we restart the VM open up /etc/fstab and add the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">/home/your-user-name    /export/your-user-name    none    <span class="nb">bind</span>  <span class="m">0</span>  <span class="m">0</span>
+</code></pre></div><p>And finally, you’ll need to export the shares and restart your nfs server</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo exportfs -a
+sudo service nfs-kernel-server restart
+</code></pre></div><h4 id="osx-setup">OSX Setup</h4>
+<p>On the OSX side things are very simple. First lets create the directory we are going to mount our remote home directory into.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mkdir ~/linux-vm
+</code></pre></div><p>And now we mount the NFS to the directory. Be sure to substitute the following IP for the one of your Ubuntu VM.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre></div><p>If you get an error that reads ‘Operation not permitted’ then you can try the following.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo mount -t nfs -o resvport 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre></div><p>And now when you enter that directory you should see the home directory of your user on your VM. I hope that these steps help get you up and running in no time.</p>
+<h4 id="problems---solutions">Problems - Solutions</h4>
+<p>Stale File Handle - Try un-mounting and re-mounting the NFS.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">sudo umount -f /Users/your-user-name/linux-vm
+sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
+</code></pre></div><p>Could not open a connection to your authentication agent - When trying to run ssh-add after sshing into your VM. You are probably missing the required environment variables to run ssh-add.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash"><span class="nb">exec</span> ssh-agent bash
+</code></pre></div><p>If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/" itemprop="url">Insert an array of values into an array in JavaScript</a></h1>
       
         <time pubdate content="2013-02-22 12:00:00 -0600 CST" datetime="2013-02-22 12:00:00 -0600 CST">22 February 2013</time>
@@ -321,116 +374,6 @@
 </code></pre></div><p>This works by creating two elements with circular borders and then hiding half of each element and storing those underneath the clip of the wrapper div. I animate a css transform to rotate both elements at the same rate until the 50% mark, at which point the first element stops, the wrapper clip is removed, and the second element keeps going to display the remaining 50%. Without javascript and some outside event influencing the display values this is probably more of a pure css loading indicator so in a follow-up post I’ll show you how to use javascript to influence the value of progress bar.</p>
 <p>Click here to view an example of the <a href="http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html">pure css circular progress bar</a></p>
 <p>I haven’t seen this approach used elsewhere yet so if you come across any other pure css radial progress bars or if you end up using this technique I’d very much appreciate if you would let me know so I can check them out. Any questions please comment below or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/21/prototypes-and-class-like-objects-in-javascript/" itemprop="url">Prototypes and class-like objects in Javascript</a></h1>
-      
-        <time pubdate content="2013-01-21 10:00:00 -0600 CST" datetime="2013-01-21 10:00:00 -0600 CST">21 January 2013</time>
-      
-    </header>
-    <p>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post <a href="http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a>. I recommend that you read that post first as I’ll be referencing some of the same code.</p>
-<p>The prototype is defined as an “object that provides shared properties for other objects” - <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5">Ecma International</a>. What this means is that, by default, any object that inherits from another object automatically has reference to the parents prototypes all the way through the inheritance tree. When you call a method on an object (remember everything in Javascript is an object) it first looks through the local prototype, if it’s not found, it then continues checking prototypes up until it hits Object.prototype to find that method before throwing an error. To illustrate that lets slightly modify our mustang instance and take a look at the instance in the inspector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getColor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">getColor</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints [object Object] to the console
-</span></code></pre></div><p>Stepping through this code you’ll see that we create a new constructor function as we did previously but this time we are creating a new getColor method on Car’s prototype that returns the color of the instance of Car. We then create a new instance of Car and log the output of the getColor method to the console. The following line is a perfect example of walking the prototype chain to try and find a toString method. We clearly didn’t create this method so where is it coming from? This is best illustrated using a screenshot of the browser console log of our mustang instance.</p>
-<p><img src="/images/prototypes-and-class-like-objects-in-javascript-1.png" alt=""></p>
-<p>First thing to notice is that we don’t actually have a <code>prototype</code> property here but <code>__proto__</code> which is a non-standard label for accessing the prototype of an object. In the prototype of our Car instance we have the getColor method that we created which matches with the above code block. Next, because Car is a function which extends Object, we have the Object prototype which includes, among other things, the toString method that we used.</p>
-<p>It is considered bad practice to overwrite the native method prototypes because other code on the page might be relying on those native prototypes to function properly. So what do you do if you want to use your own toString method? By creating a toString method in the prototype of your instance, Javascript will run into that one first and use it instead of the native method.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
-</span></code></pre></div><p>So here we create a toString method on the Car prototype to return the color of Car. This time when we call the toString method, Javascript runs into our own toString method first and executes it instead of the native method printing red instead of [object Object]</p>
-<p><img src="/images/prototypes-and-class-like-objects-in-javascript-2.png" alt=""></p>
-<p>Taking a look at the console log of our mustang object, you can now see the two toString methods and where they are in the prototype chain. Note: Although the console shows <code>__proto__</code> make sure you don’t access it directly because it’s not available on all platforms, always use <code>prototype</code>.</p>
-<p>To do constructor chaining while maintaining the prototype chain requires you to take one more step. If you simply take the lessons from the previous post and this post so far you would assume you could write something like.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Throws TypeError
-</span></code></pre></div><p>By running the above script you will see that you get an error in the console “Uncaught TypeError: Object # has no method ‘levelUp’ ”. And that is because when you chain constructors in this method you aren’t maintaining reference to the parents prototype. To make this work as you would like you need to add one more line.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Add this line
-</span><span class="c1"></span>
-<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `2` to the console
-</span></code></pre></div><p>By assigning the prototype of your new object to a new instance of your parent you maintain the prototype chain giving you access to its methods.</p>
-<p>Combining the above lessons allows you to infinitely chain constructors as we did previously but this time, also maintain the prototypes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">boost</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
-
-<span class="kd">function</span> <span class="nx">SuperSpider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Spider</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="nx">SuperSpider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-<span class="kd">var</span> <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperSpider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-
-<span class="nx">superSpider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `2` to the console
-</span><span class="c1"></span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">boost</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `12` to the console
-</span></code></pre></div><p>And for reference here is the console output of our superSpider class pointing out the levelUp and boost functions</p>
-<p><img src="/images/prototypes-and-class-like-objects-in-javascript-3.png" alt=""></p>
-<p>I’m sure you’re thinking that this is pretty convoluted and you would be right. Next time I’ll be showing you an ES5 convenience method to clean this up, as well as some YUI OOP methods which greatly simplify this task as well as handle all of the edge cases. Thanks for reading and if you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
 
   </article>
 </section>
