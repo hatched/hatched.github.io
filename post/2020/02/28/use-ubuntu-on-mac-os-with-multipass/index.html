@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -129,7 +129,7 @@
     </header>
     <p>Running and developing an Ubuntu based workload on Mac OS has never been easier. <a href="https://canonical.com/">Canonical</a> has released a new tool called <a href="https://multipass.run">Multipass</a> which allows you to quickly spin up Ubuntu Server virtual machines on Ubuntu, Mac OS and Windows. The following instructions will get you an Ubuntu Server VM up and running, and the Ubuntu file system mounted to Mac OS so that you can work in the Mac OS UI using your regular development tools like VS Code.</p>
 <h4 id="mac-os">Mac OS</h4>
-<p>You'll first need to get Multipass installed by visiting the <a href="https://multipass.run">Multipass website</a> and downloading and installing the package on your Mac OS host. Once installed, open the terminal on your Mac OS host and run the following to download and install the latest LTS release of Ubuntu Server.</p>
+<p>You&rsquo;ll first need to get Multipass installed by visiting the <a href="https://multipass.run">Multipass website</a> and downloading and installing the package on your Mac OS host. Once installed, open the terminal on your Mac OS host and run the following to download and install the latest LTS release of Ubuntu Server.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch --name ubuntu
 multipass shell ubuntu
 </code></pre></div><h4 id="ubuntu">Ubuntu</h4>
@@ -156,10 +156,10 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 </code></pre></div><p>From the terminal on your Mac OS host you can now open these folders like they live in Mac OS with your code editor of choice.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">code ~/code
 </code></pre></div><h4 id="tips--tricks">Tips &amp; Tricks</h4>
-<p>On a day to day basis the most efficient way to work with these files is to perform your heavy IO interactions like git clones and builds from within your new Ubuntu VM. This can be done by leaving a terminal open SSH'd into it.</p>
-<p>The services that Multipass use to create the VM on Mac OS allow you to over subscribe the VM's resources so if you want to have the fastest VM possible you can give it all CPU cores and RAM as well as ample disk space. The following command will give the new Ubuntu VM 16 cores, 100GB of disk space and 16GB of ram while allowing the host and other Multipass VM's to share the same resources.</p>
+<p>On a day to day basis the most efficient way to work with these files is to perform your heavy IO interactions like git clones and builds from within your new Ubuntu VM. This can be done by leaving a terminal open SSH&rsquo;d into it.</p>
+<p>The services that Multipass use to create the VM on Mac OS allow you to over subscribe the VM&rsquo;s resources so if you want to have the fastest VM possible you can give it all CPU cores and RAM as well as ample disk space. The following command will give the new Ubuntu VM 16 cores, 100GB of disk space and 16GB of ram while allowing the host and other Multipass VM&rsquo;s to share the same resources.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch -c <span class="m">16</span> -d 100G -m 16G --name ubuntu
-</code></pre></div><p>At the time of writing you cannot resize the VM's disk space so you'll want to give it more than you think you'll need.</p>
+</code></pre></div><p>At the time of writing you cannot resize the VM&rsquo;s disk space so you&rsquo;ll want to give it more than you think you&rsquo;ll need.</p>
 
   </article>
 </section>

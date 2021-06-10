@@ -33,7 +33,7 @@ Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [us
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -136,34 +136,34 @@ Attribute Selector Syntax [attributeName{selector}value] Attribute Selectors [us
 </code></pre><h4 id="attribute-selectors">Attribute Selectors</h4>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute regardless of value.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user=foo]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>foo</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user~=bar]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>bar</code> or the value <code>bar</code> in a whitespace-separated list.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user|=baz]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz-bar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz-bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>baz</code> or a value starting with <code>baz</code> followed by a “-”.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user^=foo]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;fooBar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;fooBar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with a value that starts with <code>foo</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user$=bar]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with a value that ends with <code>bar</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user*=baz]
 /* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobazbar&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobazbar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>Any element which has a <code>user</code> attribute with a value that has <code>baz</code> anywhere in it.</p>
 <p>If you don’t have to support IE 6 you’re in luck because you should have full support for all of these all the way back to IE 7. As usual feel free to let me know your thoughts below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> - Happy selecting!</p>
 

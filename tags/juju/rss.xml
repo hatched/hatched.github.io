@@ -6,11 +6,7 @@
     <description>Recent content in juju on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jun 2015 16:11:00 -0600</lastBuildDate>
-    
-	<atom:link href="https://fromanegg.com/tags/juju/rss.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 13 Jun 2015 16:11:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/juju/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using Juju for development</title>
       <link>https://fromanegg.com/post/2015/06/13/using-juju-for-development/</link>

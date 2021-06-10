@@ -6,11 +6,7 @@
     <description>Recent content in development on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate>
-    
-	<atom:link href="https://fromanegg.com/tags/development/rss.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/development/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Use Ubuntu on Mac OS with Multipass</title>
       <link>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</link>
@@ -35,8 +31,8 @@
       <pubDate>Tue, 22 Nov 2016 21:23:26 -0600</pubDate>
       
       <guid>https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/</guid>
-      <description>After writing some great content you&#39;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
-You&#39;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
+      <description>After writing some great content you&amp;rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.
+You&amp;rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page.</description>
     </item>
     
     <item>
@@ -46,7 +42,7 @@ You&#39;ll first want to start with the original description and canonical tags 
       
       <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
       <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&#39;ll need a couple things:
+First you&amp;rsquo;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
     </item>
     

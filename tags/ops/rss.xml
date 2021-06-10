@@ -6,11 +6,7 @@
     <description>Recent content in ops on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate>
-    
-	<atom:link href="https://fromanegg.com/tags/ops/rss.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/ops/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Use Ubuntu on Mac OS with Multipass</title>
       <link>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</link>
@@ -27,7 +23,7 @@
       
       <guid>https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/</guid>
       <description>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&#39;ll need a couple things:
+First you&amp;rsquo;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:</description>
     </item>
     

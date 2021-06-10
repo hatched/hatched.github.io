@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -123,98 +123,98 @@
     </header>
     <p>Javascript being prototypal means that it can access methods and properties through what is known as the prototype chain. Everything in Javascript is an object, and every object has a special property known as the ‘prototype’. This post is a continuation of my previous post <a href="http://fromanegg.com/post/39621616853/constructor-chaining-inheritance-in-javascript">Constructor chaining &amp; inheritance in javascript</a>. I recommend that you read that post first as I’ll be referencing some of the same code.</p>
 <p>The prototype is defined as an “object that provides shared properties for other objects” - <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-4.3.5">Ecma International</a>. What this means is that, by default, any object that inherits from another object automatically has reference to the parents prototypes all the way through the inheritance tree. When you call a method on an object (remember everything in Javascript is an object) it first looks through the local prototype, if it’s not found, it then continues checking prototypes up until it hits Object.prototype to find that method before throwing an error. To illustrate that lets slightly modify our mustang instance and take a look at the instance in the inspector.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getColor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getColor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">getColor</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints [object Object] to the console
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">getColor</span><span class="p">());</span> <span class="c1">// Prints `red` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints [object Object] to the console
 </span></code></pre></div><p>Stepping through this code you’ll see that we create a new constructor function as we did previously but this time we are creating a new getColor method on Car’s prototype that returns the color of the instance of Car. We then create a new instance of Car and log the output of the getColor method to the console. The following line is a perfect example of walking the prototype chain to try and find a toString method. We clearly didn’t create this method so where is it coming from? This is best illustrated using a screenshot of the browser console log of our mustang instance.</p>
 <p><img src="/images/prototypes-and-class-like-objects-in-javascript-1.png" alt=""></p>
 <p>First thing to notice is that we don’t actually have a <code>prototype</code> property here but <code>__proto__</code> which is a non-standard label for accessing the prototype of an object. In the prototype of our Car instance we have the getColor method that we created which matches with the above code block. Next, because Car is a function which extends Object, we have the Object prototype which includes, among other things, the toString method that we used.</p>
 <p>It is considered bad practice to overwrite the native method prototypes because other code on the page might be relying on those native prototypes to function properly. So what do you do if you want to use your own toString method? By creating a toString method in the prototype of your instance, Javascript will run into that one first and use it instead of the native method.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">toString</span><span class="p">());</span> <span class="c1">// Prints `red` to the console
 </span></code></pre></div><p>So here we create a toString method on the Car prototype to return the color of Car. This time when we call the toString method, Javascript runs into our own toString method first and executes it instead of the native method printing red instead of [object Object]</p>
 <p><img src="/images/prototypes-and-class-like-objects-in-javascript-2.png" alt=""></p>
 <p>Taking a look at the console log of our mustang object, you can now see the two toString methods and where they are in the prototype chain. Note: Although the console shows <code>__proto__</code> make sure you don’t access it directly because it’s not available on all platforms, always use <code>prototype</code>.</p>
 <p>To do constructor chaining while maintaining the prototype chain requires you to take one more step. If you simply take the lessons from the previous post and this post so far you would assume you could write something like.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
 
-<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Throws TypeError
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span> <span class="c1">// Throws TypeError
 </span></code></pre></div><p>By running the above script you will see that you get an error in the console “Uncaught TypeError: Object # has no method ‘levelUp’ ”. And that is because when you chain constructors in this method you aren’t maintaining reference to the parents prototype. To make this work as you would like you need to add one more line.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Add this line
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span> <span class="c1">// Add this line
 </span><span class="c1"></span>
-<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">spider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
 
-<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `2` to the console
+<span class="nx">spider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console
 </span></code></pre></div><p>By assigning the prototype of your new object to a new instance of your parent you maintain the prototype chain giving you access to its methods.</p>
 <p>Combining the above lessons allows you to infinitely chain constructors as we did previously but this time, also maintain the prototypes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Baddie</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">levelUp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span><span class="o">++</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Baddie</span><span class="p">();</span>
 
-<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">boost</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">Spider</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">boost</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
-<span class="kd">function</span> <span class="nx">SuperSpider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Spider</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">SuperSpider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Spider</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">SuperSpider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">SuperSpider</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
 
-<span class="kd">var</span> <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperSpider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SuperSpider</span><span class="p">();</span>
 
-<span class="nx">superSpider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `2` to the console
-</span><span class="c1"></span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">boost</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `12` to the console
+<span class="nx">superSpider</span><span class="p">.</span><span class="nx">levelUp</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `2` to the console
+</span><span class="c1"></span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">boost</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `12` to the console
 </span></code></pre></div><p>And for reference here is the console output of our superSpider class pointing out the levelUp and boost functions</p>
 <p><img src="/images/prototypes-and-class-like-objects-in-javascript-3.png" alt=""></p>
 <p>I’m sure you’re thinking that this is pretty convoluted and you would be right. Next time I’ll be showing you an ES5 convenience method to clean this up, as well as some YUI OOP methods which greatly simplify this task as well as handle all of the edge cases. Thanks for reading and if you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
@@ -270,40 +270,40 @@
     </header>
     <p>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves. It gets even easier when you are able to use ES5 Javascript; or for cross browser support use a framework like YUI which adds in the OOP methods missing from Javascript which I’ll be covering in a follow up post.</p>
 <p>The first step is to understand that a constructor in Javascript is simply a function that you call with the word <code>new</code>. In the following example we are creating a function called Car, creating a color property on each instance of Car with the <code>this</code> special property, then creating a new instance of that function which is being assigned to the <code>mustang</code> variable.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `red` to the console
 </span></code></pre></div><p>The <code>new</code> keyword is very important when creating constructors in javascript. Without <code>new</code> Car will be executed and <code>this</code> will point to <code>window</code> creating global variables, and it’s return value will be assigned to mustang. In this case mustang will be undefined and if you try and access any properties on it your script will grind to a halt.</p>
 <p>To be able to chain these constructors we will use one of two Javascript methods; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call">call()</a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply()</a>. These allow us to call another method in javascript but specify the scope to which it executes.</p>
 <p>A common example to illustrate inheritance is creating a character in a video game.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Set up the baddies defaults
 </span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Baddie&#34;</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Executing Baddie with it&#39;s context set to Spider
 </span><span class="c1"></span>  <span class="c1">// because we used `this` it now assigns it&#39;s properties
 </span><span class="c1"></span>  <span class="c1">// level, hitPoints, and name to the Spider instance.
-</span><span class="c1"></span>  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">legs</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `1` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">legs</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `8` to the console
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `1` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">legs</span><span class="p">);</span> <span class="c1">// Prints `8` to the console
 </span></code></pre></div><p>So here we have created two constructor functions, Baddie and Spider. The important line here is Baddie.apply(this); which executes Baddie in the context of Spider - adding those properties to the Spider instance. Using this technique you can chain as many constructors together as you like.</p>
 <p>This is great but what if we need to create many different types of Spiders; we need a way to pass data from our instantiation down the stack.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Set the baddie defaults using the
 </span><span class="c1"></span>  <span class="c1">// supplied configuration values or the defaults
-</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">level</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">||</span> <span class="mi">100</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="s2">&#34;Baddie&#34;</span><span class="p">;</span>
@@ -313,27 +313,27 @@
   <span class="c1">// This time we pass in a second paramter which
 </span><span class="c1"></span>  <span class="c1">// is the configuration object, or an empty
 </span><span class="c1"></span>  <span class="c1">// object if none was supplied
-</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">color</span> <span class="o">||</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">legs</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">legs</span> <span class="o">||</span> <span class="mi">8</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(),</span>
     <span class="c1">// Pass a configuration object into the constructor
-</span><span class="c1"></span>    <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">{</span>
+</span><span class="c1"></span>    <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">({</span>
       <span class="nx">level</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
       <span class="nx">hitPoints</span><span class="o">:</span> <span class="mi">10000</span><span class="p">,</span>
       <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Super Spider&#34;</span><span class="p">,</span>
       <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;yellow&#34;</span><span class="p">,</span>
       <span class="nx">legs</span><span class="o">:</span> <span class="mi">16</span>
-    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">});</span>
 
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `1` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `10` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `red` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `yellow` to the console
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `1` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `10` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `red` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `yellow` to the console
 </span></code></pre></div><p>With this example we are creating a super spider by passing a configuration object into the Spider constructor. For this to have any effect down the chain we need to add a second parameter to our apply() call. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a> is a special variable available in all functions which is an array-like object corresponding to the values passed to a function. This allows us to pass everything that was in the configuration object down to the next constructor.</p>
 <p>If you remember a little earlier I mentioned we could also use the call() function. This function accepts an argument list instead of an array of values. So if you prefer to pass in values in this matter you would use call() instead of apply().</p>
 <p>The last topic I want to touch on in this post is private properties and constructor methods using chained constructors. They are done pretty much exactly how you would assume coming from other languages but I’m going to illustrate the syntax just to drive it home. I have trimmed down the code a bit in this example to highlight the parts related to this topic.</p>
@@ -342,26 +342,26 @@
 
   <span class="c1">// Code removed for brevity
 </span><span class="c1"></span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">getId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">getId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">;</span>
+  <span class="p">};</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">setId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">id</span> <span class="o">=</span> <span class="nx">newVal</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
   <span class="c1">// Code removed for brevity
 </span><span class="c1"></span><span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">spiderOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">spiderTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">spiderOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(),</span>
+    <span class="nx">spiderTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `abc` to the console
-</span><span class="c1"></span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">setId</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `123` to the console
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderTwo</span><span class="p">.</span><span class="nx">getId</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Prints `abc` to the console
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `abc` to the console
+</span><span class="c1"></span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">setId</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `123` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderTwo</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `abc` to the console
 </span></code></pre></div><p>So as you can see in the Baddie function I created a local variable called <code>id</code> and assigned it a default value. I also created very basic getter and setter methods so that you can access this variable from outside of the function. Further down in the script I instantiate two completely separate spiders - they even have their own private id variable which is illustrated when I set it to 123 for spiderOne, but spiderTwo is still the default.</p>
 <p>In coming posts I will be covering prototypal inheritance, YUI OOP, and new related Javascript methods but I’ll be sure to link them here. Thanks for reading! If you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
 
@@ -392,23 +392,23 @@ The best way to understand these events is an example. Lets say we have a curren
 Note: I am intentionally ignoring the possibility of a user pasting into the field as that’s out of scope of this post.</li>
 </ul>
 <p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/1/embed?output">Simple form validation on user input</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
     <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Get the string value of the charCode.
-</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">)</span><span class="p">,</span>
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
       <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
       <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
       <span class="c1">// Construct what the value will be if the event is not prevented.
-</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
 
   <span class="c1">// Test to make sure the user is inputting only valid characters
 </span><span class="c1"></span>  <span class="c1">// and that the resulting input is valid.
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
   <span class="p">}</span>
 
 <span class="p">}</span>
@@ -420,10 +420,10 @@ Note: I am intentionally ignoring the possibility of a user pasting into the fie
   <span class="c1">// If the user deletes anything, test the value in the input
 </span><span class="c1"></span>  <span class="c1">// again to check for validity.
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span> <span class="o">||</span> <span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -446,21 +446,21 @@ Note: I am intentionally ignoring the possibility of a user pasting into the fie
 Ok so now what about keydown? Another example is in order; we’ll take the previous example, but instead of notifying the user that something is wrong, we will prevent them from inputting invalid characters</li>
 </ul>
 <p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/2/embed?output">Prevent invalid input on form</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
     <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Get the string value of the charCode.
-</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">)</span><span class="p">,</span>
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
       <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
       <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
       <span class="c1">// Construct what the value will be if the event is not prevented.
-</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
 
   <span class="c1">// Test to make sure the user is inputting only valid characters
 </span><span class="c1"></span>  <span class="c1">// and that the resulting input is valid.
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
   <span class="p">}</span>
 
 <span class="p">}</span>
@@ -474,14 +474,14 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
   <span class="c1">// If the user deletes anything, construct the resulting
 </span><span class="c1"></span>  <span class="c1">// value to determine validity.
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>    
   <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -498,171 +498,46 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/9/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/9/">9</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/10/">10</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/11/">11</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/9/">9</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/10/">10</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/11/">11</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/11/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

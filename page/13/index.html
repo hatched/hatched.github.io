@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -123,21 +123,21 @@
     </header>
     <p>A commonly requested feature for the popup calendar is to be able to pop it open via a button. Unfortunately I haven’t had time to add this feature directly into the module but today @gdanko popped into #yui on irc.freenode.net and was willing to help test the small code changes required to make sure that this would work.</p>
 <p>Until I am able to add support into the module, simply copy and paste the following code before the first instance of <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar.html?">Y.PopupCalendar</a> or <a href="http://yuilibrary.com/gallery-archive/gallery/show/popup-calendar-group.html?">Y.PopupCalendarGroup</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="mi">_</span><span class="nx">bindEvents</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;_bindEvents&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 
-  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">);</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
+      <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showCalendar</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
   <span class="p">}</span>
 
-  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">,</span>
+  <span class="nx">input</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">testKey</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;selectionChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="mi">_</span><span class="nx">emitDate</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;autoFocusOnFieldFocusChange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">setHideOn</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<span class="p">},</span>
 </code></pre></div><p>And that’s it. You can now supply most elements to show the calendar. If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
@@ -155,40 +155,40 @@
     <p>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post <a href="http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova">Guide to using YUI with PhoneGap (Cordova)</a>. The good news is that it’s very easy to setup but does come with a few drawbacks.</p>
 <p>Using the code from the previous post we only need to make minor changes to load from the CDN.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Add in the YUI seed file </span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Remove the included local scripts and YUI_CONFIG object
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">1.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">2.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34;&gt;YUI_CONFIG = { bootstrap: false };&lt;/script&gt;</span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Add in the YUI seed file --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Remove the included local scripts and YUI_CONFIG object
+</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui-file-1.js&#34;&gt;&lt;/script&gt;
+</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui-file-2.js&#34;&gt;&lt;/script&gt;
+</span><span class="c">&lt;script type=&#34;text/javascript&#34;&gt;YUI_CONFIG = { bootstrap: false };&lt;/script&gt;--&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p"></span><span class="p">&gt;</span>Click Me<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Click Me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
 <span class="c1">// Remove the &#39;load all&#39; flag from the use statement
-</span><span class="c1"></span><span class="c1">// YUI().use(&#39;*&#39;, function(Y) {
-</span><span class="c1"></span><span class="c1">// Request the Node and Event modules
-</span><span class="c1"></span><span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1">// YUI().use(&#39;*&#39;, function(Y) {
+</span><span class="c1">// Request the Node and Event modules
+</span><span class="c1"></span><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span><span class="p">,</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
+		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
 
 	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
+	<span class="p">});</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div><p>And that’s it! That will load the YUI seed and loader from Yahoo!’s CDN then load in the Node, Event, and all dependent modules automatically for you. Isn’t loader great?</p>
 <p>But all isn’t perfect, at the beginning I mentioned some drawbacks. In the previous version we were packaging up all of the required assets into the package which will be stored on the device. This will guarantee that those files are always available regardless of the users network connection. Using the remote loading method, once the application loads up it needs to make the request of the remote files before it will become functional. This can cause unnecessary delays in the bootup of the application or cause the application to be entirely useless if there is no network connection. Because of that I don’t recommend using remote loading for core application components. This technique can be very useful during development where your required modules may be changing frequently.</p>
 <p>I’m going to try to keep making these tutorials so if you have anything specific you would find helpful for yourself or others please comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
@@ -211,55 +211,55 @@
 <p>The configurator will generate two script tags, be sure to select both urls individually Then copy the URL portions of the link generated by the configurator and paste it into the address bar of your browser. If you are having trouble with the configurator I have included the link to the two required files: <a href="http://yui.yahooapis.com/combo?3.5.1/build/yui-base/yui-base-min.js&amp;3.5.1/build/oop/oop-min.js&amp;3.5.1/build/event-custom-base/event-custom-base-min.js&amp;3.5.1/build/features/features-min.js&amp;3.5.1/build/dom-core/dom-core-min.js&amp;3.5.1/build/dom-base/dom-base-min.js&amp;3.5.1/build/selector-native/selector-native-min.js&amp;3.5.1/build/selector/selector-min.js&amp;3.5.1/build/node-core/node-core-min.js&amp;3.5.1/build/node-base/node-base-min.js&amp;3.5.1/build/event-base/event-base-min.js&amp;3.5.1/build/event-delegate/event-delegate-min.js&amp;3.5.1/build/node-event-delegate/node-event-delegate-min.js&amp;3.5.1/build/pluginhost-base/pluginhost-base-min.js&amp;3.5.1/build/pluginhost-config/pluginhost-config-min.js&amp;3.5.1/build/node-pluginhost/node-pluginhost-min.js&amp;3.5.1/build/dom-style/dom-style-min.js&amp;3.5.1/build/dom-screen/dom-screen-min.js&amp;3.5.1/build/node-screen/node-screen-min.js&amp;3.5.1/build/node-style/node-style-min.js&amp;3.5.1/build/event-custom-complex/event-custom-complex-min.js&amp;3.5.1/build/event-synthetic/event-synthetic-min.js">File 1</a> and <a href="http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;3.5.1/build/event-key/event-key-min.js&amp;3.5.1/build/event-focus/event-focus-min.js&amp;3.5.1/build/event-resize/event-resize-min.js&amp;3.5.1/build/event-hover/event-hover-min.js&amp;3.5.1/build/event-outside/event-outside-min.js&amp;3.5.1/build/event-touch/event-touch-min.js&amp;3.5.1/build/event-move/event-move-min.js&amp;3.5.1/build/event-flick/event-flick-min.js&amp;3.5.1/build/event-valuechange/event-valuechange-min.js">File 2</a></p>
 <p>Copy the code which is in your browser window and save the code into your assets/www directory in yui-file-1.js and yui-file-2.js respectively, <strong>the order these files are loaded is important</strong></p>
 <p>Now we are going to get YUI loaded and set up in our index.html file with three additional script tags.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-1.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-2.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span><span class="p">;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-1.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-2.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>First we load in the Cordova script followed by the two files generated by the YUI configurator plus one more to configure the YUI instance to follow. By setting bootstrap to false we are preventing YUI from trying to load the Loader. Additional details can be found in the <a href="http://yui.yahooapis.com/combo?3.5.1/build/event-mousewheel/event-mousewheel-min.js&amp;3.5.1/build/event-mouseenter/event-mouseenter-min.js&amp;3.5.1/build/event-key/event-key-min.js&amp;3.5.1/build/event-focus/event-focus-min.js&amp;3.5.1/build/event-resize/event-resize-min.js&amp;3.5.1/build/event-hover/event-hover-min.js&amp;3.5.1/build/event-outside/event-outside-min.js&amp;3.5.1/build/event-touch/event-touch-min.js&amp;3.5.1/build/event-move/event-move-min.js&amp;3.5.1/build/event-flick/event-flick-min.js&amp;3.5.1/build/event-valuechange/event-valuechange-min.js">bootstrap api</a> documentation.</p>
 <p>We are ready for our typical YUI().use statement. Add another script tag just above the closing body tag and instead of loading in specific modules like you normally would, we are going to load in all modules that have been loaded into the page using the * symbol.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
-<span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+<span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span><span class="p">,</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
+		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
 
 	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
+	<span class="p">});</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>We use the <a href="http://yuilibrary.com/yui/docs/api/classes/YUI.html#method_one">Y.one()</a> method to select our dom elements as usual and then attach an event listener to the <code>button</code> using the <a href="http://yuilibrary.com/yui/docs/api/classes/Node.html#method_on">Node.on()</a> method. But instead of using the typical <code>click</code> event, we substitute it for the <code>touchstart</code> event. Just for fun you can change the <code>touchstart</code> back to <code>click</code> and you will see that it works but there is a noticeable delay in the action - this will happen with any click event handler with PhoneGap (Cordova). we then take the element we assigned to the <code>header</code> property and set it’s color with the <a href="http://yuilibrary.com/yui/docs/api/classes/Node.html#method_setStyle">Node.setStyle()</a> method.</p>
 <p>And that’s it! You can now load this onto your device using the same method described in the PhoneGap (Cordova) example and you have made your very first YUI PhoneGap (Cordova) application. I hope you enjoyed this brief tutorial and if you have any questions feel free to comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-1.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-2.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span><span class="p">;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-1.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;yui-file-2.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span><span class="nx">YUI_CONFIG</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">bootstrap</span><span class="o">:</span> <span class="kc">false</span> <span class="p">};&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p"></span><span class="p">&gt;</span>Click Me<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Click Me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
-<span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
+<span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span><span class="p">,</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
+		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
 
 	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
+	<span class="p">});</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
   </article>
 </section>
@@ -298,10 +298,10 @@
 <p>First thing your going to do is create a new file which will house our server code.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">touch server.js
 </code></pre></div><p>There are a few native Node.js modules that we’ll need and a few more will be added as this series continues.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span><span class="p">,</span>
-    <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">),</span>
+    <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">),</span>
+    <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">);</span>
 </code></pre></div><p>We are pulling in the following modules:</p>
 <ul>
 <li><a href="https://nodejs.org/docs/latest/api/http.html">HTTP</a>: Low level API that handles the parsing of streams and handling of the HTTP messages.</li>
@@ -311,10 +311,10 @@
 </ul>
 <h3 id="create-the-server">Create the server</h3>
 <p>Within the scope of this part of the tutorial we only need to access the HTTP module once for its <a href="https://nodejs.org/docs/latest/api/http.html#http.createServer">createServer()</a> method. We create a HTTP server which calls the <code>_handler</code> callback when a <a href="https://nodejs.org/docs/latest/api/http.html#event_request_">request event</a> is made and start listening on a specified port.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">_handler</span><span class="p">)</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server running at http://127.0.0.1:3000/&#39;</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="mi">_</span><span class="nx">handler</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server running at http://127.0.0.1:3000/&#39;</span><span class="p">);</span>
 </code></pre></div><p>Now set up the request handler which will house all of the code that handles each and every request that comes into your server. We’ll also define some variables which we’ll use later.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">_handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="mi">_</span><span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="s2">&#34;..&#34;</span><span class="p">,</span>
         <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
         <span class="nx">contentType</span> <span class="o">=</span> <span class="s2">&#34;text/plain&#34;</span><span class="p">,</span>
@@ -324,25 +324,25 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>Because this is strictly a file server we only want to support the GET method and reject any other requests. To do this we need to reference the request object passed to our callback, an instance of <a href="https://nodejs.org/docs/latest/api/http.html#http.ServerRequest">http.ServerRequest</a> stored in <code>req</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">!==</span> <span class="s1">&#39;GET&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//If the request method doesn&#39;t equal &#39;GET&#39;
-</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">405</span><span class="p">)</span><span class="p">;</span> <span class="c1">//Write the HTTP status to the response head
-</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Unsupported request method&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//End and send the response
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="c1">//Write the HTTP status to the response head
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Unsupported request method&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">);</span> <span class="c1">//End and send the response
 </span><span class="c1"></span>    <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>On most web servers when you send a request to the server without a file you will get some type of default file usually the index.html. Because this is a file server, if they aren’t requesting a file, they are going to get an error. After we determine that they are requesting a file we do simple string concatenation to build the file path and then pass it to the <a href="https://nodejs.org/docs/latest/api/path.html#path.exists">path.exists()</a> method. This method will test the file path for existence and then pass that information to the callback, <code>serveRequestedFile</code> in this case.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">!==</span> <span class="s1">&#39;./&#39;</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">filePath</span> <span class="o">=</span> <span class="nx">root</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
-    <span class="nx">path</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="nx">serveRequestedFile</span><span class="p">)</span><span class="p">;</span>		
+    <span class="nx">path</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="nx">serveRequestedFile</span><span class="p">);</span>		
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;A file must be requested&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;A file must be requested&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>Stream your files</p>
 <p>Now that we have set up the http server, verified that they are using the correct method, and that they are requesting a file, we need to serve that file to them. To do this we will use our previously mentioned <code>serveRequestedFile()</code> function which will receive the status of our file inquiry which we need to test before proceeding.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">serveRequestedFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">file</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span><span class="p">;</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -350,13 +350,13 @@
 </span><span class="c1"></span>
 <span class="p">}</span>
 </code></pre></div><p>Because we aren’t implementing any caching mechanism yet we don’t want to read the whole file into memory before serving. To get around that we use the File System’s <a href="https://nodejs.org/docs/latest/api/fs.html#fs.createReadStream">fs.createReadStrem()</a> method. This method returns a <a href="https://nodejs.org/docs/latest/api/streams.html#readable_Stream">Readable Stream</a> which emits a number of events. We will set up an error event handler in the event there is a server error and the file cannot be served to the user.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">filePath</span><span class="p">);</span>
 
 <span class="nx">stream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
     <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></div><p>Before we send the data to the user we should set the files mime type. For simplicity sake I have included the mime object within the function itself. On a true file server you would likely import a much larger mime list.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mimeTypes</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;.js&#39;</span> <span class="o">:</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">,</span>
@@ -364,16 +364,16 @@
     <span class="s1">&#39;.gif&#39;</span> <span class="o">:</span> <span class="s1">&#39;image/gif&#39;</span>
 <span class="p">}</span>
 
-<span class="nx">contentType</span> <span class="o">=</span> <span class="nx">mimeTypes</span><span class="p">[</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)</span><span class="p">]</span><span class="p">;</span>
+<span class="nx">contentType</span> <span class="o">=</span> <span class="nx">mimeTypes</span><span class="p">[</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)];</span>
 </code></pre></div><p>We have now verified that the file exists, created a stream instance for the file in question, set up basic error handling, and found the files mime type. The only thing left is to actually send the file to the user. We first set the content type and the status in he header then use Utilities <a href="https://nodejs.org/docs/latest/api/util.html#util.pump">util.pump()</a> method to push the previously initiated stream to the user. The pump method reads the data from the readable stream <code>stream</code> and sends it to the writable stream <code>res</code>. If there is an error in this process or the stream is closed the third arugment, the callback, is called.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="nx">contentType</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="nx">contentType</span><span class="p">);</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
 
 <span class="nx">util</span><span class="p">.</span><span class="nx">pump</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//Only called when the res is closed or an error occurs
-</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
     <span class="k">return</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></div><p>Start the server and start serving files!</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">node server.js
 </code></pre></div><p>I hope you enjoyed the first part of this series and were able to get your own file server up and running. I have included a <a href="https://gist.github.com/hatched/1920353">working example</a> of the above code if you want to see it in its entirety. If you need further help feel free to comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a>, or join #Node.js on irc.freenode.net.</p>
@@ -383,167 +383,40 @@
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/12/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/12/">12</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/13/">13</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/12/">12</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/13/">13</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/14/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

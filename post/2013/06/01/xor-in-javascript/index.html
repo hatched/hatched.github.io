@@ -36,7 +36,7 @@ In order to start working towards a better solution we first need to define our 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/06/01/xor-in-javascript/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -134,7 +134,7 @@ In order to start working towards a better solution we first need to define our 
       
     </header>
     <p>Typically when writing a XOR check in JavaScript you would do something like…</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">)</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">((</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">))</span> <span class="p">{</span> <span class="p">}</span>
 </code></pre></div><p>The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</p>
 <p>In order to start working towards a better solution we first need to define our desired outcome. Wikipedia explains an <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> to be a logical operation that outputs true whenever both inputs differ (one is true, the other is false).</p>
 <table>

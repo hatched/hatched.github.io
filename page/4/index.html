@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -225,13 +225,13 @@ Because your tests should test exactly what you expect your public API to return
 <p>As an industry as a whole we need to understand this and write all code, even that which at first is not meant for public consumption, as <a href="https://en.wikipedia.org/wiki/Self-documenting_code">self-documenting code</a> with comments which detail, to anyone reading it, the why the code is doing what it’s doing.</p>
 <p>Self-documenting code is code which follows commonly accepted style conventions, and uses descriptive variable, and function names. As an example, self-documenting code turns this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">gd</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">]</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div><p>Into:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div><p>It’s much easier to understand what the second function is doing at a glance vs the first.</p>
 <p>This function is so trivial many will stop here and continue on. But trivial scripts have a way of becoming more, whether they grow into a project of their own or are copy/pasted into much larger projects where their use may not be as clear.</p>
@@ -247,33 +247,33 @@ Because your tests should test exactly what you expect your public API to return
 <span class="kd">function</span> <span class="nx">getDifference</span><span class="p">(</span><span class="nx">point1</span><span class="p">,</span> <span class="nx">point2</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">point1</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="nx">point2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
-  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div><p>This function can now be copy and pasted into any project without any ambiguity about it’s functionality and will automatically be included in the API documentation.</p>
 <p>To illustrate the importance of inline comments even with self documenting code. Take the following method from the <a href="https://github.com/juju/juju-gui">Juju GUI source</a>.</p>
 <p>The Juju GUI has just over 65,000 lines of javascript excluding dependencies and growing fast every day. With so many developers writing code this fast it would be very difficult to understand why things were done the way they were done without the additional 17,000 lines of api comment blocks and inline documentation.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span><span class="p">[</span><span class="nx">exportData</span><span class="p">]</span><span class="p">,</span>
-             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
+             <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
+<span class="p">},</span>
 </code></pre></div><p>Using only self-documenting code you would probably be able to figure out that this function extracts some data from a database, converts it into yaml, then saves the blob to disk. Unfortunately this would have taken you at least 4x longer to parse because it doesn’t have any comments. You would also be missing some very important information from a previous bug fix. Now here it is with it’s comments:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/**
 </span><span class="cm">  Export the YAML for this environment.
 </span><span class="cm">
 </span><span class="cm">  @method exportYAML
 </span><span class="cm">*/</span>
-<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">exportYAML</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">db</span><span class="p">.</span><span class="nx">exportDeployer</span><span class="p">();</span>
+  <span class="kd">var</span> <span class="nx">exportData</span> <span class="o">=</span> <span class="nx">jsyaml</span><span class="p">.</span><span class="nx">dump</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
   <span class="c1">// In order to support Safari 7 the type of this blob needs
 </span><span class="c1"></span>  <span class="c1">// to be text/plain instead of it&#39;s actual type of application/yaml.
-</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span><span class="p">[</span><span class="nx">exportData</span><span class="p">]</span><span class="p">,</span>
-      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">,</span>
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="nx">exportBlob</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">([</span><span class="nx">exportData</span><span class="p">],</span>
+      <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain;charset=utf-8&#39;</span><span class="p">});</span>
+  <span class="nx">saveAs</span><span class="p">(</span><span class="nx">exportBlob</span><span class="p">,</span> <span class="s1">&#39;export.yaml&#39;</span><span class="p">);</span>
+<span class="p">},</span>
 </code></pre></div><p>Without even reading the code you now know what the purpose of this method is which will dramatically reduce time when debugging or adding more features. More importantly however, the why of some of the code is outlined for future-you or another developer who may end up here. Without the comment regarding Safari 7 they very likely could have changed the mime type to application/yaml and introduced a difficult to find bug.</p>
 <p>Although these examples were simple I hope I have illustrated the importance of adding comments to your self-documenting code to aid not only future-you but also any other developer who may come by and learn from your work. Thanks for reading! What commenting techniques do you use? Comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
@@ -326,167 +326,40 @@ If you have any questions about Juju or the Juju GUI, you can read the official 
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/3/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/5/">5</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/5/">5</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

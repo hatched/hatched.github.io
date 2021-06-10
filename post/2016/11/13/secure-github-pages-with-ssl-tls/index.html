@@ -12,13 +12,13 @@
     
       
         <meta name="description" itemprop="description" content="At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&#39;ll need a couple things:
+First you&rsquo;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:">
         <meta name="twitter:description" content="At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&#39;ll need a couple things:
+First you&rsquo;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:" />
         <meta property="og:description" content="At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.
-First you&#39;ll need a couple things:
+First you&rsquo;ll need a couple things:
  A website hosted on GitHub Pages with a custom domain. An account with Cloudflare.  Then follow these steps:" />
         
           <meta property="article:published_time" content="2016-11-13 18:19:00 -0600 CST">
@@ -36,7 +36,7 @@ First you&#39;ll need a couple things:
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -134,22 +134,22 @@ First you&#39;ll need a couple things:
       
     </header>
     <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
-<p>First you'll need a couple things:</p>
+<p>First you&rsquo;ll need a couple things:</p>
 <ul>
 <li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
 <li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
 </ul>
 <p>Then follow these steps:</p>
 <ol>
-<li>After signing up with Cloudflare you'll be prompted to add your domain, at which point it'll scan your DNS records automatically. You'll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
+<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
 <li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
 <li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
-<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You'll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
+<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
 <li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
-<li>Update the paths for your assets so that they are requested from the https path or browsers won't load them.</li>
+<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
 </ol>
-<p>Once the DNS records propagate you'll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you'll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
-<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn't be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
+<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
+<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
 <p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
 
   </article>

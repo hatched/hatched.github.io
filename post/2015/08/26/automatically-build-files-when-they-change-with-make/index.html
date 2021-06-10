@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2015/08/26/automatically-build-files-when-they-change-with-make/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -132,14 +132,14 @@
 <p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
 <pre><code>watch -n 2 make build
 </code></pre><p>Or they will build the loop into the makefile.</p>
-<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.PHONY</span> <span class="err">watch</span>
 <span class="nf">watch</span><span class="o">:</span>
   <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
 </span><span class="se"></span>    make build --silent<span class="p">;</span> <span class="se">\
 </span><span class="se"></span>    sleep 1<span class="p">;</span> <span class="se">\
 </span><span class="se"></span>  <span class="k">done</span>
 </code></pre></div><p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
-<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.PHONY</span> <span class="err">watch</span>
 <span class="nf">watch</span><span class="o">:</span>
   <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
 </span><span class="se"></span>    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\

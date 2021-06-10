@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -123,7 +123,7 @@
     </header>
     <p>Running and developing an Ubuntu based workload on Mac OS has never been easier. <a href="https://canonical.com/">Canonical</a> has released a new tool called <a href="https://multipass.run">Multipass</a> which allows you to quickly spin up Ubuntu Server virtual machines on Ubuntu, Mac OS and Windows. The following instructions will get you an Ubuntu Server VM up and running, and the Ubuntu file system mounted to Mac OS so that you can work in the Mac OS UI using your regular development tools like VS Code.</p>
 <h4 id="mac-os">Mac OS</h4>
-<p>You'll first need to get Multipass installed by visiting the <a href="https://multipass.run">Multipass website</a> and downloading and installing the package on your Mac OS host. Once installed, open the terminal on your Mac OS host and run the following to download and install the latest LTS release of Ubuntu Server.</p>
+<p>You&rsquo;ll first need to get Multipass installed by visiting the <a href="https://multipass.run">Multipass website</a> and downloading and installing the package on your Mac OS host. Once installed, open the terminal on your Mac OS host and run the following to download and install the latest LTS release of Ubuntu Server.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch --name ubuntu
 multipass shell ubuntu
 </code></pre></div><h4 id="ubuntu">Ubuntu</h4>
@@ -150,10 +150,10 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 </code></pre></div><p>From the terminal on your Mac OS host you can now open these folders like they live in Mac OS with your code editor of choice.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">code ~/code
 </code></pre></div><h4 id="tips--tricks">Tips &amp; Tricks</h4>
-<p>On a day to day basis the most efficient way to work with these files is to perform your heavy IO interactions like git clones and builds from within your new Ubuntu VM. This can be done by leaving a terminal open SSH'd into it.</p>
-<p>The services that Multipass use to create the VM on Mac OS allow you to over subscribe the VM's resources so if you want to have the fastest VM possible you can give it all CPU cores and RAM as well as ample disk space. The following command will give the new Ubuntu VM 16 cores, 100GB of disk space and 16GB of ram while allowing the host and other Multipass VM's to share the same resources.</p>
+<p>On a day to day basis the most efficient way to work with these files is to perform your heavy IO interactions like git clones and builds from within your new Ubuntu VM. This can be done by leaving a terminal open SSH&rsquo;d into it.</p>
+<p>The services that Multipass use to create the VM on Mac OS allow you to over subscribe the VM&rsquo;s resources so if you want to have the fastest VM possible you can give it all CPU cores and RAM as well as ample disk space. The following command will give the new Ubuntu VM 16 cores, 100GB of disk space and 16GB of ram while allowing the host and other Multipass VM&rsquo;s to share the same resources.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Bash" data-lang="Bash">multipass launch -c <span class="m">16</span> -d 100G -m 16G --name ubuntu
-</code></pre></div><p>At the time of writing you cannot resize the VM's disk space so you'll want to give it more than you think you'll need.</p>
+</code></pre></div><p>At the time of writing you cannot resize the VM&rsquo;s disk space so you&rsquo;ll want to give it more than you think you&rsquo;ll need.</p>
 
   </article>
 </section>
@@ -174,16 +174,16 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 <p>While these examples are written in Javascript the same techniques apply to all languages.</p>
 <h4 id="library-example">Library example</h4>
 <p>Starting with a simple library that another developer may be using&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="nx">userList</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">();</span>
+  <span class="k">return</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">formatUserList</span><span class="p">(</span><span class="nx">userList</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Fetch content from the database.
 </span><span class="c1"></span><span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">_formatuserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="mi">_</span><span class="nx">formatuserList</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Reformat the data as returned from the database.
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>A consumer of this API would have a couple expectations:</p>
@@ -192,10 +192,10 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 <li>It returns a user list in a specific structure.</li>
 </ul>
 <p>These expectations then outline what your tests are:</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;fetchUserList&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not block&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns in the correct format&#39;</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;fetchUserList&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not block&#39;</span><span class="p">);</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns in the correct format&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>You should note that we don’t test any method that wasn’t exported, nor do we export methods simply for testing purposes.</p>
 <p>To aid the user in understanding what this contract is you can outline it in the docblock for the exported function. This way it can be used to generate the documentation for your library and help outline what your test structure is.</p>
 <div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
@@ -203,32 +203,32 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 </span><span class="cm">  @return {Object} The user list in the following format:
 </span><span class="cm">  { id: INT, name: STRING, favouriteColour: STRING }
 </span><span class="cm">*/</span>
-<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">();</span>
+  <span class="k">return</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">formatUserList</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div><p>We don’t explicitly test the  <code>_queryFBForUSerList</code> and <code>_formatUserList</code> functions as they are implementation details. If you were to change the type of database returning the user list, or the algorithm being used to format the user list you should not have to also modify your tests as the contract to your users has not changed. They still expect that if they call <code>fetchUserList</code> they will receive the list in the specified format.</p>
 <h4 id="ui-example">UI Example</h4>
 <p>Let’s take a look at a UI component this time using the React javascript library, in an effort to save space I’ve removed the functions that aren’t exported. This also helps to illustrate their irrelevance in our testing strategy.</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">LogIn</span> <span class="o">=</span> <span class="p">(</span><span class="p">{</span> <span class="nx">children</span> <span class="p">}</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userIsLoggedIn</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">;</span>
-  <span class="kr">const</span> <span class="nx">userIsConnecting</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isConnecting</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">LogIn</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userIsLoggedIn</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">userIsConnecting</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isConnecting</span><span class="p">);</span>
 
-  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">_generateButton</span><span class="p">(</span><span class="nx">userIsConnecting</span><span class="p">)</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="mi">_</span><span class="nx">generateButton</span><span class="p">(</span><span class="nx">userIsConnecting</span><span class="p">);</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userIsLoggedIn</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="o">&gt;</span>
+      <span class="o">&lt;&gt;</span>
         <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login&#34;</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login__logo&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&#34;logo&#34;</span> <span class="o">/</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login__logo&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&#34;logo&#34;</span> <span class="o">/&gt;</span>
           <span class="p">{</span><span class="nx">button</span><span class="p">}</span>
-        <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/</span><span class="err">m</span><span class="err">a</span><span class="err">i</span><span class="err">n</span><span class="err">&gt;</span>
-      <span class="o">&lt;</span><span class="err">/</span><span class="err">&gt;</span>
-    <span class="p">)</span><span class="p">;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/main&gt;</span>
+      <span class="o">&lt;</span><span class="err">/&gt;</span>
+    <span class="p">);</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">children</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>This is a fairly simple component that renders a login button with a logo. Let’s go through the exercise and see what our User Contract is:</p>
 <ul>
 <li>If the user is not logged in
@@ -246,35 +246,35 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 </li>
 </ul>
 <p>Our tests would be:</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LogIn&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is not logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clicking the button logs in&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not render a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LogIn&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is not logged in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clicking the button logs in&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is logged in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not render a logo and button to log in&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
 </code></pre></div><p>Testing the returned value in a UI component is a little more nuanced than checking a return value of a library function. We don’t necessarily want to check every specific detail of each element returned unless it’s part of the contract. I’ll expand these tests with assertions but eschew the component setup and rendering in interest of space.</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login__logo&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-<span class="p">)</span><span class="p">;</span>
-<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;main .items&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;logs the user in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">simulate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login__logo&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">);</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;main .items&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;logs the user in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">).</span><span class="nx">simulate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{});</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>It’s important to note here that we have tried to limit the specific details that aren’t relevant to the contract of the component. This allows the design to change and the contract to remain valid and we do not need to update the tests. This is especially beneficial when you have a shared component library within your company. You can update the designs and implementation details of your components without updating the tests.</p>
 <h4 id="what-if-i">What if I&hellip;</h4>
 <ul>
 <li>&hellip;want to test that an api call is being made with the correct signature?
 <ul>
-<li>You should consider moving this sub api call into its own library and having it tested there. You'll then be testing the <strong>user contract</strong> of this new library, that a call to your api is making a specific call to another api.</li>
+<li>You should consider moving this sub api call into its own library and having it tested there. You&rsquo;ll then be testing the <strong>user contract</strong> of this new library, that a call to your api is making a specific call to another api.</li>
 </ul>
 </li>
 <li>&hellip;have to mock out an api call?
@@ -296,7 +296,7 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 <h4 id="conclusion">Conclusion</h4>
 <p>When writing the code and exporting methods, ask yourself if the user needs to have access to this method or if you’re only doing it for testing purposes. You can always export more methods, you can’t always take exported methods away.</p>
 <p>When writing tests ask yourself how can the consumer interact with your code and what type of outcome is expected for those interactions and them make sure you have those documented and assertions in your tests.</p>
-<p>Don't test implementation details of an exported method or UI component. Consider moving those to a different <strong>user contract</strong> if you feel they need direct testing.</p>
+<p>Don&rsquo;t test implementation details of an exported method or UI component. Consider moving those to a different <strong>user contract</strong> if you feel they need direct testing.</p>
 <h4 id="more-reading">More reading</h4>
 <p>I have written some content many years ago which you may also find helpful:</p>
 <ul>
@@ -348,44 +348,44 @@ component validation failed: <span class="m">1</span> error found
         <time pubdate content="2016-11-22 21:23:26 -0600 CST" datetime="2016-11-22 21:23:26 -0600 CST">22 November 2016</time>
       
     </header>
-    <p>After writing some great content you'll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
-<p>You'll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Description of post&#34;</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;canonical&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://example.com/path/to/post&#34;</span><span class="p">/</span><span class="p">&gt;</span>
+    <p>After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
+<p>You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Description of post&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;canonical&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://example.com/path/to/post&#34;</span><span class="p">/&gt;</span>
 </code></pre></div><p>HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the <code>section</code> and <code>article</code> tags. The <code>section</code> tag represents a generic section of the document, like a list of articles. The <code>article</code> tag represents the actual post content including the title, publication date, content, etc.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">section</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">article</span><span class="p"></span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">header</span><span class="p"></span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span><span class="p"></span><span class="p">&gt;</span>Post Title<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;</span><span class="p">/</span><span class="nt">time</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">span</span><span class="p"></span><span class="p">&gt;</span>Your name<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="p">/</span><span class="nt">header</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
     Post content.
-  <span class="p">&lt;</span><span class="p">/</span><span class="nt">article</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">section</span><span class="p">&gt;</span>
-</code></pre></div><p>This doesn't however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
-<p>Because this is a blog post we'll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you're specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you're wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/BlogPosting&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">article</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</code></pre></div><p>This doesn&rsquo;t however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
+<p>Because this is a blog post we&rsquo;ll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you&rsquo;re specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you&rsquo;re wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/BlogPosting&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
 </code></pre></div><p>The title is defined using the <a href="http://schema.org/name">name</a> tag and the permalink is defined using the <a href="http://schema.org/url">url</a> tag.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p"></span><span class="p">&gt;</span>Post Title<span class="p">&lt;</span><span class="p">/</span><span class="nt">a</span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </code></pre></div><p>To indicate the date that the content was first published we use the <a href="http://schema.org/datePublished">datePublished</a> tag supplying the datetime value.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;datePublished&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;</span><span class="p">/</span><span class="nt">time</span><span class="p">&gt;</span>
-</code></pre></div><p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it's the <a href="http://schema.org/author">author</a> tag.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p"></span><span class="p">&gt;</span>Your name<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
-</code></pre></div><p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you'll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;datePublished&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+</code></pre></div><p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it&rsquo;s the <a href="http://schema.org/author">author</a> tag.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div><p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you&rsquo;ll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
 <p>The Twitter card metadata fields are as follows (taken from their documentation):</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:card&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;summary&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:site&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;@flickr&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Small Island Developing States Photo Submission&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;View the album on Flickr.&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:card&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;summary&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:site&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;@flickr&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Small Island Developing States Photo Submission&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;View the album on Flickr.&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&#34;</span> <span class="p">/&gt;</span>
 </code></pre></div><p>And the Facebook Open Graph data meta fields are (taken from their documentation):</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:url&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://www.example.com/post/1234&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;article&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;When Great Minds Don’t Think Alike&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;How much does culture influence creative thinking?&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://example.com/image.jpg&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;article:published_time&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:url&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://www.example.com/post/1234&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;article&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;When Great Minds Don’t Think Alike&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;How much does culture influence creative thinking?&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://example.com/image.jpg&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;article:published_time&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>
 </code></pre></div><p>Thanks for reading, do you have any other tips for proper blog markup? Let me know below!</p>
 
   </article>
@@ -401,22 +401,22 @@ component validation failed: <span class="m">1</span> error found
       
     </header>
     <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
-<p>First you'll need a couple things:</p>
+<p>First you&rsquo;ll need a couple things:</p>
 <ul>
 <li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
 <li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
 </ul>
 <p>Then follow these steps:</p>
 <ol>
-<li>After signing up with Cloudflare you'll be prompted to add your domain, at which point it'll scan your DNS records automatically. You'll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
+<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
 <li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
 <li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
-<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You'll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
+<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
 <li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
-<li>Update the paths for your assets so that they are requested from the https path or browsers won't load them.</li>
+<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
 </ol>
-<p>Once the DNS records propagate you'll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you'll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
-<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn't be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
+<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
+<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
 <p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
 
   </article>
@@ -424,163 +424,34 @@ component validation failed: <span class="m">1</span> error found
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item disabled">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item disabled">
     <a  class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

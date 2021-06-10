@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2020/01/01/testing-your-user-contract/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -134,16 +134,16 @@
 <p>While these examples are written in Javascript the same techniques apply to all languages.</p>
 <h4 id="library-example">Library example</h4>
 <p>Starting with a simple library that another developer may be using&hellip;</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="nx">userList</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">();</span>
+  <span class="k">return</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">formatUserList</span><span class="p">(</span><span class="nx">userList</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Fetch content from the database.
 </span><span class="c1"></span><span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">_formatuserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="mi">_</span><span class="nx">formatuserList</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Reformat the data as returned from the database.
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>A consumer of this API would have a couple expectations:</p>
@@ -152,10 +152,10 @@
 <li>It returns a user list in a specific structure.</li>
 </ul>
 <p>These expectations then outline what your tests are:</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;fetchUserList&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not block&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns in the correct format&#39;</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;fetchUserList&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not block&#39;</span><span class="p">);</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;returns in the correct format&#39;</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>You should note that we don’t test any method that wasn’t exported, nor do we export methods simply for testing purposes.</p>
 <p>To aid the user in understanding what this contract is you can outline it in the docblock for the exported function. This way it can be used to generate the documentation for your library and help outline what your test structure is.</p>
 <div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="cm">/**
@@ -163,32 +163,32 @@
 </span><span class="cm">  @return {Object} The user list in the following format:
 </span><span class="cm">  { id: INT, name: STRING, favouriteColour: STRING }
 </span><span class="cm">*/</span>
-<span class="kr">export</span> <span class="nx">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">_queryDBForUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="k">return</span> <span class="nx">await</span> <span class="nx">_formatUserList</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kr">async</span> <span class="kd">function</span> <span class="nx">fetchUserList</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userList</span> <span class="o">=</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">queryDBForUserList</span><span class="p">();</span>
+  <span class="k">return</span> <span class="kr">await</span> <span class="mi">_</span><span class="nx">formatUserList</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div><p>We don’t explicitly test the  <code>_queryFBForUSerList</code> and <code>_formatUserList</code> functions as they are implementation details. If you were to change the type of database returning the user list, or the algorithm being used to format the user list you should not have to also modify your tests as the contract to your users has not changed. They still expect that if they call <code>fetchUserList</code> they will receive the list in the specified format.</p>
 <h4 id="ui-example">UI Example</h4>
 <p>Let’s take a look at a UI component this time using the React javascript library, in an effort to save space I’ve removed the functions that aren’t exported. This also helps to illustrate their irrelevance in our testing strategy.</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">LogIn</span> <span class="o">=</span> <span class="p">(</span><span class="p">{</span> <span class="nx">children</span> <span class="p">}</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="nx">userIsLoggedIn</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">;</span>
-  <span class="kr">const</span> <span class="nx">userIsConnecting</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isConnecting</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">LogIn</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">children</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">userIsLoggedIn</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">userIsConnecting</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">isConnecting</span><span class="p">);</span>
 
-  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">_generateButton</span><span class="p">(</span><span class="nx">userIsConnecting</span><span class="p">)</span><span class="p">;</span>
+  <span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="mi">_</span><span class="nx">generateButton</span><span class="p">(</span><span class="nx">userIsConnecting</span><span class="p">);</span>
 
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userIsLoggedIn</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="o">&gt;</span>
+      <span class="o">&lt;&gt;</span>
         <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login&#34;</span><span class="o">&gt;</span>
-          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login__logo&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&#34;logo&#34;</span> <span class="o">/</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;login__logo&#34;</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">logo</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&#34;logo&#34;</span> <span class="o">/&gt;</span>
           <span class="p">{</span><span class="nx">button</span><span class="p">}</span>
-        <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/</span><span class="err">m</span><span class="err">a</span><span class="err">i</span><span class="err">n</span><span class="err">&gt;</span>
-      <span class="o">&lt;</span><span class="err">/</span><span class="err">&gt;</span>
-    <span class="p">)</span><span class="p">;</span>
+        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+        <span class="o">&lt;</span><span class="nx">main</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">children</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/main&gt;</span>
+      <span class="o">&lt;</span><span class="err">/&gt;</span>
+    <span class="p">);</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="nx">children</span><span class="p">;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>This is a fairly simple component that renders a login button with a logo. Let’s go through the exercise and see what our User Contract is:</p>
 <ul>
 <li>If the user is not logged in
@@ -206,35 +206,35 @@
 </li>
 </ul>
 <p>Our tests would be:</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LogIn&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is not logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clicking the button logs in&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is logged in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not render a logo and button to log in&#39;</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;LogIn&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is not logged in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;clicking the button logs in&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;the user is logged in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;does not render a logo and button to log in&#39;</span><span class="p">);</span>
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
 </code></pre></div><p>Testing the returned value in a UI component is a little more nuanced than checking a return value of a library function. We don’t necessarily want to check every specific detail of each element returned unless it’s part of the contract. I’ll expand these tests with assertions but eschew the component setup and rendering in interest of space.</p>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login__logo&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
-<span class="p">)</span><span class="p">;</span>
-<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;main .items&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;logs the user in&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">simulate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">expect</span><span class="p">(</span><span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)</span><span class="p">)</span><span class="p">.</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders a logo and button to log in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login__logo&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">);</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;renders any children passed to it&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;main .items&#39;</span><span class="p">).</span><span class="nx">length</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="nx">it</span><span class="p">(</span><span class="s1">&#39;logs the user in&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">wrapper</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.login button&#39;</span><span class="p">).</span><span class="nx">simulate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="p">{});</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">useSelector</span><span class="p">(</span><span class="nx">isLoggedIn</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div><p>It’s important to note here that we have tried to limit the specific details that aren’t relevant to the contract of the component. This allows the design to change and the contract to remain valid and we do not need to update the tests. This is especially beneficial when you have a shared component library within your company. You can update the designs and implementation details of your components without updating the tests.</p>
 <h4 id="what-if-i">What if I&hellip;</h4>
 <ul>
 <li>&hellip;want to test that an api call is being made with the correct signature?
 <ul>
-<li>You should consider moving this sub api call into its own library and having it tested there. You'll then be testing the <strong>user contract</strong> of this new library, that a call to your api is making a specific call to another api.</li>
+<li>You should consider moving this sub api call into its own library and having it tested there. You&rsquo;ll then be testing the <strong>user contract</strong> of this new library, that a call to your api is making a specific call to another api.</li>
 </ul>
 </li>
 <li>&hellip;have to mock out an api call?
@@ -256,7 +256,7 @@
 <h4 id="conclusion">Conclusion</h4>
 <p>When writing the code and exporting methods, ask yourself if the user needs to have access to this method or if you’re only doing it for testing purposes. You can always export more methods, you can’t always take exported methods away.</p>
 <p>When writing tests ask yourself how can the consumer interact with your code and what type of outcome is expected for those interactions and them make sure you have those documented and assertions in your tests.</p>
-<p>Don't test implementation details of an exported method or UI component. Consider moving those to a different <strong>user contract</strong> if you feel they need direct testing.</p>
+<p>Don&rsquo;t test implementation details of an exported method or UI component. Consider moving those to a different <strong>user contract</strong> if you feel they need direct testing.</p>
 <h4 id="more-reading">More reading</h4>
 <p>I have written some content many years ago which you may also find helpful:</p>
 <ul>

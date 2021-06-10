@@ -34,7 +34,7 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/yui-popup-calendar/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -141,11 +141,11 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
 <li><a href="http://yuilibrary.com/yui/docs/api/classes/WidgetAutohide.html">Widget Autohide</a></li>
 </ul>
 <h4 id="html">HTML</h4>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;yui3-skin-sam&#34;</span><span class="p"></span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;date&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;phone&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">form</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;yui3-skin-sam&#34;</span><span class="p">&gt;</span>
+	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;name&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/&gt;</span>
+	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;date&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/&gt;</span>
+	<span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;phone&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">autocomplete</span><span class="o">=</span><span class="s">&#34;off&#34;</span><span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div><h4 id="css">CSS</h4>
 <p>In order to style this calendar like the YUI default calendar you need to add the class .yui3-skin-sam to a parent container of the calendar.</p>
 <p>To have the calendar positioned overtop of other contents on your page and to hide when you click away the following two classes need to be added to your css</p>
@@ -157,10 +157,10 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
   <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><h4 id="javascript">Javascript</h4>
-<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;popup-calendar&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;popup-calendar&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span>  <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;form input[name=date]&#39;</span><span class="p">)</span><span class="p">,</span>
-      <span class="nx">popupcalendar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">(</span><span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span>  <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;form input[name=date]&#39;</span><span class="p">),</span>
+      <span class="nx">popupcalendar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">PopupCalendar</span><span class="p">({</span>
     <span class="c1">// Popup Calendar config properties
 </span><span class="c1"></span>    <span class="c1">// input: the text input that will trigger
 </span><span class="c1"></span>    <span class="c1">// the calendar to show
@@ -181,7 +181,7 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
 </span><span class="c1"></span>    <span class="nx">width</span><span class="o">:</span><span class="s1">&#39;400px&#39;</span><span class="p">,</span>
     <span class="nx">showPrevMonth</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nx">showNextMonth</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="p">)</span><span class="p">,</span>
+    <span class="nx">date</span><span class="o">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(),</span>
 
     <span class="c1">// Widget Position Align configuration properties
 </span><span class="c1"></span>    <span class="c1">// This is now optional and defaults to the following
@@ -189,17 +189,17 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
       <span class="nx">node</span><span class="o">:</span> <span class="nx">input</span><span class="p">,</span>
         <span class="nx">points</span><span class="o">:</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">.</span><span class="nx">TL</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">.</span><span class="nx">TR</span><span class="p">]</span>
     <span class="p">}</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">});</span>
 
   <span class="c1">// The popup calendar makes no assumptions as to
 </span><span class="c1"></span>  <span class="c1">// what you want to do with the selected date
 </span><span class="c1"></span>  <span class="c1">// so it is up to you to do something with the emitted event.
 </span><span class="c1"></span>  <span class="nx">popupcalendar</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;dateSelected&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newSelection</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">;</span>
-    <span class="nx">popupcalendar</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDate</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">(</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newSelection</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">popupcalendar</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getDate</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getMonth</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&#34;/&#34;</span> <span class="o">+</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getFullYear</span><span class="p">());</span>
+  <span class="p">});</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></div><h4 id="repositioning-the-calendar-on-resize">Repositioning the calendar on resize</h4>
 <p>If the user resizes the browser once the calendar is open they run the risk of covering it up. To remedy this, you simply need to interact with widget-position-align on resize</p>
 <div class="highlight"><pre class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;resize&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -215,7 +215,7 @@ How to use Almost all of the configuration properties for Y.PopupCalendar are fo
     <span class="nx">node</span><span class="o">:</span> <span class="nx">input</span><span class="p">,</span>
     <span class="nx">points</span><span class="o">:</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">.</span><span class="nx">TL</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">.</span><span class="nx">BR</span><span class="p">]</span>
   <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></div><h4 id="known-bugs">Known Bugs</h4>
 <p>Opera in Ubuntu (possibly other os’s as well) has an odd keyboard navigation highlighting alignment issue with the Calendar. The calendar is still functional albeit a little odd to navigate via keyboard.</p>
 <p>Hitting enter when navigating the calendar by keyboard does not select a date in IE7 &amp; IE8</p>

@@ -33,7 +33,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/02/22/insert-an-array-of-values-into-an-array-in-javascript/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -140,20 +140,20 @@
 <span class="c1">// Desired outcome
 </span><span class="c1"></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 </code></pre></div><p>But none of the native array methods allowed me to insert an array of values into an array. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Splice</a> comes close but it takes a comma delimited list of values, not an array of values. Conveniently however you can still use the native splice function using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to achieve the desired result.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span><span class="p">,</span>
-    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arrayOne</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">],</span>
+    <span class="nx">arrayTwo</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
     <span class="nx">index</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
 <span class="c1">// We want to push the starting index and the number of values we want
-</span><span class="c1"></span><span class="c1">// to delete (in this case 0) onto the beginning of the first array.
-</span><span class="c1"></span><span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1">// to delete (in this case 0) onto the beginning of the first array.
+</span><span class="c1"></span><span class="nx">arrayOne</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
 <span class="c1">// Next we want to apply the native splice method to arrayOne under
-</span><span class="c1"></span><span class="c1">// the context of arrayTwo
-</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1">// the context of arrayTwo
+</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">splice</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">,</span> <span class="nx">arrayOne</span><span class="p">);</span>
 
 <span class="c1">// [1, 2, &#34;a&#34;, &#34;b&#34;, &#34;c&#34;, 3, 4, 5]
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrayTwo</span><span class="p">);</span>
 </code></pre></div>
   </article>
 </section>

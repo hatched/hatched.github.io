@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -143,16 +143,16 @@
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function">animation-timing-function</a></li>
 </ul>
 <p>The markup is very light with only a wrapper and two divs which represent the progress. You’ll notice that I’m using data-attributes instead of using classes for the animation selectors. I do this because I feel that animations are more representative of a process than styling.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;wrapper&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base wrapper&#34;</span><span class="p"></span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base left&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base right&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;wrapper&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base wrapper&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base left&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base right&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>First our basic styles.</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">wrapper</span> <span class="p">{</span>
   <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* Set the size of the progress bar */</span>
   <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
   <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span> <span class="c">/* Enable clipping */</span>
-  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">)</span><span class="p">;</span> <span class="c">/* Hide half of the progress bar */</span>
+  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">);</span> <span class="c">/* Hide half of the progress bar */</span>
 <span class="p">}</span>
 <span class="c">/* Set the sizes of the elements that make up the progress bar */</span>
 <span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
@@ -161,29 +161,29 @@
   <span class="k">border</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">green</span><span class="p">;</span>
   <span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
   <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">0</span><span class="kt">px</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">0</span><span class="kt">px</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>Then onto the animation rules.</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Using the data attributes for the animation selectors. */</span>
 <span class="c">/* Base settings for all animated elements */</span>
-<span class="nt">div</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~</span><span class="o">=</span><span class="nt">base</span><span class="o">]</span> <span class="p">{</span>
+<span class="nt">div</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">base</span><span class="o">]</span> <span class="p">{</span>
   <span class="kp">-webkit-</span><span class="k">animation-iteration-count</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">/* Only run once */</span>
   <span class="kp">-webkit-</span><span class="k">animation-fill-mode</span><span class="p">:</span> <span class="kc">forwards</span><span class="p">;</span> <span class="c">/* Hold the last keyframe */</span>
   <span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">linear</span><span class="p">;</span> <span class="c">/* Linear animation */</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">wrapper</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~</span><span class="o">=</span><span class="nt">wrapper</span><span class="o">]</span> <span class="p">{</span>
+<span class="p">.</span><span class="nc">wrapper</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">wrapper</span><span class="o">]</span> <span class="p">{</span>
   <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mf">0.01</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Complete keyframes asap */</span>
   <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mi">3</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Wait half of the animation */</span>
   <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="n">close-wrapper</span><span class="p">;</span> <span class="c">/* Keyframes name */</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~</span><span class="o">=</span><span class="nt">left</span><span class="o">]</span> <span class="p">{</span>
+<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">left</span><span class="o">]</span> <span class="p">{</span>
   <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mi">6</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Full animation time */</span>
   <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="kc">left</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~</span><span class="o">=</span><span class="nt">right</span><span class="o">]</span> <span class="p">{</span>
+<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">right</span><span class="o">]</span> <span class="p">{</span>
   <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mi">3</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Half animation time */</span>
   <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="kc">right</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
 <span class="p">}</span>
@@ -191,25 +191,25 @@
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Rotate the right side of the progress bar from 0 to 180 degrees */</span>
 <span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">right-spin</span> <span class="p">{</span>
   <span class="nt">from</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="nt">to</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">180</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">180</span><span class="kt">deg</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="c">/* Rotate the left side of the progress bar from 0 to 360 degrees */</span>
 <span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">left-spin</span> <span class="p">{</span>
   <span class="nt">from</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="nt">to</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="c">/* Set the wrapper clip to auto, effectively removing the clip */</span>
 <span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">close-wrapper</span> <span class="p">{</span>
   <span class="nt">to</span> <span class="p">{</span>
-    <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>This works by creating two elements with circular borders and then hiding half of each element and storing those underneath the clip of the wrapper div. I animate a css transform to rotate both elements at the same rate until the 50% mark, at which point the first element stops, the wrapper clip is removed, and the second element keeps going to display the remaining 50%. Without javascript and some outside event influencing the display values this is probably more of a pure css loading indicator so in a follow-up post I’ll show you how to use javascript to influence the value of progress bar.</p>

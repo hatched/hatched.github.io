@@ -33,7 +33,7 @@ Let me introduce you to the pointer-events CSS property. This property allows yo
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/10/01/clicking-through-a-div-to-underlying-elements/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -137,7 +137,7 @@ Let me introduce you to the pointer-events CSS property. This property allows yo
 <span class="p">}</span>
 </code></pre></div><p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
-        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">);</span>
         <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>Or in IE8 and up outside of a conditional.</p>

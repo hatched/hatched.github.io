@@ -6,11 +6,7 @@
     <description>Recent content in javascript on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Jun 2015 21:44:00 -0600</lastBuildDate>
-    
-	<atom:link href="https://fromanegg.com/tags/javascript/rss.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 06 Jun 2015 21:44:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/javascript/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Write JavaScript like it’s typed</title>
       <link>https://fromanegg.com/post/2015/06/06/write-javascript-like-its-typed/</link>
@@ -56,7 +52,7 @@ When developers hear “Write your tests before you write your code”, then the
       <pubDate>Thu, 06 Jun 2013 10:02:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/post/2013/06/06/calculating-timezones-in-javascript/</guid>
-      <description>I&#39;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
+      <description>I&amp;rsquo;m sure most people cringe when they hear that they have been assigned a task which has to do with dates in JavaScript. Because JavaScript is lacking a fully featured date library these tasks are rarely trivial and become even more difficult when you need to support users around the world.
 Converting a timestamp to UTC time. To display a timestamp in UTC around the world instead of in the users local timezone you use getTimezoneOffset, multiply it by 60,000 and then subtract that from your timestamp.</description>
     </item>
     

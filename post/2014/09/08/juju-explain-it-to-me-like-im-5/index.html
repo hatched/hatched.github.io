@@ -33,7 +33,7 @@ Juju is often described as apt-get for the cloud, but what does someone who isn�
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2014/09/08/juju-explain-it-to-me-like-im-5/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -152,20 +152,20 @@ juju add-relation ghost apache2
 </code></pre><p>That’s it. You have now taken advantage of many peoples domain expertise to develop a cloud environment for your own blog.</p>
 <p>So what if you wanted to use MySQL or any of these other Charms for a different application? That’s the best part these charms are written using the best practices for the particular charm but have easy to interface with hooks. To enable the Ghost charm to communicate with the haproxy charm all I had to write was:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="ch">#!/usr/bin/node
-</span><span class="ch"></span><span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">exec</span><span class="p">;</span>
+</span><span class="ch"></span><span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">exec</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">address</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">storePort</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedPort</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">port</span> <span class="o">=</span> <span class="nx">returnedPort</span><span class="p">;</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">storeAddress</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedAddress</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">address</span> <span class="o">=</span> <span class="nx">returnedAddress</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">);</span>
 </code></pre></div><p><a href="https://jujucharms.com">Juju charms</a> can be written in anything that can be executed. The Ghost charm was written in JavaScript, the MySQL one in bash. Others use Python, Puppet, Chef, Ansible, even Docker containers can be orchestrated using a Juju Charm.</p>
 <p>Want to run your own wiki:</p>
 <pre><code>juju deploy mediawiki

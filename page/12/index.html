@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -128,7 +128,7 @@
 <span class="p">}</span>
 </code></pre></div><p>Will now pass all click events on the overlay div through to the underlying elements. To get the same functionality in IE 5.5 and up we can use the <a href="https://msdn.microsoft.com/en-us/library/ms532969(v=vs.85).aspx">AlphaImageLoader</a> filter in an IE conditional.</p>
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">overlay</span> <span class="p">{</span>
-        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">)</span><span class="p">;</span>
+        <span class="k">filter</span><span class="p">:</span><span class="n">progid</span><span class="o">:</span><span class="n">DXImageTransform</span><span class="o">.</span><span class="n">Microsoft</span><span class="o">.</span><span class="nf">AlphaImageLoader</span><span class="p">(</span><span class="n">src</span><span class="err">=</span><span class="s1">&#39;overlay.png&#39;</span><span class="p">,</span> <span class="n">sizingMethod</span><span class="err">=</span><span class="s1">&#39;scale&#39;</span><span class="p">);</span>
         <span class="k">background</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>Or in IE8 and up outside of a conditional.</p>
@@ -200,44 +200,44 @@
 <p>The validator allows you to test that a value is valid for the attribute prior to it being sent to the setter. A common use is validating that the value trying to be set is in an accepted format - such as only allowing integers in a quantity attribute. Returning true from the validator sends the value to the setter, returning false causes the value to not be set. But unlike a successful change event no event is fired to notify you that the value failed validation and was not set. So lets augment our modules to fire a validation failed event.</p>
 <p>Unfortunately to <a href="https://en.wikipedia.org/wiki/Monkey_patch">monkey patch</a> this feature into Y.Attribute properly would require a large amount of code duplication so we’ll leave that to the coming pull request. Instead we are going to pick a small simple method which will allow us to inject our enhancement but not force us to duplicate a bunch of the library code. This is only intended to be a short term solution until the patch makes its way into the library as monkey patching introduces a number of potential negative side effects.</p>
 <p>Because we may not want to apply this patch to all of the modules which extend Y.Attribute we will only modify this method in the objects that we need it for. To make this really easy we will create a small object and mix it into the instances.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">_defAttrChangeFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_setAttrVal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">e</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="o">+</span><span class="s1">&#39;ValidationFail&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span><span class="p">;</span> <span class="c1">// The only new line
+    <span class="mi">_</span><span class="nx">defAttrChangeFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="mi">_</span><span class="nx">setAttrVal</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">subAttrName</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="o">+</span><span class="s1">&#39;ValidationFail&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span> <span class="c1">// The only new line
 </span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">)</span><span class="p">;</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div><p>We then mix that patch into our new module</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">CustomModule</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">]</span><span class="p">,</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">CustomModule</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;custom-module&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[</span><span class="nx">Y</span><span class="p">.</span><span class="nx">attrValidatePatch</span><span class="p">],</span> <span class="p">{</span>
 
     <span class="c1">//Custom  module code here
 </span><span class="c1"></span>
-<span class="p">}</span><span class="p">,</span> <span class="p">{</span>
+<span class="p">},</span> <span class="p">{</span>
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&#34;number&#34;</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span><span class="p">;</span>
+                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="p">});</span>
 </code></pre></div><p>And now we are able to listen for that attributes validation fail event just like we would for the change event</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomModule</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">MyModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomModule</span><span class="p">();</span>
 
 <span class="nx">MyModule</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;numberValidationFail&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Validation failed setting &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">MyModule</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Validation failed setting &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">attrName</span> <span class="o">+</span> <span class="s1">&#39; to &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">MyModule</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="p">});</span>
 
 <span class="c1">// As usual you need to listen using &#39;after&#39; to be sure attributes were set
-</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;numberChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;New value is: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">)</span><span class="p">;</span> <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;numberChange&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;New value is: &#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span> <span class="p">});</span>
 
-<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="p">;</span> <span class="c1">// Valid value
-</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;to string&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//Invalid value
+<span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span> <span class="c1">// Valid value
+</span><span class="c1"></span><span class="nx">MyModule</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">,</span> <span class="s1">&#39;to string&#39;</span><span class="p">);</span> <span class="c1">//Invalid value
 </span></code></pre></div><p>Wrap all of the above code up in a use() and watch your console to see it in action. As usual If you are having any issues implementing this patch feel free to comment below, mention me <a href="https://twitter.com/fromanegg">@fromanegg</a> or pop into #yui on irc.freenode.net</p>
 
   </article>
@@ -268,169 +268,43 @@
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/11/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/11/">11</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/12/">12</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/13/">13</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/11/">11</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/12/">12</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/13/">13</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/13/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -123,60 +123,60 @@
     </header>
     <p>When using ‘use strict;’ in your scripts you’ll find that you are no longer allowed to overwrite native methods like FileReader() so how do you test that these methods are being called with the appropriate parameters? Lets start with a typical function call involving FileReader() and then modify it to make it easier to test.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
   <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>Pre &lsquo;use strict’; days you could simply stub out the global FileReader() but since that’s no longer an option we need to get a little creative with our code structure. First thing we’re going to do is create a FileReader instance generator function.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
   <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div><p>Then we’ll move the onload callback to a named function.</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">importFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">_readerOnloadHandler</span><span class="p">;</span>
-  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">generateFileReader</span><span class="p">();</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="mi">_</span><span class="nx">readerOnloadHandler</span><span class="p">;</span>
+  <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">generateFileReader</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="kd">function</span> <span class="nx">_readerOnloadHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">function</span> <span class="mi">_</span><span class="nx">readerOnloadHandler</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">processData</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>Now you can test the importFile function and its parts by stubbing out the generateFileReader function to return a basic reader stub and not have to worry about the native method. In the following example I’m using two simple stubbing methods to generate stub functions and methods.</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;parses files&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// Set up the stubs.
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">processStub</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;processData&#39;</span><span class="p">);</span>
     <span class="c1">// The second parameter of the stubMethod is what generateFileReader
 </span><span class="c1"></span>    <span class="c1">// will return when it&#39;s called.
 </span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="nx">stubMethod</span><span class="p">(</span><span class="s1">&#39;generateFileReader&#39;</span><span class="p">,</span> <span class="p">{</span>
       <span class="nx">onload</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+      <span class="nx">readAsText</span><span class="o">:</span> <span class="nx">stubFunction</span><span class="p">();</span>
+    <span class="p">});</span>
     <span class="c1">// Call the public method.
-</span><span class="c1"></span>    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="nx">importFile</span><span class="p">(</span><span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
     <span class="c1">// Make assertions
-</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">reader</span><span class="p">.</span><span class="nx">readAsText</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;/path/to/file&#39;</span><span class="p">);</span>
     <span class="c1">// Call the callback.
-</span><span class="c1"></span>    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">(</span><span class="p">{</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span><span class="p">({</span> <span class="nx">target</span><span class="o">:</span> <span class="p">{</span> <span class="nx">result</span><span class="o">:</span> <span class="s1">&#39;file data&#39;</span> <span class="p">}});</span>
     <span class="c1">// Make assertions
-</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span><span class="p">;</span>
-    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">(</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="s1">&#39;file data&#39;</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">calledOnce</span><span class="p">(),</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">processStub</span><span class="p">.</span><span class="nx">lastArguments</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;file data&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
 </code></pre></div><p>Splitting up the code in this way makes unit testing possible because you are essentially wrapping the native function call in a function which are you are able to stub out. Happy testing!</p>
 
   </article>
@@ -225,7 +225,7 @@ backend haproxy_service
     acl old_url path_beg /post
     reqrep ^([^\ :]*)\ /post/\d+/(.+)/?     \1\ /\2
     redirect prefix / code 301 if old_url
-</code></pre><p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&rdquo; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
+</code></pre><p>To the frontend we added a new acl rule called “old_url” which returns true if the path begins with /post. We then add the conditional &lsquo;if old_url&quot; to the redirect rule and we’re done. After restarting the HAProxy service you’ll be able to use the old url structure and be 301 redirected to the new Ghost syntax urls which also remain functional.</p>
 <p>In trying to resolve this issue I spent many hours reading the HAProxy documentation, reading blog posts and testing. I Even created a <a href="http://serverfault.com/questions/652428/redirect-rewritten-url-using-haproxy">serverfault question</a> which I have now updated with the solution so I hope that this post will save others a bunch of time. As always if you have any questions or comments please comment below or mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
@@ -262,20 +262,20 @@ juju add-relation ghost apache2
 </code></pre><p>That’s it. You have now taken advantage of many peoples domain expertise to develop a cloud environment for your own blog.</p>
 <p>So what if you wanted to use MySQL or any of these other Charms for a different application? That’s the best part these charms are written using the best practices for the particular charm but have easy to interface with hooks. To enable the Ghost charm to communicate with the haproxy charm all I had to write was:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="ch">#!/usr/bin/node
-</span><span class="ch"></span><span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">exec</span><span class="p">;</span>
+</span><span class="ch"></span><span class="kd">var</span> <span class="nx">exec</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="nx">exec</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">port</span><span class="p">,</span> <span class="nx">address</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">storePort</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedPort</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">port</span> <span class="o">=</span> <span class="nx">returnedPort</span><span class="p">;</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;unit-get --format=json private-address&#39;</span><span class="p">,</span> <span class="nx">storeAddress</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">storeAddress</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">returnedAddress</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">address</span> <span class="o">=</span> <span class="nx">returnedAddress</span>
-  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;relation-set port=&#39;</span> <span class="o">+</span> <span class="nx">port</span> <span class="o">+</span> <span class="s1">&#39; hostname=&#39;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;config-get --format=json port&#39;</span><span class="p">,</span> <span class="nx">storePort</span><span class="p">);</span>
 </code></pre></div><p><a href="https://jujucharms.com">Juju charms</a> can be written in anything that can be executed. The Ghost charm was written in JavaScript, the MySQL one in bash. Others use Python, Puppet, Chef, Ansible, even Docker containers can be orchestrated using a Juju Charm.</p>
 <p>Want to run your own wiki:</p>
 <pre><code>juju deploy mediawiki
@@ -343,165 +343,37 @@ You’ll notice that this is strikingly similar to the Flux architecture:</li>
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/4/">4</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/4/">4</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

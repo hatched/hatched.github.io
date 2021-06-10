@@ -30,7 +30,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2013/02/06/using-css-function-image-set-for-high-dpi-displays/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -131,13 +131,13 @@
 <div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
   <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
   <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">)</span><span class="o">;</span>
+<span class="o">);</span>
 </code></pre></div><p>The image-set() CSS function tells the browser that it can choose from multiple images to display depending on the pixel-ratio. Not only will the browser download only the appropriate image but it will also properly scale it.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span><span class="o">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">);</span>
 <span class="nt">background-image</span><span class="o">:</span> <span class="nt">-webkit-image-set</span><span class="o">(</span>
   <span class="nt">url</span><span class="o">(</span><span class="nt">image1x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">1x</span><span class="o">,</span>
   <span class="nt">url</span><span class="o">(</span><span class="nt">image2x</span><span class="p">.</span><span class="nc">jpg</span><span class="o">)</span> <span class="nt">2x</span>
-<span class="o">)</span><span class="o">;</span>
+<span class="o">);</span>
 </code></pre></div><p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
 <p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 

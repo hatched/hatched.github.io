@@ -23,7 +23,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -122,7 +122,7 @@
       
     </header>
     <p>Welcome to v2 of the From An Egg blog!</p>
-<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I'll be releasing the theme sometime in the future. Thanks for stopping by!</p>
+<p>Built with <a href="https://gohugo.io">Hugo</a>, a static site generator built with <a href="https://golang.org/">Go</a>, v2 is considerably faster and nicer to look at than its v1 counterpart which was hosted by Tumblr. This new version is also being served over HTTPS and I&rsquo;ll be releasing the theme sometime in the future. Thanks for stopping by!</p>
 
   </article>
 </section>
@@ -165,7 +165,7 @@
 	<span class="k">$(</span>UGLIFYJS<span class="k">)</span> --screw-ie8 $^ -o <span class="nv">$@</span>
 </code></pre></div><p>This step brought it down from 92KB to 44KB shaving off over 50% of the original size. This is still quite a lot of code for such a simple site so the next step is to add gzip compression for everything being sent. I am using <a href="https://github.com/expressjs/express">expressjs 4.0</a> as the webserver so to add gzip it’s as easy as:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">compression</span> <span class="nx">from</span> <span class="s1">&#39;compression&#39;</span><span class="p">;</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">compression</span><span class="p">());</span>
 </code></pre></div><p>After adding gzip the data sent over the wire went down to an impressive 14KB. That’s only 15% of the original size, a savings of 78KB for a total of about 2 minutes worth of work. This really shows that no matter the size of your website the cost/bennefit of implementing even basic minification and compression is well worth it. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
 
   </article>
@@ -185,14 +185,14 @@
 <p>If you’re like me and don’t like to add more build tools and layers of abstraction than necessary then you’re probably already using Make to build and develop your application, and you’ll be happy to know that using these tools with it is trivial. Make has no way to know when a file has changed until the next time you run make so because of this many have tried something like the following which will run the build target every 2s.</p>
 <pre><code>watch -n 2 make build
 </code></pre><p>Or they will build the loop into the makefile.</p>
-<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.PHONY</span> <span class="err">watch</span>
 <span class="nf">watch</span><span class="o">:</span>
   <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
 </span><span class="se"></span>    make build --silent<span class="p">;</span> <span class="se">\
 </span><span class="se"></span>    sleep 1<span class="p">;</span> <span class="se">\
 </span><span class="se"></span>  <span class="k">done</span>
 </code></pre></div><p>This works, but it’s performing a lot of unneccesary work being run in a loop especially since the file system is able to tell us when a file or directory has been modified using inotify. Instead of automatically looping we wait for a file system event that we’re interested in and then run our build target. In the following code we’re able to create a make target in our makefile which will watch for file changes under our specified directory recursively.</p>
-<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.</span><span class="err">P</span><span class="err">H</span><span class="err">O</span><span class="err">N</span><span class="err">Y</span> <span class="err">w</span><span class="err">a</span><span class="err">t</span><span class="err">c</span><span class="err">h</span>
+<div class="highlight"><pre class="chroma"><code class="language-make" data-lang="make"><span class="err">.PHONY</span> <span class="err">watch</span>
 <span class="nf">watch</span><span class="o">:</span>
   <span class="k">while</span> true<span class="p">;</span> <span class="k">do</span> <span class="se">\
 </span><span class="se"></span>    inotifywait -qr -e modify -e create -e delete -e move app/src<span class="p">;</span> <span class="se">\
@@ -266,8 +266,8 @@ juju upgrade-charm --repository<span class="o">=</span>.
     </header>
     <p>Over my career I’ve written in a number of different programming languages, most of them dynamic. It’s been about 10 years since I last wrote a project from start to finish in a typed language, C++, but recently I’ve been working with Go. It’s safe to say I had become blissfully ignorant of the benefits and challenges of a typed language and in working with Go I found myself really enjoying the explicit declaration of types with regards to stability and code legibility.</p>
 <p>In many JavaScript projects you’ll see something like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="c1">// 5 lines later
 </span><span class="c1"></span>  <span class="nx">myObject</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
   <span class="c1">// 10 lines later
@@ -282,8 +282,8 @@ juju upgrade-charm --repository<span class="o">=</span>.
   <span class="nx">Baz</span> <span class="kt">string</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="nf">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="o">*</span><span class="nx">myObject</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myObject</span><span class="p">{</span><span class="p">}</span>
+<span class="kd">func</span> <span class="nf">dataFiller</span><span class="p">()</span> <span class="o">*</span><span class="nx">myObject</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">myObject</span><span class="p">{}</span>
   <span class="c1">// 5 lines later
 </span><span class="c1"></span>  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="p">=</span> <span class="s">&#34;bar&#34;</span>
   <span class="c1">// 10 lines later
@@ -294,40 +294,40 @@ juju upgrade-charm --repository<span class="o">=</span>.
 </code></pre></div><p>Here you don’t even have to read further than the function declaration to know what the function will return and then you simply have to reference that type in the file to know ahead of time what it’s structure will be.</p>
 <p>Throughout my time as a developer I’ve noticed that it’s quite rare that you cannot predict with 100% certainty what the data structure of your variables will be but, in dynamic languages, we don’t ever seem to outline that structure for people reading and writing the code. So this got me thinking about how this workflow can be adopted in JavaScript to give us the benefits of types using the native language constructs without having to use a compile target like Typescript. In practice it turns out to be quite simple:</p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// Method to convert defined object literal &#39;type&#39;
-</span><span class="c1"></span><span class="c1">// into a &#39;locked down&#39; data store.
+</span><span class="c1">// into a &#39;locked down&#39; data store.
 </span><span class="c1"></span><span class="kd">function</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">stub</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>    
+  <span class="kd">var</span> <span class="nx">stub</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>    
     <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">stub</span><span class="p">,</span> <span class="nx">key</span><span class="p">,</span> <span class="p">{</span>
       <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
       <span class="nx">value</span><span class="o">:</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
-    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span><span class="p">)</span><span class="p">;</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">stub</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">seal</span><span class="p">(</span><span class="nx">stub</span><span class="p">);</span>
   <span class="k">return</span> <span class="nx">stub</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// Your &#39;type&#39; which will be used to create
-</span><span class="c1"></span><span class="c1">// usable data store instances.
+</span><span class="c1">// usable data store instances.
 </span><span class="c1"></span><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">Foo</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
   <span class="nx">Baz</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
-<span class="p">}</span><span class="p">;</span>
+<span class="p">};</span>
 
 <span class="c1">// Fills the object with data.
-</span><span class="c1"></span><span class="c1">// @method dataFiller
-</span><span class="c1"></span><span class="c1">// @return {myObject}
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">myObject</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1">// @method dataFiller
+</span><span class="c1">// @return {myObject}
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">dataFiller</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">createObject</span><span class="p">(</span><span class="nx">myObject</span><span class="p">);</span>
   <span class="c1">// Set values like normal.
 </span><span class="c1"></span>  <span class="nx">data</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
   <span class="nx">data</span><span class="p">.</span><span class="nx">Baz</span> <span class="o">=</span> <span class="s1">&#39;bax&#39;</span><span class="p">;</span>
   <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">fullData</span> <span class="o">=</span> <span class="nx">dataFiller</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">fullData</span> <span class="o">=</span> <span class="nx">dataFiller</span><span class="p">();</span>
 <span class="nx">fullData</span><span class="p">.</span><span class="nx">Foo</span> <span class="o">=</span> <span class="s2">&#34;can Update&#34;</span><span class="p">;</span> <span class="c1">// Updated
 </span><span class="c1"></span><span class="nx">fullData</span><span class="p">.</span><span class="nx">Qux</span> <span class="o">=</span> <span class="s2">&#34;Can&#39;t add new properties&#34;</span><span class="p">;</span> <span class="c1">// Not added
 </span></code></pre></div><p>Following this pattern will allow you to write JavaScript with predefined data type which helps tremendously in readability with minimal amount of additional work. This is just a basic example to show how the typed structure could be applied to JavaScript, the createObject() method could be expanded on to add getters and setters which could enforce the property types and you could even expand this idea to use Go like interfaces following a similar structure. I feel the trivial trade-off in additional lines of code is well worth the structure which is now being enforced. What do you think? Have you written a large JavaScript application before where predefined data structures helped? Let me know in the comments below or on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
@@ -337,163 +337,34 @@ juju upgrade-charm --repository<span class="o">=</span>.
 
   
   
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/3/">3</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item disabled"><span aria-hidden="true">&nbsp;&hellip;&nbsp;</span></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/page/14/">14</a></li>
-    
-    
-    <li class="page-item">
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/3/">3</a>
+  </li>
+  <li class="page-item disabled">
+    <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/page/14/">14</a>
+  </li>
+  <li class="page-item">
     <a href="/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 

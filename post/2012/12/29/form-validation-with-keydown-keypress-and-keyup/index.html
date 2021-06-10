@@ -33,7 +33,7 @@ As with all DOM events there is a generally accepted order to which they fire an
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/12/29/form-validation-with-keydown-keypress-and-keyup/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -145,23 +145,23 @@ The best way to understand these events is an example. Lets say we have a curren
 Note: I am intentionally ignoring the possibility of a user pasting into the field as that’s out of scope of this post.</li>
 </ul>
 <p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/1/embed?output">Simple form validation on user input</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
     <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Get the string value of the charCode.
-</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">)</span><span class="p">,</span>
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
       <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
       <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
       <span class="c1">// Construct what the value will be if the event is not prevented.
-</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
 
   <span class="c1">// Test to make sure the user is inputting only valid characters
 </span><span class="c1"></span>  <span class="c1">// and that the resulting input is valid.
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
   <span class="p">}</span>
 
 <span class="p">}</span>
@@ -173,10 +173,10 @@ Note: I am intentionally ignoring the possibility of a user pasting into the fie
   <span class="c1">// If the user deletes anything, test the value in the input
 </span><span class="c1"></span>  <span class="c1">// again to check for validity.
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span> <span class="o">||</span> <span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span><span class="p">;</span>
+      <span class="nx">toggleUI</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">target</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -199,21 +199,21 @@ Note: I am intentionally ignoring the possibility of a user pasting into the fie
 Ok so now what about keydown? Another example is in order; we’ll take the previous example, but instead of notifying the user that something is wrong, we will prevent them from inputting invalid characters</li>
 </ul>
 <p>Click here to view this simple example on jsbin: <a href="http://jsbin.com/oposij/2/embed?output">Prevent invalid input on form</a></p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">input</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByName</span><span class="p">(</span><span class="s1">&#39;currency-field&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
     <span class="nx">currencyRegex</span> <span class="o">=</span> <span class="sr">/^[0-9]{0,5}(\.[0-9]{0,2})?$/</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">handleKeypress</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Get the string value of the charCode.
-</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">)</span><span class="p">,</span>
+</span><span class="c1"></span>  <span class="kd">var</span> <span class="kr">char</span> <span class="o">=</span> <span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">),</span>
       <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span>
       <span class="nx">inputVal</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span>
       <span class="c1">// Construct what the value will be if the event is not prevented.
-</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>      <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="kr">char</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
 
   <span class="c1">// Test to make sure the user is inputting only valid characters
 </span><span class="c1"></span>  <span class="c1">// and that the resulting input is valid.
-</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="kr">char</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/[0-9.]/</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
   <span class="p">}</span>
 
 <span class="p">}</span>
@@ -227,14 +227,14 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
   <span class="c1">// If the user deletes anything, construct the resulting
 </span><span class="c1"></span>  <span class="c1">// value to determine validity.
 </span><span class="c1"></span>  <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">keyCode</span> <span class="o">===</span> <span class="mi">46</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">value</span> <span class="o">=</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">target</span><span class="p">.</span><span class="nx">selectionStart</span><span class="p">)</span> <span class="o">+</span> <span class="nx">inputVal</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">selectionEnd</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>    
   <span class="k">if</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">)</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">currencyRegex</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>

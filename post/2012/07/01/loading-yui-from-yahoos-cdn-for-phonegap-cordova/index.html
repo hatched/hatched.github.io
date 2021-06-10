@@ -36,7 +36,7 @@ Using the code from the previous post we only need to make minor changes to load
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#cc181e">
-    <meta name="generator" content="Hugo 0.62.1" />
+    <meta name="generator" content="Hugo 0.83.1" />
     <link rel="canonical" href="https://fromanegg.com/post/2012/07/01/loading-yui-from-yahoos-cdn-for-phonegap-cordova/"/>
     <link rel="stylesheet" href="/css/normalize-min.css">
     <link rel="stylesheet" href="/css/styles.css">
@@ -136,40 +136,40 @@ Using the code from the previous post we only need to make minor changes to load
     <p>Loading YUI from Yahoo!’s CDN was one of the most requested features after the previous post <a href="http://fromanegg.com/post/24952800088/guide-to-using-yui-with-phonegap-cordova">Guide to using YUI with PhoneGap (Cordova)</a>. The good news is that it’s very easy to setup but does come with a few drawbacks.</p>
 <p>Using the code from the previous post we only need to make minor changes to load from the CDN.</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Add in the YUI seed file </span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="c">&lt;!--</span><span class="c"> Remove the included local scripts and YUI_CONFIG object
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">1.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui</span><span class="c">-</span><span class="c">file</span><span class="c">-</span><span class="c">2.js&#34;&gt;&lt;/script&gt;
-</span><span class="c">&lt;script type=&#34;text/javascript&#34;&gt;YUI_CONFIG = { bootstrap: false };&lt;/script&gt;</span><span class="c">--&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My First Cordova YUI App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;cordova-1.8.0.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Add in the YUI seed file --&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://yui.yahooapis.com/3.5.1/build/yui/yui-min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="c">&lt;!-- Remove the included local scripts and YUI_CONFIG object
+</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui-file-1.js&#34;&gt;&lt;/script&gt;
+</span><span class="c">&lt;script type=&#34;text/javascript&#34; src=&#34;yui-file-2.js&#34;&gt;&lt;/script&gt;
+</span><span class="c">&lt;script type=&#34;text/javascript&#34;&gt;YUI_CONFIG = { bootstrap: false };&lt;/script&gt;--&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">h1</span><span class="p"></span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;</span><span class="p">/</span><span class="nt">h1</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p"></span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;</span><span class="p">/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">button</span><span class="p"></span><span class="p">&gt;</span>Click Me<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>YUI PhoneGap (Cordova) Example<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Click this button for a surprise<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Click Me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span><span class="p">&gt;</span>
 <span class="c1">// Remove the &#39;load all&#39; flag from the use statement
-</span><span class="c1"></span><span class="c1">// YUI().use(&#39;*&#39;, function(Y) {
-</span><span class="c1"></span><span class="c1">// Request the Node and Event modules
-</span><span class="c1"></span><span class="nx">YUI</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="c1">// YUI().use(&#39;*&#39;, function(Y) {
+</span><span class="c1">// Request the Node and Event modules
+</span><span class="c1"></span><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
-	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span><span class="p">,</span>
-		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">),</span>
+		<span class="nx">header</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">);</span>
 
 	<span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;touchstart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">)</span><span class="p">;</span>
-	<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+		<span class="nx">header</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#00B2EE&#39;</span><span class="p">);</span>
+	<span class="p">});</span>
 
-<span class="p">}</span><span class="p">)</span><span class="p">;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div><p>And that’s it! That will load the YUI seed and loader from Yahoo!’s CDN then load in the Node, Event, and all dependent modules automatically for you. Isn’t loader great?</p>
 <p>But all isn’t perfect, at the beginning I mentioned some drawbacks. In the previous version we were packaging up all of the required assets into the package which will be stored on the device. This will guarantee that those files are always available regardless of the users network connection. Using the remote loading method, once the application loads up it needs to make the request of the remote files before it will become functional. This can cause unnecessary delays in the bootup of the application or cause the application to be entirely useless if there is no network connection. Because of that I don’t recommend using remote loading for core application components. This technique can be very useful during development where your required modules may be changing frequently.</p>
 <p>I’m going to try to keep making these tutorials so if you have anything specific you would find helpful for yourself or others please comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a> or join #yui on irc.freenode.net</p>
