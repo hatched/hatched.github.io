@@ -116,6 +116,36 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/04/07/transparent-links-not-clickable-in-internet-explorer/" itemprop="url">Transparent links not clickable in Internet Explorer</a></h1>
+      
+        <time pubdate content="2013-04-07 17:59:00 -0600 CST" datetime="2013-04-07 17:59:00 -0600 CST">7 April 2013</time>
+      
+    </header>
+    <p>When making a carousel it’s a common practice to not only include navigational arrows outside of the carousel but to also allow the user to click on the left and right side of the photo to navigate forward or backwards. This is typically accomplished by placing two absolutely positioned elements on top of the photo and listen for clicks on those elements to control navigation.</p>
+<p>This is going to work as intended until you try it in IE. This is because transparent links aren’t clickable in Internet Explorer &lt; 10 requiring us to resort to yet another IE workaround.</p>
+<p>Note - this will work properly in all versions of IE if you’re changing the browser mode in the IE10 developer tools. I strongly suggest not testing for older versions of IE using the ‘Browser Mode’ setting in the IE 10 dev tools as there are more than a few things which will fail in the real browsers that don’t in the simulator.</p>
+<p>Visit <a href="http://output.jsbin.com/uhukaq/1">here for a demo</a> in &lt; IE 10 and again in any other browser to see it working.</p>
+<p>There are a few techniques that we can use to make IE recognize the clicks on our anchor tags. The first is to add a transparent 1px background to the anchors. This is going to add another http request, albeit a small one, possibly delaying the loading of the page.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;1px.gif&#34;</span><span class="o">)</span> <span class="nt">0</span> <span class="nt">0</span> <span class="nt">repeat</span><span class="o">;</span>
+</code></pre></div><p>Second is to add one of the following fake url to a background image on the trigger elements. While these will get it working in IE it will cause chrome to throw a console warning that it &lsquo;Failed to load resource’ or &lsquo;Resource interpreted as Image but transferred with MIME type text/html: “about:blank”.’ neither of which are ideal.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;iehack:///&#34;</span><span class="o">);</span>
+<span class="nt">-or-</span>
+<span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="s2">&#34;about:blank&#34;</span><span class="o">);</span>
+</code></pre></div><p>And finally, by setting the background color on the anchor tags and then setting the opacity to 0 we are able to get the desired functionality without any of the side effects previously mentioned.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-color</span><span class="o">:</span> <span class="p">#</span><span class="nn">ffffff</span><span class="o">;</span>
+<span class="nt">filter</span><span class="p">:</span><span class="nd">alpha</span><span class="o">(</span><span class="nt">opacity</span><span class="o">=</span><span class="nt">0</span><span class="o">);</span>
+<span class="nt">opacity</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+</code></pre></div><p>Update: Thanks to an idea from Geo Fili in the comment section you can also embed a 1x1px transparent image into the css.</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">background-image</span><span class="o">:</span> <span class="nt">url</span><span class="o">(</span><span class="nt">data</span><span class="p">:</span><span class="nd">image</span><span class="o">/</span><span class="nt">gif</span><span class="o">;</span><span class="nt">base64</span><span class="o">,</span><span class="nt">R0lGODlhAQABAIAAAAAAAP</span><span class="o">///</span><span class="nt">yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</span><span class="o">);</span>
+</code></pre></div><p>This technique works in all of the modern browsers and I was able to test it successfully back to IE7. If you have the ability to test in IE6 feel free to comment below and let us know if it works there too. And as always If you are having any issues feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/03/18/nfs-between-ubuntu-vm-and-osx-host/" itemprop="url">NFS between Ubuntu vm and OSX host</a></h1>
       
         <time pubdate content="2013-03-18 20:03:00 -0600 CST" datetime="2013-03-18 20:03:00 -0600 CST">18 March 2013</time>
@@ -278,107 +308,6 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 </section>
 
   
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/23/100-pure-css-radial-progress-bar/" itemprop="url">100% pure css radial progress bar</a></h1>
-      
-        <time pubdate content="2013-01-23 15:25:00 -0600 CST" datetime="2013-01-23 15:25:00 -0600 CST">23 January 2013</time>
-      
-    </header>
-    <p>Building any kind of progress bar in pure css is kind of a misnomer because after all it is a representation of some external event, and as such needs to be told what stage to represent. No matter, this is how I went about creating a radial progress bar (or circular progress bar if you prefer) in pure css3 - in a follow-up post I’ll show you how to use javascript to influence the value.</p>
-<p><a href="http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html">Click here to view an example of the pure css radial progress bar.</a></p>
-<p>This will only work on modern browsers which support css3 animations and transforms. If you would like to support older browsers there are plenty of javascript heavy options available. I’m also only including the -webkit prefixed rules for brevity but, using the appropriate prefixes (or lack thereof), this will also work in Internet Explorer 10+, FireFox 5+, Opera 12+.</p>
-<p>Beyond the typical css properties that you should be familiar with I’ll also be using:</p>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/clip">clip</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform">transform</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes">keyframes</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration">animation-duration</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay">animation-delay</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name">animation-name</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count">animation-iteration-count</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode">animation-fill-mode</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function">animation-timing-function</a></li>
-</ul>
-<p>The markup is very light with only a wrapper and two divs which represent the progress. You’ll notice that I’m using data-attributes instead of using classes for the animation selectors. I do this because I feel that animations are more representative of a process than styling.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;wrapper&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base wrapper&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base left&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;circle&#34;</span> <span class="na">data-anim</span><span class="o">=</span><span class="s">&#34;base right&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>First our basic styles.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">wrapper</span> <span class="p">{</span>
-  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span> <span class="c">/* Set the size of the progress bar */</span>
-  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span> <span class="c">/* Enable clipping */</span>
-  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">);</span> <span class="c">/* Hide half of the progress bar */</span>
-<span class="p">}</span>
-<span class="c">/* Set the sizes of the elements that make up the progress bar */</span>
-<span class="p">.</span><span class="nc">circle</span> <span class="p">{</span>
-  <span class="k">width</span><span class="p">:</span> <span class="mi">80</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">height</span><span class="p">:</span> <span class="mi">80</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">border</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">green</span><span class="p">;</span>
-  <span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
-  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
-  <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="mi">0</span><span class="kt">px</span><span class="p">,</span> <span class="mi">50</span><span class="kt">px</span><span class="p">,</span> <span class="mi">100</span><span class="kt">px</span><span class="p">,</span> <span class="mi">0</span><span class="kt">px</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></div><p>Then onto the animation rules.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Using the data attributes for the animation selectors. */</span>
-<span class="c">/* Base settings for all animated elements */</span>
-<span class="nt">div</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">base</span><span class="o">]</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">animation-iteration-count</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span>  <span class="c">/* Only run once */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-fill-mode</span><span class="p">:</span> <span class="kc">forwards</span><span class="p">;</span> <span class="c">/* Hold the last keyframe */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-timing-function</span><span class="p">:</span><span class="kc">linear</span><span class="p">;</span> <span class="c">/* Linear animation */</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">wrapper</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">wrapper</span><span class="o">]</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mf">0.01</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Complete keyframes asap */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-delay</span><span class="p">:</span> <span class="mi">3</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Wait half of the animation */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="n">close-wrapper</span><span class="p">;</span> <span class="c">/* Keyframes name */</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">left</span><span class="o">]</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mi">6</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Full animation time */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="kc">left</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">circle</span><span class="o">[</span><span class="nt">data-anim</span><span class="o">~=</span><span class="nt">right</span><span class="o">]</span> <span class="p">{</span>
-  <span class="kp">-webkit-</span><span class="k">animation-duration</span><span class="p">:</span> <span class="mi">3</span><span class="kt">s</span><span class="p">;</span> <span class="c">/* Half animation time */</span>
-  <span class="kp">-webkit-</span><span class="k">animation-name</span><span class="p">:</span> <span class="kc">right</span><span class="o">-</span><span class="n">spin</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>And finally, the keyframes.</p>
-<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="c">/* Rotate the right side of the progress bar from 0 to 180 degrees */</span>
-<span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">right-spin</span> <span class="p">{</span>
-  <span class="nt">from</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nt">to</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">180</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="c">/* Rotate the left side of the progress bar from 0 to 360 degrees */</span>
-<span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">left-spin</span> <span class="p">{</span>
-  <span class="nt">from</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="nt">to</span> <span class="p">{</span>
-    <span class="kp">-webkit-</span><span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="c">/* Set the wrapper clip to auto, effectively removing the clip */</span>
-<span class="p">@</span><span class="k">-webkit-keyframes</span> <span class="nt">close-wrapper</span> <span class="p">{</span>
-  <span class="nt">to</span> <span class="p">{</span>
-    <span class="k">clip</span><span class="p">:</span> <span class="nb">rect</span><span class="p">(</span><span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">,</span> <span class="kc">auto</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>This works by creating two elements with circular borders and then hiding half of each element and storing those underneath the clip of the wrapper div. I animate a css transform to rotate both elements at the same rate until the 50% mark, at which point the first element stops, the wrapper clip is removed, and the second element keeps going to display the remaining 50%. Without javascript and some outside event influencing the display values this is probably more of a pure css loading indicator so in a follow-up post I’ll show you how to use javascript to influence the value of progress bar.</p>
-<p>Click here to view an example of the <a href="http://examples.fromanegg.com/pure-css3-radial-progress-bar-examples.html">pure css circular progress bar</a></p>
-<p>I haven’t seen this approach used elsewhere yet so if you come across any other pure css radial progress bars or if you end up using this technique I’d very much appreciate if you would let me know so I can check them out. Any questions please comment below or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
   
 <ul class="pagination">
   <li class="page-item">
@@ -412,13 +341,13 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/14/">14</a>
+    <a class="page-link" href="/page/15/">15</a>
   </li>
   <li class="page-item">
     <a href="/page/10/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/15/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

@@ -116,6 +116,34 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/" itemprop="url">Opening changed files in VSCode</a></h1>
+      
+        <time pubdate content="2021-06-11 10:00:00 -0600 CST" datetime="2021-06-11 10:00:00 -0600 CST">11 June 2021</time>
+      
+    </header>
+    <p>A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&hellip;There must be a better way! I wanted to check out a branch and open all of the changed files in vscode automatically. After a bit of poking around I found the <code>git diff</code> flag <code>--name-only</code> which returns the list of changed files. The command ended up like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">code -n . <span class="sb">`</span>git --no-pager diff --name-only master<span class="sb">`</span>
+</code></pre></div><h4 id="command-breakdown">Command breakdown</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">code -n .
+</code></pre></div><p>Opens up a new window of vscode with the current project folder open in the &lsquo;explorer&rsquo; section.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git --no-pager
+</code></pre></div><p>disables the pager that git uses by default in zsh (you may not need this flag)</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">--name-only master
+</code></pre></div><p>displays a list of files that have changed from master.</p>
+<p>Now the next logical step is to make this a bash command and add some customization. Below I&rsquo;ve defined the command as a function with the ability to define an argument for the branch name and another to filter the list of files. I&rsquo;ve found the filter to be especially useful when trying to avoid things like test metadata and lock file updates.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># vscodedevsync [branch] [filter regex]</span>
+<span class="k">function</span> vscodedevsync<span class="o">()</span> <span class="o">{</span>
+  code -n . <span class="sb">`</span>git --no-pager diff --name-only <span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">master</span><span class="si">}</span> <span class="p">|</span> grep -o <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span><span class="sb">`</span>
+<span class="o">}</span>
+</code></pre></div><p>Anyways, hope this helps add a bit of efficiency into your day.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/" itemprop="url">Use Ubuntu on Mac OS with Multipass</a></h1>
       
         <time pubdate content="2020-02-28 16:28:00 -0600 CST" datetime="2020-02-28 16:28:00 -0600 CST">28 February 2020</time>
@@ -392,37 +420,6 @@ component validation failed: <span class="m">1</span> error found
 </section>
 
   
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/13/secure-github-pages-with-ssl-tls/" itemprop="url">Secure GitHub pages with SSL/TLS</a></h1>
-      
-        <time pubdate content="2016-11-13 18:19:00 -0600 CST" datetime="2016-11-13 18:19:00 -0600 CST">13 November 2016</time>
-      
-    </header>
-    <p>At the time of writing, this blog is hosted on GitHub and they do not support serving https on custom domains. But because there are many reasons why every website should be hosted under https this guide will show you how I got https for this blog on GitHub.</p>
-<p>First you&rsquo;ll need a couple things:</p>
-<ul>
-<li>A website hosted on <a href="https://pages.github.com/">GitHub Pages</a> with a custom domain.</li>
-<li>An account with <a href="https://www.cloudflare.com/">Cloudflare</a>.</li>
-</ul>
-<p>Then follow these steps:</p>
-<ol>
-<li>After signing up with Cloudflare you&rsquo;ll be prompted to add your domain, at which point it&rsquo;ll scan your DNS records automatically. You&rsquo;ll want to make sure that it has all of them and that they are correct by cross referencing them with your current DNS provider.</li>
-<li>Switch to the Crypto tab and change the <code>SSL type</code> to <code>Flexible</code>.</li>
-<li>Update the Nameservers at your domain registrar to point to the ones provided by Cloudflare in your setup steps.</li>
-<li>Redirect all of your http traffic to https traffic using Cloudflare by adding a <code>Page Rule</code>. You&rsquo;ll want to add a rule which looks like <code>http://*example.com/*</code> and then add a setting for <code>Always Use HTTPS</code>. After clicking Save and Deploy all requests to the http version of your site will be 301 redirected to the https version of your site. <a href="https://support.cloudflare.com/hc/en-us/articles/200170536-How-do-I-redirect-all-visitors-to-HTTPS-SSL-">Cloudflare knowledge base</a></li>
-<li>Set up a canonical url on each page so that web crawlers will know that any path which gets the user to the site that the canonical url is the primary path that should be stored. To do that add <code>&lt;link rel=&quot;canonical&quot; href=&quot;http://example.com/path/to/post&quot;/&gt;</code> to the head of each page.</li>
-<li>Update the paths for your assets so that they are requested from the https path or browsers won&rsquo;t load them.</li>
-</ol>
-<p>Once the DNS records propagate you&rsquo;ll be able to visit your website by visiting <code>https://example.com</code>. You might notice that you&rsquo;ll still be using the github.com certificate for a bit still, I found that it took a few hours for a new certificate to be issued from Cloudflare.</p>
-<p>The one caveat here is that the connection between Cloudflare and GitHub is not under https. However these steps will still protect your users from an unscrupulous ISP and users at coffee shops. But as GitHub themselves say &ldquo;<a href="https://help.github.com/articles/what-is-github-pages/">GitHub Pages sites shouldn&rsquo;t be used for sensitive transactions like sending passwords or credit card numbers.</a>&rdquo; anyways.</p>
-<p>I hope you enjoyed this post, if you have any questions or comments let me know on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or comment below. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
   
 <ul class="pagination">
   <li class="page-item">
@@ -444,13 +441,13 @@ component validation failed: <span class="m">1</span> error found
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/14/">14</a>
+    <a class="page-link" href="/page/15/">15</a>
   </li>
   <li class="page-item">
     <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/15/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

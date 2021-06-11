@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+      <title>Opening changed files in VSCode &middot; From An Egg</title>
+      <meta name="twitter:title" content="Opening changed files in VSCode" />
+      <meta property="og:title" content="Opening changed files in VSCode" />
+    
+    <link rel="icon" type="image/png" alt="author's image" href="/images/me.png">
+    
+      
+        <meta name="description" itemprop="description" content="A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&hellip;There must be a better way!">
+        <meta name="twitter:description" content="A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&hellip;There must be a better way!" />
+        <meta property="og:description" content="A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&hellip;There must be a better way!" />
+        
+          <meta property="article:published_time" content="2021-06-11 10:00:00 -0600 CST">
+        
+      
+    
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@fromanegg" />
+    <meta name="twitter:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta property="og:url" content="https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://fromanegg.com/images/me.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#cc181e">
+    <meta name="generator" content="Hugo 0.83.1" />
+    <link rel="canonical" href="https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/"/>
+    <link rel="stylesheet" href="/css/normalize-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/manni.css">
+    <link href="/rss" rel="alternate" type="application/rss+xml" title="From An Egg" />
+  </head>
+  <body>
+    <div class="top-bar"></div>
+
+  <nav>
+  <img src="/images/me.png"></img>
+  <h1 itemprop="author">Jeff Pihach</h1>
+  <label for="menu-toggle" class="icon-menu">Menu</label>
+  <input type="checkbox" id="menu-toggle"/>
+  <div class="nav-wrapper">
+    <ul>
+      <li class=""><a href="/" class="icon-home">Home</a></li>
+      <li class=""><a rel="author" href="/about" class="icon-help">About</a></li>
+      <li class=""><a href="/posts" class="icon-box">Posts</a></li>
+      <li class=""><a href="/projects" class="icon-cubes">Projects</a></li>
+      <li class="">
+        <label for="tags-toggle">
+          <span class="icon-tag">Tags</span>
+          <span class="icon-down-dir arrow"></span>
+        </label>
+        <input type="checkbox" id="tags-toggle"/>
+        <ul class="tag-list">
+          
+          
+            <li><a href="/tags/android">android</a></li>
+          
+            <li><a href="/tags/book-review">book-review</a></li>
+          
+            <li><a href="/tags/cordova">cordova</a></li>
+          
+            <li><a href="/tags/css">css</a></li>
+          
+            <li><a href="/tags/development">development</a></li>
+          
+            <li><a href="/tags/go">go</a></li>
+          
+            <li><a href="/tags/hatched-links">hatched-links</a></li>
+          
+            <li><a href="/tags/html">html</a></li>
+          
+            <li><a href="/tags/javascript">javascript</a></li>
+          
+            <li><a href="/tags/juju">juju</a></li>
+          
+            <li><a href="/tags/juju-gui">juju-gui</a></li>
+          
+            <li><a href="/tags/linux">linux</a></li>
+          
+            <li><a href="/tags/node.js">node.js</a></li>
+          
+            <li><a href="/tags/ops">ops</a></li>
+          
+            <li><a href="/tags/osx">osx</a></li>
+          
+            <li><a href="/tags/phonegap">phonegap</a></li>
+          
+            <li><a href="/tags/python">python</a></li>
+          
+            <li><a href="/tags/react">react</a></li>
+          
+            <li><a href="/tags/testing">testing</a></li>
+          
+            <li><a href="/tags/ubuntu">ubuntu</a></li>
+          
+            <li><a href="/tags/video">video</a></li>
+          
+            <li><a href="/tags/yui">yui</a></li>
+          
+        </ul>
+      </li>
+      <li><a href="https://fromanegg.com/rss.xml" class="icon-rss">RSS</a></li>
+    </ul>
+    <hr></hr>
+    <h3>Social</h3>
+    <ul class="social-list">
+      <li><a href="https://github.com/hatched" class="icon-github" target="_blank">GitHub</a></li>
+      <li><a href="https://twitter.com/fromanegg" class="icon-twitter" target="_blank">Twitter</a></li>
+      <li><a href="https://www.youtube.com/channel/UCq2MDZ8IWAV0Jyp6FuwoJXA" class="icon-youtube-play" target="_blank">YouTube</a></li>
+      <li><a href="http://stackexchange.com/users/3378894" class="icon-stackoverflow" target="_blank">StackExchange</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/" itemprop="url">Opening changed files in VSCode</a></h1>
+      
+        <time pubdate content="2021-06-11 10:00:00 -0600 CST" datetime="2021-06-11 10:00:00 -0600 CST">11 June 2021</time>
+      
+    </header>
+    <p>A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&hellip;There must be a better way! I wanted to check out a branch and open all of the changed files in vscode automatically. After a bit of poking around I found the <code>git diff</code> flag <code>--name-only</code> which returns the list of changed files. The command ended up like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">code -n . <span class="sb">`</span>git --no-pager diff --name-only master<span class="sb">`</span>
+</code></pre></div><h4 id="command-breakdown">Command breakdown</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">code -n .
+</code></pre></div><p>Opens up a new window of vscode with the current project folder open in the &lsquo;explorer&rsquo; section.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git --no-pager
+</code></pre></div><p>disables the pager that git uses by default in zsh (you may not need this flag)</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">--name-only master
+</code></pre></div><p>displays a list of files that have changed from master.</p>
+<p>Now the next logical step is to make this a bash command and add some customization. Below I&rsquo;ve defined the command as a function with the ability to define an argument for the branch name and another to filter the list of files. I&rsquo;ve found the filter to be especially useful when trying to avoid things like test metadata and lock file updates.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># vscodedevsync [branch] [filter regex]</span>
+<span class="k">function</span> vscodedevsync<span class="o">()</span> <span class="o">{</span>
+  code -n . <span class="sb">`</span>git --no-pager diff --name-only <span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">master</span><span class="si">}</span> <span class="p">|</span> grep -o <span class="s2">&#34;</span><span class="nv">$2</span><span class="s2">&#34;</span><span class="sb">`</span>
+<span class="o">}</span>
+</code></pre></div><p>Anyways, hope this helps add a bit of efficiency into your day.</p>
+
+  </article>
+</section>
+
+  <section class="article-list tags-list">
+  <article>
+    
+    <ul class="icon-tag">
+      
+        <li><a href="/tags/development">development</a></li>
+      
+        <li><a href="/tags/linux">linux</a></li>
+      
+        <li><a href="/tags/osx">osx</a></li>
+      
+    </ul>
+    
+  </article>
+</section>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-28934249-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

@@ -116,6 +116,34 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2013/11/09/a-juju-charm-designed-to-fail/" itemprop="url">A Juju Charm designed to fail</a></h1>
+      
+        <time pubdate content="2013-11-09 14:06:00 -0600 CST" datetime="2013-11-09 14:06:00 -0600 CST">9 November 2013</time>
+      
+    </header>
+    <p>While writing code for the next features in the Juju GUI I needed to test instances when charms would fail in various stages of their setup or execution. After a lot of messing around it became apparent that most charms are just too stable for this kind of testing so, I wrote a <a href="https://jujucharms.com/u/hatch/failtester/precise/7">Juju Charm</a> which is designed to fail in a large number of hooks depending on the configuration set on deploy (or later), and can relate to itself to test relation failures.</p>
+<p><img src="/images/a-juju-charm-designed-to-fail-1.jpg" alt=""></p>
+<p>The charm, innovatively named ‘failtester’, can be found on <a href="https://jujucharms.com">jujucharms.com</a>. In depth details on proper use can be found in its README but it’s really simple to use:</p>
+<h4 id="note-this-charm-should-only-be-used-for-juju-or-juju-gui-development-it-has-no-other-functionality-than-to-fail-predictably">NOTE: THIS CHARM SHOULD ONLY BE USED FOR JUJU OR JUJU GUI DEVELOPMENT. IT HAS NO OTHER FUNCTIONALITY THAN TO FAIL PREDICTABLY.</h4>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">// bootstrap your juju environment
+juju bootstrap
+
+// deploy the failtester charm
+juju deploy cs:~hatch/precise/failtester
+
+// <span class="nb">set</span> the failure <span class="nb">type</span> you want to occur
+// the failtester charm will now fail in its install hook
+juju <span class="nb">set</span> failtester <span class="nv">install</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div><h4 id="known-issue">KNOWN ISSUE</h4>
+<p>The charm settings are at the service level which means that any failures happen to every unit of the failtester service. The fix for this should be fairly simple to do but I don’t have any use for it at this time. If you need it feel free to ask or issue a pull request.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2013/10/01/juju-gui-0-10-1-released-bug-fixes-and-updates/" itemprop="url">Juju GUI 0.10.1 Released - Bug fixes and updates</a></h1>
       
         <time pubdate content="2013-10-01 17:10:00 -0600 CST" datetime="2013-10-01 17:10:00 -0600 CST">1 October 2013</time>
@@ -202,21 +230,6 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
 </section>
 
   
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/08/19/juju-for-osx-is-now-available-via-homebrew/" itemprop="url">Juju for OSX is now available via Homebrew</a></h1>
-      
-        <time pubdate content="2013-08-19 13:36:00 -0600 CST" datetime="2013-08-19 13:36:00 -0600 CST">19 August 2013</time>
-      
-    </header>
-    <p>About a month ago I posted that Juju for OSX was available on GitHub. Well thanks to a <a href="https://github.com/Homebrew/legacy-homebrew/pull/21858">Homebrew pull request</a> by Rodrigo Chacon it’s now available for easy install via Homebrew!</p>
-<p>For those who don’t know, <a href="https://jujucharms.com">Juju</a> enables you to build entire environments in the cloud with only a few commands on public clouds like Amazon Web Services and HP Cloud, to private clouds built on OpenStack, or raw bare metal via MAAS. <a href="https://jujucharms.com">Additional documentation can be found here</a> and if you want to jump right in and see how easy it is you can play with the <a href="https://jujucharms.com">Juju GUI here</a>.</p>
-
-  </article>
-</section>
-
-  
   
 <ul class="pagination">
   <li class="page-item">
@@ -250,13 +263,13 @@ Additional information on Juju can be found on <a href="https://jujucharms.com">
     <span aria-hidden="true">&nbsp;&hellip;&nbsp;</span>
   </li>
   <li class="page-item">
-    <a class="page-link" href="/page/14/">14</a>
+    <a class="page-link" href="/page/15/">15</a>
   </li>
   <li class="page-item">
     <a href="/page/7/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
   </li>
   <li class="page-item">
-    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/15/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

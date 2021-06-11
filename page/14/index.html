@@ -116,6 +116,103 @@
     <section class="article-list">
   <article itemscope itemtype="http://schema.org/BlogPosting">
     <header>
+      <h1><a href="https://fromanegg.com/post/2012/02/26/how-to-make-a-nodejs-static-file-server-part-1/" itemprop="url">How to make a Node.js static file server - Part 1</a></h1>
+      
+        <time pubdate content="2012-02-26 19:19:00 -0600 CST" datetime="2012-02-26 19:19:00 -0600 CST">26 February 2012</time>
+      
+    </header>
+    <p>This multi-part series will take you through everything from how to get a basic Node.js static file server going, to different way’s to deliver the content to the user, common pitfalls, caching, and when to use Node.js to serve files vs other solutions.</p>
+<p>I’m going to assume you already have Node.js up running on your computer and that you know javascript. This code was developed on v0.6.1-pre and I will make an effort to update it and the version number as things change with Node.js.</p>
+<p>First thing your going to do is create a new file which will house our server code.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">touch server.js
+</code></pre></div><p>There are a few native Node.js modules that we’ll need and a few more will be added as this series continues.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">),</span>
+    <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">),</span>
+    <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">),</span>
+    <span class="nx">util</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;util&#39;</span><span class="p">);</span>
+</code></pre></div><p>We are pulling in the following modules:</p>
+<ul>
+<li><a href="https://nodejs.org/docs/latest/api/http.html">HTTP</a>: Low level API that handles the parsing of streams and handling of the HTTP messages.</li>
+<li><a href="https://nodejs.org/docs/latest/api/path.html">Path</a>: A string manipulation library, also allows you to check the file system for the existence of a file.</li>
+<li><a href="https://nodejs.org/docs/latest/api/fs.html">File System</a>: Provides simple wrappers around standard POSIX functions for file IO.</li>
+<li><a href="https://nodejs.org/docs/latest/api/util.html">Utilities</a>: Extra utility features.</li>
+</ul>
+<h3 id="create-the-server">Create the server</h3>
+<p>Within the scope of this part of the tutorial we only need to access the HTTP module once for its <a href="https://nodejs.org/docs/latest/api/http.html#http.createServer">createServer()</a> method. We create a HTTP server which calls the <code>_handler</code> callback when a <a href="https://nodejs.org/docs/latest/api/http.html#event_request_">request event</a> is made and start listening on a specified port.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="mi">_</span><span class="nx">handler</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Server running at http://127.0.0.1:3000/&#39;</span><span class="p">);</span>
+</code></pre></div><p>Now set up the request handler which will house all of the code that handles each and every request that comes into your server. We’ll also define some variables which we’ll use later.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="mi">_</span><span class="nx">handler</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="s2">&#34;..&#34;</span><span class="p">,</span>
+        <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nx">contentType</span> <span class="o">=</span> <span class="s2">&#34;text/plain&#34;</span><span class="p">,</span>
+        <span class="nx">filePath</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+
+        <span class="c1">//All following code goes here
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>Because this is strictly a file server we only want to support the GET method and reject any other requests. To do this we need to reference the request object passed to our callback, an instance of <a href="https://nodejs.org/docs/latest/api/http.html#http.ServerRequest">http.ServerRequest</a> stored in <code>req</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">!==</span> <span class="s1">&#39;GET&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//If the request method doesn&#39;t equal &#39;GET&#39;
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="c1">//Write the HTTP status to the response head
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Unsupported request method&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">);</span> <span class="c1">//End and send the response
+</span><span class="c1"></span>    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>On most web servers when you send a request to the server without a file you will get some type of default file usually the index.html. Because this is a file server, if they aren’t requesting a file, they are going to get an error. After we determine that they are requesting a file we do simple string concatenation to build the file path and then pass it to the <a href="https://nodejs.org/docs/latest/api/path.html#path.exists">path.exists()</a> method. This method will test the file path for existence and then pass that information to the callback, <code>serveRequestedFile</code> in this case.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span> <span class="o">!==</span> <span class="s1">&#39;./&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">filePath</span> <span class="o">=</span> <span class="nx">root</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
+    <span class="nx">path</span><span class="p">.</span><span class="nx">exists</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="nx">serveRequestedFile</span><span class="p">);</span>		
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;A file must be requested&#39;</span><span class="p">,</span> <span class="s1">&#39;utf8&#39;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Stream your files</p>
+<p>Now that we have set up the http server, verified that they are using the correct method, and that they are requesting a file, we need to serve that file to them. To do this we will use our previously mentioned <code>serveRequestedFile()</code> function which will receive the status of our file inquiry which we need to test before proceeding.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">serveRequestedFile</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">file</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//Following code will go here
+</span><span class="c1"></span>
+<span class="p">}</span>
+</code></pre></div><p>Because we aren’t implementing any caching mechanism yet we don’t want to read the whole file into memory before serving. To get around that we use the File System’s <a href="https://nodejs.org/docs/latest/api/fs.html#fs.createReadStream">fs.createReadStrem()</a> method. This method returns a <a href="https://nodejs.org/docs/latest/api/streams.html#readable_Stream">Readable Stream</a> which emits a number of events. We will set up an error event handler in the event there is a server error and the file cannot be served to the user.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">stream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">filePath</span><span class="p">);</span>
+
+<span class="nx">stream</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div><p>Before we send the data to the user we should set the files mime type. For simplicity sake I have included the mime object within the function itself. On a true file server you would likely import a much larger mime list.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">mimeTypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;.js&#39;</span> <span class="o">:</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.css&#39;</span> <span class="o">:</span> <span class="s1">&#39;text/css&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;.gif&#39;</span> <span class="o">:</span> <span class="s1">&#39;image/gif&#39;</span>
+<span class="p">}</span>
+
+<span class="nx">contentType</span> <span class="o">=</span> <span class="nx">mimeTypes</span><span class="p">[</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">filePath</span><span class="p">)];</span>
+</code></pre></div><p>We have now verified that the file exists, created a stream instance for the file in question, set up basic error handling, and found the files mime type. The only thing left is to actually send the file to the user. We first set the content type and the status in he header then use Utilities <a href="https://nodejs.org/docs/latest/api/util.html#util.pump">util.pump()</a> method to push the previously initiated stream to the user. The pump method reads the data from the readable stream <code>stream</code> and sends it to the writable stream <code>res</code>. If there is an error in this process or the stream is closed the third arugment, the callback, is called.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="nx">contentType</span><span class="p">);</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+
+<span class="nx">util</span><span class="p">.</span><span class="nx">pump</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Only called when the res is closed or an error occurs
+</span><span class="c1"></span>    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div><p>Start the server and start serving files!</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">node server.js
+</code></pre></div><p>I hope you enjoyed the first part of this series and were able to get your own file server up and running. I have included a <a href="https://gist.github.com/hatched/1920353">working example</a> of the above code if you want to see it in its entirety. If you need further help feel free to comment below, mention me on <a href="https://twitter.com/fromanegg">twitter</a>, or join #Node.js on irc.freenode.net.</p>
+
+  </article>
+</section>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
       <h1><a href="https://fromanegg.com/post/2012/02/06/handling-module-load-errors-with-yui-loader/" itemprop="url">Handling module load errors with YUI Loader</a></h1>
       
         <time pubdate content="2012-02-06 15:50:00 -0600 CST" datetime="2012-02-06 15:50:00 -0600 CST">6 February 2012</time>
@@ -359,27 +456,6 @@
 </section>
 
   
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/projects/" itemprop="url">Projects</a></h1>
-      
-    </header>
-    <h4 id="active">Active</h4>
-<ul>
-<li><a href="https://github.com/canonical-web-and-design/jaas-dashboard/">JAAS Dashboard</a> - A Dashboard for Juju and JAAS</li>
-</ul>
-<h4 id="bit-rot">Bit Rot</h4>
-<ul>
-<li><a href="http://depotjs.com">Depot.JS</a> - Small, modular, &amp; fast JavaScript datastore.</li>
-<li><a href="https://github.com/juju/juju-gui">Juju GUI</a> - A web-based GUI for Juju.</li>
-<li><a href="http://fromanegg.com/yui-popup-calendar">YUI Popup Calendar</a> - Date picker for YUI3.</li>
-</ul>
-
-  </article>
-</section>
-
-  
   
 <ul class="pagination">
   <li class="page-item">
@@ -406,11 +482,14 @@
   <li class="page-item active">
     <a class="page-link" href="/page/14/">14</a>
   </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  <li class="page-item">
+    <a class="page-link" href="/page/15/">15</a>
   </li>
   <li class="page-item">
-    <a href="/page/14/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+    <a href="/page/15/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/page/15/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
   </li>
 </ul>
 

@@ -6,11 +6,11 @@
     <description>Recent content in Tags on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Jun 2021 10:00:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>development</title>
       <link>https://fromanegg.com/tags/development/</link>
-      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      <pubDate>Fri, 11 Jun 2021 10:00:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/development/</guid>
       <description></description>
@@ -19,9 +19,18 @@
     <item>
       <title>linux</title>
       <link>https://fromanegg.com/tags/linux/</link>
-      <pubDate>Fri, 28 Feb 2020 16:28:00 -0600</pubDate>
+      <pubDate>Fri, 11 Jun 2021 10:00:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>osx</title>
+      <link>https://fromanegg.com/tags/osx/</link>
+      <pubDate>Fri, 11 Jun 2021 10:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/tags/osx/</guid>
       <description></description>
     </item>
     
@@ -103,15 +112,6 @@
       <pubDate>Tue, 17 Jun 2014 13:23:00 -0600</pubDate>
       
       <guid>https://fromanegg.com/tags/juju-gui/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>osx</title>
-      <link>https://fromanegg.com/tags/osx/</link>
-      <pubDate>Wed, 09 Apr 2014 20:09:00 -0600</pubDate>
-      
-      <guid>https://fromanegg.com/tags/osx/</guid>
       <description></description>
     </item>
     

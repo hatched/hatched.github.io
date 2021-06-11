@@ -6,7 +6,16 @@
     <description>Recent content in linux on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 28 Feb 2020 16:28:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Jun 2021 10:00:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/tags/linux/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Opening changed files in VSCode</title>
+      <link>https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/</link>
+      <pubDate>Fri, 11 Jun 2021 10:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/</guid>
+      <description>A significant portion of my day to day activities are based around code reviews and helping debug issues with other developers. When doing this I will usually open up all of the files that have changed between the current branch and master so that I can get an understanding of the problem as a whole. After a decade of doing this I finally got sick of doing it manually&amp;hellip;There must be a better way!</description>
+    </item>
+    
     <item>
       <title>Use Ubuntu on Mac OS with Multipass</title>
       <link>https://fromanegg.com/post/2020/02/28/use-ubuntu-on-mac-os-with-multipass/</link>
