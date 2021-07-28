@@ -91,6 +91,8 @@
           
             <li><a href="/tags/testing">testing</a></li>
           
+            <li><a href="/tags/typescript">typescript</a></li>
+          
             <li><a href="/tags/ubuntu">ubuntu</a></li>
           
             <li><a href="/tags/video">video</a></li>
@@ -111,6 +113,58 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/" itemprop="url">How To: Semantic blog markup</a></h1>
+      
+        <time pubdate content="2016-11-22 21:23:26 -0600 CST" datetime="2016-11-22 21:23:26 -0600 CST">22 November 2016</time>
+      
+    </header>
+    <p>After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
+<p>You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Description of post&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;canonical&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://example.com/path/to/post&#34;</span><span class="p">/&gt;</span>
+</code></pre></div><p>HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the <code>section</code> and <code>article</code> tags. The <code>section</code> tag represents a generic section of the document, like a list of articles. The <code>article</code> tag represents the actual post content including the title, publication date, content, etc.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+    Post content.
+  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</code></pre></div><p>This doesn&rsquo;t however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
+<p>Because this is a blog post we&rsquo;ll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you&rsquo;re specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you&rsquo;re wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/BlogPosting&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
+</code></pre></div><p>The title is defined using the <a href="http://schema.org/name">name</a> tag and the permalink is defined using the <a href="http://schema.org/url">url</a> tag.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</code></pre></div><p>To indicate the date that the content was first published we use the <a href="http://schema.org/datePublished">datePublished</a> tag supplying the datetime value.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;datePublished&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
+</code></pre></div><p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it&rsquo;s the <a href="http://schema.org/author">author</a> tag.</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</code></pre></div><p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you&rsquo;ll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
+<p>The Twitter card metadata fields are as follows (taken from their documentation):</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:card&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;summary&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:site&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;@flickr&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Small Island Developing States Photo Submission&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;View the album on Flickr.&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&#34;</span> <span class="p">/&gt;</span>
+</code></pre></div><p>And the Facebook Open Graph data meta fields are (taken from their documentation):</p>
+<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:url&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://www.example.com/post/1234&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;article&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;When Great Minds Don’t Think Alike&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;How much does culture influence creative thinking?&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://example.com/image.jpg&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;article:published_time&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>
+</code></pre></div><p>Thanks for reading, do you have any other tips for proper blog markup? Let me know below!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -231,57 +285,6 @@
 </span><span class="se"></span>  <span class="k">done</span>
 </code></pre></div><p>This works by creating an infinite loop which is started when you run the watch target. Before the first loop can finish it hits inotifywait which sets up listeners on all of the files and directories in your app/src directory. These listeners are waiting for any files to be modified, created, deleted, or moved in or out of app/src/…. When a file or directory changes inotifywait lets the loop continue triggering the call to your build target. That target executes in its entirety building only the file(s) which changed (assuming you’ve properly set up your makefile) and then the loop starts again with inotifywait waiting for those files to change again.</p>
 <p>Using this technique will allow you to create an easy and efficient file change watcher for your makefile without too many additional tools. If you have any questions or comments leave them in the comments below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2015/06/13/using-juju-for-development/" itemprop="url">Using Juju for development</a></h1>
-      
-        <time pubdate content="2015-06-13 16:11:00 -0600 CST" datetime="2015-06-13 16:11:00 -0600 CST">13 June 2015</time>
-      
-    </header>
-    <p>Juju works great for software development involving simple environments and is amazing for complex environments. A recent question on Ask Ubuntu <a href="http://askubuntu.com/questions/635758/is-juju-a-suitable-tool-for-development-as-well-as-deployment">“Is Juju a suitable tool for development as well as deployment?”</a> made me realize that we use Juju for development every day but there really isn’t much documentation on the subject.</p>
-<p>For the rest of this post I’m going to assume that you are already familiar with the concept of Juju and what problems it solves on the deployment side of things. If you aren’t, I recommend reading an earlier post of mine <a href="http://fromanegg.com/post/97035773367/juju-explain-it-to-me-like-im-5">“Juju - Explain it to me like I’m 5”</a>.</p>
-<p>One of the biggest problems when developing any kind of software is getting the dependencies up and running in a way which matches the production environment close enough to be sure that you aren’t going to run into “this environment only” bugs. Sure you can install mysql onto your local machine and run the database dump on that install, but you also have to make sure that you apply all of the same configuration, indexes, build flags, etc. as the production environment.</p>
-<p>Even once you get it up and running you then need the ability to update it after modifications were made by someone else on the project all with high production parity, and without extraneous downtime.</p>
-<p>To illustrate the benefits of using Juju for development I’m going to use a fictitious photo and video sharing website. A website like this would require multiple services, load balancer, web server, database, blob store, user authentication, photo processor, video processor.</p>
-<p>Keeping in mind that a Juju Charm can be written using any programming language or DSL that can be executed on the host machine. This means it can use Puppet, Chef, Python, JavaScript, Docker, and pretty much anything else you would like to use. Juju provides distinct advantages for project development depending on the lifecycle of the project. For our photo video site let’s first assume that we’re just starting the project and then later on we’ll assume that the project is mature, released, and still under active development.</p>
-<h4 id="just-starting-out">Just starting out</h4>
-<p>Typically when a project starts you’re only going to need a couple services, the database and your webserver. Let’s start our environment and install the database and webserver on our local machine.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">juju bootstrap <span class="nb">local</span>
-juju deploy apache2
-juju deploy mongodb
-</code></pre></div><p>Great, It’s 5 minutes in and we now have apache2 and mongodb running on our machine in separate LXC’s, we can now start developing our website and pointing it to these services.</p>
-<p>Parallel to this, your teammate is working on the user authentication service, it’s going well and they want someone to help them test it in the application environment. So lets get that service that they have been working on.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
-git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
-juju deploy --repository<span class="o">=</span>. local:trusty/authenticator
-</code></pre></div><p><em>For more information on deploying local charms see <a href="http://askubuntu.com/questions/568137/how-to-deploy-juju-charm-in-development-branch/568174#568174">This Post</a> on Ask Ubuntu.</em></p>
-<p>A few minutes later and you have an identical copy to their user authenticator service, you can point your website to it and give it a try. A little later the authenticator service has been updated and you’d like to run it again.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> ~/charms/trusty/authenticator
-git pull
-juju upgrade-charm --repository<span class="o">=</span>.
-</code></pre></div><p>This process repeats itself throughout each service and across each member of your team. Allowing each one to update their dependencies within minutes to identical representations of how it’ll be run in production.</p>
-<h4 id="released-project">Released project</h4>
-<p>Now that your project has been released, deployed using Juju, running in production, you’ve had a chance to take advantage of Juju’s deployment and scaling features but how does Juju help you develop now?</p>
-<p>In some ways it’s even easier to deploy. In this case, I’m going to assume that your services are private and not stored in the <a href="https://jujucharms.com">Juju Charm Store</a>. If they were in there you wouldn’t have to first clone the repositories.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">mkdir -p ~/charms/trusty <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/charms/trusty
-git clone --depth <span class="m">1</span> git@github.com:photovideo/mongodb
-git clone --depth <span class="m">1</span> git@github.com:photovideo/authenticator
-…
-
-juju-quickstart -e <span class="nb">local</span> photovideo.yaml
-</code></pre></div><p>Taking advantage of Juju Quickstart and the Juju bundles functionality you can deploy your entire environment with identical services, configuration, and machine placements. This will open up the GUI which will allow you to modify the machine placement of any of those services and change configuration values before deploying to your machine. Once you hit commit, sit back and wait for it to deploy an identical environment to your production environment on your local machine.</p>
-<p>Now you can work on the specific service you’re interested in within an identical environment to everyone on your team. And when a service gets updated by another member on your team it’s trivial to update.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell"><span class="nb">cd</span> ~/charms/trusty/authenticator
-git pull
-juju upgrade-charm --repository<span class="o">=</span>.
-</code></pre></div><p>I hope this gets you excited to use Juju for development as well as deployment. My team uses Juju for development this way and has for over a year. It allows us to be more productive because we don’t have to waste time installing and updating services the hard way.</p>
-<p>I’ll be creating a follow-up to this post with real code examples and workflows for doing the actual development of these services, stay tuned! Thanks for reading, if you have any questions or comments file them below or you can hit me up on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
 
   </article>
 </section>

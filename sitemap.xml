@@ -2,11 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fromanegg.com/post/2021/07/27/conditional-data-types-with-typescript/</loc>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
+  </url><url>
     <loc>https://fromanegg.com/tags/development/</loc>
-    <lastmod>2021-06-11T10:00:00-06:00</lastmod>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
   </url><url>
     <loc>https://fromanegg.com/</loc>
-    <lastmod>2021-06-11T10:00:00-06:00</lastmod>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
+  </url><url>
+    <loc>https://fromanegg.com/post/</loc>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
+  </url><url>
+    <loc>https://fromanegg.com/tags/</loc>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
+  </url><url>
+    <loc>https://fromanegg.com/tags/typescript/</loc>
+    <lastmod>2021-07-27T10:00:00-06:00</lastmod>
   </url><url>
     <loc>https://fromanegg.com/tags/linux/</loc>
     <lastmod>2021-06-11T10:00:00-06:00</lastmod>
@@ -15,12 +27,6 @@
     <lastmod>2021-06-11T10:00:00-06:00</lastmod>
   </url><url>
     <loc>https://fromanegg.com/tags/osx/</loc>
-    <lastmod>2021-06-11T10:00:00-06:00</lastmod>
-  </url><url>
-    <loc>https://fromanegg.com/post/</loc>
-    <lastmod>2021-06-11T10:00:00-06:00</lastmod>
-  </url><url>
-    <loc>https://fromanegg.com/tags/</loc>
     <lastmod>2021-06-11T10:00:00-06:00</lastmod>
   </url><url>
     <loc>https://fromanegg.com/tags/ops/</loc>

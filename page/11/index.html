@@ -91,6 +91,8 @@
           
             <li><a href="/tags/testing">testing</a></li>
           
+            <li><a href="/tags/typescript">typescript</a></li>
+          
             <li><a href="/tags/ubuntu">ubuntu</a></li>
           
             <li><a href="/tags/video">video</a></li>
@@ -111,6 +113,115 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/01/03/constructor-chaining-inheritance-in-javascript/" itemprop="url">Constructor chaining &amp; inheritance in javascript</a></h1>
+      
+        <time pubdate content="2013-01-03 20:56:00 -0600 CST" datetime="2013-01-03 20:56:00 -0600 CST">3 January 2013</time>
+      
+    </header>
+    <p>Javascript takes a lot of flack for being prototypal vs class based which leads a lot of developers to incorrectly assume that OOP techniques like constructor chaining and inheritance aren’t possible. This couldn’t be further from the truth; the real issue is that Javascript didn’t used to include any native OOP style methods. Luckily however javascript still provided us enough power to be able to build these methods and techniques ourselves. It gets even easier when you are able to use ES5 Javascript; or for cross browser support use a framework like YUI which adds in the OOP methods missing from Javascript which I’ll be covering in a follow up post.</p>
+<p>The first step is to understand that a constructor in Javascript is simply a function that you call with the word <code>new</code>. In the following example we are creating a function called Car, creating a color property on each instance of Car with the <code>this</code> special property, then creating a new instance of that function which is being assigned to the <code>mustang</code> variable.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Car</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">mustang</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mustang</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `red` to the console
+</span></code></pre></div><p>The <code>new</code> keyword is very important when creating constructors in javascript. Without <code>new</code> Car will be executed and <code>this</code> will point to <code>window</code> creating global variables, and it’s return value will be assigned to mustang. In this case mustang will be undefined and if you try and access any properties on it your script will grind to a halt.</p>
+<p>To be able to chain these constructors we will use one of two Javascript methods; <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call">call()</a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply()</a>. These allow us to call another method in javascript but specify the scope to which it executes.</p>
+<p>A common example to illustrate inheritance is creating a character in a video game.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Set up the baddies defaults
+</span><span class="c1"></span>  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s2">&#34;Baddie&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Executing Baddie with it&#39;s context set to Spider
+</span><span class="c1"></span>  <span class="c1">// because we used `this` it now assigns it&#39;s properties
+</span><span class="c1"></span>  <span class="c1">// level, hitPoints, and name to the Spider instance.
+</span><span class="c1"></span>  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">legs</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `1` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">legs</span><span class="p">);</span> <span class="c1">// Prints `8` to the console
+</span></code></pre></div><p>So here we have created two constructor functions, Baddie and Spider. The important line here is Baddie.apply(this); which executes Baddie in the context of Spider - adding those properties to the Spider instance. Using this technique you can chain as many constructors together as you like.</p>
+<p>This is great but what if we need to create many different types of Spiders; we need a way to pass data from our instantiation down the stack.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Set the baddie defaults using the
+</span><span class="c1"></span>  <span class="c1">// supplied configuration values or the defaults
+</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">level</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">level</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">hitPoints</span> <span class="o">||</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="s2">&#34;Baddie&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// This time we pass in a second paramter which
+</span><span class="c1"></span>  <span class="c1">// is the configuration object, or an empty
+</span><span class="c1"></span>  <span class="c1">// object if none was supplied
+</span><span class="c1"></span>  <span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">color</span> <span class="o">||</span> <span class="s2">&#34;red&#34;</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">legs</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">legs</span> <span class="o">||</span> <span class="mi">8</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">regularSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(),</span>
+    <span class="c1">// Pass a configuration object into the constructor
+</span><span class="c1"></span>    <span class="nx">superSpider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">({</span>
+      <span class="nx">level</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="nx">hitPoints</span><span class="o">:</span> <span class="mi">10000</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;Super Spider&#34;</span><span class="p">,</span>
+      <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;yellow&#34;</span><span class="p">,</span>
+      <span class="nx">legs</span><span class="o">:</span> <span class="mi">16</span>
+    <span class="p">});</span>
+
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `1` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">level</span><span class="p">);</span> <span class="c1">// Prints `10` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">regularSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `red` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">superSpider</span><span class="p">.</span><span class="nx">color</span><span class="p">);</span> <span class="c1">// Prints `yellow` to the console
+</span></code></pre></div><p>With this example we are creating a super spider by passing a configuration object into the Spider constructor. For this to have any effect down the chain we need to add a second parameter to our apply() call. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">arguments</a> is a special variable available in all functions which is an array-like object corresponding to the values passed to a function. This allows us to pass everything that was in the configuration object down to the next constructor.</p>
+<p>If you remember a little earlier I mentioned we could also use the call() function. This function accepts an argument list instead of an array of values. So if you prefer to pass in values in this matter you would use call() instead of apply().</p>
+<p>The last topic I want to touch on in this post is private properties and constructor methods using chained constructors. They are done pretty much exactly how you would assume coming from other languages but I’m going to illustrate the syntax just to drive it home. I have trimmed down the code a bit in this example to highlight the parts related to this topic.</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">Baddie</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="s2">&#34;abc&#34;</span><span class="p">;</span>
+
+  <span class="c1">// Code removed for brevity
+</span><span class="c1"></span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">getId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">setId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">id</span> <span class="o">=</span> <span class="nx">newVal</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">Spider</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">Baddie</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+  <span class="c1">// Code removed for brevity
+</span><span class="c1"></span><span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">spiderOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">(),</span>
+    <span class="nx">spiderTwo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Spider</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `abc` to the console
+</span><span class="c1"></span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">setId</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderOne</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `123` to the console
+</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">spiderTwo</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span> <span class="c1">// Prints `abc` to the console
+</span></code></pre></div><p>So as you can see in the Baddie function I created a local variable called <code>id</code> and assigned it a default value. I also created very basic getter and setter methods so that you can access this variable from outside of the function. Further down in the script I instantiate two completely separate spiders - they even have their own private id variable which is illustrated when I set it to 123 for spiderOne, but spiderTwo is still the default.</p>
+<p>In coming posts I will be covering prototypal inheritance, YUI OOP, and new related Javascript methods but I’ll be sure to link them here. Thanks for reading! If you have any questions or comments you can comment below, or mention me <a href="https://twitter.com/fromanegg">@fromanegg</a>. Till next time!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -331,27 +442,6 @@ Ok so now what about keydown? Another example is in order; we’ll take the prev
 <li><a href="http://zurb.com/playground/responsive-sketchsheets">Responsive Sketchsheets (zurb.com)</a>: Unique collection of sketchsheets for responsive layouts.</li>
 <li><a href="https://www.impressivewebs.com/javascript-array-methods-reference/">Javascript Array Methods Reference (impressivewebs.com)</a>: Reference for the various array manipulation methods in javascript.</li>
 <li><a href="http://bricss.net/post/33158273857/box-shadow-vs-filter-drop-shadow">Box-Shadow vs Filter-Drop-Shadow (bricss.net)</a>: A comparison of these two shadow css rules.</li>
-</ul>
-<p>Have something you would like to see on the next Hatched Links? Mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or find me in #yui on irc.freenode.net</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2012/10/11/hatched-links/" itemprop="url">Hatched Links</a></h1>
-      
-        <time pubdate content="2012-10-11 13:56:00 -0600 CST" datetime="2012-10-11 13:56:00 -0600 CST">11 October 2012</time>
-      
-    </header>
-    <ul>
-<li><a href="http://gitx.laullon.com/">GUI Git Client For OSX (laullon.com)</a>: Open source and runs on OSX 10.6+ and Git 1.6.0+.</li>
-<li><a href="http://www.adobe.com/devnet/edge-inspect/articles/browser-testing-across-devices-with-adobe-edge-inspect.html">Test Across Devices With Adobe Shadow (adobe.com)</a>: Setup browsing and debugging with Adobe Shadow.</li>
-<li><a href="http://www.webplatform.org/">Web Platform Docs (webplatform.org)</a>: Community driven wiki looking to become the be-all end-all of web development docs.</li>
-<li><a href="http://tympanus.net/codrops/2012/10/09/windy-a-plugin-for-swift-content-navigation/">Windy: A Plugin For Swift Content Navigation (tympanus.net)</a>: Make items fly away like a deck of cards.</li>
-<li><a href="http://dropshado.ws/post/32280391206/animating-max-height-to-overcome-heightauto">Transition to height: auto trick (dropshado.ws)</a>: Animating max-height to overcome height:auto limitation.</li>
 </ul>
 <p>Have something you would like to see on the next Hatched Links? Mention me on Twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> or find me in #yui on irc.freenode.net</p>
 

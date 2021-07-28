@@ -91,6 +91,8 @@
           
             <li><a href="/tags/testing">testing</a></li>
           
+            <li><a href="/tags/typescript">typescript</a></li>
+          
             <li><a href="/tags/ubuntu">ubuntu</a></li>
           
             <li><a href="/tags/video">video</a></li>
@@ -111,6 +113,64 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2021/07/27/conditional-data-types-with-typescript/" itemprop="url">Conditional data types with TypeScript</a></h1>
+      
+        <time pubdate content="2021-07-27 10:00:00 -0600 CST" datetime="2021-07-27 10:00:00 -0600 CST">27 July 2021</time>
+      
+    </header>
+    <p>When dealing with data that&rsquo;s returned from an API you don&rsquo;t always have control over the exact structure which can make it a bit of a challenge to add types to that data with TypeScript to improve the developer experience. I have recently run into this issue when hooking up the <a href="https://github.com/canonical-web-and-design/jaas-dashboard">Juju Dashboard</a> to a new API endpoint that sends deltas every time there is a change in the users environment.</p>
+<p>The deltas are sent in the format <code>[DeltaEntity, DeltaType, Delta]</code>, or more specifically <code>[[&quot;application&quot;, &quot;change&quot;, {...}], [&quot;machine&quot;, &quot;remove&quot;, {...}], ...]</code>. The structure of the <code>Delta</code> portion of this tuple is determined by the combination of the <code>DeltaEntity</code> and <code>DeltaType</code> so when dealing with this data you first need to run a conditional over those type values to determine what to do with the <code>Delta</code>. In order to type these we can use a <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">Type Predicate</a> or a <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions">Discriminated Union</a>. Ultimately I landed on using a discriminated union but I&rsquo;ll run through both approaches here.</p>
+<h4 id="using-a-type-predicate">Using a Type Predicate</h4>
+<p>Define the type for the whole delta tuple.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="kr">type</span> <span class="nx">AllWatcherDelta</span> <span class="o">=</span> <span class="p">[</span><span class="nx">DeltaEntity</span><span class="p">,</span> <span class="nx">DeltaType</span><span class="p">,</span> <span class="nx">Delta</span><span class="p">];</span>
+</code></pre></div><p>Define the possible values for the entity and type using a union. Yes, even the type predicate approach uses unions as a component of the typing approach. You also want to define the type for each delta type.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="kr">type</span> <span class="nx">DeltaEntity</span> <span class="o">=</span> <span class="s2">&#34;application&#34;</span> <span class="o">|</span> <span class="s2">&#34;charm&#34;</span> <span class="o">|</span> <span class="s2">&#34;unit&#34;</span><span class="p">;</span>
+<span class="kr">type</span> <span class="nx">DeltaType</span> <span class="o">=</span> <span class="s2">&#34;change&#34;</span> <span class="o">|</span> <span class="s2">&#34;remove&#34;</span><span class="p">;</span>
+
+<span class="kr">interface</span> <span class="nx">UnitChangeDelta</span> <span class="p">{</span>
+  <span class="nx">name</span>: <span class="kt">string</span><span class="p">;</span>
+  <span class="nx">ports</span>: <span class="kt">string</span><span class="p">[];</span>
+<span class="p">}</span>
+</code></pre></div><p>Now we need to create a function that will be used as the predicate in a conditional to determine what the data type is while working on the delta values. These functions will take, at a minimum, the data that you want to define the type for and any additional data you need to determine that type. It must then return a boolean value, if <code>true</code> then <code>change</code> in this function will be of type <code>UnitChangeDelta</code>, otherwise not.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="kd">function</span> <span class="nx">isUnitChangeDelta</span><span class="p">(</span>
+  <span class="nx">delta</span>: <span class="kt">AllWatcherDelta</span><span class="p">,</span>
+  <span class="nx">change</span>: <span class="kt">Delta</span>
+<span class="p">)</span><span class="o">:</span> <span class="nx">change</span> <span class="k">is</span> <span class="nx">UnitChangeDelta</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">delta</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;unit&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">delta</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&#34;change&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Using this approach you would then have a string of conditionals checking for the appropriate type and within, would be of the expected type. In this example <code>delta[2]</code>, the actual delta in our tuple will now be properly typed within the conditional as a <code>UnitChangeDelta</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="k">if</span> <span class="p">(</span><span class="nx">isUnitChangeDelta</span><span class="p">(</span><span class="nx">delta</span><span class="p">,</span> <span class="nx">delta</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span> <span class="p">{</span>
+  <span class="nx">delta</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">ports</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="using-discriminated-unions">Using Discriminated Unions</h4>
+<p>Define all possible tuples of <code>DeltaEntity</code>, <code>DeltaType</code>, and <code>Delta</code> as a discriminated union.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="kr">type</span> <span class="nx">AllWatcherDelta</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="p">[</span><span class="s2">&#34;unit&#34;</span><span class="p">,</span> <span class="s2">&#34;change&#34;</span><span class="p">,</span> <span class="nx">UnitChangeDelta</span><span class="p">]</span>
+  <span class="o">|</span> <span class="p">[</span><span class="s2">&#34;machine&#34;</span><span class="p">,</span> <span class="s2">&#34;change&#34;</span><span class="p">,</span> <span class="nx">MachineChangeDelta</span><span class="p">]</span>
+  <span class="o">|</span> <span class="p">[</span><span class="s2">&#34;application&#34;</span><span class="p">,</span> <span class="s2">&#34;remove&#34;</span><span class="p">,</span> <span class="nx">ApplicationRemoveDelta</span><span class="p">];</span>
+</code></pre></div><p>Now when using the delta you need to check the values of each predicate manually and TypeScript will correctly type the data. Here I&rsquo;ve used a <code>switch</code> statement but you could use any type of conditional.</p>
+<div class="highlight"><pre class="chroma"><code class="language-TypeScript" data-lang="TypeScript"><span class="k">switch</span> <span class="p">(</span><span class="nx">delta</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+  <span class="k">case</span> <span class="s2">&#34;unit&#34;</span><span class="o">:</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">delta</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="s2">&#34;change&#34;</span><span class="o">:</span>
+        <span class="nx">delta</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">ports</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="summary">Summary</h4>
+<p>Using only a <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions">Discriminated Union</a> is great when you have a known set of data that you need to type. As the size or complexity of that data set increases you might want to evaluate using a <a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates">Type Predicate</a> as you can execute whatever code you need to determine the type including introspepction into the data itself if you needed to use a canary in the object as the flag.</p>
+<p>If either of these approaches don&rsquo;t quite get you there you can also look into adding <a href="https://www.typescriptlang.org/docs/handbook/2/generics.html">Generics</a> into the mix but that&rsquo;ll have to wait for another time.</p>
+<p>No matter the approach you take, having properly typed dynamic data dramatically reduces a certain set of errors and increases the productivity of the developer consuming that data so I feel it&rsquo;s worth the investment.</p>
+<p>Thanks for reading!</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -363,58 +423,6 @@ sudo mount -t nfs &lt;VM IP&gt;:/home/ubuntu/code /Users/&lt;UserName&gt;/code
 
 component validation failed: <span class="m">1</span> error found
 </code></pre></div><p>We have found this hugely helpful to reduce errors in the shipped application with almost no overhead during development. Should we split this out into its own tool? Would you find this helpful in your own projects? Let me know <a href="https://twitter.com/fromanegg">@fromanegg</a> Thanks for reading.</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2016/11/22/how-to-semantic-blog-markup/" itemprop="url">How To: Semantic blog markup</a></h1>
-      
-        <time pubdate content="2016-11-22 21:23:26 -0600 CST" datetime="2016-11-22 21:23:26 -0600 CST">22 November 2016</time>
-      
-    </header>
-    <p>After writing some great content you&rsquo;ll want people to be able to find it on the various search engines and easily share on social networks. This is done by using the proper HTML, microdata, and meta tags to allow search engines and social networks to correctly parse the content on your page and display the correct summary content.</p>
-<p>You&rsquo;ll first want to start with the original description and canonical tags as the basic fallback for anything parsing your page. The <code>description</code> tag is the summary description of the content on the page. The <code>canonical</code> tag is to tell the search engines what the canonical url for your post is in the event they arrived there under a different url.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Description of post&#34;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;canonical&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;http://example.com/path/to/post&#34;</span><span class="p">/&gt;</span>
-</code></pre></div><p>HTML5 brought with it a number of new tags which we can use to better organize our markup and tell search engines a little more about the organization of our pages. The two most important for blog posts are the <code>section</code> and <code>article</code> tags. The <code>section</code> tag represents a generic section of the document, like a list of articles. The <code>article</code> tag represents the actual post content including the title, publication date, content, etc.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">section</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">article</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">time</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
-    Post content.
-  <span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-</code></pre></div><p>This doesn&rsquo;t however tell the search engines what elements contain things like the link, published date, title, content, etc. To do this we need to rely on <a href="https://www.w3.org/TR/microdata/">microdata</a> and <a href="http://schema.org/">schema.org</a> to fill in the blanks and describe the content in the markup.</p>
-<p>Because this is a blog post we&rsquo;ll start by labeling the actual blog post. By adding <code>itemscope</code> to the article tag you&rsquo;re specifying that the content within the <code>article</code> tag is about a specific item, and the <code>itemtype</code> is the type of item you&rsquo;re wrapping. in this case, a <a href="http://schema.org/BlogPosting">BlogPosting</a> which has a list of sub tags that we can now define.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">itemscope</span> <span class="na">itemtype</span><span class="o">=</span><span class="s">&#34;http://schema.org/BlogPosting&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-</code></pre></div><p>The title is defined using the <a href="http://schema.org/name">name</a> tag and the permalink is defined using the <a href="http://schema.org/url">url</a> tag.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">h1</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;permalink&#34;</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p">&gt;</span>Post Title<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</code></pre></div><p>To indicate the date that the content was first published we use the <a href="http://schema.org/datePublished">datePublished</a> tag supplying the datetime value.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">time</span> <span class="na">pubdate</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;datePublished&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span> <span class="na">datetime</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>January 1 1970<span class="p">&lt;/</span><span class="nt">time</span><span class="p">&gt;</span>
-</code></pre></div><p>the <code>author</code> has a number of various implementations including one in HTML5, the <code>rel</code> tag. In microdata it&rsquo;s the <a href="http://schema.org/author">author</a> tag.</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"> <span class="p">&lt;</span><span class="nt">span</span> <span class="na">itemprop</span><span class="o">=</span><span class="s">&#34;author&#34;</span><span class="p">&gt;</span>Your name<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
-</code></pre></div><p>Now moving beyond the microdata and schema.org definitions, to enable the best sharing experience on the social networks you&rsquo;ll want to set up <a href="https://dev.twitter.com/cards/types/summary">Twitter cards</a> and <a href="https://developers.facebook.com/docs/sharing/webmasters">Facebook Open Graph data</a>.</p>
-<p>The Twitter card metadata fields are as follows (taken from their documentation):</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:card&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;summary&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:site&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;@flickr&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Small Island Developing States Photo Submission&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;View the album on Flickr.&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;twitter:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg&#34;</span> <span class="p">/&gt;</span>
-</code></pre></div><p>And the Facebook Open Graph data meta fields are (taken from their documentation):</p>
-<div class="highlight"><pre class="chroma"><code class="language-HTML" data-lang="HTML"><span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:url&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://www.example.com/post/1234&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:type&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;article&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:title&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;When Great Minds Don’t Think Alike&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;How much does culture influence creative thinking?&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;og:image&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;http://example.com/image.jpg&#34;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">property</span><span class="o">=</span><span class="s">&#34;article:published_time&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;1970-01-01T00:00:00+00:00&#34;</span><span class="p">&gt;</span>
-</code></pre></div><p>Thanks for reading, do you have any other tips for proper blog markup? Let me know below!</p>
 
   </article>
 </section>

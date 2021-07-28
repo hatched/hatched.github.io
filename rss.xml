@@ -6,7 +6,16 @@
     <description>Recent content on From An Egg</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 11 Jun 2021 10:00:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 27 Jul 2021 10:00:00 -0600</lastBuildDate><atom:link href="https://fromanegg.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Conditional data types with TypeScript</title>
+      <link>https://fromanegg.com/post/2021/07/27/conditional-data-types-with-typescript/</link>
+      <pubDate>Tue, 27 Jul 2021 10:00:00 -0600</pubDate>
+      
+      <guid>https://fromanegg.com/post/2021/07/27/conditional-data-types-with-typescript/</guid>
+      <description>When dealing with data that&amp;rsquo;s returned from an API you don&amp;rsquo;t always have control over the exact structure which can make it a bit of a challenge to add types to that data with TypeScript to improve the developer experience. I have recently run into this issue when hooking up the Juju Dashboard to a new API endpoint that sends deltas every time there is a change in the users environment.</description>
+    </item>
+    
     <item>
       <title>Opening changed files in VSCode</title>
       <link>https://fromanegg.com/post/2021/06/11/opening-changed-files-in-vscode/</link>

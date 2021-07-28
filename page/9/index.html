@@ -91,6 +91,8 @@
           
             <li><a href="/tags/testing">testing</a></li>
           
+            <li><a href="/tags/typescript">typescript</a></li>
+          
             <li><a href="/tags/ubuntu">ubuntu</a></li>
           
             <li><a href="/tags/video">video</a></li>
@@ -111,6 +113,90 @@
     </ul>
   </div>
 </nav>
+
+  
+    <section class="article-list">
+  <article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1><a href="https://fromanegg.com/post/2013/06/01/xor-in-javascript/" itemprop="url">XOR in JavaScript</a></h1>
+      
+        <time pubdate content="2013-06-01 12:08:00 -0600 CST" datetime="2013-06-01 12:08:00 -0600 CST">1 June 2013</time>
+      
+    </header>
+    <p>Typically when writing a XOR check in JavaScript you would do something like…</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">((</span> <span class="nx">foo</span> <span class="o">||</span> <span class="nx">bar</span> <span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="p">(</span> <span class="nx">foo</span> <span class="o">&amp;&amp;</span> <span class="nx">bar</span> <span class="p">))</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div><p>The issue with this approach is that it can be very verbose when not in psudo code or you will have to convert each expression into a boolean value prior to the check to get it as small as the above example.</p>
+<p>In order to start working towards a better solution we first need to define our desired outcome. Wikipedia explains an <a href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or (XOR)</a> to be a logical operation that outputs true whenever both inputs differ (one is true, the other is false).</p>
+<table>
+<thead>
+<tr>
+<th>Input A</th>
+<th>Input B</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>So with the truth table above we can now check out alternative approaches. As it turns out the quirkyness of JavaScript can actually help us clean this up. Because using the NOT (!) operator on a string will typecast it to false we can actually reduce the above if check to…</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">foo</span> <span class="o">!=</span> <span class="o">!</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre></div><p>So lets create an output table for this new technique to see if it works as expected.</p>
+<table>
+<thead>
+<tr>
+<th>Input A</th>
+<th>Input B</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>false</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>true</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>true</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>Works great and with a lot less keystrokes!</p>
+<p>Thanks for reading! If you have any questions or comments please feel free to comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>.</p>
+
+  </article>
+</section>
 
   
     <section class="article-list">
@@ -254,55 +340,6 @@ sudo mount -t nfs 192.168.1.100:/export /Users/your-user-name/linux-vm
 <span class="o">);</span>
 </code></pre></div><p>As I’m sure you can already guess, but at the time of this writing the support for this CSS function is very limited so you should use a fallback similar to the one posted above. At the time of writing this is in the CSS4 working draft and is supported in Safari 6 and Chrome 21+ but there is no doubt that the others are working towards an implementation as well.</p>
 <p>Have you used this function? Plan to use it in your application? Let me know how it goes - comment below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a>. Thanks for reading!</p>
-
-  </article>
-</section>
-
-  
-    <section class="article-list">
-  <article itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
-      <h1><a href="https://fromanegg.com/post/2013/01/28/understanding-css2-and-css3-attribute-selectors/" itemprop="url">Understanding CSS2 and CSS3 attribute selectors</a></h1>
-      
-        <time pubdate content="2013-01-28 10:01:00 -0600 CST" datetime="2013-01-28 10:01:00 -0600 CST">28 January 2013</time>
-      
-    </header>
-    <p>I received a large number of questions after my last blog post, <a href="http://fromanegg.com/post/41302147556/100-pure-css-radial-progress-bar">100% pure css radial progress bar</a>, about the attribute selector I used so I figured a quick followup post detailing the 7 (at the time of writing) available attribute selectors across CSS2 and CSS3.</p>
-<h4 id="attribute-selector-syntax">Attribute Selector Syntax</h4>
-<pre><code>[attributeName{selector}value]
-</code></pre><h4 id="attribute-selectors">Attribute Selectors</h4>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute regardless of value.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user=foo]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>foo</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user~=bar]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foo bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>bar</code> or the value <code>bar</code> in a whitespace-separated list.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user|=baz]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;baz-bar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with the exact value <code>baz</code> or a value starting with <code>baz</code> followed by a “-”.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user^=foo]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;fooBar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that starts with <code>foo</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user$=bar]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that ends with <code>bar</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">[user*=baz]
-/* matches */
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">user</span><span class="o">=</span><span class="s">&#34;foobazbar&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p>Any element which has a <code>user</code> attribute with a value that has <code>baz</code> anywhere in it.</p>
-<p>If you don’t have to support IE 6 you’re in luck because you should have full support for all of these all the way back to IE 7. As usual feel free to let me know your thoughts below or mention me on twitter <a href="https://twitter.com/fromanegg">@fromanegg</a> - Happy selecting!</p>
 
   </article>
 </section>
